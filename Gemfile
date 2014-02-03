@@ -23,6 +23,8 @@ gem 'uglifier'
 gem 'chosen-rails'
 gem 'jquery-ui-rails'
 gem 'gon'
+gem 'rails_12factor', group: :production
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
