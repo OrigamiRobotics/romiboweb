@@ -1,0 +1,10 @@
+<div id="contentWrapper">
+  <% page_title = full_title(yield(:title)) %>
+  <% home_page = page_title.include? "Home" %>
+
+  <% if home_page %>
+      <%= render 'layouts/home_container' %>
+  <% else %>
+      <%= render 'layouts/pages_container' %>
+  <% end %>
+</div>

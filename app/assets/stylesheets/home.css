@@ -1,0 +1,45 @@
+#homeWrapper {
+    background-color: #2590e1;
+    margin-top: 180px;
+}
+
+.homeContentBox {
+    background-color: white;
+    border: solid 1px #0086b3;
+    border-radius: 5px;
+}
+
+.homeContentBox h1 {
+    font-size: 20px;
+    color: chocolate;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.homeContentBox h2 {
+    font-size: 14px;
+    color: chocolate;
+    text-align: center;
+    margin-top: -5px;
+}
+
+#welcomeBoxOnHomePage {
+    height: 384px;
+}
+
+#signInBoxOnHomePage {
+    height: 100px;
+}
+
+#signUpBoxOnHomePage {
+    height: 200px;
+}
+
+#socialMediaBoxOnHomePage {
+    height: 80px;
+}
+
+#homeContent {
+    margin-top: 50px;
+}
+

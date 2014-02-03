@@ -1,0 +1,22 @@
+<% provide(:title, 'Home') %>
+
+<% content_for :content  do %>
+  <div class="row-fluid" id="homeContent">
+    <div class="span8">
+      <div class="homeContentBox" id="welcomeBoxOnHomePage">
+        <%= render 'romiboweb_pages/home/welcome' %>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="homeContentBox" id="signInBoxOnHomePage">
+        <%= render 'romiboweb_pages/home/sign_in' %>
+      </div>
+      <div class="homeContentBox" id="signUpBoxOnHomePage">
+        <%= render 'romiboweb_pages/home/sign_up' %>
+      </div>
+      <div class="homeContentBox" id="socialMediaBoxOnHomePage">
+        <%= render 'romiboweb_pages/home/social_media_sign_in' %>
+      </div>
+    </div>
+  </div>
+<% end %>
