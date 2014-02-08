@@ -1,7 +1,6 @@
 Romiboweb::Application.routes.draw do
 
 
-  devise_for :users
 
   get "romiboweb_pages/home"
 
@@ -12,5 +11,8 @@ Romiboweb::Application.routes.draw do
   end
 
   resources :users
+
+  devise_for :users,
+             controllers: {registrations: "registrations" }
 
 end
