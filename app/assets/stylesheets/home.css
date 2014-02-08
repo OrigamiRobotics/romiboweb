@@ -17,10 +17,10 @@
 }
 
 .homeContentBox h2 {
-    font-size: 14px;
+    font-size: 15px;
     color: chocolate;
     text-align: center;
-    margin-top: -5px;
+    margin-top: 0;
 }
 
 #welcomeBoxOnHomePage {
@@ -28,11 +28,11 @@
 }
 
 #signInBoxOnHomePage {
-    height: 100px;
+    height: 200px;
 }
 
 #signUpBoxOnHomePage {
-    height: 200px;
+    height: 350px;
 }
 
 #socialMediaBoxOnHomePage {
