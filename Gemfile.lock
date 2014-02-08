@@ -291,7 +291,6 @@ DEPENDENCIES
   json
   launchy
   less-rails
-  nokogiri
   pg
   rails (= 4.0.1)
   rails_12factor
