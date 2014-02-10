@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+#  home:
+#    header:
+#      signin: "Already a member? Sign In"
+#      signup: "New to RomiboWeb? Sign Up"
+#      oauth: "Are you social? Sign in using one of:"
+#      welcome: "Welcome to RomiboWeb"
+#    title: "Home"

@@ -4,18 +4,18 @@
   <div class="signUpForm span10 offset1">
     <%= f.error_notification %>
       <%= f.input :first_name , label: false,
-                  placeholder: 'First Name (required)',
+                  placeholder: t('home.placeholder.first_name'),
                   input_html: { style: 'width: 100%, margin-left: 0'}
       %>
 
-      <%= f.input :last_name, label: false, placeholder: 'Last Name (required)' %>
+      <%= f.input :last_name, label: false, placeholder: t('home.placeholder.last_name') %>
       <%= f.input :email, :required => true, :autofocus => true,
-                  label: false, placeholder: 'Email (required)' %>
-      <%= f.input :password, :required => true, label: false, placeholder: 'Password (required)' %>
+                  label: false, placeholder: t('home.placeholder.email') %>
+      <%= f.input :password, :required => true, label: false, placeholder: t('home.placeholder.password') %>
       <%= f.input :password_confirmation, :required => true,
-                  label: false, placeholder: "Confirm password (required)" %>
+                  label: false, placeholder: t('home.placeholder.confirm_password') %>
     <div class="span8 offset2">
-      <%= f.button :submit, "Sign up", class: "btn-primary btn-block",  id: "signUpButton" %>
+      <%= f.button :submit, t('home.button.signup'), class: "btn-primary btn-block",  id: "signUpButton" %>
     </div>
   </div>
 

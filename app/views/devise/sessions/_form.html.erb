@@ -4,15 +4,15 @@
 %>
   <div class="signUpForm span10 offset1">
 
-  <%= f.input :email, :required => false, :autofocus => true, label: false, placeholder: 'Email (required)' %>
-  <%= f.input :password, :required => false, label: false, placeholder: 'Password (required)' %>
+  <%= f.input :email, :required => false, :autofocus => true, label: false, placeholder: t('home.placeholder.email') %>
+  <%= f.input :password, :required => false, label: false, placeholder: t('home.placeholder.password') %>
   <div class="row">
     <div class="span6">
       <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
 
     </div>
     <div class="span6">
-      <%= f.button :submit, "Sign in", class: "btn-primary btn-block",  id: "signUpButton" %>
+      <%= f.button :submit, t('home.button.signin'), class: "btn-primary btn-block",  id: "signUpButton" %>
     </div>
   </div>
 
