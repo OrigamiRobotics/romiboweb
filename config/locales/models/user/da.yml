@@ -1,0 +1,11 @@
+da:
+  activerecord:
+    models:
+      user: 'Bruger'
+    attributes:
+      user:
+        first_name: 'Fornavn'
+        last_name: 'Efternavn'
+        email: 'E-mail'
+        password: 'Adgangskode'
+        remember_me: 'Husk mig'

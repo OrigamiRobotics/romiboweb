@@ -1,18 +1,8 @@
-<div class="navbar navbar-fluid pull-right" id="topNavbar">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <div class="container-fluid nav-collapse">
-        <ul class="nav">
-          <% yield :top_navigation %>
-          <li><%= link_to "Sign out", "/path1"  %></li>
-
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+<div class="collapse nav-collapse topNavbar">
+  <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to t('topnav.signout'), destroy_user_session_path, method: :delete,
+                      class: 'btn btn-primary', confirm: 'Are you sure?' %></li>
+    </ul>
+  <% end %>
 </div>
