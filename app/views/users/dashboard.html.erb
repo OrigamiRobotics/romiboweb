@@ -1,16 +1,16 @@
 <% provide(:title, 'Dashboard') %>
 
 <% content_for :content  do %>
-  <div class="row-fluid" id="dashboardContentWrapper">
-    <div class="span4 dashboardLinkBox" id="dashboardPalettesLink">
+  <div class="row" id="dashboardContentWrapper">
+    <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardPalettesLink">
       <h1>My Palettes</h1>
       <%= link_to '', romiboweb_pages_editor_path %>
     </div>
-    <div class="span4 dashboardLinkBox" id="dashboardLessonsLink">
+    <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardLessonsLink">
       <h1>My Lessons</h1>
       <%= link_to '', root_path %>
     </div>
-    <div class="span4 dashboardLinkBox" id="dashboardSocialLink">
+    <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardSocialLink">
       <h1>Sharing</h1>
       <%= link_to '', root_path %>
     </div>

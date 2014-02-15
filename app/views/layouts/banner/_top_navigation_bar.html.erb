@@ -2,10 +2,10 @@
   <% if user_signed_in? %>
     <ul class="nav navbar-nav navbar-right">
       <% unless params[:action] == 'dashboard' or params[:action] == 'home' %>
-      <li><%= link_to t('topnav.dashboard') %></li>
+      <li><%= link_to t('topnav.dashboard'), dashboard_path %></li>
       <% end %>
       <% if params[:action] == 'dashboard' %>
-        <li><%= link_to  t('topnav.palettes'), editor_path  %></li>
+        <li><%= link_to  t('topnav.palettes'), dashboard_path  %></li>
       <% end %>
     </ul>
   <% end %>
