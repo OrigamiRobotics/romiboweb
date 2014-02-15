@@ -1,0 +1,42 @@
+#editorWrapper {
+    background-color: #000000;
+    padding-bottom: 50px;
+}
+
+.editorContent {
+    background-color: #ffffff;
+    min-height: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
+#editorWrapperInner  {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#leftSideContentBox {
+    width: 196px;
+    border-left: solid 2px #000000;
+    border-right: solid 2px #000000;
+}
+
+#centerContentBox {
+    width: 650px;
+    margin-left: 200px;
+    margin-top: -600px;
+}
+
+#rightSideContentBox {
+    width: 346px;
+    margin-left: 850px;
+    margin-top: -600px;
+    border-left: solid 2px #000000;
+    border-right: solid 2px #000000;
+}
+
+#editorToolbar {
+    height: 50px;
+    background: transparent;
+}

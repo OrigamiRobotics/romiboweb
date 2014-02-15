@@ -1,7 +1,7 @@
 namespace :deploy do
   desc "Deploy to integration api server on Heroku"
   task :integration do
-    `git push heroku romiboweb-integration`
+    `git push romiboweb-integration master`
     `heroku run rake db:migrate -a romiboweb-integration`
   end
 

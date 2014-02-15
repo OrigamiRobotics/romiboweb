@@ -8,14 +8,9 @@
       </a>
       <div class="container-fluid nav-collapse">
         <ul class="nav">
-          <% unless params[:action] == 'dashboard' or params[:action] == 'home' %>
-          <li><%= link_to "Dashboard", dashboard_path  %></li>
-          <% end %>
-          <% if params[:action] == 'dashboard' %>
-            <li><%= link_to "Palettes", editor_path  %></li>
-          <% end %>
-          <li><%= link_to "About", "/path2"  %></li>
-          <li><%= link_to "Contact", "/path3"  %></li>
+          <% yield :top_navigation %>
+          <li><%= link_to "Sign out", "/path1"  %></li>
+
         </ul>
       </div><!--/.nav-collapse -->
     </div>

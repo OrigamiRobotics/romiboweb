@@ -1,3 +1,7 @@
 <div id="logo">
-  <%= link_to image_tag("romibo/logo.png"), "http://www.romibo.org" %>
+  <% if current_user.present? %>
+  <%= link_to image_tag("romibo/logo_blue.png"), "" %>
+  <% else %>
+    <%= link_to image_tag("romibo/logo_blue.png"), root_path %>
+<% end %>
 </div>
