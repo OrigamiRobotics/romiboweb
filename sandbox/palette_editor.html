@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	 
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script> 
+	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.1.min.js"></script>
+
+   </head>
+    <body>
+
+      <div class="container" id="import">
+        <H1>JSON <-> kinetic.js test page</H1>
+      	JSON: <br>
+      	<textarea rows="10" cols="80" id="jsonText">{"displayOrder":1,"name":"Test One","actions":[{"speechPhrase":"Bye bye","threeBasedIndex":2,"buttonTitle":"bye","speechSpeedRate":0.7639594,"color":"#1ABC9C"},{"speechPhrase":"","threeBasedIndex":3,"buttonTitle":"Untitled button","speechSpeedRate":0.5,"color":"#16A085"},{"speechPhrase":"hello","threeBasedIndex":1,"buttonTitle":"say hi","speechSpeedRate":0.6954315,"color":"#2ECC71"},{"speechPhrase":"Eat this","threeBasedIndex":4,"buttonTitle":"eat","speechSpeedRate":0.7639594,"color":"#27AE60"},{"speechPhrase":"good morning","threeBasedIndex":5,"buttonTitle":"good morning","speechSpeedRate":0.5,"color":"#2980B9"},{"speechPhrase":"hello","threeBasedIndex":6,"buttonTitle":"good afternoon ","speechSpeedRate":0.6954315,"color":"#9B59B6"},{"speechPhrase":"Bye bye","threeBasedIndex":7,"buttonTitle":"bye","speechSpeedRate":0.7639594,"color":"#E67E22"},{"speechPhrase":"","threeBasedIndex":8,"buttonTitle":"how are you?","speechSpeedRate":0.5,"color":"#C0392B"},{"speechPhrase":"this is orange","threeBasedIndex":9,"buttonTitle":"this is orange","speechSpeedRate":0.6954315,"color":"#D35400"}]}
+        </textarea><br>
+        <button type="button" class="btn btn-primary" onclick="importJSON()">Import Palette</button>
+      </div>
+      <div class="container" style="padding:10px;">Palette Name: <input type="textbox" id="paletteName"/></div>
+      <div class="container" id="palette"></div>
+      <div class="container" id="buttonDetails">
+        Button Title: <input type="textbox" id="buttonTitle"/>
+        Speech Phrase: <input type="textbox" id="speechPhrase"/>
+        Speech Speed Rate: <input type="textbox" id="speechSpeed"/>
+        Color: <input type="color" "buttonColor" />
+      </div>
+     
+      <script defer="defer">
+        var stage = new Kinetic.Stage({
+          container: 'palette',
+          width: 700,
+          height: 200
+        });
+
+        var layer = new Kinetic.Layer();
+
+// http://designmodo.github.io/Flat-UI/
+// #1ABC9C TURQUOISE
+// #16A085 GREEN SEA
+// #2ECC71 EMERALD
+// #27AE60 NEPHRITIS
+// #3498DB PETER RIVER
+// #2980B9 BELIZE HOLE
+// #9B59B6 AMETHYST
+// #8E44AD WISTERIA
+// #34495E WET ASPHALT
+// #2C3E50 MIDNIGHT BLUE
+// #F1C40F SUN FLOWER
+// #F39C12 ORANGE
+// #E67E22 CARROT
+// #D35400 PUMPKIN 
+// #E74C3C ALIZARIN
+// #C0392B POMEGRANATE
+// #ECF0F1 CLOUDS
+// #BDC3C7 SILVER
+// #95A5A6 CONCRETE
+// #7F8C8D ASBESTOS
+
+
+        function loadButtonDetails(threeBasedIndex) {
+          var jsonString = $("#jsonText").val();
+          var palette = $.parseJSON(jsonString);
+          for(var i in palette.actions) {
+            var index = palette.actions[i].threeBasedIndex;
+            if (index == threeBasedIndex) {
+              $("#buttonTitle").val(palette.actions[i].buttonTitle);
+              $("#speechPhrase").val(palette.actions[i].speechPhrase);
+              $("#speechSpeed").val(palette.actions[i].speechSpeedRate);
+            }
+          }
+        }
+
+        function importJSON() {
+          layer.removeChildren();
+          var jsonString = $("#jsonText").val();
+          var palette = $.parseJSON(jsonString);
+          var paletteName = palette.name;
+          $("#paletteName").val(paletteName);
+          var x = 10;
+          var y = 10;
+          for(var n in palette.actions) {
+            // anonymous function to induce scope
+            // http://stackoverflow.com/questions/5815757/what-exactly-is-the-point-of-this-function-construct-why-is-it-needed
+            (function() {
+              var i = n
+              var title = palette.actions[i].buttonTitle;
+              var speech = palette.actions[i].speechPhrase;
+              var threeBasedIndex = palette.actions[i].threeBasedIndex;
+              var kinText = createText(title);
+              var kinButton = createButton(kinText, palette.actions[i].color);
+              var kinGroup = createGroup(i, x, y);
+
+              kinGroup.on('click', function() {
+                loadButtonDetails(threeBasedIndex);
+              });
+              kinGroup.add(kinButton).add(kinText);
+              layer.add(kinGroup);
+              x = x + kinText.width() + 1;
+              console.log(x);
+              if (x > 650) {
+                x = 10;
+                y = 51;
+                console.log("y: " + y)
+              }
+            })();
+          }
+          stage.add(layer);
+        }       
+
+        function createText(text) {
+          var kinText = new Kinetic.Text({
+              fontSize: 20,
+              fontFamily: 'Calibri',
+              text: text,
+              fill: 'white',
+              padding: 10
+            });
+          return kinText;
+        }
+
+        function createButton(kinText, color) {
+          var kinRect = new Kinetic.Rect({
+              width: kinText.width(),
+              height: kinText.height(),
+              fill: color,
+              stroke: 'white',
+              strokeWidth: 1,
+              cornerRadius: 5
+            });
+
+          return kinRect;
+        }
+
+        function createGroup(i, x, y) {
+          // bound inside a circle
+            var kinGroup = new Kinetic.Group({
+              x: x,
+              y: y,
+              draggable: false,
+              dragBoundFunc: function(pos) {
+                var newY = pos.y < 10 ? 10 : pos.y;
+                return {
+                  x: pos.x,
+                  y: newY
+                };
+              }
+            });
+            return kinGroup;
+        }
+
+        
+      </script>
+  
+  </body>
+</html>
