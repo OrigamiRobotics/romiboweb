@@ -37,7 +37,6 @@
         var colors = ['green', 'blue', 'purple','red', 'orange', 'yellow', ];
 
         function loadButtonDetails(threeBasedIndex) {
-          //alert("i got clicked " + threeBasedIndex);
           var jsonString = $("#jsonText").val();
           var palette = $.parseJSON(jsonString);
           for(var i in palette.actions) {
@@ -51,6 +50,7 @@
         }
 
         function importJSON() {
+          layer.removeChildren();
           var jsonString = $("#jsonText").val();
           var palette = $.parseJSON(jsonString);
           var paletteName = palette.name;
@@ -59,7 +59,7 @@
           var y = 10;
           for(var n in palette.actions) {
             // anonymous function to induce scope
-            //http://stackoverflow.com/questions/5815757/what-exactly-is-the-point-of-this-function-construct-why-is-it-needed
+            // http://stackoverflow.com/questions/5815757/what-exactly-is-the-point-of-this-function-construct-why-is-it-needed
             (function() {
               var i = n
               var title = palette.actions[i].buttonTitle;
