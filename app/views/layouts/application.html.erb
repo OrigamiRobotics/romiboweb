@@ -45,7 +45,9 @@
   <div class="container">
     <%= yield :content %>
   </div>
-
+  <footer>
+	  <%= render 'layouts/footer' %>
+  </footer>
 
   <%= javascript_include_tag 'http://code.jquery.com/jquery-1.11.0.min.js' %>
   <%= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js' %>
