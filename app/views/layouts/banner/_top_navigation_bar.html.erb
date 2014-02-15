@@ -1,19 +1,11 @@
-<div class="navbar navbar-fluid" id="topNavbar">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <div class="container-fluid nav-collapse">
-        <ul class="nav">
-          <% yield :top_navigation %>
-          <li><%= link_to "Play", "/path1"  %></li>
-          <li><%= link_to "About", "/path2"  %></li>
-          <li><%= link_to "Contact", "/path3"  %></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+<div class="collapse navbar-collapse topNavbar">
+  <ul class="nav navbar-nav navbar-left">
+    <li><%= link_to 'Dashboard' %></li>
+    <li><%= link_to 'Palettes' %></li>
+  </ul>
+  <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"><%= link_to "#{current_user.first_name}" %> <b class="caret"></b></li>
+    </ul>
+  <% end %>
 </div>

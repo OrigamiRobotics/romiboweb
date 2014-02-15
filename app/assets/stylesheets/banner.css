@@ -4,23 +4,19 @@
 }
 
 
-.brand-logo img {
-	width: auto;
-	height: 60px;
-}
 
-/*
-#logo {
+.logo {
     height: 100px;
-    margin-top: 30px;
     margin-left: 50px;
+    margin-right: 50px;
 }
 
-#logo img {
+.logo img {
     width: auto;
     height: 60px;
 }
 
-#topNavbar {
-    margin-top: 30px;
-}*/
+.topNavbar li {
+  margin-top: 15px;
+	font-size: 1.5em;
+}
