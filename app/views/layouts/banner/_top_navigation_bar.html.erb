@@ -5,8 +5,9 @@
       <li><%= link_to t('topnav.dashboard'), dashboard_path %></li>
       <% end %>
       <% if params[:action] == 'dashboard' %>
-        <li><%= link_to  t('topnav.palettes'), dashboard_path  %></li>
+        <li><%= link_to  t('topnav.palettes'), romiboweb_pages_editor_path  %></li>
       <% end %>
     </ul>
+
   <% end %>
 </div>

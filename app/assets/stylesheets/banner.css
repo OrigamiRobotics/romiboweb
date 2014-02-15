@@ -24,3 +24,19 @@
    margin-top: 15px;
    font-size: 1.5em;
 }
+
+#signOutLinkOnTopNav a:link, a:active{
+    color: white;
+    font-weight: bold;
+}
+
+#signOutLinkOnTopNav a:active{
+    color: white;
+    font-weight: bold;
+}
+
+#signOutLinkOnTopNav a:visited{
+    color: white;
+    font-weight: bold;
+}
+
