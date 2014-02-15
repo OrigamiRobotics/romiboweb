@@ -16,3 +16,4 @@
 log/*
 
 coverage/*
+atlassian-ide-plugin.xml

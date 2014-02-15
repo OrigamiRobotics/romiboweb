@@ -1,0 +1,19 @@
+da:
+  home:
+    title: "Hjem"
+    header:
+      welcome: "Velkommen til RomiboWeb"
+      signin: "Allerede medlem? Log ind"
+      signup: "Ny på RomiboWeb? Opret konto"
+      oauth: "Er du social? Log ind ved hjælp af en af:"
+    placeholder:
+      email: "E-mail (påkrævet)"
+      password: "Adgangskode (påkrævet)"
+      first_name: "Fornavn (påkrævet)"
+      last_name: "Efternavn (påkrævet)"
+      confirm_password: "Bekræft adgangskode (påkrævet)"
+    button:
+      signin: "Log ind"
+      signup: "Opret konto"
+
+

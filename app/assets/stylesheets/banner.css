@@ -1,24 +1,26 @@
 .banner {
     width: 100%;
-    height: 200px;
-    background-image: url("romibo/background.jpg");
-    background-repeat: repeat;
-    border-bottom-color: #0086b3;
-
-    position: fixed;
+	height: 100px;
+	vertical-align: middle;
 }
 
-#logo {
+
+.logo {
     height: 100px;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 50px;
 }
 
-#logo img {
+.logo img {
     width: auto;
-    height: 120px;
+    height: 100px;
 }
 
 #topNavbar {
-    margin-top: 30px;
+    margin-top: 20px;
+}
+
+.topNavbar li {
+   margin-top: 15px;
+   font-size: 1.5em;
 }
