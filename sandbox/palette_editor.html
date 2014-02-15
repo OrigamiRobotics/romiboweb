@@ -34,6 +34,7 @@
         });
 
         var layer = new Kinetic.Layer();
+        var colors = ['green', 'blue', 'purple','red', 'orange', 'yellow', ];
 
         function loadButtonDetails(threeBasedIndex) {
           //alert("i got clicked " + threeBasedIndex);
@@ -56,51 +57,48 @@
           $("#paletteName").val(paletteName);
           var x = 10;
           var y = 10;
-          for(var i in palette.actions) {
-            var title = palette.actions[i].buttonTitle;
-            var speech = palette.actions[i].speechPhrase;
-            var threeBasedIndex = palette.actions[i].threeBasedIndex;
-            var kinText = createText(title);
-            var kinButton = createButton(kinText);
-            var kinGroup = createGroup(i, x, y);
+          for(var n in palette.actions) {
+            // anonymous function to induce scope
+            //http://stackoverflow.com/questions/5815757/what-exactly-is-the-point-of-this-function-construct-why-is-it-needed
+            (function() {
+              var i = n
+              var title = palette.actions[i].buttonTitle;
+              var speech = palette.actions[i].speechPhrase;
+              var threeBasedIndex = palette.actions[i].threeBasedIndex;
+              var kinText = createText(title);
+              var kinButton = createButton(kinText, colors[i]);
+              var kinGroup = createGroup(i, x, y);
 
-            kinGroup.on('click', function() {
-              loadButtonDetails(threeBasedIndex);
-            });
-
-            kinGroup.add(kinButton).add(kinText);
-            layer.add(kinGroup);
-            x = x + kinText.width() + 10;
-            
+              kinGroup.on('click', function() {
+                loadButtonDetails(threeBasedIndex);
+              });
+              kinGroup.add(kinButton).add(kinText);
+              layer.add(kinGroup);
+              x = x + kinText.width() + 10;
+            })();
           }
           stage.add(layer);
-        }
+        }       
 
         function createText(text) {
           var kinText = new Kinetic.Text({
               fontSize: 20,
               fontFamily: 'Calibri',
               text: text,
-              fill: 'black',
+              fill: 'white',
               padding: 10
             });
           return kinText;
         }
 
-        function createButton(kinText) {
+        function createButton(kinText, color) {
           var kinRect = new Kinetic.Rect({
               width: kinText.width(),
               height: kinText.height(),
-              fill: '#aaf',
+              fill: color,
               stroke: 'white',
               strokeWidth: 1,
-              cornerRadius: 10,
-              hitFunc: function(context) {
-                context.beginPath();
-                context.rect(0 , 0, kinText.width(), kinText.height());
-                context.closePath();
-                context.fillStrokeShape(this);
-              }
+              cornerRadius: 10
             });
 
           return kinRect;
@@ -111,7 +109,7 @@
             var kinGroup = new Kinetic.Group({
               x: x,
               y: y,
-              draggable: true,
+              draggable: false,
               dragBoundFunc: function(pos) {
                 var newY = pos.y < 10 ? 10 : pos.y;
                 return {
