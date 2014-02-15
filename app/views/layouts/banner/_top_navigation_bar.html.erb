@@ -1,14 +1,12 @@
 <div class="collapse navbar-collapse topNavbar">
   <% if user_signed_in? %>
-    <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to t('topnav.dashboard') %></li>
-      <li><%= link_to t('topnav.palettes') %></li>
-    </ul>
     <ul class="nav navbar-nav navbar-right">
-	    <li><a href="#"><%= t('topnav.myprofile') %></a></li>
-	    <li>
-        <%= button_to t('topnav.signout'), destroy_user_session_path, method: :delete, class: 'btn btn-link', confirm: 'Are you sure?' %>
-	    </li>
+      <% unless params[:action] == 'dashboard' or params[:action] == 'home' %>
+      <li><%= link_to t('topnav.dashboard') %></li>
+      <% end %>
+      <% if params[:action] == 'dashboard' %>
+        <li><%= link_to  t('topnav.palettes'), editor_path  %></li>
+      <% end %>
     </ul>
   <% end %>
 </div>

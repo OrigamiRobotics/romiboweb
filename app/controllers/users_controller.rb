@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   #end
 
   def dashboard
-     @user = current_user
+    @title = "Dashboard"
+    @user = current_user
   end
 
   private

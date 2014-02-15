@@ -1,3 +1,7 @@
-<div class="navbar-header logo">
-  <%= link_to image_tag('romibo/logo_blue.png'), "http://www.romibo.org", class: 'navbar-brand'%>
+<div class="navbar-header logo" id="logo">
+  <% if current_user.present? %>
+  <%= link_to image_tag("romibo/logo_blue.png"), "" %>
+  <% else %>
+    <%= link_to image_tag("romibo/logo_blue.png"), root_path, class: 'navbar-brand' %>
+  <% end %>
 </div>

@@ -1,0 +1,8 @@
+<div class="collapse nav-collapse topNavbar">
+  <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to t('topnav.signout'), destroy_user_session_path, method: :delete,
+                      class: 'btn btn-primary', confirm: 'Are you sure?' %></li>
+    </ul>
+  <% end %>
+</div>

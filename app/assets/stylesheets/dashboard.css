@@ -1,0 +1,59 @@
+#dashboardContentWrapper {
+    margin-top: 50px;
+}
+div.dashboardLinkBox {
+    position: relative;
+    padding: 24px;
+    height: 150px;
+    margin-top: 100px;
+    border-radius: 5px;
+}
+
+div.dashboardLinkBox a {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration:none; /* Makes sure the link   doesn't get underlined */
+}
+
+div.dashboardLinkBox:hover {
+    /*background-color: rgba(32, 60, 144, 0.93);*/
+    color: white;
+}
+
+.dashboardLinkBox h1 {
+    font-size: 20px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#dashboardPalettesLink {
+    border: solid 1px #0086b3;
+}
+
+#dashboardPalettesLink:hover {
+    background-color: #0086b3;
+    color: white;
+    border: none;
+}
+
+
+#dashboardLessonsLink {
+    border: solid 1px #a97e00;
+}
+
+#dashboardLessonsLink:hover {
+    background-color: #a97e00;
+    border: none;
+}
+
+#dashboardSocialLink {
+    border: solid 1px #005c00;
+}
+
+#dashboardSocialLink:hover {
+    background-color: #005c00;
+    border: none;
+}
