@@ -1,0 +1,19 @@
+en:
+  home:
+    title: "Home"
+    header:
+      welcome: "Welcome to RomiboWeb"
+      signin: "Already a member? Sign In"
+      signup: "New to RomiboWeb? Sign Up"
+      oauth: "Are you social? Sign in using one of:"
+    placeholder:
+      email: "Email (required)"
+      password: "Password (required)"
+      first_name: "First Name (required)"
+      last_name: "Last Name (required)"
+      confirm_password: "Confirm password (required)"
+    button:
+      signin: "Sign in"
+      signup: "Sign up"
+
+

@@ -1,6 +1,6 @@
 <div id="contentWrapper">
   <% page_title = full_title(yield(:title)) %>
-  <% home_page = page_title.include? "Home" %>
+  <% home_page = page_title.include? t('home.title') %>
 
   <% if home_page %>
       <%= render 'layouts/home_container' %>
