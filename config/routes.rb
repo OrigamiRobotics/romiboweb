@@ -1,8 +1,5 @@
 Romiboweb::Application.routes.draw do
 
-  scope "(:locale)" do
-
-
     get "romiboweb_pages/home"
 
     root to: 'romiboweb_pages#home'
@@ -23,5 +20,4 @@ Romiboweb::Application.routes.draw do
       delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
     end
 
-  end
 end
