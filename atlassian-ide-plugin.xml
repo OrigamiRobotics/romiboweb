@@ -1,5 +1,14 @@
 <atlassian-ide-plugin>
   <project-configuration id="1">
-    <servers id="2" />
+    <servers id="2">
+      <jira id="3">
+        <server-id id="4">0b7d6845-991f-409f-944a-1ed270c4fb42</server-id>
+        <name>RomiboWeb</name>
+        <url>https://origamirobotics.atlassian.net</url>
+        <shared>false</shared>
+        <useSessionCookies>false</useSessionCookies>
+      </jira>
+    </servers>
+    <default-jira-server reference="4" />
   </project-configuration>
 </atlassian-ide-plugin>
