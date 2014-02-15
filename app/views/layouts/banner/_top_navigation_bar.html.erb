@@ -1,9 +1,9 @@
 <div class="collapse navbar-collapse topNavbar">
-  <ul class="nav navbar-nav navbar-left">
-    <li><%= link_to 'Dashboard' %></li>
-    <li><%= link_to 'Palettes' %></li>
-  </ul>
   <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to 'Dashboard' %></li>
+      <li><%= link_to 'Palettes' %></li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><%= link_to "#{current_user.first_name}" %> <b class="caret"></b></li>
     </ul>
