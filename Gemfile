@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.1'
-gem 'jquery-rails'
+#gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'pg'
@@ -15,12 +15,12 @@ gem 'simplecov'
 gem 'json'
 gem 'less-rails'
 gem 'coffee-rails'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+#gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platforms => :ruby
 gem 'uglifier'
 gem 'chosen-rails'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
 gem 'gon'
 gem 'rails_12factor', group: :production
 

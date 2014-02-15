@@ -7,7 +7,7 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= include_gon %>
     <%= csrf_meta_tags %>
-
+    <%= stylesheet_link_tag '//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', media: 'all' %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
@@ -35,12 +35,22 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
+
   </head>
   <body>
+  <nav role="navigation">
+    <%= render 'layouts/banner' %>
+  </nav>
 
-  <%= render 'layouts/banner' %>
-  <%= render 'layouts/content_wrapper' %>
+  <div class="container">
+    <%= yield :content %>
+  </div>
+  <footer>
+	  <%= render 'layouts/footer' %>
+  </footer>
 
+  <%= javascript_include_tag 'http://code.jquery.com/jquery-1.11.0.min.js' %>
+  <%= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js' %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
   </body>
 </html>
