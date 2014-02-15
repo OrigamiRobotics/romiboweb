@@ -1,5 +1,6 @@
 da:
   topnav:
-    play: "Afspil"
-    about: "Om"
-    contact: "Kontakte"
+    dashboard: "Instrumentbræt"
+    palettes: "Paletter"
+    myprofile: "Min Profil"
+    signout: "Log ud"

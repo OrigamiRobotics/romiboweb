@@ -1,6 +1,6 @@
 en:
-
   topnav:
-    play: "Play"
-    about: "About"
-    contact: "Contact"
+    dashboard: "Dashboard"
+    palettes: "Palettes"
+    myprofile: "My Profile"
+    signout: "Sign Out"
