@@ -48,4 +48,6 @@ group :test do
   gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
+  gem 'faker'
+  gem 'shoulda-matchers'
 end
