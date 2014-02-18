@@ -4,4 +4,8 @@ class PalettesController < ApplicationController
 
   def create
   end
+
+  def edit
+    @palette = Palette.find params[:id]
+  end
 end
