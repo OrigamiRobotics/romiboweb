@@ -21,7 +21,7 @@ feature 'Sign in', auth: true do
     end
     click_on 'Sign in'
     #expect(page).to have_title 'Home'
-    expect(page).to have_content 'Invalid email or password'
+    expect(page).to have_selector 'div', text: 'Invalid email or password'
   end
 
 end
