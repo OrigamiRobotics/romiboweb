@@ -1,7 +1,6 @@
 #editorWrapper {
     background-color: #000000;
     padding-bottom: 50px;
-    width: 100%;
 }
 
 .editorContent {
@@ -12,7 +11,6 @@
 }
 
 #editorWrapperInner  {
-    width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
