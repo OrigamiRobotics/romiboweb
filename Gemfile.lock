@@ -94,6 +94,8 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    faker (1.2.0)
+      i18n (~> 0.5)
     ffi (1.9.3)
     formatador (0.2.4)
     friendly_id (5.0.2)
@@ -205,6 +207,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
+    shoulda-matchers (2.5.0)
+      activesupport (>= 3.0.0)
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -267,6 +271,7 @@ DEPENDENCIES
   devise
   email_spec
   factory_girl_rails
+  faker
   friendly_id
   gon
   guard-rspec
@@ -280,6 +285,7 @@ DEPENDENCIES
   rspec-rails
   sdoc
   selenium-webdriver
+  shoulda-matchers
   simple_form
   simplecov
   squeel
