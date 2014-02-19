@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216045817) do
+ActiveRecord::Schema.define(version: 20140219063547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buttons", force: true do |t|
+    t.string   "title",             null: false
+    t.string   "color"
+    t.string   "speech_phrase"
+    t.float    "speech_speed_rate"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "buttons", ["title"], name: "index_buttons_on_title", unique: true, using: :btree
+  add_index "buttons", ["user_id"], name: "index_buttons_on_user_id", using: :btree
 
   create_table "palettes", force: true do |t|
     t.string   "title"
