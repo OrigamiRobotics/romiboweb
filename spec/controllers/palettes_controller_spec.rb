@@ -3,7 +3,12 @@ require 'spec_helper'
 describe PalettesController, palette: true do
 
   let(:new_palette) {FactoryGirl.build :palette}
-  let(:palette) {FactoryGirl.create :palette}
+  let(:user) {FactoryGirl.create :user}
+  let(:palette) {FactoryGirl.create(:palette, owner: user)}
+
+  before :each do
+    sign_in user
+  end
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -31,6 +36,13 @@ describe PalettesController, palette: true do
 
     it 'assigns palette' do
       get :edit, id: palette.id
+      expect(assigns(:palette)).to eq(palette)
+    end
+  end
+
+  describe "PATCH 'update'" do
+    it 'returns http success' do
+      put :update, id: palette.id, palette: palette.attributes
       expect(assigns(:palette)).to eq(palette)
     end
   end
