@@ -4,7 +4,7 @@ describe PalettesController, palette: true do
 
   let(:new_palette) {FactoryGirl.build :palette}
   let(:user) {FactoryGirl.create :user}
-  let(:palette) {FactoryGirl.create(:palette, owner: user)}
+  let(:palette) {FactoryGirl.create(:palette, owner_id: user.id)}
 
   def valid_attributes
     FactoryGirl.attributes_for(:palette)
@@ -45,13 +45,13 @@ describe PalettesController, palette: true do
       end
 
       it "returns newly created button in JSON format" do
-        xhr :post, 'create', palette: valid_attributes
+        xhr :post, 'create', palette: valid_attributes.merge(owner_id: user.id)
         response.should be_success
         response.header['Content-Type'].should match /json/
         puts response.body.inspect
         json_response = JSON.parse(response.body)
 
-        json_response['owner_id'].should eq(valid_attributes[:owner_id])
+        json_response['owner_id'].should eq(user.id)
         json_response['title'].should eq(valid_attributes[:title])
         json_response['color'].should eq(valid_attributes[:color])
         json_response['description'].should eq(valid_attributes[:description])

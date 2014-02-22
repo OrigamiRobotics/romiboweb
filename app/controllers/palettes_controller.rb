@@ -7,10 +7,7 @@ class PalettesController < ApplicationController
   def create
     @palette =  current_user.palettes.build(palette_params)
     @palette.save
-    puts @palette.inspect
-    @palette
     respond_to do |format|
-
       format.json { render json: @palette }
     end
   end

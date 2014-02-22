@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 20140220084849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "api_keys", force: true do |t|
+    t.string   "auth_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "buttons", force: true do |t|
     t.string   "title",             null: false
     t.string   "color"
@@ -47,6 +54,20 @@ ActiveRecord::Schema.define(version: 20140220084849) do
     t.integer  "owner_id"
   end
 
+  create_table "tokens", force: true do |t|
+    t.string   "auth_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_tokens", force: true do |t|
+    t.string   "auth_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -67,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140220084849) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "auth_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
