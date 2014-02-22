@@ -13,12 +13,12 @@
 #editorWrapperInner  {
     margin-left: auto;
     margin-right: auto;
+    width: 1200px;
 }
 
 #leftSideContentBox {
     width: 196px;
     border-left: solid 2px #000000;
-    border-right: solid 2px #000000;
 }
 
 #centerContentBox {
@@ -31,7 +31,7 @@
     width: 346px;
     margin-left: 850px;
     margin-top: -600px;
-    border-left: solid 2px #000000;
+    border-left: solid 4px #000000;
     border-right: solid 2px #000000;
 }
 
@@ -39,3 +39,9 @@
     height: 50px;
     background: transparent;
 }
+
+#jsonText {
+    width: 620px;
+    margin-bottom: 20px;
+}
+

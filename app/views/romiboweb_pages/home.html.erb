@@ -1,30 +1,13 @@
 <% provide(:title, t('home.title')) %>
 
 <% content_for :content  do %>
-	<div class="container-fluid">
-	  <div class="row">
-			<div class="col-md-8" style="height: 621px">
-			  <%= render 'romiboweb_pages/home/welcome' %>
-			</div>
-			<div class="col-md-4">
-			  <div class="panel panel-info" id="sign_in_panel">
-			    <div class="panel-heading">
-			      <h3 class="panel-title center">Already a member? Sign In</h3>
-			    </div>
-			    <div class="panel-body">
-			      <%= render 'devise/sessions/form' %>
-			    </div>
-			  </div>
-			  <div class="panel panel-info" id="sign_up_panel">
-			    <div class="panel-heading">
-			      <h3 class="panel-title center">New to RomiboWeb? Sign Up</h3>
-			    </div>
-				  <div class="panel-body">
-				    <%= render 'devise/registrations/form' %>
-				  </div>
-			  </div>
-			</div>
-		</div>
-	</div>
-
+  <div class="container-fluid" id="homeWrapper">
+    <div class="row">
+      <div class="col-xs-1 col-md-1 col-lg-1"></div>
+      <div class="col-xs-10 col-md-10 col-lg-10">
+        <%= render 'romiboweb_pages/home/home_content' %>
+      </div>
+      <div class="col-xs-1 col-md-1 col-lg-1"></div>
+    </div>
+  </div>
 <% end %>
