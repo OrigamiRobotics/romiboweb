@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8" style="height: 621px">
+      <%= render 'romiboweb_pages/home/welcome' %>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-info" id="sign_in_panel">
+        <div class="panel-heading">
+          <h3 class="panel-title center">Already a member? Sign In</h3>
+        </div>
+        <div class="panel-body">
+          <%= render 'devise/sessions/form' %>
+        </div>
+      </div>
+      <div class="panel panel-info" id="sign_up_panel">
+        <div class="panel-heading">
+          <h3 class="panel-title center">New to RomiboWeb? Sign Up</h3>
+        </div>
+        <div class="panel-body">
+          <%= render 'devise/registrations/form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

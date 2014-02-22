@@ -1,1 +1,13 @@
-<%= render 'palettes/editor' %>
+
+<% content_for :content  do %>
+  <div class="row" id="editorWrapper">
+    <div class="col-xs-12 col-md-12 col-lg-12" id="editorPage">
+      <div id="editorWrapperInner">
+        <%= render 'palettes/editor' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+

@@ -23,7 +23,7 @@ gem 'chosen-rails'
 #gem 'jquery-ui-rails'
 gem 'gon'
 gem 'rails_12factor', group: :production
-
+gem 'rabl'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

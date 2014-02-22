@@ -40,3 +40,8 @@
     font-weight: bold;
 }
 
+#signOutLinkOnTopNav a:hover{
+    color: #0086b3;
+    font-weight: bold;
+}
+

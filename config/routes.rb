@@ -1,5 +1,9 @@
 Romiboweb::Application.routes.draw do
 
+  get "buttons/new"
+  get "buttons/create"
+  get "button/new"
+  get "button/create"
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
 	get "romiboweb_pages/home"
@@ -14,7 +18,7 @@ Romiboweb::Application.routes.draw do
 	get '/dashboard'  => 'users#dashboard'           , as: :dashboard
 
 
-	devise_for :users, :skip => [:sessions]
+	devise_for :users, :skip => [:sessions], controllers: { registrations: "registrations"}
 
 	as :user do
 		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session

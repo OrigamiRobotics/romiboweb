@@ -15,9 +15,9 @@ describe UsersController do
       get :dashboard
       assigns(:user).should eq(user)
     end
-
-
   end
+
+
 
   #describe "GET dashboard when NOT signed in" do
   #  it "redirects to sign in/sign up page" do
