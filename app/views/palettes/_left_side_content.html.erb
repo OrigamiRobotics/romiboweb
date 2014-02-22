@@ -16,7 +16,7 @@
                 var color = data[i].color;
                 pHtml += '<a id="paletteLink" href="#" class="list-group-item" onclick="importJSON(this);return false;">' + data[i].title +'</a>';
             }
-            pHtml += '<a id="paletteLink" href="#" class="list-group-item" onclick="importJSON(this);return false;">ADD A NEW PALETTE&nbsp;<span class="glyphicon glyphicon-plus"></span></a>';
+            pHtml += '<a id="paletteLink" href="#" class="list-group-item" onclick="createPalette(this);return false;">ADD A NEW PALETTE&nbsp;<span class="glyphicon glyphicon-plus"></span></a>';
             $('#paletteGroup').append(pHtml);
         }
 

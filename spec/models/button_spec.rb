@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: buttons
+#
+#  id                :integer          not null, primary key
+#  title             :string(255)      not null
+#  color             :string(255)
+#  speech_phrase     :string(255)
+#  speech_speed_rate :float
+#  user_id           :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 require 'spec_helper'
 
 describe Button do

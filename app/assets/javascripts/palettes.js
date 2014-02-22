@@ -96,3 +96,12 @@ function createGroup(i, x, y) {
 return kinGroup;
 }
 
+function createPalette(e) {
+    console.log('createPalette');
+    $("#paletteGroup").find('.active').removeClass('active');
+    e.classList.add("active");
+
+    layer.removeChildren();
+    $("#paletteName").val('');
+}
+

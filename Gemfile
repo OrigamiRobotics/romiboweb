@@ -38,6 +38,10 @@ end
 
 gem 'rspec-rails', group: [:test, :development]
 
+group :development do
+  gem 'annotate'
+end
+
 group :test do
   gem 'cucumber-rails', require: false
   gem 'capybara'

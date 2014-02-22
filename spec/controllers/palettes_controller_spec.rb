@@ -6,6 +6,11 @@ describe PalettesController, palette: true do
   let(:user) {FactoryGirl.create :user}
   let(:palette) {FactoryGirl.create(:palette, owner: user)}
 
+  def valid_attributes
+    FactoryGirl.attributes_for(:palette)
+
+  end
+
   before :each do
     sign_in user
   end
@@ -21,9 +26,39 @@ describe PalettesController, palette: true do
   describe "POST 'create'" do
     it "returns http success" do
 
-      post 'create', palette: new_palette
+      post 'create', palette: valid_attributes
       expect(response.status).to eq 200
     end
+
+    context "with valid data" do
+      describe "id, title, description, color" do
+        it "creates a new palette" do
+          expect {
+            xhr :post, 'create', palette: valid_attributes
+          }.to change(Palette, :count).by(1)
+        end
+      end
+
+      it "returns http success with correct JSON" do
+        xhr :post, 'create', palette: valid_attributes
+        response.should be_success
+      end
+
+      it "returns newly created button in JSON format" do
+        xhr :post, 'create', palette: valid_attributes
+        response.should be_success
+        response.header['Content-Type'].should match /json/
+        puts response.body.inspect
+        json_response = JSON.parse(response.body)
+
+        json_response['owner_id'].should eq(valid_attributes[:owner_id])
+        json_response['title'].should eq(valid_attributes[:title])
+        json_response['color'].should eq(valid_attributes[:color])
+        json_response['description'].should eq(valid_attributes[:description])
+      end
+    end
+
+
   end
 
   describe "GET 'edit'" do
