@@ -1,4 +1,5 @@
 class PalettesController < ApplicationController
+  respond_to :html, :json
   before_filter :authenticate_user!
   def new
   end
@@ -18,6 +19,11 @@ class PalettesController < ApplicationController
       flash[:alert] = 'Invalid Input'
       redirect_to edit_palette_path @palette
     end
+  end
+
+  def index
+    @palettes = Palette.where("owner_id = :id", { id: current_user.id })
+    respond_with @palettes
   end
 
   private

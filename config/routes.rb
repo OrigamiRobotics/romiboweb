@@ -10,7 +10,7 @@ Romiboweb::Application.routes.draw do
 	end
 
 	resources :users, only: [:dashboard]
-  resources :palettes, only: [:new, :create, :edit, :show, :update]
+  resources :palettes, only: [:new, :create, :edit, :show, :update, :index]
 	get '/dashboard'  => 'users#dashboard'           , as: :dashboard
 
 
