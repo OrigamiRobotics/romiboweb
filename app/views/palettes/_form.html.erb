@@ -1,0 +1,8 @@
+<%= form_for palette, html: {class: 'inline-form', role: 'form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: 'sr-only' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-default' %>
+  <%= link_to t('palettes.edit.cancel', default: 'Cancel'), palettes_path, class: 'btn btn-default'  %>
+<% end %>
