@@ -9,7 +9,6 @@ class CreateButtons < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :buttons, :title, unique: true
     add_index :buttons, :user_id
   end
 end
