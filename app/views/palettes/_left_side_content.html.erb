@@ -1,3 +1,40 @@
 <div class="editorContent" id="leftSideContentBox">
+    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+    <script>
+        $.ajax({
+            url: "/palettes",
+            dataType: "json",
+            success: handlePaletteData,
+            error: handlePaletteError
+        });
+
+        function handlePaletteData(data) {
+            console.log(data);
+            var pHtml = '';
+            for(var i in data){
+                var id = data[i].id;
+                var color = data[i].color;
+                pHtml += '<a id="paletteLink" href="#" class="list-group-item" onclick="importJSON(this);return false;">' + data[i].title +'</a>';
+            }
+            pHtml += '<a id="paletteLink" href="#" class="list-group-item" onclick="importJSON(this);return false;">ADD A NEW PALETTE&nbsp;<span class="glyphicon glyphicon-plus"></span></a>';
+            $('#paletteGroup').append(pHtml);
+        }
+
+        function handlePaletteError(error) {
+            alert(error);
+        }
+
+    </script>
+
+  <div class="editorContent" id="leftSideContentBox">
+    <div class="list-group" id="paletteGroup"></div>
+
+    <div class="container" id="import">
+      JSON: <br>
+      <textarea rows="10" cols="20" id="jsonText">{"displayOrder":1,"name":"CREATE A STORY","actions":[{"speechPhrase":"Bye bye","threeBasedIndex":2,"buttonTitle":"bye","speechSpeedRate":0.7639594,"color":"#1ABC9C"},{"speechPhrase":"","threeBasedIndex":3,"buttonTitle":"Untitled button","speechSpeedRate":0.5,"color":"#16A085"},{"speechPhrase":"hello","threeBasedIndex":1,"buttonTitle":"say hi","speechSpeedRate":0.6954315,"color":"#2ECC71"},{"speechPhrase":"Eat this","threeBasedIndex":4,"buttonTitle":"eat","speechSpeedRate":0.7639594,"color":"#27AE60"},{"speechPhrase":"good morning","threeBasedIndex":5,"buttonTitle":"good morning","speechSpeedRate":0.5,"color":"#2980B9"},{"speechPhrase":"hello","threeBasedIndex":6,"buttonTitle":"afternoon ","speechSpeedRate":0.6954315,"color":"#9B59B6"},{"speechPhrase":"Bye bye","threeBasedIndex":7,"buttonTitle":"bye","speechSpeedRate":0.7639594,"color":"#E67E22"},{"speechPhrase":"","threeBasedIndex":8,"buttonTitle":"how are you?","speechSpeedRate":0.5,"color":"#C0392B"},{"speechPhrase":"this is orange","threeBasedIndex":9,"buttonTitle":"this is orange","speechSpeedRate":0.6954315,"color":"#D35400"}]}
+      </textarea>
+    </div>
+  </div>
 </div>

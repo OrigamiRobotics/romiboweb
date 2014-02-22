@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      palette: 'Palette'
+    attributes:
+      palette:
+        title: 'Title'
+        description: 'Description'
+        color: 'Color'
