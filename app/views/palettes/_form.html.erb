@@ -1,8 +1,16 @@
-<%= form_for palette, html: {class: 'inline-form', role: 'form'} do |f| %>
-  <div class="form-group">
-    <%= f.label :title, class: 'sr-only' %>
-    <%= f.text_field :title, class: 'form-control' %>
-  </div>
-  <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-default' %>
-  <%= link_to t('palettes.edit.cancel', default: 'Cancel'), palettes_path, class: 'btn btn-default'  %>
-<% end %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">New Palette</h3>
+	</div>
+	<div class="panel-body">
+	  <%= form_for palette,
+	               authenticity_token: form_authenticity_token, html: {class: 'inline-form', role: 'form'} do |f| %>
+	    <div class="form-group">
+	      <%= f.label :title, class: 'sr-only' %>
+	      <%= f.text_field :title, class: 'form-control', placeholder: t('activerecord.attributes.palette.title') %>
+	    </div>
+	    <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-default' %>
+	    <%= link_to t('palettes.edit.cancel', default: 'Cancel'), palettes_path, class: 'btn btn-default'  %>
+	  <% end %>
+	</div>
+</div>
