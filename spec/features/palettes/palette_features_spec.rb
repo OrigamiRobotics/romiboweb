@@ -11,15 +11,20 @@ feature 'Editing a palette', palette: true do
     expect(page).to have_selector 'div', text: I18n.t('devise.failure.unauthenticated')
   end
 
-  feature 'when signed-in user' do
+  feature 'signed-in user' do
     background {login_as user, scope: :user}
 
-    scenario 'opens the edit form' do
-      #login_as user, scope: :user
-      visit edit_palette_path palette
-      expect(page).to have_field I18n.t('activerecord.attributes.palette.title'), with: palette.title
-      expect(page).to have_button I18n.t('palettes.edit.save')
+    feature 'on the palette editor page ' do
+      background {visit palettes_path}
+
+      scenario 'opens the edit form' do
+        click_on palette.title
+        click_on 'editPaletteIcon'
+        expect(page).to have_field I18n.t('activerecord.attributes.palette.title'), with: palette.title
+        expect(page).to have_button I18n.t('palettes.edit.save')
+      end
     end
+
 
     pending 'enters invalid title' do
       visit edit_palette_path palette

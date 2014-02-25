@@ -17,18 +17,20 @@ describe PalettesController, palette: true do
 
   describe "GET 'new'" do
     it "returns http success" do
-      get 'new', format: :js
-      #response.should be_success
-      expect(response).to render_template partial: 'new'
+      xhr :get, :new, format: :js
+      response.should be_success
+      response.header['Content-Type'].should match /javascript/
     end
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
 
-      post 'create', palette: valid_attributes
-      expect(response.status).to eq 200
-    end
+    #it "returns http success" do
+    #  xhr :post, :create, palette: valid_attributes
+    #  response.should be_success
+    #  response.header['Content-Type'].should match /javascript/
+    #
+    #end
 
     context "with valid data" do
       describe "id, title, description, color" do
@@ -44,18 +46,18 @@ describe PalettesController, palette: true do
         response.should be_success
       end
 
-      it "returns newly created button in JSON format" do
-        xhr :post, 'create', palette: valid_attributes.merge(owner_id: user.id)
-        response.should be_success
-        response.header['Content-Type'].should match /json/
-        puts response.body.inspect
-        json_response = JSON.parse(response.body)
-
-        json_response['owner_id'].should eq(user.id)
-        json_response['title'].should eq(valid_attributes[:title])
-        json_response['color'].should eq(valid_attributes[:color])
-        json_response['description'].should eq(valid_attributes[:description])
-      end
+      #it "returns newly created button in JSON format" do
+      #  xhr :post, 'create', palette: valid_attributes.merge(owner_id: user.id)
+      #  response.should be_success
+      #  response.header['Content-Type'].should match /json/
+      #  puts response.body.inspect
+      #  json_response = JSON.parse(response.body)
+      #
+      #  json_response['owner_id'].should eq(user.id)
+      #  json_response['title'].should eq(valid_attributes[:title])
+      #  json_response['color'].should eq(valid_attributes[:color])
+      #  json_response['description'].should eq(valid_attributes[:description])
+      #end
     end
 
 
@@ -64,13 +66,13 @@ describe PalettesController, palette: true do
   describe "GET 'edit'" do
 
     it 'returns http success' do
-      get :edit, id: palette.id
+      xhr :get, :edit, id: palette.id
       response.should be_success
-      expect(response).to render_template 'edit'
+      response.header['Content-Type'].should match /javascript/
     end
 
     it 'assigns palette' do
-      get :edit, id: palette.id
+      xhr :get, :edit, id: palette.id
       expect(assigns(:palette)).to eq(palette)
     end
   end
