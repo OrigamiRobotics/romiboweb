@@ -21,7 +21,7 @@ feature 'Editing a palette', palette: true do
       expect(page).to have_button I18n.t('palettes.edit.save')
     end
 
-    scenario 'enters invalid title' do
+    pending 'enters invalid title' do
       visit edit_palette_path palette
       fill_in I18n.t('activerecord.attributes.palette.title'), with: ''
       click_on I18n.t('palettes.edit.save')
@@ -30,11 +30,10 @@ feature 'Editing a palette', palette: true do
     end
 
     given(:new_title){Faker::Lorem.sentence}
-    scenario 'enters valid title' do
-      visit edit_palette_path palette
-      fill_in I18n.t('activerecord.attributes.palette.title'), with: new_title
-      click_on I18n.t('palettes.edit.save')
-
+    pending 'enters valid title' do
+      visit palettes_path
+      click_on palette.title
+      click_on
       palette.reload
       expect(palette.title).to eq new_title
     end
