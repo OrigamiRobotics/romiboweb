@@ -15,7 +15,7 @@ Romiboweb::Application.routes.draw do
 
 	resources :users, only: [:dashboard]
   resources :palettes, only: [:new, :create, :edit, :show, :update, :index]
-	get '/dashboard'  => 'users#dashboard'           , as: :dashboard
+	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
 	devise_for :users, :skip => [:sessions], controllers: { registrations: "registrations"}

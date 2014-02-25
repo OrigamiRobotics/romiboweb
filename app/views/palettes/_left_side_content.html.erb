@@ -1,11 +1,15 @@
 <div class="editorContent" id="leftSideContentBox">
 
   <div class="editorContent" id="leftSideContentBox">
-    <div class="list-group" id="paletteGroup"></div>
+	  <div id="paletteList">
+	    <%= render 'palettes/list' %>
+	  </div>
+
     <div class="list-group-item">
-      <a id="paletteLink" class="list-group-item" onclick="createPalette();">
-        New Palette&nbsp;<span class="glyphicon glyphicon-plus"/>
-      </a>
+	    <%= link_to 'New Palette', new_palette_path, class: 'list-group-item btn', remote: true %>
+      <!--<a id="paletteLink" class="list-group-item btn" onclick="createPalette();">
+        New Palette <span class="glyphicon glyphicon-plus"/>
+      </a>-->
     </div>
 
 

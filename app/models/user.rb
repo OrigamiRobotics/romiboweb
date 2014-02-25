@@ -31,7 +31,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :buttons
-  has_many :palettes, foreign_key: :owner_id
+  has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id
+  #has_many :palettes, foreign_key: :owner_id
 
   validates :first_name, presence: true
   validates :last_name, presence: true
