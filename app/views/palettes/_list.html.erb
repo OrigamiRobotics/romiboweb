@@ -1,0 +1,7 @@
+<% if @palettes.any? %>
+  <div class="list-group" id="paletteGroup">
+    <% @palettes.each do |palette| %>
+      <%= link_to palette.title, palette, remote: true, format: :js, class: 'list-group-item' %>
+    <% end %>
+  </div>
+<% end %>

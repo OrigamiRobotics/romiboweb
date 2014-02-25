@@ -2,6 +2,30 @@
  * Created by johnlee on 2/18/14.
  */
 
+function loadPalettes() {
+    $.ajax({
+        url: "/palettes.json",
+        dataType: "json",
+        success: handlePaletteData,
+        error: handlePaletteError
+    });
+}
+
+
+function handlePaletteData(data) {
+    console.log(data);
+    var pHtml = '';
+    for(var i in data){
+    var id = data[i].id;
+    var color = data[i].color;
+    pHtml += '<a id="paletteLink" + id  href="#" class="list-group-item" onclick="importJSON(this);return false;">' + data[i].title +'</a>';
+    }
+    $('#paletteGroup').append(pHtml);
+}
+
+function handlePaletteError(error) {
+    alert(error);
+}
 
 function loadButtonDetails(threeBasedIndex) {
     var jsonString = $("#jsonText").val();
@@ -29,30 +53,30 @@ function importJSON(e) {
     var x = 1;
     var y = 10;
     for(var n in palette.actions) {
-    // anonymous function to induce scope
-    // http://stackoverflow.com/questions/5815757/what-exactly-is-the-point-of-this-function-construct-why-is-it-needed
-    (function() {
-    var i = n
-    var title = palette.actions[i].buttonTitle;
-    var speech = palette.actions[i].speechPhrase;
-    var threeBasedIndex = palette.actions[i].threeBasedIndex;
-    var kinText = createText(title);
-    var kinButton = createButton(kinText, palette.actions[i].color);
-    var kinGroup = createGroup(i, x, y);
+        // anonymous function to induce scope
+        // http://stackoverflow.com/questions/5815757/what-exactly-is-the-point-of-this-function-construct-why-is-it-needed
+        (function() {
+        var i = n
+        var title = palette.actions[i].buttonTitle;
+        var speech = palette.actions[i].speechPhrase;
+        var threeBasedIndex = palette.actions[i].threeBasedIndex;
+        var kinText = createText(title);
+        var kinButton = createButton(kinText, palette.actions[i].color);
+        var kinGroup = createGroup(i, x, y);
 
-    kinGroup.on('click', function() {
-    loadButtonDetails(threeBasedIndex);
-    });
-kinGroup.add(kinButton).add(kinText);
-layer.add(kinGroup);
-x = x + kinText.width() + 1;
-if (x > 500) {
-    x = 1;
-    y = 51;
+        kinGroup.on('click', function() {
+        loadButtonDetails(threeBasedIndex);
+        });
+        kinGroup.add(kinButton).add(kinText);
+        layer.add(kinGroup);
+        x = x + kinText.width() + 1;
+        if (x > 500) {
+            x = 1;
+            y = 51;
+            }
+        });
     }
-})();
-}
-stage.add(layer);
+    stage.add(layer);
 }
 
 function createText(text) {
@@ -94,5 +118,13 @@ function createGroup(i, x, y) {
 }
 });
 return kinGroup;
+}
+
+function createPalette() {
+//    $("#paletteGroup").find('.active').removeClass('active');
+//    e.classList.add("active");
+
+//    layer.removeChildren();
+    $("#createPaletteForm").show();
 }
 

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.1'
-#gem 'jquery-rails'
+gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'pg'
@@ -37,6 +37,10 @@ end
 
 
 gem 'rspec-rails', group: [:test, :development]
+
+group :development do
+  gem 'annotate'
+end
 
 group :test do
   gem 'cucumber-rails', require: false

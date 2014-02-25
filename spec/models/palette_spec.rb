@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: palettes
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :string(255)
+#  color       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  owner_id    :integer
+#
+
 require 'spec_helper'
 
 describe Palette, palette: true do
