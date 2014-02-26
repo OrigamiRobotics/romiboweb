@@ -30,6 +30,9 @@ Romiboweb::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      as :user do
+        post 'register' => 'registrations#create'
+      end
       resources :palettes, only: [:index]
     end
   end
