@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:bmabey/database_cleaner.git
+  revision: b254ce57bdeea927e514a486aedc2ac97199324b
+  specs:
+    database_cleaner (1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -82,7 +88,6 @@ GEM
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
     daemons (1.1.9)
-    database_cleaner (1.2.0)
     devise (3.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -288,7 +293,7 @@ DEPENDENCIES
   chosen-rails
   coffee-rails
   cucumber-rails
-  database_cleaner
+  database_cleaner!
   devise
   email_spec
   factory_girl_rails

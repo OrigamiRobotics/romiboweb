@@ -24,6 +24,14 @@ Romiboweb::Application.routes.draw do
 		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
 		post 'signin' => 'devise/sessions#create', :as => :user_session
 		delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-	end
+  end
+
+  ######### API routes ##########
+
+  namespace :api do
+    namespace :v1 do
+      resources :palettes, only: [:index]
+    end
+  end
 
 end
