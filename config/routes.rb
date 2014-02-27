@@ -18,7 +18,7 @@ Romiboweb::Application.routes.draw do
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
-	devise_for :users, :skip => [:sessions], controllers: { registrations: "registrations"}
+	devise_for :users, :skip => [:sessions, :passwords]
 
 	as :user do
 		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
@@ -30,10 +30,11 @@ Romiboweb::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :palettes, only: [:index]
       as :user do
         post 'register' => 'registrations#create'
       end
-      resources :palettes, only: [:index]
+
     end
   end
 

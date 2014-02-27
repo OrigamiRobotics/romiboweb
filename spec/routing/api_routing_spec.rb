@@ -9,7 +9,8 @@ describe 'API Routing', api: true do
 
   context 'for registration and login', auth: true do
     it {should route(:post, '/api/v1/register')
-               .to(controller: 'api/v1/registrations', action:'create')}
+               .to(controller: 'api/v1/registrations',
+                   action:'create')}
   end
 
 end
