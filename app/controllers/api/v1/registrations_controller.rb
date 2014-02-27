@@ -7,7 +7,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     if resource.save
       @user = resource
       #respond_with @user
-      render json: resource.to_json(only: [:first_name, :last_name, :email])
+      render json: resource.to_json(
+          only: [:first_name, :last_name, :email, :auth_token]), status: :created
     else
       render json: resource.errors, status: :unprocessable_entity
     end

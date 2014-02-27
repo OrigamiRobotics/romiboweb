@@ -13,7 +13,7 @@ describe Api::V1::RegistrationsController, api: true do
       before :each do
         post :create, user: FactoryGirl.attributes_for(:user), format: :json
       end
-      it { should respond_with 200 }
+      it { should respond_with 201 }
       pending { should render_template 'create' }
       it 'should return user attributes' do
         puts response.body.inspect
@@ -21,6 +21,7 @@ describe Api::V1::RegistrationsController, api: true do
         json['first_name'].should eq user.first_name
         json['last_name'].should eq user.last_name
         json['email'].should eq user.email
+        json['auth_token'].should_not be_nil
       end
     end
 

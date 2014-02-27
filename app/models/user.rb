@@ -22,6 +22,7 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
+#  auth_token             :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -29,6 +30,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  before_create :ensure_auth_token!
 
   has_many :buttons
   has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id
@@ -40,4 +42,13 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX } ,
             uniqueness:  { case_sensitive: false }
+
+  def reset_auth_token!
+    self.update! auth_token: SecureRandom.hex
+  end
+
+  private
+  def ensure_auth_token!
+    self.auth_token = SecureRandom.hex
+  end
 end

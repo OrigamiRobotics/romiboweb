@@ -41,6 +41,7 @@ gem 'rspec-rails', group: [:test, :development]
 
 group :development do
   gem 'annotate'
+  gem 'meta_request', require: false # for RailsPanel https://github.com/dejan/rails_panel
 end
 
 group :test do

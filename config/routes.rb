@@ -18,7 +18,8 @@ Romiboweb::Application.routes.draw do
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
-	devise_for :users, :skip => [:sessions, :passwords]
+	devise_for :users, :skip => [:sessions, :passwords], controllers:
+      {registrations: 'registrations'}
 
 	as :user do
 		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
