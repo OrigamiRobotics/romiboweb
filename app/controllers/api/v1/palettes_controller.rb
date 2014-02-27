@@ -1,8 +1,7 @@
-class Api::V1::PalettesController < ApplicationController
-  respond_to :json
+class Api::V1::PalettesController < Api::BaseController
 
   def index
-    @palettes = Palette.all
+    @palettes = @current_user.palettes
   end
 
 end

@@ -34,6 +34,8 @@ Romiboweb::Application.routes.draw do
       resources :palettes, only: [:index]
       as :user do
         post 'register' => 'registrations#create'
+        post 'login' => 'sessions#create'
+        delete 'logout' => 'sessions#destroy'
       end
 
     end

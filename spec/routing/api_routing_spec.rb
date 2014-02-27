@@ -11,6 +11,12 @@ describe 'API Routing', api: true do
     it {should route(:post, '/api/v1/register')
                .to(controller: 'api/v1/registrations',
                    action:'create')}
+    it {should route(:post, '/api/v1/login')
+               .to(controller: 'api/v1/sessions',
+                   action:'create')}
+    it {should route(:delete, '/api/v1/logout')
+               .to(controller: 'api/v1/sessions',
+                   action:'destroy')}
   end
 
 end

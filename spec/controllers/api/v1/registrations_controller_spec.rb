@@ -16,7 +16,6 @@ describe Api::V1::RegistrationsController, api: true do
       it { should respond_with 201 }
       pending { should render_template 'create' }
       it 'should return user attributes' do
-        puts response.body.inspect
         json = JSON.parse response.body
         json['first_name'].should eq user.first_name
         json['last_name'].should eq user.last_name
