@@ -50,7 +50,7 @@ group :test do
   gem 'xpath'
   gem 'email_spec'
   gem 'launchy'
-  gem 'database_cleaner', git: 'git@github.com:bmabey/database_cleaner.git'
+  gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
   gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
