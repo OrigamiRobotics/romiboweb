@@ -1,7 +1,8 @@
 <% if @palettes.any? %>
-  <div class="list-group" id="paletteGroup">
+  <div class="btn-group-vertical" id="paletteGroup">
     <% @palettes.each do |palette| %>
-      <%= link_to palette.title, palette, remote: true, format: :js, class: 'list-group-item' %>
+      <%= link_to palette.title, palette, remote: true, format: :js,
+                  class: 'btn btn-default' , id: "#{palette.title}-#{palette.id}" %>
     <% end %>
   </div>
 <% end %>

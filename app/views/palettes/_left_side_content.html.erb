@@ -4,13 +4,12 @@
 	  <div id="paletteList">
 	    <%= render 'palettes/list' %>
 	  </div>
-
-    <div class="list-group-item">
-	    <%= link_to 'New Palette', new_palette_path, class: 'list-group-item btn', remote: true %>
-      <!--<a id="paletteLink" class="list-group-item btn" onclick="createPalette();">
-        New Palette <span class="glyphicon glyphicon-plus"/>
-      </a>-->
+    <div id="newPaletteLink">
+      <%= link_to 'New Palette', new_palette_path, remote: true %>
     </div>
+    <!--<a id="paletteLink" class="list-group-item btn" onclick="createPalette();">
+      New Palette <span class="glyphicon glyphicon-plus"/>
+    </a>-->
 
 
 

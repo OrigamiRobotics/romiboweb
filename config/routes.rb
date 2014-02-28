@@ -1,9 +1,6 @@
 Romiboweb::Application.routes.draw do
 
-  get "buttons/new"
-  get "buttons/create"
-  get "button/new"
-  get "button/create"
+
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
 	get "romiboweb_pages/home"
@@ -13,6 +10,7 @@ Romiboweb::Application.routes.draw do
 		get page, controller: 'romiboweb_pages', action: page
 	end
 
+  resources :buttons, only: [:new, :create, :show, :update]
 	resources :users, only: [:dashboard]
   resources :palettes, only: [:new, :create, :edit, :show, :update, :index]
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
