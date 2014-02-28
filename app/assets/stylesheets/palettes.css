@@ -1,5 +1,5 @@
 #editorWrapper {
-    background-color: #000000;
+    background-color: #e1e1e1;
     padding-bottom: 50px;
 }
 
@@ -18,7 +18,6 @@
 
 #leftSideContentBox {
     width: 196px;
-    border-left: solid 2px #000000;
 }
 
 #centerContentBox {
@@ -31,8 +30,7 @@
     width: 346px;
     margin-left: 850px;
     margin-top: -600px;
-    border-left: solid 4px #000000;
-    border-right: solid 2px #000000;
+    border-left: solid 4px #e1e1e1;
 }
 
 #editorToolbar {
@@ -40,4 +38,32 @@
     background: transparent;
 }
 
+#paletteDetail {
+    padding: 10px;
+}
 
+#paletteGroup {
+    width: 100%;
+}
+
+#paletteList {
+    margin-bottom: 20px;
+}
+
+
+#newPaletteLink {
+    width: 100px;
+    float: right;
+    margin-right: 20px;
+}
+
+.paletteDetailsContainer {
+    width: 650px;
+    margin-top: 5px;
+}
+
+.paletteDetailsContainer h3 {
+    margin-top: 5px;
+    font-size: 16px;
+    text-align: center;
+}

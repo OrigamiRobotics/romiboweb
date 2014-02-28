@@ -1,0 +1,33 @@
+<%= simple_form_for(@button, :html => { :class => 'inline form-horizontal'}) do |f|  %>
+  <%= f.error_notification %>
+  <%= f.input :title %>
+  <%= f.input :speech_phrase, as: :text %>
+  <%= f.label 'Speech speed rate:' %>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="noUiSlider" id="speechSpeedRateSlider"></div>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :speech_speed_rate, label: false %>
+    </div>
+  </div>
+  <%= f.association :button_color, collection: ButtonColor.order(:name), id: :name,
+                    input_html: { class: 'chosen-select' } %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :size, collection: %w[Small Medium Large] %>
+    </div>
+    <div class="col-md-6">
+      <%= link_to 'Delete', {controller: 'buttons',
+                             action: 'new',
+                             palette_id: @palette.id,
+                             method: :get,
+                             remote: true,
+                             option: 'cancel'},
+                  class: 'btn btn-warning btn-block',
+                  title: 'Cancel new button creation.',
+                  id: 'cancelButtonCreation'
+      %>
+    </div>
+  </div>
+<% end %>

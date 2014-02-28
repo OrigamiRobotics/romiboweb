@@ -1,0 +1,8 @@
+<% class_name = button.size.downcase %>
+<div class='<%= "#{class_name}ButtonWidget" %>' id='<%= "#{button.title}-#{button.id}" %>'>
+  <h1><%= truncate(button.title, length: 50 ) %></h1>
+  <%= link_to '', button_path(button, palette_id: @palette.id),
+                  method: :get,
+                  remote: true
+  %>
+</div>
