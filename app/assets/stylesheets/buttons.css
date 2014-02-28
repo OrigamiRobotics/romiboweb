@@ -26,6 +26,10 @@ div.mediumButtonWidget {
     width: 100px;
     border-radius: 5px;
     background-color: #0086b3;
+    display: inline-block;
+    float: left;
+    margin-left: 2px;
+    margin-bottom: 2px;
 }
 
 div.mediumButtonWidget a {
@@ -45,6 +49,6 @@ div.mediumButtonWidget:hover {
 .mediumButtonWidget h1 {
     font-size: 12px;
     text-align: center;
-    padding-top: 5px;
+    vertical-align: middle;
     color: white;
 }
