@@ -14,7 +14,7 @@
 FactoryGirl.define do
 
   factory :palette do
-    title Faker::Lorem.sentence
+    title 'Fancy Palette'
     description Faker::Lorem.paragraph
     owner_id 1
   end

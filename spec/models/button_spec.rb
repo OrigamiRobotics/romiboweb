@@ -16,11 +16,13 @@ require 'spec_helper'
 
 describe Button do
   let(:button) { FactoryGirl.create(:button)}
+  let(:button_color) { FactoryGirl.create(:button_color)}
 
   subject { button}
 
   context "should have the following attributes" do
-    [:title, :speech_phrase, :speech_speed_rate, :color, :user, :palettes].each do |attr|
+    [:title, :speech_phrase, :speech_speed_rate,
+     :color, :user, :palettes, :button_color, :size].each do |attr|
       it { should respond_to attr }
     end
   end
@@ -38,6 +40,20 @@ describe Button do
 
   context "should not be valid without user id" do
     before { button.user_id = nil }
+    it { should_not be_valid }
+  end
+
+  context "should not be valid without button_color_id" do
+    before { button.button_color_id = nil }
+    it { should_not be_valid }
+  end
+
+  context "should not be valid when size is not one of Small, Medium, or Large" do
+    before { button.size = 'Not small or medium or large' }
+    it { should_not be_valid }
+  end
+  context "should not be valid without size" do
+    before { button.size = '' }
     it { should_not be_valid }
   end
 end
