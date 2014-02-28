@@ -19,6 +19,7 @@ class ButtonsController < ApplicationController
 
   def show
     @button = Button.find(params[:id])
+    puts params.inspect
   end
 
 

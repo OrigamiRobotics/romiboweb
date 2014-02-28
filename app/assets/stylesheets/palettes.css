@@ -60,6 +60,7 @@
 .paletteDetailsContainer {
     width: 650px;
     margin-top: 5px;
+    height: auto;
 }
 
 .paletteDetailsContainer h3 {

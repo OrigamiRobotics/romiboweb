@@ -27,4 +27,8 @@ class Button < ActiveRecord::Base
   def color
     button_color.value
   end
+
+  def div_id
+    "#{title}_#{id}"
+  end
 end

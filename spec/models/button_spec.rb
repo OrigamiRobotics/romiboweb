@@ -22,11 +22,15 @@ describe Button do
 
   context "should have the following attributes" do
     [:title, :speech_phrase, :speech_speed_rate,
-     :color, :user, :palettes, :button_color, :size].each do |attr|
+     :color, :user, :palettes, :button_color,
+     :size, :div_id].each do |attr|
       it { should respond_to attr }
     end
   end
 
+  it "should return correct id for div" do
+    expect(button.div_id).to eql("#{button.title}_#{button.id}")
+  end
 
   context "should not be valid without a title" do
     before { button.title = "" }

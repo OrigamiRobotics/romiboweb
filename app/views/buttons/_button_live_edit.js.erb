@@ -1,6 +1,8 @@
-$('#buttonDetails').replaceWith('<%= j render "palettes/right_side/button_form" %>');
+$('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
+'<%= j render "palettes/right_side/button_form" %>' +
+"</div>");
 var speedRateField = $('#button_speech_speed_rate');
-var speedRate = <%= @button.speech_speed_rate %>;
+var speedRate = <%= button.speech_speed_rate %>;
 $('.noUiSlider').noUiSlider({
   range: [1, 5]
   ,start: [speedRate, 5]
@@ -35,4 +37,4 @@ $(function() {
 });
 
 
-$('#butttonHeaderOnForm').val('<%= @button.title %>');
+$('#butttonHeaderOnForm').val('<%= button.title %>');
