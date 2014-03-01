@@ -10,7 +10,12 @@
 	      <%= f.text_field :title, class: 'form-control', placeholder: t('activerecord.attributes.palette.title') %>
 	    </div>
 	    <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-default' %>
-	    <%= link_to t('palettes.edit.cancel', default: 'Cancel'), palettes_path, class: 'btn btn-default'  %>
+			<% if @palette.new_record? %>
+	      <%= link_to t('palettes.edit.cancel', default: 'Cancel'), palettes_path, class: 'btn btn-default'  %>
+			<% else %>
+	      <%= link_to t('palettes.edit.cancel', default: 'Cancel'),
+	                  palette, remote: true, format: :js, class: 'btn btn-default'  %>
+	    <% end %>
 	  <% end %>
 	</div>
 </div>
