@@ -1,8 +1,15 @@
-<%= simple_form_for(@button, :html => { :class => 'inline form-horizontal'}) do |f|  %>
-  <%= f.error_notification %>
+<%= simple_form_for(@button, remote: true, :html => { class: 'inline form-horizontal', id: 'button_form'}) do |f|  %>
   <%= f.input :title %>
-  <%= f.input :speech_phrase, as: :text %>
+  <%= hidden_field_tag  'title_value', @button.title %>
+  <%= hidden_field_tag  'palette_id', @palette.id %>
+  <%= hidden_field_tag  'phrase_value', @button.speech_phrase %>
+  <%= hidden_field_tag  'color_value', @button.button_color_id %>
+  <%= hidden_field_tag  'size_value', @button.size %>
+  <%= hidden_field_tag  'speed_value', @button.speech_speed_rate %>
+
+  <%= f.input :speech_phrase, input_html: {style: 'height:50px;'} %>
   <%= f.label 'Speech speed rate:' %>
+
   <div class="row">
     <div class="col-md-9">
       <div class="noUiSlider" id="speechSpeedRateSlider"></div>
@@ -13,9 +20,11 @@
   </div>
   <%= f.association :button_color, collection: ButtonColor.order(:name), id: :name,
                     input_html: { class: 'chosen-select' } %>
+
   <div class="row">
     <div class="col-md-6">
       <%= f.input :size, collection: %w[Small Medium Large] %>
+
     </div>
     <div class="col-md-6">
       <%= link_to 'Delete', {controller: 'buttons',
@@ -24,7 +33,7 @@
                              method: :get,
                              remote: true,
                              option: 'cancel'},
-                  class: 'btn btn-warning btn-block',
+                  class: 'btn btn-danger btn-block',
                   title: 'Cancel new button creation.',
                   id: 'cancelButtonCreation'
       %>
