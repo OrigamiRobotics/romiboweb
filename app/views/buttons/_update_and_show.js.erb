@@ -4,7 +4,6 @@ $('#buttonHeaderOnForm').html("<%= @button.title %>");
 
 var button_title_field = $("#button_title");
 var button_speech_phrase = $('#button_speech_phrase');
-var button_speech_speed_rate = $('#button_speech_speed_rate');
 var button_color = $('.chosen-select');
 var button_size = $('#button_size');
 
@@ -33,6 +32,14 @@ button_speech_phrase.on('focusout', function() {
   }
 });
 
-<%= render 'buttons/set_buttons_color_and_size' %>
+button_size.on('change', function() {
+  var val = $(this).val();
+  var original_value = $('#size_value').val();
+  if (val !== original_value) {
+    $('#button_form').submit();
+  }
+});
+
+<%= render 'buttons/set_buttons_color' %>
 
 
