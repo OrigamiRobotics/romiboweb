@@ -31,6 +31,9 @@ class ButtonsController < ApplicationController
   def destroy
     @button = Button.find(params[:id])
     @button.destroy
+    @palette = Palette.find(params[:palette_id])
+    gon.first_palette = @palette.id
+
     respond_to do |format|
       format.html {redirect_to palettes_path}
       format.js
