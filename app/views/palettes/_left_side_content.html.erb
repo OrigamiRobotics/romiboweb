@@ -5,7 +5,7 @@
 	    <%= render 'palettes/list' %>
 	  </div>
     <div id="newPaletteLink">
-      <%= link_to 'New Palette', new_palette_path, remote: true %>
+      <%= link_to '<i class="glyphicon glyphicon-plus"></i> New Palette'.html_safe, new_palette_path, remote: true %>
     </div>
     <!--<a id="paletteLink" class="list-group-item btn" onclick="createPalette();">
       New Palette <span class="glyphicon glyphicon-plus"/>
