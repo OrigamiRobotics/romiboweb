@@ -1,6 +1,6 @@
 class PalettesController < ApplicationController
   #respond_to :html, :json, :js
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :set_gon
   def new
     @palette = Palette.new
     respond_to do |format|
@@ -47,9 +47,7 @@ class PalettesController < ApplicationController
   end
 
   def index
-    @title = 'Palette Editor'
-    @palette = Palette.new
-    @palettes = current_user.palettes
+    set_params
     respond_to do |format|
       format.html
       format.json {render json: @palettes}
@@ -59,6 +57,8 @@ class PalettesController < ApplicationController
 
   def show
     @palette = Palette.find params[:id]
+    @button  = @palette.buttons.order(:id).first if @palette.buttons.present?
+
     if @palette
       respond_to do |format|
         format.html {redirect_to palettes_path}
@@ -69,6 +69,15 @@ class PalettesController < ApplicationController
   end
 
   private
+  def set_params
+    @title = 'Palette Editor'
+    @palette = Palette.new
+    @palettes = current_user.palettes
+    if @palettes.present?
+      @first_palette = @palettes.first
+      gon.first_palette = @first_palette.id
+    end
+  end
 
   def palette_params
     params.require(:palette).permit(:title, :description, :color)
