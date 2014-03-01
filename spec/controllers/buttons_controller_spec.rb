@@ -6,6 +6,7 @@ describe ButtonsController do
 
   let(:palette) { FactoryGirl.create(:palette)}
   let(:button_color) {FactoryGirl.create(:button_color)}
+  let(:button) { FactoryGirl.create(:button)}
 
 
   def valid_attributes
@@ -89,6 +90,13 @@ describe ButtonsController do
         json_response['button']['speech_speed_rate'].should eq(valid_attributes[:speech_speed_rate])
         json_response['button']['user_id'].should eq(valid_attributes[:user_id])
       end
+    end
+  end
+
+  describe "DELETE 'destroy'" do
+    it 'returns http success' do
+      xhr :delete, :destroy, id: button.id
+      response.should be_success
     end
   end
 

@@ -1,5 +1,5 @@
 class ButtonsController < ApplicationController
-  before_filter :get_palette
+  before_filter :get_palette,     except: :destroy
   def new
     begin
       @button = Button.new default_values
@@ -19,11 +19,30 @@ class ButtonsController < ApplicationController
 
   def show
     @button = Button.find(params[:id])
-    puts params.inspect
   end
 
+  def update
+    @button = Button.find(params[:id])
+    unless @button.update_attributes(button_params)
+    end
+
+  end
+
+  def destroy
+    @button = Button.find(params[:id])
+    @button.destroy
+    respond_to do |format|
+      format.html {redirect_to palettes_path}
+      format.js
+    end
+
+  end
 
   private
+  def cleaned_params
+    params[:button].except(:title_value)
+  end
+
   def json_create
     begin
       do_create
@@ -52,7 +71,7 @@ class ButtonsController < ApplicationController
   end
 
   def button_params
-    params.require(:button).permit(:title, :color, :speech_phrase,
+    params.require(:button).permit(:title, :speech_phrase,
                                    :speech_speed_rate, :user_id,
                                    :button_color_id, :size)
   end
@@ -62,6 +81,7 @@ class ButtonsController < ApplicationController
   end
 
   def get_palette
+    puts params.inspect
     begin
       @palette = Palette.find(params[:palette_id])
     rescue => ex

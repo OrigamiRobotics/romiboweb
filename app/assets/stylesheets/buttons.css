@@ -20,6 +20,45 @@
     margin-top: 28px;
 }
 
+#deleteButton {
+    margin-top: 26px;
+}
+
+div.smallButtonWidget {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    background-color: #0086b3;
+    display: inline-block;
+    float: left;
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+
+div.smallButtonWidget a {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration:none; /* Makes sure the link   doesn't get underlined */
+}
+
+div.smallButtonWidget:hover {
+    /*background-color: rgba(32, 60, 144, 0.93);*/
+    color: white;
+}
+
+.smallButtonWidget h1 {
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+
+/* Medium */
 div.mediumButtonWidget {
     position: relative;
     height: 50px;
@@ -47,6 +86,41 @@ div.mediumButtonWidget:hover {
 }
 
 .mediumButtonWidget h1 {
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+
+/*  Large */
+div.largeButtonWidget {
+    position: relative;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #0086b3;
+    display: inline-block;
+    float: left;
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+
+div.largeButtonWidget a {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration:none; /* Makes sure the link   doesn't get underlined */
+}
+
+div.largeButtonWidget:hover {
+    /*background-color: rgba(32, 60, 144, 0.93);*/
+    color: white;
+}
+
+.largeButtonWidget h1 {
     font-size: 12px;
     text-align: center;
     vertical-align: middle;
