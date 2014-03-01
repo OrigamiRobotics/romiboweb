@@ -16,12 +16,27 @@ Romiboweb::Application.routes.draw do
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
-	devise_for :users, :skip => [:sessions], controllers: { registrations: "registrations"}
+	devise_for :users, :skip => [:sessions, :passwords], controllers:
+      {registrations: 'registrations'}
 
 	as :user do
 		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
 		post 'signin' => 'devise/sessions#create', :as => :user_session
 		delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-	end
+  end
+
+  ######### API routes ##########
+
+  namespace :api do
+    namespace :v1 do
+      resources :palettes, only: [:index]
+      as :user do
+        post 'register' => 'registrations#create'
+        post 'login' => 'sessions#create'
+        delete 'logout' => 'sessions#destroy'
+      end
+
+    end
+  end
 
 end

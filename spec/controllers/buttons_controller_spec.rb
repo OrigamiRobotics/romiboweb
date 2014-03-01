@@ -34,7 +34,7 @@ describe ButtonsController do
   describe "POST 'create'" do
     context "with invalid data" do
       describe "with missing palette id" do
-        it "returns http failure (404) with correct status and message" do
+        pending "returns http failure (404) with correct status and message" do
           xhr :post, 'create', button: valid_attributes
           response.should_not be_success
           response.status.should eq(404)
@@ -95,7 +95,7 @@ describe ButtonsController do
 
   describe "DELETE 'destroy'" do
     it 'returns http success' do
-      xhr :delete, :destroy, id: button.id
+      xhr :delete, :destroy, id: button.id, palette_id: palette.id
       response.should be_success
     end
   end

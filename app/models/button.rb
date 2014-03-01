@@ -4,12 +4,13 @@
 #
 #  id                :integer          not null, primary key
 #  title             :string(255)      not null
-#  color             :string(255)
 #  speech_phrase     :string(255)
 #  speech_speed_rate :float
 #  user_id           :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  button_color_id   :integer
+#  size              :string(255)
 #
 
 class Button < ActiveRecord::Base
