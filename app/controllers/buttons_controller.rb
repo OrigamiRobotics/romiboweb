@@ -1,5 +1,5 @@
 class ButtonsController < ApplicationController
-  before_filter :get_palette
+  before_filter :get_palette,     except: :destroy
   def new
     begin
       @button = Button.new default_values
@@ -24,6 +24,16 @@ class ButtonsController < ApplicationController
   def update
     @button = Button.find(params[:id])
     unless @button.update_attributes(button_params)
+    end
+
+  end
+
+  def destroy
+    @button = Button.find(params[:id])
+    @button.destroy
+    respond_to do |format|
+      format.html {redirect_to palettes_path}
+      format.js
     end
 
   end
