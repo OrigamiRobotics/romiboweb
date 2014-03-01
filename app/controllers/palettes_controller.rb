@@ -1,6 +1,7 @@
 class PalettesController < ApplicationController
   #respond_to :html, :json, :js
   before_filter :authenticate_user!
+  before_filter :palette_owner,     only: :destroy
   def new
     @palette = Palette.new
     respond_to do |format|
@@ -68,10 +69,23 @@ class PalettesController < ApplicationController
 
   end
 
+  def destroy
+    @palette.destroy
+    respond_to do |format|
+      @palettes = current_user.palettes
+      format.html {redirect_to palettes_path}
+      format.js
+    end
+  end
+
   private
 
   def palette_params
     params.require(:palette).permit(:title, :description, :color)
   end
 
+  def palette_owner
+    @palette = current_user.palettes.find_by_id(params[:id])
+    redirect_to(palettes_path) if @palette.nil?
+  end
 end

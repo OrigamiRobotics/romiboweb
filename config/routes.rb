@@ -12,7 +12,7 @@ Romiboweb::Application.routes.draw do
 
   resources :buttons, only: [:new, :create, :show, :update]
 	resources :users, only: [:dashboard]
-  resources :palettes, only: [:new, :create, :edit, :show, :update, :index]
+  resources :palettes
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 

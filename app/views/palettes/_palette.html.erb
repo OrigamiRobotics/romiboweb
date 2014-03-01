@@ -16,6 +16,15 @@
                 id: 'addNewButton',
                 title: 'Add a new button'
     %>
+    &nbsp; &nbsp; |
+    &nbsp; &nbsp;
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Palette'.html_safe,
+                palette,
+                method: :delete,
+                data: { confirm: "Delete palette '#{palette.title}'?" },
+                id: 'deletePalette',
+                title: 'Delete Palette'
+    %>
   </h3>
   <hr>
   <%= render 'palettes/center_content/existing_buttons' %>

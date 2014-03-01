@@ -92,4 +92,12 @@ describe PalettesController, palette: true do
     end
   end
 
+  describe "DELETE 'destroy'" do
+    it 'returns http success' do
+      xhr :delete, :destroy, id: palette.id
+      response.should be_success
+    end
+  end
+
+
 end
