@@ -1,0 +1,4 @@
+<% @palette.buttons.each do |button| %>
+  var button = $('<%= "#button_#{button.div_id}" %>');
+  button.css('background-color', '<%= button.color %>');
+<% end %>

@@ -29,6 +29,6 @@ class Button < ActiveRecord::Base
   end
 
   def div_id
-    "#{title}_#{id}"
+    "buttonId_#{id}"
   end
 end

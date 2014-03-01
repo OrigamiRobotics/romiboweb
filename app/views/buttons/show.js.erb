@@ -1,11 +1,1 @@
-$('#buttonDetails').hide();
-<%= render 'buttons/button_live_edit', button: @button %>
-$('#buttonHeaderOnForm').html("<%= @button.title %>");
-
-var button_title_field = $("#button_title");
-var button = $('<%= "#button_#{@button.div_id} h1" %>');
-button_title_field.on('keyup', function() {
-  var val = $(this).val();
-  $('#buttonHeaderOnForm').html(val);
-
-});
+<%= render 'buttons/update_and_show' %>
