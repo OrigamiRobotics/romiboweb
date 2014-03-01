@@ -9,15 +9,6 @@
     %>
     &nbsp; &nbsp; |
     &nbsp; &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add Button'.html_safe,
-                buttons_path(palette_id: palette.id, js: true),
-                method: :post,
-                remote: true,
-                id: 'addNewButton',
-                title: 'Add a new button'
-    %>
-    &nbsp; &nbsp; |
-    &nbsp; &nbsp;
     <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Palette'.html_safe,
                 palette,
                 method: :delete,
@@ -25,6 +16,16 @@
                 id: 'deletePalette',
                 title: 'Delete Palette'
     %>
+    &nbsp; &nbsp; |
+    &nbsp; &nbsp;
+    <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add Button'.html_safe,
+                buttons_path(palette_id: palette.id, js: true),
+                method: :post,
+                remote: true,
+                id: 'addNewButton',
+                title: 'Add a new button'
+    %>
+
   </h3>
   <hr>
   <%= render 'palettes/center_content/existing_buttons' %>

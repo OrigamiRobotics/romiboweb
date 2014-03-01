@@ -20,6 +20,10 @@
     margin-top: 28px;
 }
 
+#deleteButton {
+    margin-top: 26px;
+}
+
 div.smallButtonWidget {
     position: relative;
     height: 50px;
