@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
@@ -57,4 +57,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'capybara-webkit'
 end

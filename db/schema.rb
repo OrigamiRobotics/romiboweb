@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220084849) do
+ActiveRecord::Schema.define(version: 20140227084049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "button_colors", force: true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "button_colors", ["name", "value"], name: "index_button_colors_on_name_and_value", using: :btree
 
   create_table "buttons", force: true do |t|
     t.string   "title",             null: false

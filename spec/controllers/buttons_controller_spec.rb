@@ -95,7 +95,7 @@ describe ButtonsController do
 
   describe "DELETE 'destroy'" do
     it 'returns http success' do
-      xhr :delete, :destroy, id: button.id
+      xhr :delete, :destroy, id: button.id, palette_id: palette.id
       response.should be_success
     end
   end

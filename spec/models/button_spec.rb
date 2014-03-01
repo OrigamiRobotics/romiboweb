@@ -4,12 +4,13 @@
 #
 #  id                :integer          not null, primary key
 #  title             :string(255)      not null
-#  color             :string(255)
 #  speech_phrase     :string(255)
 #  speech_speed_rate :float
 #  user_id           :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  button_color_id   :integer
+#  size              :string(255)
 #
 
 require 'spec_helper'
@@ -29,7 +30,7 @@ describe Button do
   end
 
   it "should return correct id for div" do
-    expect(button.div_id).to eql("#{button.title}_#{button.id}")
+    expect(button.div_id).to eql("buttonId_#{button.id}")
   end
 
   context "should not be valid without a title" do
