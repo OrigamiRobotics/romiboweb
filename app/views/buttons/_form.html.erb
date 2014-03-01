@@ -27,14 +27,20 @@
 
     </div>
     <div class="col-md-6">
+
       <%= link_to 'Delete',
-                  @button,
+                  {controller: :buttons,
+                   action: 'destroy',
+                   id: @button.id,
+                   palette_id: @palette.id},
                   method: :delete,
+                  remote: true,
+                  title: "Delete Button",
                   class: 'btn btn-danger btn-block',
-                  data: { confirm: "Delete button '#{@button.title}'?" },
                   id: 'deleteButton',
-                  title: 'Delete Button'
+                  data: { confirm: "Delete button '#{@button.title}'?" }
       %>
+
     </div>
   </div>
 <% end %>
