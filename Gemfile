@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'simplecov'
 gem 'json'
 gem 'less-rails'
+gem 'sass-rails'
 gem 'coffee-rails'
 #gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

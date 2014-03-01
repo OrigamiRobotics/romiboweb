@@ -1,0 +1,40 @@
+$('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
+'<%= j render "palettes/right_side/button_form" %>' +
+"</div>");
+var speedRateField = $('#button_speech_speed_rate');
+var speedRate = <%= button.speech_speed_rate %>;
+$('.noUiSlider').noUiSlider({
+  range: [1, 5]
+  ,start: [speedRate, 5]
+  ,step: 1
+  ,handles: 1
+  ,serialization: {
+    to: [speedRateField]
+  }
+});
+
+speedRateField.mouseover(function() {
+  $(this).prop('disabled', true);
+});
+
+speedRateField.mouseout(function() {
+  $(this).prop('disabled', false);
+});
+
+$(function() {
+  return $('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched',
+    width: '300px',
+    height: '50px'
+  });
+});
+
+$(function() {
+  $("#button_speech_phrase").change(function() {
+    $("form").submit();
+  });
+});
+
+
+$('#butttonHeaderOnForm').val('<%= button.title %>');

@@ -319,6 +319,7 @@ DEPENDENCIES
   rails (= 4.0.1)
   rails_12factor
   rspec-rails
+  sass-rails
   sdoc
   selenium-webdriver
   shoulda-matchers

@@ -11,28 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227023620) do
+ActiveRecord::Schema.define(version: 20140220084849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "api_keys", force: true do |t|
-    t.string   "auth_token"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "buttons", force: true do |t|
     t.string   "title",             null: false
-    t.string   "color"
     t.string   "speech_phrase"
     t.float    "speech_speed_rate"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "button_color_id"
+    t.string   "size"
   end
 
+  add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree
+  add_index "buttons", ["size"], name: "index_buttons_on_size", using: :btree
   add_index "buttons", ["user_id"], name: "index_buttons_on_user_id", using: :btree
 
   create_table "palette_buttons", force: true do |t|
@@ -52,20 +48,6 @@ ActiveRecord::Schema.define(version: 20140227023620) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
-  end
-
-  create_table "tokens", force: true do |t|
-    t.string   "auth_token"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_tokens", force: true do |t|
-    t.string   "auth_token"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
