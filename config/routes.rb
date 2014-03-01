@@ -10,9 +10,9 @@ Romiboweb::Application.routes.draw do
 		get page, controller: 'romiboweb_pages', action: page
 	end
 
-  resources :buttons, only: [:new, :create, :show, :update]
+  resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard]
-  resources :palettes, only: [:new, :create, :edit, :show, :update, :index]
+  resources :palettes
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
