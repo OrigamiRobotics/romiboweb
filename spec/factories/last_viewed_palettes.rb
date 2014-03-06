@@ -11,15 +11,11 @@
 #  owner_id    :integer
 #
 
-require 'spec_helper'
+FactoryGirl.define do
 
-describe Palette, palette: true do
-
-  [:title, :description, :color, :buttons, :last_viewed_palette].each do |attr|
-    it {should respond_to attr}
+  factory :last_viewed_palette do
+    user_id 1
+    palette_id 1
   end
-
-  it {should validate_presence_of :title}
-  it {should belong_to(:owner).class_name('User')}
 
 end

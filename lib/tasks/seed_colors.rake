@@ -1,6 +1,6 @@
 namespace :data do
   desc "Generate default button colors"
-  task :seed_colors do
+  task :seed_colors  => :environment do
     colors =  [
       "#1ABC9C TURQUOISE",
       "#16A085 GREEN SEA",

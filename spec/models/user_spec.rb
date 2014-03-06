@@ -7,7 +7,9 @@ describe User do
   subject { user}
 
   context "should have the following atributes" do
-    [:first_name, :last_name, :email, :password].each do |attr|
+    [:first_name, :last_name, :email, :password,
+     :my_palettes, :last_viewed_palette,
+     :current_palette, :set_last_viewed_palette].each do |attr|
       it { should respond_to attr }
     end
   end

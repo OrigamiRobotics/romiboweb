@@ -1,2 +1,7 @@
-$('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_content/existing_buttons" %>');
-<%= render 'buttons/update_and_show' %>
+<% if params[:status] == 'done' %>
+  $('#doneButton').prop('disabled', true);
+<% else %>
+  $('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_content/existing_buttons" %>');
+  <%= render 'buttons/update_and_show' %>
+<% end %>
+

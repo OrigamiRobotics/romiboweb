@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   has_many :buttons
   has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id
-  #has_many :palettes, foreign_key: :owner_id
+  has_one :last_viewed_palette
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -40,4 +40,32 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX } ,
             uniqueness:  { case_sensitive: false }
+
+  def my_palettes
+    unless Palette.where{(owner_id == id) && (system == true)}.present?
+      Palette.default_palettes(self)
+    end
+
+    palettes
+  end
+
+  def current_palette
+    puts "user ===== " + last_viewed_palette.palette.inspect
+    if last_viewed_palette.present? && last_viewed_palette.palette.present?
+      last_viewed_palette.palette
+    else
+      my_palettes.first
+    end
+  end
+
+  def set_last_viewed_palette(palette)
+    if last_viewed_palette.present?
+      last_viewed_palette.palette = palette
+      last_viewed_palette.save
+    else
+      lvp = build_last_viewed_palette palette_id: palette.id
+      lvp.save
+    end
+  end
+
 end

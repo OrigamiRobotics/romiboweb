@@ -1,0 +1,120 @@
+{
+    "displayOrder": 2,
+    "name": "Chagall: I and the Village",
+    "actions": [
+        {
+            "speechPhrase": "Can you draw that?",
+            "threeBasedIndex": 17,
+            "buttonTitle": "Draw that?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Hello. My name is Romibo!",
+            "threeBasedIndex": 1,
+            "buttonTitle": "Hello",
+            "speechSpeedRate": 0.2436548
+        },
+        {
+            "speechPhrase": "Let's learn something new!",
+            "threeBasedIndex": 2,
+            "buttonTitle": "Let's learn",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What color would an expressionist use?",
+            "threeBasedIndex": 10,
+            "buttonTitle": "What color would",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What is your favorite animal?",
+            "threeBasedIndex": 5,
+            "buttonTitle": "Favorite animal",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Tell me more!",
+            "threeBasedIndex": 7,
+            "buttonTitle": "Tell me",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "How does the picture make you feel?",
+            "threeBasedIndex": 11,
+            "buttonTitle": "How does the pic make you feel",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Awesome sport!",
+            "threeBasedIndex": 19,
+            "buttonTitle": "Awesome sport",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Cool!",
+            "threeBasedIndex": 9,
+            "buttonTitle": "Cool",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What would you put in a painting about your life?",
+            "threeBasedIndex": 13,
+            "buttonTitle": "What put in?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Marc Chagall was an expressionist.",
+            "threeBasedIndex": 4,
+            "buttonTitle": "Chagall was",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What does this painting remind you of?",
+            "threeBasedIndex": 12,
+            "buttonTitle": "Remind you of?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Do you have a pet?",
+            "threeBasedIndex": 6,
+            "buttonTitle": "Pet?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Do you know what a profile is?",
+            "threeBasedIndex": 8,
+            "buttonTitle": "Profile?",
+            "speechSpeedRate": 0.3147208
+        },
+        {
+            "speechPhrase": "Wow! You're just like Marc Chagall!",
+            "threeBasedIndex": 18,
+            "buttonTitle": "Just like M Chagall",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Do you like 'I and the Village'?",
+            "threeBasedIndex": 3,
+            "buttonTitle": "I and the Village",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "I like that too!",
+            "threeBasedIndex": 16,
+            "buttonTitle": "I like that",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Awesome hobby!",
+            "threeBasedIndex": 15,
+            "buttonTitle": "Awesome hobby",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What is your favorite hobby or sport?",
+            "threeBasedIndex": 14,
+            "buttonTitle": "Hobby or sport",
+            "speechSpeedRate": 0.5
+        }
+    ]
+}

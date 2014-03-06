@@ -1,6 +1,7 @@
 class PalettesController < ApplicationController
-  before_filter :authenticate_user!, :set_gon
+  before_filter :authenticate_user!
   before_filter :palette_owner,     only: :destroy
+  before_filter :set_gon
 
   def new
     @palette = Palette.new
@@ -27,6 +28,9 @@ class PalettesController < ApplicationController
 
   def edit
     @palette = Palette.find params[:id]
+    current_user.set_last_viewed_palette @palette
+    puts "edit ----- " + current_user.current_palette.inspect
+
     respond_to do |format|
       format.js
     end
@@ -36,7 +40,7 @@ class PalettesController < ApplicationController
     @palette = Palette.find params[:id]
     respond_to do |format|
       if @palette.update_attributes(palette_params)
-        @palettes = current_user.palettes
+        @palettes = current_user.my_palettes
         format.html {redirect_to palettes_path}
         format.js
       else
@@ -52,14 +56,15 @@ class PalettesController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render json: @palettes}
+      format.js
     end
-    #respond_with @palettes
   end
 
   def show
-    @palette = Palette.find params[:id]
-    @button  = @palette.buttons.order(:id).first if @palette.buttons.present?
-
+    @palette = Palette.find params[:id] if params[:id].present?
+    @button  = @palette.current_button
+    current_user.set_last_viewed_palette @palette
+    puts "show ----- " + current_user.current_palette.inspect
     if @palette
       respond_to do |format|
         format.html {redirect_to palettes_path}
@@ -82,10 +87,12 @@ class PalettesController < ApplicationController
   def set_params
     @title = 'Palette Editor'
     @palette = Palette.new
-    @palettes = current_user.palettes
+    @palettes = current_user.my_palettes
+
     if @palettes.present?
-      @first_palette = @palettes.first
-      gon.first_palette = @first_palette.id
+      @current_palette = current_user.current_palette
+      puts "%%%% "+ @current_palette.inspect
+      gon.first_palette = @current_palette.id
     end
   end
 

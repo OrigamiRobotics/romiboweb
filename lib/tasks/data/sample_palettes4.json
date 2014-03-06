@@ -1,0 +1,102 @@
+{
+    "displayOrder": 5,
+    "name": "Miro Fish",
+    "actions": [
+        {
+            "speechPhrase": "Are fish really this color?",
+            "threeBasedIndex": 4,
+            "buttonTitle": "Are fish really",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What color is that?",
+            "threeBasedIndex": 13,
+            "buttonTitle": "What color",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What's your favorite color?",
+            "threeBasedIndex": 10,
+            "buttonTitle": "Your favorite",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Do you see patterns?",
+            "threeBasedIndex": 5,
+            "buttonTitle": "Patterns?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Do you like Miro's fish?",
+            "threeBasedIndex": 14,
+            "buttonTitle": "Like miro's fish?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What color feels happy?",
+            "threeBasedIndex": 7,
+            "buttonTitle": "What color happy",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Mine is red!",
+            "threeBasedIndex": 9,
+            "buttonTitle": "My Favorite color",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Awesome color!",
+            "threeBasedIndex": 12,
+            "buttonTitle": "Awesome color",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "How does this picture make you feel?",
+            "threeBasedIndex": 2,
+            "buttonTitle": "Make you feel?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What does this picture remind you of?",
+            "threeBasedIndex": 3,
+            "buttonTitle": "Remind you of?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Use your paintbrush!",
+            "threeBasedIndex": 11,
+            "buttonTitle": "Use brush",
+            "speechSpeedRate": 0.7106599
+        },
+        {
+            "speechPhrase": "What is your Fish's name?",
+            "threeBasedIndex": 15,
+            "buttonTitle": "Fish's name",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Where does it live?",
+            "threeBasedIndex": 16,
+            "buttonTitle": "Where does it live",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "I see that too!",
+            "threeBasedIndex": 6,
+            "buttonTitle": "I see too",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "I like Juan Miro!",
+            "threeBasedIndex": 1,
+            "buttonTitle": "I like",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What color feels silly?",
+            "threeBasedIndex": 8,
+            "buttonTitle": "What color silly",
+            "speechSpeedRate": 0.5
+        }
+    ]
+}
