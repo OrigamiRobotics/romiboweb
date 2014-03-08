@@ -8,10 +8,11 @@ describe Palettes::ShareController, palette: true, share: true do
 
   describe "GET 'new'" do
     before do
-      get 'new', palette_id: palette.id
+      get 'new', palette_id: palette.id, format: :js
     end
 
     it {should respond_with 200}
+    it {should render_template 'new'}
     it 'should assign palette' do
       expect(assigns(:palette)).to eq(palette)
     end

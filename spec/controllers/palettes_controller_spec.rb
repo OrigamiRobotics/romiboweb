@@ -80,7 +80,7 @@ describe PalettesController, palette: true do
   end
 
   describe "PATCH 'update'" do
-    it 'returns http success' do
+    it 'assigns palette object' do
       put :update, id: palette.id, palette: palette.attributes
       expect(assigns(:palette)).to eq(palette)
     end
