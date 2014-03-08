@@ -14,6 +14,7 @@ Romiboweb::Application.routes.draw do
 	resources :users, only: [:dashboard]
   resources :palettes
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
+  post '/locale' => 'users#locale'
 
 
 	devise_for :users, :skip => [:sessions, :passwords], controllers:

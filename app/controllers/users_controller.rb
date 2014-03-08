@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, unless: { }
+  before_filter :authenticate_user!, unless: { action: 'locale' }
   before_filter :set_gon
 
 
@@ -23,6 +23,18 @@ class UsersController < ApplicationController
   def dashboard
     @title = "Dashboard"
     @user = current_user
+  end
+
+  def locale
+    chosen_locale = params[:user_locale]
+    if I18n.locale_available? chosen_locale
+      cookies.delete :user_locale
+      cookies[:user_locale] = {
+        value: chosen_locale,
+        expires_in: 2.weeks.from_now
+      }
+    end
+    redirect_to request.env['HTTP_REFERER'] || root_path
   end
 
   private
