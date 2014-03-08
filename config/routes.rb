@@ -13,6 +13,7 @@ Romiboweb::Application.routes.draw do
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard]
   resources :palettes
+  post '/palettes/:id/share' => 'palettes#share', as: :palette_share
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
