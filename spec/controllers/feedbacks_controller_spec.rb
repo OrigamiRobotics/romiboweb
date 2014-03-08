@@ -4,16 +4,21 @@ describe FeedbacksController do
 
   render_views
 
+  let(:user) {FactoryGirl.create :user}
   let(:feedback) { FactoryGirl.create(:feedback)}
 
   def valid_attributes
     FactoryGirl.attributes_for(:feedback)
   end
 
+  before :each do
+    sign_in user
+  end
+
   describe "GET 'new'" do
     it "returns http success and new button" do
       xhr :get, 'new'
-      assigns(:button).should be_a_new(Feedback)
+      assigns(:feedback).should be_a_new(Feedback)
     end
 
     context "with missing palette id" do
