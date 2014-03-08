@@ -99,5 +99,9 @@ describe PalettesController, palette: true do
     end
   end
 
+  describe "POST 'share'" do
+
+  end
+
 
 end

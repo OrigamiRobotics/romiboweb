@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id
   #has_many :palettes, foreign_key: :owner_id
 
+  has_many :palette_viewers
+  has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 

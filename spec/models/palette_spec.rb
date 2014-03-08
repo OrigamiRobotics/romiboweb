@@ -21,5 +21,7 @@ describe Palette, palette: true do
 
   it {should validate_presence_of :title}
   it {should belong_to(:owner).class_name('User')}
+  it {should have_many :palette_viewers}
+  it {should have_many(:viewers).class_name('User').through(:palette_viewers)}
 
 end
