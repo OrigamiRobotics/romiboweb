@@ -15,6 +15,7 @@ class PalettesController < ApplicationController
     @palette =  current_user.palettes.build(palette_params)
     respond_to do |format|
       if @palette.save
+        current_user.set_last_viewed_palette @palette
         @palettes = current_user.palettes
         format.html {redirect_to palettes_path}
         format.json { render json: @palette }
