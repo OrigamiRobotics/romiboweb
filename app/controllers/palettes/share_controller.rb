@@ -6,9 +6,13 @@ class Palettes::ShareController < ApplicationController
   end
 
   def create
-    @palette = Palette.find params[:palette_id]
-    email = params[:email]
-    PaletteMailer.share(@palette, email).deliver
-    flash[:success] = "We have sent #{@palette.title} to #{email}. Thank you!"
+    begin
+      @palette = Palette.find params[:palette_id]
+      email = params[:email]
+      PaletteMailer.share(@palette, email).deliver
+      flash[:success] = "We have sent #{@palette.title} to #{email}. Thank you!"
+    rescue
+        #=> TODO: handle exception here
+    end
   end
 end

@@ -2,6 +2,8 @@ en:
   palettes:
     index:
       link:
+        email:
+          title: "Email this palette as an attachment"
         share:
           title: "Share palette"
         edit:
