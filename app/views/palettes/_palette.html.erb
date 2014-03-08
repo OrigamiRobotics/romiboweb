@@ -1,20 +1,27 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
   <h3>
     <%= palette.title %> &nbsp; &nbsp;
+	  <%= link_to '<i class="glyphicon glyphicon-share-alt"></i>'.html_safe,
+	              new_palette_share_path(palette),
+	              title: t('palettes.index.link.share.title'),
+                remote: true
+	  %>
+    &nbsp; |
+    &nbsp;
     <%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit Palette'.html_safe,
                 edit_palette_path(palette),
                 remote: true,
                 id: 'editPaletteIcon',
-                title: 'Edit this palette'
+                title: t('palettes.index.link.edit.title')
     %>
     &nbsp; &nbsp; |
     &nbsp; &nbsp;
     <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Palette'.html_safe,
                 palette,
                 method: :delete,
-                data: { confirm: "Delete palette '#{palette.title}'?" },
+                data: { confirm: t('palettes.index.link.delete.confirm', title: palette.title) },
                 id: 'deletePalette',
-                title: 'Delete Palette'
+                title: t('palettes.index.link.delete.title')
     %>
     &nbsp; &nbsp; |
     &nbsp; &nbsp;
@@ -23,7 +30,7 @@
                 method: :post,
                 remote: true,
                 id: 'addNewButton',
-                title: 'Add a new button'
+                title: t('palettes.index.link.add.title')
     %>
 
   </h3>
