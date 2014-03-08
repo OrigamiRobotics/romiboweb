@@ -7,6 +7,8 @@ class Palettes::ShareController < ApplicationController
 
   def create
     @palette = Palette.find params[:palette_id]
-    flash[:success] = 'Email has been sent. Thank you!'
+    email = params[:email]
+    PaletteMailer.share(@palette, email).deliver
+    flash[:success] = "We have sent #{@palette.title} to #{email}. Thank you!"
   end
 end
