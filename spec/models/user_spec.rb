@@ -34,17 +34,14 @@ describe User, user: true, auth: true do
   subject { user}
 
   it {should respond_to :reset_auth_token!}
+  it {should respond_to :shared_palettes}
 
   context "should have the following atributes" do
-<<<<<<< HEAD
     [:first_name, :last_name, :email, :password,
      :my_palettes, :last_viewed_palette,
      :current_palette, :set_last_viewed_palette,
      :name
     ].each do |attr|
-=======
-    [:first_name, :last_name, :email, :password, :auth_token].each do |attr|
->>>>>>> master
       it { should respond_to attr }
     end
   end

@@ -1,0 +1,15 @@
+en:
+  palettes:
+    index:
+      link:
+        share:
+          title: "Share palette"
+        edit:
+          title: "Edit this palette"
+        delete:
+          title: "Delete Palette"
+          confirm: "Delete palette '%{title}' ?"
+        add:
+          title: "Add a new button"
+    share:
+      title: "Email '%{title}'"

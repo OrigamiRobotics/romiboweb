@@ -18,6 +18,10 @@ class Palette < ActiveRecord::Base
   has_many :buttons, through: :palette_buttons
 
   has_one  :last_viewed_palette
+
+  has_many :palette_viewers
+  has_many :viewers, class_name: 'User', through: :palette_viewers
+
   validates_presence_of :title
 
   attr_accessor :file

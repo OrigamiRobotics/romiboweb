@@ -16,6 +16,11 @@ Romiboweb::Application.routes.draw do
   resources :feedbacks, only: [:new, :create, :index]
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard]
+
+  resources :palettes do
+    resources :share, controller: 'palettes/share', only: [:new, :create]
+  end
+
   resources :palettes do
     collection do
       post 'import'
