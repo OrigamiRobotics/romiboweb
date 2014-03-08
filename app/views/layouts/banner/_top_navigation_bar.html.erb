@@ -4,8 +4,11 @@
       <% unless params[:action] == 'dashboard' or params[:action] == 'home' %>
       <li><%= link_to t('topnav.dashboard'), dashboard_path %></li>
       <% end %>
-      <% if params[:action] == 'dashboard' %>
-        <li><%= link_to  t('topnav.palettes'), romiboweb_pages_editor_path  %></li>
+      <% unless params[:controller] == 'palettes' %>
+        <li><%= link_to  t('topnav.palettes'), palettes_path  %></li>
+      <% end %>
+      <% unless params[:controller] == 'feedbacks' %>
+        <li><%= link_to  t('topnav.feedback'), feedbacks_path %></li>
       <% end %>
     </ul>
 

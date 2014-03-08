@@ -2,7 +2,7 @@
     width: 99%;
     margin-left: auto;
     margin-right: auto;
-    height: 400px;
+    height: 450px;
 }
 
 #speechSpeedRateSlider {
@@ -29,7 +29,6 @@ div.smallButtonWidget {
     height: 50px;
     width: 50px;
     border-radius: 5px;
-    background-color: #0086b3;
     display: inline-block;
     float: left;
     margin-left: 2px;
@@ -64,7 +63,6 @@ div.mediumButtonWidget {
     height: 50px;
     width: 100px;
     border-radius: 5px;
-    background-color: #0086b3;
     display: inline-block;
     float: left;
     margin-left: 2px;
@@ -99,7 +97,6 @@ div.largeButtonWidget {
     height: 50px;
     width: 150px;
     border-radius: 5px;
-    background-color: #0086b3;
     display: inline-block;
     float: left;
     margin-left: 2px;
@@ -125,4 +122,12 @@ div.largeButtonWidget:hover {
     text-align: center;
     vertical-align: middle;
     color: white;
+}
+
+#doneButton {
+    margin-top: -10px;
+}
+
+#deleteButton {
+    margin-top: -10px;
 }

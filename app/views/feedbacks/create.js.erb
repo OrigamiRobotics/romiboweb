@@ -1,0 +1,15 @@
+<% if @feedback.present? %>
+  $('#feedbackListing').prepend('<%= j render "feedbacks/feedback", feedback: @feedback %>');
+<% else %>
+  <% @feedbacks = Feedback.all.order('created_at desc') %>
+  $('#existingFeedback').replaceWith('<%= j render "feedbacks/existing_feedback" %>');
+<% end %>
+var url;
+
+url = '<%= url_for(controller: :feedbacks, action: :new) %>';
+
+$.ajax({
+  type: "GET",
+  url: url,
+  dataType: 'script'
+});

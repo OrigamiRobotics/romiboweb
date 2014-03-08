@@ -1,22 +1,5 @@
 <div class="editorContent" id="leftSideContentBox">
-
-  <div class="editorContent" id="leftSideContentBox">
-	  <div id="paletteList">
-	    <%= render 'palettes/list' %>
-	  </div>
-    <div id="newPaletteLink">
-      <%= link_to '<i class="glyphicon glyphicon-plus"></i> New Palette'.html_safe, new_palette_path, remote: true %>
-    </div>
-    <!--<a id="paletteLink" class="list-group-item btn" onclick="createPalette();">
-      New Palette <span class="glyphicon glyphicon-plus"/>
-    </a>-->
-
-
-
-    <!--<div class="container" id="import">
-      JSON: <br>
-      <textarea rows="10" cols="20" id="jsonText">{"displayOrder":1,"name":"CREATE A STORY","actions":[{"speechPhrase":"Bye bye","threeBasedIndex":2,"buttonTitle":"bye","speechSpeedRate":0.7639594,"color":"#1ABC9C"},{"speechPhrase":"","threeBasedIndex":3,"buttonTitle":"Untitled button","speechSpeedRate":0.5,"color":"#16A085"},{"speechPhrase":"hello","threeBasedIndex":1,"buttonTitle":"say hi","speechSpeedRate":0.6954315,"color":"#2ECC71"},{"speechPhrase":"Eat this","threeBasedIndex":4,"buttonTitle":"eat","speechSpeedRate":0.7639594,"color":"#27AE60"},{"speechPhrase":"good morning","threeBasedIndex":5,"buttonTitle":"good morning","speechSpeedRate":0.5,"color":"#2980B9"},{"speechPhrase":"hello","threeBasedIndex":6,"buttonTitle":"afternoon ","speechSpeedRate":0.6954315,"color":"#9B59B6"},{"speechPhrase":"Bye bye","threeBasedIndex":7,"buttonTitle":"bye","speechSpeedRate":0.7639594,"color":"#E67E22"},{"speechPhrase":"","threeBasedIndex":8,"buttonTitle":"how are you?","speechSpeedRate":0.5,"color":"#C0392B"},{"speechPhrase":"this is orange","threeBasedIndex":9,"buttonTitle":"this is orange","speechSpeedRate":0.6954315,"color":"#D35400"}]}
-      </textarea>
-    </div>-->
+  <div id="paletteList">
+    <%= render 'palettes/list' %>
   </div>
 </div>

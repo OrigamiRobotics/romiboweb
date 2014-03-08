@@ -37,7 +37,15 @@ describe User, user: true, auth: true do
   it {should respond_to :shared_palettes}
 
   context "should have the following atributes" do
+<<<<<<< HEAD
+    [:first_name, :last_name, :email, :password,
+     :my_palettes, :last_viewed_palette,
+     :current_palette, :set_last_viewed_palette,
+     :name
+    ].each do |attr|
+=======
     [:first_name, :last_name, :email, :password, :auth_token].each do |attr|
+>>>>>>> master
       it { should respond_to attr }
     end
   end
@@ -77,7 +85,6 @@ describe User, user: true, auth: true do
         addresses.each do |valid_address|
           user.email = valid_address
           user.should be_valid
-
         end
       end
     end

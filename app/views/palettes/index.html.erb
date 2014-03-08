@@ -5,5 +5,10 @@
         <%= render 'palettes/editor' %>
       </div>
     </div>
+    <script>
+      var url;
+      url = "/palettes/" + '<%= current_user.current_palette.id %>' + "?locale=en";
+      $.getScript(url);
+    </script>
   </div>
 <% end %>

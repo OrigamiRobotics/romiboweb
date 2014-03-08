@@ -1,4 +1,4 @@
-<% if @palettes.any? %>
+<% if @palettes.present? %>
   <div class="btn-group-vertical" id="paletteGroup">
     <% @palettes.each do |palette| %>
       <%= link_to palette.title, palette, remote: true, format: :js,

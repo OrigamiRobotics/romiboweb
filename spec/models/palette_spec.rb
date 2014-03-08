@@ -15,7 +15,7 @@ require 'spec_helper'
 
 describe Palette, palette: true do
 
-  [:title, :description, :color, :buttons].each do |attr|
+  [:title, :description, :color, :buttons, :last_viewed_palette].each do |attr|
     it {should respond_to attr}
   end
 

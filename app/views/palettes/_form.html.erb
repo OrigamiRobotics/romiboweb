@@ -1,6 +1,10 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="new_or_edit_palette_form">
 	<div class="panel-heading">
-		<h3 class="panel-title">New Palette</h3>
+    <% if palette.id.nil? %>
+		  <h3 class="panel-title">New Palette</h3>
+    <% else %>
+      <h3 class="panel-title">Edit Palette: <%= palette.title %></h3>
+    <% end %>
 	</div>
 	<div class="panel-body">
 	  <%= form_for palette,
@@ -9,13 +13,11 @@
 	      <%= f.label :title, class: 'sr-only' %>
 	      <%= f.text_field :title, class: 'form-control', placeholder: t('activerecord.attributes.palette.title') %>
 	    </div>
-	    <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-default' %>
-			<% if @palette.new_record? %>
-	      <%= link_to t('palettes.edit.cancel', default: 'Cancel'), palettes_path, class: 'btn btn-default'  %>
-			<% else %>
-	      <%= link_to t('palettes.edit.cancel', default: 'Cancel'),
-	                  palette, remote: true, format: :js, class: 'btn btn-default'  %>
-	    <% end %>
+	    <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-primary' %>
+	    <%= link_to t('palettes.edit.cancel', default: 'Cancel'),
+                  palettes_path(cancel: true),
+                  remote: true,
+                  class: 'btn btn-default'  %>
 	  <% end %>
 	</div>
 </div>

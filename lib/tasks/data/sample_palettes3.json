@@ -1,0 +1,114 @@
+{
+    "displayOrder": 4,
+    "name": "Fauvism: Self Portraits",
+    "actions": [
+        {
+            "speechPhrase": "Wow! You are a fauve!",
+            "threeBasedIndex": 15,
+            "buttonTitle": "Wow-- you are a fauve",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Is that fauvism to you?",
+            "threeBasedIndex": 10,
+            "buttonTitle": "Is that fauvism ",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Let's learn something new!",
+            "threeBasedIndex": 2,
+            "buttonTitle": "Lets learn",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "That's interesting!",
+            "threeBasedIndex": 6,
+            "buttonTitle": "That's interesting!",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Use your paintbrush!",
+            "threeBasedIndex": 8,
+            "buttonTitle": "Use your paintbrush.",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Awesome!",
+            "threeBasedIndex": 18,
+            "buttonTitle": "Awesome ",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What color would a realist use?",
+            "threeBasedIndex": 11,
+            "buttonTitle": "What color realist",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What is a self portrait?",
+            "threeBasedIndex": 13,
+            "buttonTitle": "Self portrait?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Great job!",
+            "threeBasedIndex": 12,
+            "buttonTitle": "great job  ",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Tell me more!",
+            "threeBasedIndex": 7,
+            "buttonTitle": "tell me more",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Awesome fauvist colors!",
+            "threeBasedIndex": 16,
+            "buttonTitle": "awesome colors",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "How do they make you feel?",
+            "threeBasedIndex": 4,
+            "buttonTitle": "How do they make",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Does that look like you?",
+            "threeBasedIndex": 14,
+            "buttonTitle": "Look like you?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What are Fauvist colors?",
+            "threeBasedIndex": 3,
+            "buttonTitle": "Fauvist colors?",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "What is a your favorite color?",
+            "threeBasedIndex": 5,
+            "buttonTitle": "Favorite color",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Awesome color!",
+            "threeBasedIndex": 9,
+            "buttonTitle": "awesome color",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Great word!",
+            "threeBasedIndex": 17,
+            "buttonTitle": "Great word",
+            "speechSpeedRate": 0.5
+        },
+        {
+            "speechPhrase": "Hello. My name us Romibo!",
+            "threeBasedIndex": 1,
+            "buttonTitle": "Hello",
+            "speechSpeedRate": 0.5
+        }
+    ]
+}

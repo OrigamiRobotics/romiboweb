@@ -15,27 +15,43 @@
       <div class="noUiSlider" id="speechSpeedRateSlider"></div>
     </div>
     <div class="col-md-3">
-      <%= f.input :speech_speed_rate, label: false %>
+      <%= f.input :speech_speed_rate, label: false, input_html: { style: 'width: 70px; margin-left: -17px;'} %>
     </div>
   </div>
   <%= f.association :button_color, collection: ButtonColor.order(:name), id: :name,
                     input_html: { class: 'chosen-select' } %>
-
   <div class="row">
     <div class="col-md-6">
       <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
 
     </div>
+    <div class="col-md-6"> </div>
+  </div>
+  <hr>
+  <div class="row">
     <div class="col-md-6">
-
+      <% if session[:adding_button] == true %>
+        <%= link_to 'Done',
+                    {controller: 'buttons',
+                     action: 'update',
+                     id: @button.id,
+                     status: 'done',
+                     palette_id: @palette.id
+                    },
+                    method: :put,
+                    remote: true,
+                    class: 'btn btn-primary btn-block',
+                    id: 'doneButton',
+                    title: 'Stop automatically creating new buttons.'
+        %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
       <%= link_to 'Delete',
-                  {controller: :buttons,
-                   action: 'destroy',
-                   id: @button.id,
-                   palette_id: @palette.id},
+                  {id: @button.id,
+                  palette_id: @palette.id},
                   method: :delete,
                   remote: true,
-                  title: "Delete Button",
                   class: 'btn btn-danger btn-block',
                   id: 'deleteButton',
                   data: { confirm: "Delete button '#{@button.title}'?" }
