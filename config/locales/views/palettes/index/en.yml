@@ -11,3 +11,5 @@ en:
           confirm: "Delete palette '%{title}' ?"
         add:
           title: "Add a new button"
+    share:
+      title: "Email '%{title}'"

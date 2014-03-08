@@ -1,0 +1,6 @@
+$('#paletteShareFormContainer').html(
+		"<%= escape_javascript(render('palettes/share/form', palette: @palette)) %>"
+);
+$('#paletteShareForm').modal({
+	keyboard: true
+});
