@@ -1,0 +1,17 @@
+<div id="newFeedbackForm">
+  <%= simple_form_for @feedback, remote: true do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :title, label: 'Feedback title',
+               placeholder: "Required",
+               input_html: { style: 'width: 90%;'}
+    %>
+    <br>
+    <%= f.input :content, label: "Feedback content",
+                as: :text,
+                placeholder: "Required",
+                hint: "Type your feedback and click 'Post Feedback' to register your feedback.",
+                input_html: { style: 'width: 90%; height: 100px;'} %>
+    <%= f.submit "Post Feedback" , class: "btn btn-primary", id: 'postFeedback' %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>
