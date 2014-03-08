@@ -1,6 +1,5 @@
 $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");
-<% if @palette.buttons.any? %>
-	<%= render 'buttons/set_buttons_color' %>
-	var button = $('<%= "#button_#{@button.div_id} a" %>');
-	button.click();
+<% if @palette.buttons.present? %>
+  var button = $('<%= "#button_#{@button.div_id} a" %>');
+  button.click();
 <% end %>

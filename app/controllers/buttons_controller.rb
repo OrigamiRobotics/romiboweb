@@ -1,5 +1,5 @@
 class ButtonsController < ApplicationController
-  before_filter :get_palette,     except: :destroy
+  before_filter :get_palette
   def new
     begin
       @button = Button.new default_values
@@ -10,7 +10,11 @@ class ButtonsController < ApplicationController
 
   def create
     if params[:js].present?
-      js_create
+      puts session[:adding_button].inspect
+      if ok_to_add?
+        session[:adding_button] = true
+        js_create
+      end
     else
       json_create
     end
@@ -19,20 +23,24 @@ class ButtonsController < ApplicationController
 
   def show
     @button = Button.find(params[:id])
+    update_parent_palette
   end
 
   def update
     @button = Button.find(params[:id])
-    unless @button.update_attributes(button_params)
+    if params[:status].present?
+      session[:adding_button] = false
+    else
+      unless @button.update_attributes(button_params)
+      end
     end
-
   end
 
   def destroy
-    @button = Button.find(params[:id])
-    @button.destroy
-    @palette = Palette.find(params[:palette_id])
-    gon.first_palette = @palette.id
+    button = Button.find(params[:id])
+    button.destroy
+    @button = @palette.buttons.first if @palette.buttons.present?
+    update_parent_palette
 
     respond_to do |format|
       format.html {redirect_to palettes_path}
@@ -42,9 +50,13 @@ class ButtonsController < ApplicationController
   end
 
   private
-  def cleaned_params
-    params[:button].except(:title_value)
+  def update_parent_palette
+    if @palette.present?
+      @palette.last_viewed_button = @button.id
+      @palette.save
+    end
   end
+
 
   def json_create
     begin
@@ -57,7 +69,8 @@ class ButtonsController < ApplicationController
   def js_create
     @button = @palette.buttons.build(default_values)
     @button.save
-    puts @palette.buttons.count.to_s
+    update_parent_palette
+    puts "$$$$ " + @button.inspect
   end
 
   def do_create
@@ -74,9 +87,14 @@ class ButtonsController < ApplicationController
   end
 
   def button_params
-    params.require(:button).permit(:title, :speech_phrase,
-                                   :speech_speed_rate, :user_id,
-                                   :button_color_id, :size)
+    unless params[:status].present?
+      params[:button][:speech_phrase] = params[:button][:title]  \
+        if params[:button][:speech_phrase] == 'Hello' &&
+           params[:button][:title] != 'Untitled Button'
+      params.require(:button).permit(:title, :speech_phrase,
+                                     :speech_speed_rate, :user_id,
+                                     :button_color_id, :size)
+    end
   end
 
   def handle_error(msg)
@@ -84,7 +102,6 @@ class ButtonsController < ApplicationController
   end
 
   def get_palette
-    puts params.inspect
     begin
       @palette = Palette.find(params[:palette_id])
     rescue => ex
@@ -102,4 +119,9 @@ class ButtonsController < ApplicationController
       user_id:           current_user.id
     }
   end
+
+  def ok_to_add?
+    params[:status].present? || (params[:keypress].present? && session[:adding_button] == true)
+  end
+
 end

@@ -1,0 +1,18 @@
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-8">
+        <h4><%= feedback.title %></h4>
+      </div>
+      <div class="col-md-4 timestamp">
+            Made by
+            <strong><%= " " + feedback.made_by + " " %> </strong>
+          <%= time_ago_in_words(feedback.created_at) + '  ago'%>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <p><%= simple_format(feedback.content) %></p>
+  </div>
+</div>

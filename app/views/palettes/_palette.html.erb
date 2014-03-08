@@ -1,25 +1,41 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
   <h3>
     <%= palette.title %> &nbsp; &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit Palette'.html_safe,
+    <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
                 edit_palette_path(palette),
                 remote: true,
                 id: 'editPaletteIcon',
                 title: 'Edit this palette'
     %>
-    &nbsp; &nbsp; |
-    &nbsp; &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Palette'.html_safe,
+    &nbsp; |
+    &nbsp;
+    <%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe,
+                new_palette_path,
+                remote: true,
+                id: 'newPaletteIcon',
+                title: 'Create a new palette'
+    %>
+    &nbsp; |
+    &nbsp;
+    <%= link_to '<i class="glyphicon glyphicon-import"></i>'.html_safe,
+                "#myModal",
+                data: { toggle: "modal", backdrop: 'static'},
+                id: 'importPaletteLink',
+                title: 'Import existing palette from file'
+    %>
+    &nbsp; |
+    &nbsp;
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe,
                 palette,
                 method: :delete,
                 data: { confirm: "Delete palette '#{palette.title}'?" },
                 id: 'deletePalette',
                 title: 'Delete Palette'
     %>
-    &nbsp; &nbsp; |
-    &nbsp; &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add Button'.html_safe,
-                buttons_path(palette_id: palette.id, js: true),
+    &nbsp; |
+    &nbsp;
+    <%= link_to '<i class="glyphicon glyphicon-plus"></i> B'.html_safe,
+                buttons_path(palette_id: palette.id, js: true, status: "new"),
                 method: :post,
                 remote: true,
                 id: 'addNewButton',
@@ -29,4 +45,5 @@
   </h3>
   <hr>
   <%= render 'palettes/center_content/existing_buttons' %>
+  <%= render 'palettes/import_palette' %>
 </div>

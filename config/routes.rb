@@ -1,18 +1,26 @@
 Romiboweb::Application.routes.draw do
 
 
+  get "feedbacks/new"
+  get "feedbacks/index"
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
 	get "romiboweb_pages/home"
+
 	root to: 'romiboweb_pages#home'
 
   %w[home editor].each do |page|
 		get page, controller: 'romiboweb_pages', action: page
 	end
 
+  resources :feedbacks, only: [:new, :create, :index]
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard]
-  resources :palettes
+  resources :palettes do
+    collection do
+      post 'import'
+    end
+  end
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
   post '/locale' => 'users#locale'
 

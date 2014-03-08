@@ -27,5 +27,9 @@ module Romiboweb
       g.assets false
       g.helper false
     end
+
+    console do
+      ActiveRecord::Base.connection
+    end
   end
 end

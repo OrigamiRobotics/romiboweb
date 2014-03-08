@@ -1,0 +1,14 @@
+<% content_for :content  do %>
+  <div class="row" id="feedbackContentWrapper">
+    <div class="col-xs-1 col-md-1 col-lg-1" ></div>
+    <div class="col-xs-10 col-md-10 col-lg-10" id="feedbackList">
+      <h1>Feedback</h1>
+      <%= render 'feedbacks/form' %>
+      <br><br>
+
+      <%= render 'feedbacks/existing_feedback' %>
+    </div>
+    <div class="col-xs-1 col-md-1 col-lg-1" ></div>
+  </div>
+
+<% end %>
