@@ -15,7 +15,8 @@
 
     <div class="checkbox">
       <label>
-        <%= f.check_box :remember_me, :as => :boolean if devise_mapping.rememberable? %> Remember Me
+        <%= f.check_box :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+        <%= t 'home.placeholder.remember_me' %>
       </label>
     </div>
     <%= f.submit t('home.button.signin'), class: "btn btn-primary btn-block",  id: "signUpButton" %>

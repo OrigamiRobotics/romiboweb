@@ -12,6 +12,7 @@ en:
       first_name: "First Name (required)"
       last_name: "Last Name (required)"
       confirm_password: "Confirm password (required)"
+      remember_me: 'Remember Me'
     button:
       signin: "Sign in"
       signup: "Sign up"
