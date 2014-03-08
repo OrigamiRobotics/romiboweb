@@ -12,7 +12,7 @@ feature 'Creating a button', button: true do
     feature 'on the palette editor page ' do
       background {visit palettes_path}
 
-      scenario 'opens the new button form', :js => true do
+      pending 'opens the new button form', :js => true do
         wait_for_ajax
         expect(page).to have_content 'Dashboard'
         expect(page).to have_content 'New Palette'

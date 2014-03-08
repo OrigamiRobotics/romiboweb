@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
@@ -43,6 +43,7 @@ gem 'rspec-rails', group: [:test, :development]
 
 group :development do
   gem 'annotate'
+  gem 'meta_request', require: false # for RailsPanel https://github.com/dejan/rails_panel
 end
 
 group :test do
@@ -51,10 +52,11 @@ group :test do
   gem 'xpath'
   gem 'email_spec'
   gem 'launchy'
-  gem 'database_cleaner'
+  gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
   gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'capybara-webkit'
 end

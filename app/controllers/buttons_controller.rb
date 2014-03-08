@@ -41,6 +41,7 @@ class ButtonsController < ApplicationController
     button.destroy
     @button = @palette.buttons.first if @palette.buttons.present?
     update_parent_palette
+
     respond_to do |format|
       format.html {redirect_to palettes_path}
       format.js

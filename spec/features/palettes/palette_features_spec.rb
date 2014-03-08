@@ -14,7 +14,7 @@ feature 'Editing a palette', palette: true do
   feature 'signed-in user' do
     background {login_as user, scope: :user}
 
-    feature 'on the palette editor page ' do
+    pending 'on the palette editor page ' do
       background {visit palettes_path}
 
       scenario 'opens the edit form' do

@@ -25,9 +25,7 @@
       <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
 
     </div>
-    <div class="col-md-6">
-
-    </div>
+    <div class="col-md-6"> </div>
   </div>
   <hr>
   <div class="row">
@@ -55,10 +53,10 @@
                   method: :delete,
                   remote: true,
                   class: 'btn btn-danger btn-block',
-                  data: { confirm: "Delete button '#{@button.title}'?" },
                   id: 'deleteButton',
-                  title: 'Delete Button'
+                  data: { confirm: "Delete button '#{@button.title}'?" }
       %>
+
     </div>
   </div>
 <% end %>
