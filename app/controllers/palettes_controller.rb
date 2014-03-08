@@ -1,7 +1,7 @@
 class PalettesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :palette_owner,     only: :destroy
-  before_filter :set_gon
+  before_filter :set_gon, :set_session
 
   def new
     @palette = Palette.new
@@ -29,7 +29,6 @@ class PalettesController < ApplicationController
   def edit
     @palette = Palette.find params[:id]
     current_user.set_last_viewed_palette @palette
-    puts "edit ----- " + current_user.current_palette.inspect
 
     respond_to do |format|
       format.js
@@ -64,7 +63,6 @@ class PalettesController < ApplicationController
     @palette = Palette.find params[:id] if params[:id].present?
     @button  = @palette.current_button
     current_user.set_last_viewed_palette @palette
-    puts "show ----- " + current_user.current_palette.inspect
     if @palette
       respond_to do |format|
         format.html {redirect_to palettes_path}
@@ -83,6 +81,19 @@ class PalettesController < ApplicationController
     end
   end
 
+  def import
+    puts params[:palette].inspect
+    content = clean_file_content(params[:palette]["file"].read.to_s)
+    begin
+      @palette = Palette.from_file(current_user, content)
+    rescue => ex
+      flash[:alert] = ex.message
+    end
+    redirect_to palette_path(@palette), format: 'js',
+                notice: "#{params[:palette][:file].original_filename} successfully " +
+                "imported and a new palette (#{@palette.title}) was created with it!"
+  end
+
   private
   def set_params
     @title = 'Palette Editor'
@@ -91,7 +102,6 @@ class PalettesController < ApplicationController
 
     if @palettes.present?
       @current_palette = current_user.current_palette
-      puts "%%%% "+ @current_palette.inspect
       gon.first_palette = @current_palette.id
     end
   end
@@ -103,5 +113,9 @@ class PalettesController < ApplicationController
   def palette_owner
     @palette = current_user.palettes.find_by_id(params[:id])
     redirect_to(palettes_path) if @palette.nil?
+  end
+
+  def clean_file_content(content)
+    content.gsub(/=\r\n/, '')
   end
 end

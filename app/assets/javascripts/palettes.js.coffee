@@ -4,8 +4,16 @@ jQuery ->
     $.getScript(url)
 
     $(document).bind "keypress", (e) ->
-      link =  $("#addNewButton")
-      if link.length
-        link.trigger "click"  if e.which is 13
+      url = "/buttons"
+      data =
+        palette_id: gon.first_palette
+        keypress: true
+        js: true
+
+      $.ajax
+        type: "POST",
+        url: url,
+        data: data
+        dataType: 'script'
 
 

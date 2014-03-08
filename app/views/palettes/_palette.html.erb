@@ -18,9 +18,9 @@
     &nbsp; |
     &nbsp;
     <%= link_to '<i class="glyphicon glyphicon-import"></i>'.html_safe,
-                new_palette_path,
-                remote: true,
-                id: 'uploadPaletteLink',
+                "#myModal",
+                data: { toggle: "modal", backdrop: 'static'},
+                id: 'importPaletteLink',
                 title: 'Import existing palette from file'
     %>
     &nbsp; |
@@ -35,7 +35,7 @@
     &nbsp; |
     &nbsp;
     <%= link_to '<i class="glyphicon glyphicon-plus"></i> B'.html_safe,
-                buttons_path(palette_id: palette.id, js: true),
+                buttons_path(palette_id: palette.id, js: true, status: "new"),
                 method: :post,
                 remote: true,
                 id: 'addNewButton',
@@ -45,4 +45,5 @@
   </h3>
   <hr>
   <%= render 'palettes/center_content/existing_buttons' %>
+  <%= render 'palettes/import_palette' %>
 </div>

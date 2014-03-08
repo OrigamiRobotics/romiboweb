@@ -32,24 +32,28 @@
   <hr>
   <div class="row">
     <div class="col-md-6">
-      <%= link_to 'Done',
-                  {controller: :buttons,
-                   action: 'update',
-                   status: 'done',
-                   id: @button.id,
-                   palette_id: @palette.id
-                  },
-                  method: :put,
-                  remote: true,
-                  class: 'btn btn-primary btn-block',
-                  id: 'doneButton',
-                  title: 'Stop automatically creating new buttons.'
-      %>
+      <% if session[:adding_button] == true %>
+        <%= link_to 'Done',
+                    {controller: 'buttons',
+                     action: 'update',
+                     id: @button.id,
+                     status: 'done',
+                     palette_id: @palette.id
+                    },
+                    method: :put,
+                    remote: true,
+                    class: 'btn btn-primary btn-block',
+                    id: 'doneButton',
+                    title: 'Stop automatically creating new buttons.'
+        %>
+      <% end %>
     </div>
     <div class="col-md-6">
       <%= link_to 'Delete',
-                  @button,
+                  {id: @button.id,
+                  palette_id: @palette.id},
                   method: :delete,
+                  remote: true,
                   class: 'btn btn-danger btn-block',
                   data: { confirm: "Delete button '#{@button.title}'?" },
                   id: 'deleteButton',

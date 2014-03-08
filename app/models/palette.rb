@@ -13,11 +13,14 @@
 
 class Palette < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
+
   has_many :palette_buttons
   has_many :buttons, through: :palette_buttons
+
   has_one  :last_viewed_palette
   validates_presence_of :title
 
+  attr_accessor :file
 
   include DefaultPalettes
 
@@ -38,9 +41,28 @@ class Palette < ActiveRecord::Base
     end
   end
 
+  def self.from_file(user, content)
+    palettes_data = DefaultPalettes::PaletteFromFile.new.palette(content)
+    palette = user.palettes.build(title: palettes_data.title, system: true)
+    palette.save
+    palettes_data.buttons.each do |b|
+      button = palette.buttons.build(title: b.title, speech_phrase: b.speech,
+                                     speech_speed_rate: b.speed_rate,
+                                     user_id: user.id,
+                                     button_color_id:   ButtonColor.find_by_name('ORANGE').id,
+                                     size:              'Medium'
+      )
+      button.save
+    end
+    palette.last_viewed_button = palette.buttons.first
+    palette
+  end
+
   def current_button
-    (last_viewed_button.present?) ?
-        Button.find(last_viewed_button) :
-        buttons.first
+    if last_viewed_button.present?
+      Button.find(last_viewed_button)
+    else
+      return (buttons.present?) ? buttons.first : nil
+    end
   end
 end

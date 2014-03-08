@@ -50,7 +50,6 @@ class User < ActiveRecord::Base
   end
 
   def current_palette
-    puts "user ===== " + last_viewed_palette.palette.inspect
     if last_viewed_palette.present? && last_viewed_palette.palette.present?
       last_viewed_palette.palette
     else

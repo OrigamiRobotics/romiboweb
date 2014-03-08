@@ -1,8 +1,5 @@
 module DefaultPalettes
 
-  class SimplePalette < Struct.new(:title, :buttons); end
-  class SimpleButton < Struct.new(:title, :speech, :speed_rate); end
-
   class SystemPaletteData
 
     def load_file(filename)
@@ -29,7 +26,7 @@ module DefaultPalettes
       end
       palettes
     end
-  end
 
+  end
 
 end

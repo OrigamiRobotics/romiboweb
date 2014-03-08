@@ -1,5 +1,10 @@
 <% if params[:status] == 'done' %>
-  $('#doneButton').prop('disabled', true);
+  $('#doneButton').removeAttr('href');
+  $('#doneButton').removeClass('btn-primary');
+  $('#doneButton').addClass('btn-default');
+  $('#doneButton').click(function(){
+    return false;
+  });
 <% else %>
   $('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_content/existing_buttons" %>');
   <%= render 'buttons/update_and_show' %>

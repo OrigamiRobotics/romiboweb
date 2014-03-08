@@ -45,6 +45,9 @@ class ApplicationController < ActionController::Base
   def set_gon
     gon.controller = params[:controller]
     gon.action     = params[:action]
+  end
 
+  def set_session
+    session[:adding_button] = false
   end
 end

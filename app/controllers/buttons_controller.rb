@@ -1,5 +1,5 @@
 class ButtonsController < ApplicationController
-  before_filter :get_palette,     except: :destroy
+  before_filter :get_palette
   def new
     begin
       @button = Button.new default_values
@@ -10,7 +10,11 @@ class ButtonsController < ApplicationController
 
   def create
     if params[:js].present?
-      js_create
+      puts session[:adding_button].inspect
+      if ok_to_add?
+        session[:adding_button] = true
+        js_create
+      end
     else
       json_create
     end
@@ -25,7 +29,7 @@ class ButtonsController < ApplicationController
   def update
     @button = Button.find(params[:id])
     if params[:status].present?
-      session[:addNewButtonStatus] = 'done'
+      session[:adding_button] = false
     else
       unless @button.update_attributes(button_params)
       end
@@ -33,8 +37,10 @@ class ButtonsController < ApplicationController
   end
 
   def destroy
-    @button = Button.find(params[:id])
-    @button.destroy
+    button = Button.find(params[:id])
+    button.destroy
+    @button = @palette.buttons.first if @palette.buttons.present?
+    update_parent_palette
     respond_to do |format|
       format.html {redirect_to palettes_path}
       format.js
@@ -63,6 +69,7 @@ class ButtonsController < ApplicationController
     @button = @palette.buttons.build(default_values)
     @button.save
     update_parent_palette
+    puts "$$$$ " + @button.inspect
   end
 
   def do_create
@@ -111,4 +118,9 @@ class ButtonsController < ApplicationController
       user_id:           current_user.id
     }
   end
+
+  def ok_to_add?
+    params[:status].present? || (params[:keypress].present? && session[:adding_button] == true)
+  end
+
 end

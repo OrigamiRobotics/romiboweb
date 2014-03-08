@@ -4,6 +4,7 @@ Romiboweb::Application.routes.draw do
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
 	get "romiboweb_pages/home"
+
 	root to: 'romiboweb_pages#home'
 
   %w[home editor].each do |page|
@@ -12,7 +13,11 @@ Romiboweb::Application.routes.draw do
 
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard]
-  resources :palettes
+  resources :palettes do
+    collection do
+      post 'import'
+    end
+  end
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
 
 
