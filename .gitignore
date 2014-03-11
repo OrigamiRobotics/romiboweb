@@ -17,3 +17,6 @@ log/*
 
 coverage/*
 atlassian-ide-plugin.xml
+
+# Ignore local env file
+config/local_env.rb
