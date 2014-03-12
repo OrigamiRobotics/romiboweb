@@ -1,5 +1,5 @@
 <% if palette.buttons.any? %>
 	<% palette.buttons.order(:id).each do |button| %>
-	  <%= render "buttons/button", button: button %>
+	  <%= render 'buttons/button', button: button %>
 	<% end %>
 <% end %>
