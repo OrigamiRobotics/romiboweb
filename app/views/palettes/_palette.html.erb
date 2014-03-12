@@ -16,14 +16,6 @@
     %>
     &nbsp; |
     &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe,
-                new_palette_path,
-                remote: true,
-                id: 'newPaletteIcon',
-                title: 'Create a new palette'
-    %>
-    &nbsp; |
-    &nbsp;
     <%= link_to '<i class="glyphicon glyphicon-import"></i>'.html_safe,
                 "#myModal",
                 data: { toggle: "modal", backdrop: 'static'},
@@ -51,6 +43,6 @@
 
   </h3>
   <hr>
-  <%= render 'palettes/center_content/existing_buttons' %>
+  <%= render 'palettes/center_content/existing_buttons', palette: palette %>
   <%= render 'palettes/import_palette' %>
 </div>

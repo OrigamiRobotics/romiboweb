@@ -15,7 +15,7 @@
 	    </div>
 	    <%= f.submit t('palettes.edit.save', default: 'Save'), class: 'btn btn-primary' %>
 	    <%= link_to t('palettes.edit.cancel', default: 'Cancel'),
-                  palettes_path(cancel: true),
+                  palettes_path,
                   remote: true,
                   class: 'btn btn-default'  %>
 	  <% end %>
