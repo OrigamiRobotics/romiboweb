@@ -5,7 +5,7 @@ Romiboweb::Application.routes.draw do
   get "feedbacks/index"
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
-	get "romiboweb_pages/home"
+	get 'romiboweb_pages/terms'
 
 	root to: 'romiboweb_pages#home'
 
