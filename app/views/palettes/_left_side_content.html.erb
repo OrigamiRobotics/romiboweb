@@ -4,7 +4,13 @@
 			<h3 class="panel-title">
 				<%= 'My Palettes' %>
 			  <%= link_to '<span class="glyphicon glyphicon-plus"></span>'.html_safe,
-			              new_palette_path, remote: true, class: 'pull-right' %>
+			              new_palette_path,
+			              remote: true,
+			              class: 'pull-right',
+			              rel: 'tooltip',
+			              title: t('palettes.index.link.add.title',
+			                       default: 'Create new palette')
+			  %>
 			</h3>
 		</div>
 		<div id="paletteList" class="panel-body">

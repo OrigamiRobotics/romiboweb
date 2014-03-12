@@ -10,4 +10,6 @@ da:
           title: "Delete Palette"
           confirm: "Delete palette '%{title}' ?"
         add:
-          title: "Add a new button"
+          title: "Create new palette"
+    share:
+      title: "Email '%{title}'"
