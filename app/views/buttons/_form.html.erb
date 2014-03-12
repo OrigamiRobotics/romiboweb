@@ -59,4 +59,25 @@
 
     </div>
   </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6"></div>
+
+    <div class="col-md-6">
+      <%= link_to 'Copy',
+                  {controller: 'buttons',
+                   action: 'create',
+                   button: @button.hash_params,
+                   option: 'clone',
+                   palette_id: @palette.id,
+                   js: true,
+                  },
+                  method: :post,
+                  remote: true,
+                  class: 'btn btn-info btn-block',
+                  id: 'cloneButton',
+                  title: "Make a copy of #{@button.title}"
+      %>
+    </div>
+  </div>
 <% end %>

@@ -7,8 +7,15 @@
     </div>
     <script>
       var url;
+      <% if current_user.palettes.present? && current_user.current_palette.present? %>
       url = "/palettes/" + '<%= current_user.current_palette.id %>' + "?locale=en";
       $.getScript(url);
+
+      $('#editPaletteIcon').popover({
+        trigger: 'hover',
+        placement: 'top'
+      });
+      <% end %>
     </script>
   </div>
 <% end %>

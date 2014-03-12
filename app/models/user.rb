@@ -45,7 +45,8 @@ class User < ActiveRecord::Base
             uniqueness:  { case_sensitive: false }
 
   def my_palettes
-    unless Palette.where{(owner_id == id) && (system == true)}.present?
+    eye_d = id
+    unless Palette.where{(owner_id == eye_d) & (system == true)}.present?
       Palette.default_palettes(self)
     end
 

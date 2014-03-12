@@ -2,7 +2,7 @@
     width: 99%;
     margin-left: auto;
     margin-right: auto;
-    height: 450px;
+    height: 500px;
 }
 
 #speechSpeedRateSlider {
@@ -129,5 +129,9 @@ div.largeButtonWidget:hover {
 }
 
 #deleteButton {
+    margin-top: -10px;
+}
+
+#cloneButton {
     margin-top: -10px;
 }

@@ -40,7 +40,7 @@ class PalettesController < ApplicationController
     @palette = Palette.find params[:id]
     respond_to do |format|
       if @palette.update_attributes(palette_params)
-        @palettes = current_user.my_palettes
+        #@palettes = current_user.my_palettes
         format.html {redirect_to palettes_path}
         format.js
       else
@@ -100,7 +100,6 @@ class PalettesController < ApplicationController
     @title = 'Palette Editor'
     @palette = Palette.new
     @palettes = current_user.my_palettes
-
     if @palettes.present?
       @current_palette = current_user.current_palette
       gon.first_palette = @current_palette.id

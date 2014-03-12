@@ -1,4 +1,4 @@
-<% if session[:adding_button] == true %>
+<% if session[:adding_button] == true || params[:option] == 'clone' %>
 $('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_content/existing_buttons" %>');
 <%= render 'buttons/update_and_show' %>
 <% end %>

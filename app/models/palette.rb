@@ -22,28 +22,31 @@ class Palette < ActiveRecord::Base
 
   attr_accessor :file
 
-  include DefaultPalettes
+  extend DefaultPalette
 
   def self.default_palettes(user)
-    palettes_data = DefaultPalettes::SystemPaletteData.new.palettes
-    palettes_data.each do |data|
-      palette = user.palettes.build(title: data.title, system: true)
+    palettes_data = {"I Spy" => i_spy, "Simon Says" => simon_says,
+                     "Tell me a Story" => tell_me_a_story, "Draw with me" => draw_with_me}
+    palettes_data.each do |palette_title, buttons_data|
+      palette = user.palettes.build(title: palette_title, system: true)
+      puts palette.inspect
       palette.save
-      data.buttons.each do |b|
-        button = palette.buttons.build(title: b.title, speech_phrase: b.speech,
-                              speech_speed_rate: b.speed_rate,
+      buttons_data.each do |b_title|
+        button = palette.buttons.build(title: b_title, speech_phrase: b_title,
+                              speech_speed_rate: 2,
                               user_id: user.id,
-                              button_color_id:   ButtonColor.find_by_name('ORANGE').id,
+                              button_color_id:   ButtonColor.find_by_name('Orange').id,
                               size:              'Medium'
         )
         button.save
       end
     end
+
   end
 
   def self.from_file(user, content)
     palettes_data = DefaultPalettes::PaletteFromFile.new.palette(content)
-    palette = user.palettes.build(title: palettes_data.title, system: true)
+    palette = user.palettes.build(title: palettes_data.title, default_palette: true)
     palette.save
     palettes_data.buttons.each do |b|
       button = palette.buttons.build(title: b.title, speech_phrase: b.speech,

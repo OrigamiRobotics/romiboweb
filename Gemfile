@@ -27,6 +27,7 @@ gem 'gon'
 gem 'rails_12factor', group: :production
 gem 'rabl'
 gem 'rack-mini-profiler'
+gem 'smarter_csv'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
