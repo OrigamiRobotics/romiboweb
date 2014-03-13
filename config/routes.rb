@@ -25,8 +25,8 @@ Romiboweb::Application.routes.draw do
   post '/locale' => 'users#locale'
 
 
-	devise_for :users, :skip => [:sessions, :passwords], controllers:
-      {registrations: 'registrations'}
+	devise_for :users, :skip => [:sessions, :passwords],
+             controllers: {registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks" }
 
 	as :user do
 		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
