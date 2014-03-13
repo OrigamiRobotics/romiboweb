@@ -202,6 +202,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.from_omniauth(auth)
+    if auth.provider == 'facebook'
+      from_facebook_oauth auth
+    elsif auth.provider == 'twitter'
+      from_twitter_oauth auth
+    elsif auth.provider == 'google_oauth2'
+      from_google_oauth2 auth
+    end
+  end
+
   private
   def ensure_auth_token!
     self.auth_token = SecureRandom.hex
