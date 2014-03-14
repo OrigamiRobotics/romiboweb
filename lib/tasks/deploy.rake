@@ -12,7 +12,7 @@ namespace :deploy do
   end
 
   desc "Deploy to staging server on Heroku"
-  task :production do
+  task :staging do
     `git push romiboweb-staging master`
     `heroku run rake db:migrate -a romiboweb --remote`
   end
