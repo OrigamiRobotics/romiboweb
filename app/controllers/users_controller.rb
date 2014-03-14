@@ -37,6 +37,14 @@ class UsersController < ApplicationController
     redirect_to request.env['HTTP_REFERER'] || root_path
   end
 
+  def unconfirmed
+    @title = "Unconfirmed Registration"
+    @user = User.find(params[:temp_id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
 
   def user_params

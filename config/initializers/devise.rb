@@ -229,9 +229,14 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
+  #config.omniauth :twitter,  ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], scope: 'user, public_repo'
+  #config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
+  #config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_API_SECRET'], { access_type: "offline", approval_prompt: "" }
+
   config.omniauth :twitter,  ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], scope: 'user, public_repo'
-  config.omniauth :facebook, ENV['FACEBOOK_APP_KEY'], ENV['FACEBOOK_APP_SECRET']
-  config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_API_SECRET'], { access_type: "offline", approval_prompt: "" }
+  config.omniauth :facebook, '698318290229147', 'a1f2730d0339c454766bf5a2f459d338'
+  config.omniauth :google_oauth2, '911422545896-m8muc36j1t0kcvaf1f1br5vqrlb77407.apps.googleusercontent.com',
+                  '5nxG0NyXf2ZCStmDBrub43V7', { access_type: "offline", approval_prompt: "" }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

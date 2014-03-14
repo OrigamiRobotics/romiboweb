@@ -2,83 +2,31 @@
 <html>
 <head>
   <title>RomiboWeb Registration Confirmation</title>
-  <style type="text/css">
-    .confirmationEmailContainer {
-      width: 600px;
-      height: 530px;
-      margin-left: auto;
-      margin-right: auto;
-      border: solid 1px #e6e6e6;
-      background-color: #f4f4f4;
-    }
-    p {color: #444444}
-
-    .logoBoxInEmail {
-      float: left;
-      height: 60px;
-      margin-left: 20px;
-      margin-top: 20px;;
-    }
-
-    .bodyTextOfEmail {
-      margin-top: 60px;
-      padding: 50px;
-    }
-
-    #stSpan {
-      text-decoration: line-through;
-    }
-
-    #fun {
-      color: darkorange;
-      font-style: oblique;
-      font-weight: bold;
-    }
-
-    .emailFooter {
-      background-color: #444444;
-      height: 173px;
-      padding: 10px;
-      margin-top: 20px;
-      color: #ffffff;
-    }
-
-    .emailFooter p{
-      color: #bbbbbb;
-      font-family: FontAwesome, sans-serif;
-    }
-
-    .emailFooter h4{
-      color: snow;
-      font-family: FontAwesome, sans-serif;
-    }
-
-    #signature {
-      font-family: box-shadow, sans-serif;
-    }
-  </style>
 </head>
 
 <body>
-<div class="confirmationEmailContainer">
-  <div class="logoBoxInEmail">
-    <%= image_tag("#{root_url}/images/logo_blue.jpg", alt: "RomiboWeb logo") %>
+<div style="width: 600px; height: 600px; border: solid 2px #666666; padding: 30px;">
+  <div style="height: 50px; margin-bottom: 50px; ">
+    <%= link_to image_tag("#{root_url}/images/logo_blue.png", alt: "RomiboWeb logo"), root_path %>
   </div>
   <div class="bodyTextOfEmail">
-    <p>Hi <%= @resource.first_name + ' ' + @resource.last_name %>,</p>
+    <p>Hi <%= @resource.first_name %>,</p>
+    <br>
     <p>Welcome to RomiboWeb!</p>
+    <br>
+    <p>Your account has been successfully created. </p>
+      <p>You will now be able to generate control content for your
+      Romibo robot and share your palettes online. </p>
     <br >
-    <p>Thanks for registering. You can ....</p>
 
     <p>Before you can begin, though, we need you to confirm this email address.</p>
+    <p>You can confirm your account email through the link below.</p>
     <br>
-    <p>You can confirm your account email through the link below:</p>
-    <br >
 
-    <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+    <p><%= link_to 'Click this link to confirm your email and sign in now!', confirmation_url(@resource, :confirmation_token => @token) %></p>
 
     <br>
-    <p><span id="signature">The Romibo Team</span></p>
+    <p><strong>The Romibo Team</strong></p>
   </div>
 </div>
 </body>

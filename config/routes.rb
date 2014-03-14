@@ -15,7 +15,7 @@ Romiboweb::Application.routes.draw do
 
   resources :feedbacks, only: [:new, :create, :index]
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
-	resources :users, only: [:dashboard]
+	resources :users, only: [:dashboard, :unconfirmed]
   resources :palettes do
     collection do
       post 'import'
@@ -26,12 +26,16 @@ Romiboweb::Application.routes.draw do
 
 
 	devise_for :users, :skip => [:sessions, :passwords],
-             controllers: {registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks" }
+             controllers: {registrations: 'registrations',
+                           omniauth_callbacks: "omniauth_callbacks",
+                           confirmations: 'confirmations'
+             }
 
 	as :user do
-		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
-		post 'signin' => 'devise/sessions#create', :as => :user_session
-		delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+		get 'signin'            => 'romiboweb_pages#home', :as => :new_user_session
+		post 'signin'           => 'devise/sessions#create', :as => :user_session
+		delete 'signout'        => 'devise/sessions#destroy', :as => :destroy_user_session
+    get '/unconfirmed_user' => 'users#unconfirmed', as: :unconfirmed
   end
 
   ######### API routes ##########

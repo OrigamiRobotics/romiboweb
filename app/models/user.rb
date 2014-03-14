@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   before_create :ensure_auth_token!
 
   has_many :buttons
-  has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id
+  has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id, dependent: :destroy
   has_many :feedbacks
   has_many :authentications, inverse_of: :user
 
@@ -47,20 +47,26 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX } ,
             uniqueness:  { case_sensitive: false }
 
-  def my_palettes
-    eye_d = id
-    unless Palette.where{(owner_id == eye_d) & (system == true)}.present?
-      Palette.default_palettes(self)
-    end
+  after_save :create_default_palettes
 
-    palettes
+  def create_default_palettes
+    Palette.default_palettes(self) if self.confirmed_at_changed?
   end
+
+  #def my_palettes
+  #  eye_d = id
+  #  unless Palette.where{(owner_id == eye_d) & (system == true)}.present?
+  #    Palette.default_palettes(self)
+  #  end
+  #
+  #  palettes
+  #end
 
   def current_palette
     if last_viewed_palette.present? && last_viewed_palette.palette.present?
       last_viewed_palette.palette
     else
-      my_palettes.first
+      palettes.first
     end
   end
 
@@ -112,11 +118,11 @@ class User < ActiveRecord::Base
   end
 
   def self.auth_name(auth)
-    info_name = (auth.info.present?) ? auth.info.name : auth.extra.raw_info.name
+    (auth.info.present?) ? auth.info.name : auth.extra.raw_info.name
   end
 
   def self.auth_email(auth)
-    info_email = (auth.info.present?) ? auth.info.email : auth.extra.raw_info.email
+    (auth.info.present?) ? auth.info.email : auth.extra.raw_info.email
   end
 
   def self.from_twitter_oauth(auth)
@@ -136,6 +142,22 @@ class User < ActiveRecord::Base
       user.twitter_nickname = auth.info.nickname
     end
   end
+
+  def self.from_google_oauth2(access_token)
+    data = access_token.info
+    user = User.where(:email => data["email"]).first
+
+    unless user.present?
+      user = User.create(first_name: data["first_name"],
+                         last_name: data["last_name"],
+                         email: data["email"],
+                         provider: access_token.provider,
+                         uid: access_token.uid
+      )
+    end
+    user
+  end
+
 
   def self.get_user_by_oauth (auth)
     authentication = Authentication.where(:provider => auth.provider, uid: auth.uid).first
@@ -168,6 +190,7 @@ class User < ActiveRecord::Base
 
   def self.user_from_auth_info(auth)
     name = auth_name auth
+    name = name.split(' ')
     u = User.create(first_name: name.first,
                     last_name:  name.last,
                     provider:  auth.provider,
