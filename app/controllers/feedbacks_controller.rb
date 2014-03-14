@@ -7,10 +7,13 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
-    @feedback.user_id = current_user.id
-    unless @feedback.save
-      @feedbacks = Feedback.all.order('created_at desc')
-      flash[:alert] = "Failed to create feedback. #{@feedback.errors.full_messages.join(". ")}"
+    if user_signed_in?
+      @feedback.name = current_user.full_name
+      @feedback.email = current_user.email
+    end
+    if @feedback.save
+      FeedbackMailer.email(@feedback).deliver
+      flash[:success] = 'Thanks for sharing your feedback!'
     end
   end
 

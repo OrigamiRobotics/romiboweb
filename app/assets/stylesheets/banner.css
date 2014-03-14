@@ -42,8 +42,12 @@
 	z-index: 1000;
 }
 
-.top {
+.static-tag .top {
 	top: 0px;
+}
+
+.static-center {
+	right: 50%;
 }
 
 .right {
