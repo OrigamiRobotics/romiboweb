@@ -1,4 +1,6 @@
-$('#modalView').html("<%= escape_javascript(render 'feedbacks/form', feedback: @feedback) %>");
+$('#modalView').html(
+		"<%= escape_javascript(render 'feedbacks/form', feedback: @feedback) %>");
 $('#feedbackForm').modal({
-	keyboard: false
+	keyboard: false,
+	backdrop: false
 });

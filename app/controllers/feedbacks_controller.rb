@@ -14,6 +14,8 @@ class FeedbacksController < ApplicationController
     if @feedback.save
       FeedbackMailer.email(@feedback).deliver
       flash[:success] = 'Thanks for sharing your feedback!'
+    else
+      render 'new'
     end
   end
 
