@@ -45,7 +45,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def create_user_authentication(auth, user)
-    puts user.inspect
     User.create_user_authentication auth, user
   end
 

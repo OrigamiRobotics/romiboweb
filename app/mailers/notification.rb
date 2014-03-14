@@ -14,7 +14,6 @@ class Notification < ActionMailer::Base
     @feedback = feedback
 
     addresses = default_recipients.map{|r| r.email}
-    puts addresses.to_yaml
     mail(      to:  addresses,
                subject: "User Feedback on RomiboWeb"
     )

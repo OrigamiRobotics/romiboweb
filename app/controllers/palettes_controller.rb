@@ -84,7 +84,6 @@ class PalettesController < ApplicationController
   end
 
   def import
-    puts params[:palette].inspect
     content = clean_file_content(params[:palette]["file"].read.to_s)
     begin
       @palette = Palette.from_file(current_user, content)

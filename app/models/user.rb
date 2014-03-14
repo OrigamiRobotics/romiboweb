@@ -194,14 +194,12 @@ class User < ActiveRecord::Base
   def self.user_from_auth_info(auth)
     name = auth_name auth
     name = name.split(' ')
-    puts "++++++ " + auth_email(auth)
     u = User.create!(first_name: name.first,
                     last_name:  name.last,
                     provider:  auth.provider,
                     uid:       auth.uid,
                     email:     auth_email(auth)
     )
-    puts u.to_yaml
     u.add_authentication auth
     u
   end

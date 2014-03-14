@@ -33,7 +33,6 @@ class Palette < ActiveRecord::Base
                      "Tell me a Story" => tell_me_a_story, "Draw with me" => draw_with_me}
     palettes_data.each do |palette_title, buttons_data|
       palette = user.palettes.build(title: palette_title, system: true)
-      puts palette.inspect
       palette.save
       buttons_data.each do |b_title|
         button = palette.buttons.build(title: b_title, speech_phrase: b_title,

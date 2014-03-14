@@ -67,15 +67,12 @@ class ButtonsController < ApplicationController
   end
 
   def js_create
-    puts "got here!!!!!!!!!"
     if params[:option] == 'clone'
       @button = @palette.buttons.build(clone_button_params)
     else
-      puts "moved hereeeeee"
       @button = @palette.buttons.build(default_values)
     end
     @button.save
-    puts @button.to_yaml
     update_parent_palette
   end
 
