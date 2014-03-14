@@ -11,6 +11,7 @@ class ButtonsController < ApplicationController
   def create
     if params[:js].present?
       if ok_to_add?
+        puts params.inspect
         session[:adding_button] = true unless params[:option] == 'clone'
         js_create
       end
