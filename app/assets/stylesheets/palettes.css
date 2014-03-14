@@ -1,5 +1,5 @@
 #editorWrapper {
-    background-color: #e1e1e1;
+		background-color: #e1e1e1;
     padding-bottom: 50px;
 }
 
@@ -47,7 +47,12 @@
 }
 
 #paletteList {
-    margin-bottom: 20px;
+	min-height: 600px;
+  margin-bottom: 20px;
+}
+
+.min-height-600 {
+	min-height: 600px;
 }
 
 

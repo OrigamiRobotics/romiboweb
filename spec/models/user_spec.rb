@@ -38,6 +38,7 @@ describe User, user: true, auth: true do
   subject { user}
 
   it {should respond_to :reset_auth_token!}
+  it {should respond_to :shared_palettes}
 
   context "should have the following atributes" do
     [:first_name, :last_name, :email, :password,

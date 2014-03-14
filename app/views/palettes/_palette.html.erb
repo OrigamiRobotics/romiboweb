@@ -1,6 +1,7 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
   <h3>
     <%= palette.title %> &nbsp; &nbsp;
+<<<<<<< HEAD
     <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
                 edit_palette_path(palette),
                 remote: true,
@@ -11,14 +12,20 @@
                         toggle: "popover", trigger: 'hover',
                         placement: 'top'
                 }
+=======
+    <%= link_to '<i class="glyphicon glyphicon-send"></i>'.html_safe,
+                new_palette_share_path(palette),
+                title: t('palettes.index.link.share.title'),
+                remote: true
+>>>>>>> master
     %>
     &nbsp; |
     &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe,
-                new_palette_path,
+    <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
+                edit_palette_path(palette),
                 remote: true,
-                id: 'newPaletteIcon',
-                title: 'Create a new palette'
+                id: 'editPaletteIcon',
+                title: t('palettes.index.link.edit.title')
     %>
     &nbsp; |
     &nbsp;
@@ -33,9 +40,9 @@
     <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe,
                 palette,
                 method: :delete,
-                data: { confirm: "Delete palette '#{palette.title}'?" },
+                data: { confirm: t('palettes.index.link.delete.confirm', title: palette.title) },
                 id: 'deletePalette',
-                title: 'Delete Palette'
+                title: t('palettes.index.link.delete.title')
     %>
     &nbsp; |
     &nbsp;
@@ -44,11 +51,11 @@
                 method: :post,
                 remote: true,
                 id: 'addNewButton',
-                title: 'Add a new button'
+                title: t('palettes.index.link.add.title')
     %>
 
   </h3>
   <hr>
-  <%= render 'palettes/center_content/existing_buttons' %>
+  <%= render 'palettes/center_content/existing_buttons', palette: palette %>
   <%= render 'palettes/import_palette' %>
 </div>

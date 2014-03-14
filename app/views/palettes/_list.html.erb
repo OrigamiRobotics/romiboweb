@@ -1,8 +1,8 @@
 <% if @palettes.present? %>
-  <div class="btn-group-vertical" id="paletteGroup">
+  <div class="list-group" id="paletteGroup">
     <% @palettes.each do |palette| %>
       <%= link_to palette.title, palette, remote: true, format: :js,
-                  class: 'btn btn-default' , id: "#palette_link_#{palette.id}" %>
+                  class: 'list-group-item' , id: "#palette_link_#{palette.id}" %>
     <% end %>
-  </div>
+	</div>
 <% end %>

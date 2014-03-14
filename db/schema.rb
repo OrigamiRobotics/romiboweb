@@ -85,6 +85,13 @@ ActiveRecord::Schema.define(version: 20140313050544) do
   add_index "palette_buttons", ["button_id"], name: "index_palette_buttons_on_button_id", using: :btree
   add_index "palette_buttons", ["palette_id"], name: "index_palette_buttons_on_palette_id", using: :btree
 
+  create_table "palette_viewers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "palette_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "palettes", force: true do |t|
     t.string   "title"
     t.string   "description"

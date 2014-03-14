@@ -1,11 +1,6 @@
-<% if params[:cancel].present? %>
-  $('#new_or_edit_palette_form').hide();
-  var url;
-  <% current_button = current_user.current_palette.current_button %>
-  url = "/palettes/" + '<%=  current_user.current_palette.id %>' + "?locale=en";
-  $.getScript(url).done(function(){
-    var button = $('<%= "#button_#{current_button.div_id} a" %>');
-    button.click();
-  });
-
+<% if @palettes.any? %>
+$("#paletteDetail").html(
+		"<%= escape_javascript(
+			render('palettes/palette', palette: @palettes.first)
+			) %>");
 <% end %>

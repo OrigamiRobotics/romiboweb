@@ -1,5 +1,22 @@
 <div class="editorContent" id="leftSideContentBox">
-  <div id="paletteList">
-    <%= render 'palettes/list' %>
-  </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<%= 'My Palettes' %>
+			  <%= link_to '<span class="glyphicon glyphicon-plus"></span>'.html_safe,
+			              new_palette_path,
+			              remote: true,
+			              class: 'pull-right',
+			              rel: 'tooltip',
+			              title: t('palettes.index.link.add.title',
+			                       default: 'Create new palette')
+			  %>
+			</h3>
+		</div>
+		<div id="paletteList" class="min-height-600">
+		  <%= render 'palettes/list' %>
+		</div>
+
+	</div>
+
 </div>

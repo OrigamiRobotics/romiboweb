@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
 
   has_one :last_viewed_palette
 
+  has_many :palette_viewers
+  has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 

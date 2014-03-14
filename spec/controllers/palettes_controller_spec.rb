@@ -5,6 +5,8 @@ describe PalettesController, palette: true do
   let(:new_palette) {FactoryGirl.build :palette}
   let(:user) {FactoryGirl.create :user}
   let(:palette) {FactoryGirl.create(:palette, owner_id: user.id)}
+  let(:owned_palettes) {FactoryGirl.create_list(:palette, 5, owner_id: user.id)}
+  let(:other_user) {FactoryGirl.create :user}
 
   def valid_attributes
     FactoryGirl.attributes_for(:palette)
@@ -78,17 +80,23 @@ describe PalettesController, palette: true do
   end
 
   describe "PATCH 'update'" do
-    it 'returns http success' do
+    it 'assigns palette object' do
       put :update, id: palette.id, palette: palette.attributes
       expect(assigns(:palette)).to eq(palette)
     end
   end
 
   describe "GET 'index'" do
-    it "returns http success" do
+    it 'returns http success' do
       get 'index'
       response.should be_success
       expect(response).to render_template 'index'
+    end
+
+    it 'assigns palettes' do
+      owned_palettes #=> this is required here so palettes are created in database.
+      get 'index'
+      expect(assigns(:palettes)).to eq(owned_palettes)
     end
   end
 
@@ -98,6 +106,5 @@ describe PalettesController, palette: true do
       response.should be_success
     end
   end
-
 
 end
