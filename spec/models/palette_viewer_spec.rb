@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: palette_viewers
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  palette_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe PaletteViewer, palette: true do

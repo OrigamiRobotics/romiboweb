@@ -1,13 +1,11 @@
 class FeedbacksController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :set_gon
+  respond_to :js, :html
 
   def new
-    @feedback = Feedback.new
   end
 
   def create
-    puts "++++ " + params.inspect
     @feedback = Feedback.new(feedback_params)
     @feedback.user_id = current_user.id
     unless @feedback.save
@@ -17,13 +15,12 @@ class FeedbacksController < ApplicationController
   end
 
   def index
-    @title = "Feedback"
     @feedbacks = Feedback.all.order('created_at desc')
     @feedback = Feedback.new
   end
 
   private
   def feedback_params
-    params.require(:feedback).permit(:title, :content, :user_id)
+    params.require(:feedback).permit(:name, :email, :title, :content)
   end
 end

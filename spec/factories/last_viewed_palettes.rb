@@ -1,14 +1,12 @@
 # == Schema Information
 #
-# Table name: palettes
+# Table name: last_viewed_palettes
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  description :string(255)
-#  color       :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  owner_id    :integer
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  palette_id :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 FactoryGirl.define do
