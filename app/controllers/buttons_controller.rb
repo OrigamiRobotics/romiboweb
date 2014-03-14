@@ -11,7 +11,7 @@ class ButtonsController < ApplicationController
   def create
     if params[:js].present?
       if ok_to_add?
-        session[:adding_button] = true
+        session[:adding_button] = true unless params[:option] == 'clone'
         js_create
       end
     else
@@ -33,7 +33,8 @@ class ButtonsController < ApplicationController
     else
       unless @button.update_attributes(button_params)
       end
-    end  end
+    end
+  end
 
   def destroy
     button = Button.find(params[:id])
@@ -66,13 +67,15 @@ class ButtonsController < ApplicationController
   end
 
   def js_create
+    puts "got here!!!!!!!!!"
     if params[:option] == 'clone'
       @button = @palette.buttons.build(clone_button_params)
-      puts @button.to_yaml
     else
+      puts "moved hereeeeee"
       @button = @palette.buttons.build(default_values)
     end
     @button.save
+    puts @button.to_yaml
     update_parent_palette
   end
 
@@ -131,6 +134,7 @@ class ButtonsController < ApplicationController
 
   def ok_to_add?
     (params[:status].present? && params[:status] == 'new') ||
+    (params[:js].present? && params[:option] == 'clone') ||
     (params[:keypress].present? && session[:adding_button] == true)
   end
 

@@ -1,23 +1,10 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
   <h3>
     <%= palette.title %> &nbsp; &nbsp;
-<<<<<<< HEAD
-    <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
-                edit_palette_path(palette),
-                remote: true,
-                id: 'editPaletteIcon',
-                title: 'Edit this palette',
-                data: {
-                        content: "testing", title: "testing title",
-                        toggle: "popover", trigger: 'hover',
-                        placement: 'top'
-                }
-=======
     <%= link_to '<i class="glyphicon glyphicon-send"></i>'.html_safe,
                 new_palette_share_path(palette),
                 title: t('palettes.index.link.share.title'),
                 remote: true
->>>>>>> master
     %>
     &nbsp; |
     &nbsp;

@@ -37,8 +37,8 @@ Romiboweb::Application.configure do
       domain: 'gmail.com',
       authentication: :login,
       enable_starttls_auto: true,
-      user_name: "funcationer@gmail.com",
-      password:  "narteyfuncation",
+      user_name: "romiborobotproject@gmail.com",
+      password:  "R0m1b0R0b0t",
       :openssl_verify_mode  => 'none'
   }
 end

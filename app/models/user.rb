@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
             token:     auth_token,
             nickname:  auth_nickname,
             image_url: auth_image,
-            user_id:   user.id,
+            user_id:   user.id
     }
     a = Authentication.find_by_provider_and_uid(data[:provider], data[:uid])
     res = (a.present?) ? a.update_attributes(data) : Authentication.create(data)
@@ -121,11 +121,11 @@ class User < ActiveRecord::Base
   end
 
   def self.auth_name(auth)
-    (auth.info.present?) ? auth.info.name : auth.extra.raw_info.name
+    info_name = (auth.info.present?) ? auth.info.name : auth.extra.raw_info.name
   end
 
   def self.auth_email(auth)
-    (auth.info.present?) ? auth.info.email : auth.extra.raw_info.email
+    info_email = (auth.info.present?) ? auth.info.email : auth.extra.raw_info.email
   end
 
   def self.from_twitter_oauth(auth)
@@ -194,12 +194,14 @@ class User < ActiveRecord::Base
   def self.user_from_auth_info(auth)
     name = auth_name auth
     name = name.split(' ')
-    u = User.create(first_name: name.first,
+    puts "++++++ " + auth_email(auth)
+    u = User.create!(first_name: name.first,
                     last_name:  name.last,
                     provider:  auth.provider,
                     uid:       auth.uid,
-                    email:     auth_email(auth),
+                    email:     auth_email(auth)
     )
+    puts u.to_yaml
     u.add_authentication auth
     u
   end

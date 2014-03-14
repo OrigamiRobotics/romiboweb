@@ -99,22 +99,12 @@ class PalettesController < ApplicationController
   private
   def set_params
     @title = 'Palette Editor'
-<<<<<<< HEAD
     @palette = Palette.new
     @palettes = current_user.palettes
     if @palettes.present?
       @current_palette = current_user.current_palette
       gon.first_palette = @current_palette.id
     end
-=======
-    #@palette = Palette.new
-    #@palettes = current_user.my_palettes
-
-    #if @palettes.present?
-    #  @current_palette = current_user.current_palette
-    #  gon.first_palette = @current_palette.id
-    #end
->>>>>>> master
   end
 
   def palette_params

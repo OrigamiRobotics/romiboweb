@@ -29,7 +29,7 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <% if session[:adding_button] == true %>
         <%= link_to 'Done',
                     {controller: 'buttons',
@@ -46,24 +46,8 @@
         %>
       <% end %>
     </div>
-    <div class="col-md-6">
-      <%= link_to 'Delete',
-                  {id: @button.id,
-                  palette_id: @palette.id},
-                  method: :delete,
-                  remote: true,
-                  class: 'btn btn-danger btn-block',
-                  id: 'deleteButton',
-                  data: { confirm: "Delete button '#{@button.title}'?" }
-      %>
 
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-6"></div>
-
-    <div class="col-md-6">
+    <div class="col-md-4">
       <%= link_to 'Copy',
                   {controller: 'buttons',
                    action: 'create',
@@ -78,6 +62,18 @@
                   id: 'cloneButton',
                   title: "Make a copy of #{@button.title}"
       %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to 'Delete',
+                  {id: @button.id,
+                   palette_id: @palette.id},
+                  method: :delete,
+                  remote: true,
+                  class: 'btn btn-danger btn-block',
+                  id: 'deleteButton',
+                  data: { confirm: "Delete button '#{@button.title}'?" }
+      %>
+
     </div>
   </div>
 <% end %>
