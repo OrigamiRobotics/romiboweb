@@ -9,3 +9,10 @@ en:
         email: 'Email'
         password: 'Password'
         remember_me: 'Remember Me'
+        terms: 'Terms & Condition'
+    errors:
+      models:
+        user:
+          attributes:
+            terms:
+              acceptance: Terms & Condition must be accepted

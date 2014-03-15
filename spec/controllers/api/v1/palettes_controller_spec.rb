@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Api::V1::PalettesController, api: true do
-
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
   let!(:user) {FactoryGirl.create :user}
   let!(:palettes) {FactoryGirl.create_list :palette, 5, owner_id: user.id}
 
@@ -24,9 +26,9 @@ describe Api::V1::PalettesController, api: true do
 
       it 'should only return palettes visible to user' do
         json = JSON.parse response.body
-        json['palettes'].length.should eq 5
+        json['palettes'].length.should eq(9)
         json['palettes'].each do |palette|
-          palette['palette']['owner_id'].should eq user.id
+          palette['owner_id'].should eq user.id
         end
       end
     end

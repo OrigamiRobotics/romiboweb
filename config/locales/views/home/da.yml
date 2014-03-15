@@ -6,6 +6,7 @@ da:
       signin: "Allerede medlem? Log ind"
       signup: "Ny på RomiboWeb? Opret konto"
       oauth: "Er du social? Log ind ved hjælp af en af:"
+      unconfirmed: "RomiboWeb Tilmelding Bekræftelse"
     placeholder:
       email: "E-mail (påkrævet)"
       password: "Adgangskode (påkrævet)"
@@ -13,6 +14,7 @@ da:
       last_name: "Efternavn (påkrævet)"
       confirm_password: "Bekræft adgangskode (påkrævet)"
       remember_me: 'Husk login'
+      terms: 'I accept the '
     button:
       signin: "Log ind"
       signup: "Opret konto"

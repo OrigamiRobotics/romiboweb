@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 feature 'Sign in', auth: true do
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
 
   given(:new_user) {FactoryGirl.create :user}
   scenario 'registered user signing in with email and password' do
@@ -27,7 +30,6 @@ feature 'Sign in', auth: true do
     expect(page).to have_content 'Already a member? Sign In'
     expect(page).to have_content 'New to RomiboWeb? Sign Up'
     expect(page).to have_button 'Sign in'
-    expect(page).to have_button 'Sign up'
   end
 
   scenario 'user signing with incorrect password' do
@@ -44,6 +46,5 @@ feature 'Sign in', auth: true do
     expect(page).to have_content 'Already a member? Sign In'
     expect(page).to have_content 'New to RomiboWeb? Sign Up'
     expect(page).to have_button 'Sign in'
-    expect(page).to have_button 'Sign up'
   end
 end

@@ -5,7 +5,7 @@ Romiboweb::Application.routes.draw do
   get "feedbacks/index"
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
-	get "romiboweb_pages/home"
+	get 'romiboweb_pages/terms'
 
 	root to: 'romiboweb_pages#home'
 
@@ -15,28 +15,32 @@ Romiboweb::Application.routes.draw do
 
   resources :feedbacks, only: [:new, :create, :index]
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
-	resources :users, only: [:dashboard]
+	resources :users, only: [:dashboard, :unconfirmed, :confirmed]
+
 
   resources :palettes do
     resources :share, controller: 'palettes/share', only: [:new, :create]
-  end
-
-  resources :palettes do
     collection do
       post 'import'
     end
   end
+
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
   post '/locale' => 'users#locale'
 
 
-	devise_for :users, :skip => [:sessions, :passwords], controllers:
-      {registrations: 'registrations'}
+	devise_for :users, :skip => [:sessions, :passwords],
+             controllers: {registrations: 'registrations',
+                           omniauth_callbacks: "omniauth_callbacks",
+                           confirmations: 'confirmations'
+             }
 
 	as :user do
-		get 'signin' => 'romiboweb_pages#home', :as => :new_user_session
-		post 'signin' => 'devise/sessions#create', :as => :user_session
-		delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+		get 'signin'            => 'romiboweb_pages#home', :as => :new_user_session
+		post 'signin'           => 'devise/sessions#create', :as => :user_session
+		delete 'signout'        => 'devise/sessions#destroy', :as => :destroy_user_session
+    get '/unconfirmed_user' => 'users#unconfirmed', as: :unconfirmed
+    get 'confirmed_user'    => 'users#confirmed', as: :confirmed
   end
 
   ######### API routes ##########
