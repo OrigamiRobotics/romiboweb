@@ -1,1 +1,19 @@
-<%= render('feedbacks/feedback', feedback: @feedback) %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1><%= @feedback.title %></h1>
+<h3>
+	<p>User Name: <%= @feedback.name %></p>
+	<p>User Email: <%= @feedback.email %></p>
+	<p>Page Location: <%= @feedback.page_uri %></p>
+</h3>
+<br/>
+<h2>Description:</h2>
+<p>
+  "<%= @feedback.content %>"
+</p>
+</body>
+</html>

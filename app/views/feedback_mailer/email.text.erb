@@ -1,8 +1,8 @@
-Submitted By: <%= @feedback.name%>
-User email: <%= @feedback.email%>
-Feeback Title: <%= @feedback.title%>
+User Name: <%= @feedback.name %>
+User Email: <%= @feedback.email %>
+Page Location: <%= @feedback.page_uri %>
 
 ===================================
-<%= 'No Content' if @feedback.content.nil? %>
-<%= @feedback.content %>
+Title: <%= @feedback.title %>
+Description: <%= @feedback.content %>
 ===================================

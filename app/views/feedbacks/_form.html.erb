@@ -34,14 +34,14 @@
             <%= f.label :content, class: 'control-label' %>
             <%= f.text_area :content, class: 'form-control', rows: '5' %>
           </div>
-	        <div class="checkbox">
+	        <!--<div class="checkbox">
 	          <div class="checkbox">
 	            <label>
-	              <%= f.check_box :save_screenshot, :as => :boolean %>
-	              <%= 'Attach screenshot' %>
+	              <!%= f.check_box :save_screenshot, :as => :boolean %>
+	              <!%= 'Attach screenshot' %>
 	            </label>
 	          </div>
-	        </div>
+	        </div>-->
 	        <%= f.hidden_field :page_uri, value: request.env['HTTP_REFERER'] %>
       </div>
       <div class="modal-footer">
