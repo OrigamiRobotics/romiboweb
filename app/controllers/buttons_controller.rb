@@ -10,9 +10,8 @@ class ButtonsController < ApplicationController
 
   def create
     if params[:js].present?
-      puts session[:adding_button].inspect
       if ok_to_add?
-        session[:adding_button] = true
+        session[:adding_button] = true unless params[:option] == 'clone'
         js_create
       end
     else
@@ -27,9 +26,10 @@ class ButtonsController < ApplicationController
   end
 
   def update
-    @button = Button.find(params[:id])
+    @button = Button.find(params[:id]) if params[:id].present?
     if params[:status].present?
-      session[:adding_button] = false
+      session[:adding_button] = false if params[:status] == 'done'
+      clone_button if params[:status] == 'clone'
     else
       unless @button.update_attributes(button_params)
       end
@@ -52,7 +52,7 @@ class ButtonsController < ApplicationController
   private
   def update_parent_palette
     if @palette.present?
-      @palette.last_viewed_button = @button.id
+      @palette.last_viewed_button = @button.id if @button.present?
       @palette.save
     end
   end
@@ -67,10 +67,13 @@ class ButtonsController < ApplicationController
   end
 
   def js_create
-    @button = @palette.buttons.build(default_values)
+    if params[:option] == 'clone'
+      @button = @palette.buttons.build(clone_button_params)
+    else
+      @button = @palette.buttons.build(default_values)
+    end
     @button.save
     update_parent_palette
-    puts "$$$$ " + @button.inspect
   end
 
   def do_create
@@ -97,6 +100,12 @@ class ButtonsController < ApplicationController
     end
   end
 
+  def clone_button_params
+    params.require(:button).permit(:title, :speech_phrase,
+                                   :speech_speed_rate, :user_id,
+                                   :button_color_id, :size)
+  end
+
   def handle_error(msg)
     render(json: { error: msg}.to_json, status: 404) && return
   end
@@ -114,14 +123,16 @@ class ButtonsController < ApplicationController
       title:             'Untitled Button',
       speech_phrase:     'Hello',
       speech_speed_rate: 2,
-      button_color_id:   ButtonColor.find_by_name('ORANGE').id,
+      button_color_id:   ButtonColor.find_by_name('Orange').id,
       size:              'Medium',
       user_id:           current_user.id
     }
   end
 
   def ok_to_add?
-    params[:status].present? || (params[:keypress].present? && session[:adding_button] == true)
+    (params[:status].present? && params[:status] == 'new') ||
+    (params[:js].present? && params[:option] == 'clone')   ||
+    (params[:keypress].present? && session[:adding_button] == true)
   end
 
 end

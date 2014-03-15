@@ -14,7 +14,7 @@ feature 'signing up', auth: true do
       check 'user_terms'
     end
     click_on 'Sign up'
-    expect(page).to have_title 'Dashboard'
+    expect(page).to have_title 'Romiboweb | Unconfirmed Registration'
   end
 
 

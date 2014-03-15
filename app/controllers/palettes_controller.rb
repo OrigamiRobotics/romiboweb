@@ -40,7 +40,7 @@ class PalettesController < ApplicationController
     @palette = Palette.find params[:id]
     respond_to do |format|
       if @palette.update_attributes(palette_params)
-        @palettes = current_user.my_palettes
+        #@palettes = current_user.my_palettes
         format.html {redirect_to palettes_path}
         format.js
       else
@@ -84,28 +84,26 @@ class PalettesController < ApplicationController
   end
 
   def import
-    puts params[:palette].inspect
     content = clean_file_content(params[:palette]["file"].read.to_s)
     begin
       @palette = Palette.from_file(current_user, content)
     rescue => ex
       flash[:alert] = ex.message
     end
-    redirect_to palette_path(@palette), format: 'js',
-                notice: "#{params[:palette][:file].original_filename} successfully " +
-                "imported and a new palette (#{@palette.title}) was created with it!"
+    flash[:success] = "The file #{params[:palette][:file].original_filename} was successfully " +
+        "imported and a new palette (#{@palette.title}) was created with it!"
+    redirect_to palette_path(@palette), format: 'js'
   end
 
   private
   def set_params
     @title = 'Palette Editor'
-    #@palette = Palette.new
-    #@palettes = current_user.my_palettes
-
-    #if @palettes.present?
-    #  @current_palette = current_user.current_palette
-    #  gon.first_palette = @current_palette.id
-    #end
+    @palette = Palette.new
+    @palettes = current_user.palettes
+    if @palettes.present?
+      @current_palette = current_user.current_palette
+      gon.first_palette = @current_palette.id
+    end
   end
 
   def palette_params

@@ -59,4 +59,48 @@ RSpec.configure do |config|
     end
   end
   config.include WaitForAjax, type: :feature
+
+##omniauth test support
+  OmniAuth.config.test_mode = true
+
+## facebook
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
+      {provider: "facebook",
+       uid:      "1234",
+       extra: {raw_info:    {name:  "John Doe",
+                             email: "johndoe@email.com"}
+       }
+      })
+
+
+##twitter
+  OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
+      {
+          provider: 'twitter',
+          uid:      '123545',
+          info:     {nickname: 'twitter_nickname' }
+      })
+
+#linked in
+  OmniAuth.config.mock_auth[:linkedin] = OmniAuth::AuthHash.new(
+    {
+      provider: "linkedin",
+      uid:      "12345",
+      extra: {raw_info:    {name:  "John Doelinked",
+                            email: "johndoelinked@email.com"}
+              }
+    }
+  )
+
+
+#fakesocialmedia
+  OmniAuth.config.mock_auth[:fakesocialmedia] = OmniAuth::AuthHash.new(
+    {
+      provider: "fake",
+      uid:      "000000",
+      extra: {raw_info:    {name:  "Fake Media",
+                           email: "johndoefake@email.com"}
+     }
+    }
+  )
 end

@@ -5,10 +5,34 @@
         <%= render 'palettes/editor' %>
       </div>
     </div>
-    <!--<script>
+    <script>
       var url;
-      url = "/palettes/" + '<!%= current_user.current_palette.id %>' + "?locale=en";
+      <% if current_user.palettes.present? && current_user.current_palette.present? %>
+      url = "/palettes/" + '<%= current_user.current_palette.id %>' + "?locale=en";
       $.getScript(url);
-    </script>-->
+
+      $('#editPaletteIcon').popover({
+        trigger: 'hover',
+        placement: 'top'
+      });
+      <% end %>
+
+      $(document).bind("keypress", function(e) {
+        var data, url;
+        url = "/buttons";
+        data = {
+          palette_id: <%= current_user.current_palette.id %>,
+          keypress: true,
+          js: true
+        };
+        return $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          dataType: 'script'
+        });
+      });
+
+    </script>
   </div>
 <% end %>

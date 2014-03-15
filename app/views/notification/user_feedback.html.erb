@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Feedback Notice</title>
+</head>
+
+<body>
+
+<table style="width: 600px;height: 530px;margin-left: auto;
+        margin-right: auto;
+        border: solid 1px #e6e6e6;
+        background-color: #f4f4f4;">
+  <tr style="float: left;height: 50px;margin-left: 20px;margin-top: 5px;">
+    <td>
+      <% if Rails.env.production? || Rails.env.integration? %>
+        <%= image_tag("#{root_url}/images/romibo/logo_blue.png", alt: "RomiboWeb logo") %>
+      <% else %>
+        <%= image_tag("images/romibo/logo_blue.png", alt: "RomiboWeb logo") %>
+    <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="bodyTextOfEmail" style="margin-top: 10px;padding: 5px 50px 50px 50px;">
+      <p style="color: #444444;">Hi,</p>
+      <br>
+      <p style="color: #444444;">This is to inform you that a user (<%= @user.name %>),
+        has left a feedback titled <strong><%= @feedback.title %></strong> on RomiboWeb.</p>
+      <p style="color: #444444;">You can view the content of the feedback here <%= link_to @feedback.title, feedbacks_url %>.</p>
+
+      <br>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -131,3 +131,7 @@ div.largeButtonWidget:hover {
 #deleteButton {
     margin-top: -10px;
 }
+
+#cloneButton {
+    margin-top: -10px;
+}

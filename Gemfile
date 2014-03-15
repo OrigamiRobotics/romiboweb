@@ -27,6 +27,11 @@ gem 'gon'
 gem 'rails_12factor', group: :production
 gem 'rabl'
 gem 'rack-mini-profiler'
+gem 'smarter_csv'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-instagram'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

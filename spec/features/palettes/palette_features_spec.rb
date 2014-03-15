@@ -2,6 +2,9 @@ require 'spec_helper'
 include Warden::Test::Helpers
 
 feature 'Editing a palette', palette: true do
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
 
   given(:user){FactoryGirl.create :user}
   given(:palette){FactoryGirl.create(:palette, owner: user)}

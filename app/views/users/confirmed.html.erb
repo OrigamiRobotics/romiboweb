@@ -1,0 +1,37 @@
+<% content_for :content  do %>
+  <div class="container-fluid" id="homeWrapper">
+    <div class="row">
+      <div class="col-md-1" >
+      </div>
+
+      <div class="col-md-10">
+        <div class="panel panel-success" id="unconfirmed_panel">
+          <div class="panel-heading">
+            <h3 class="panel-title center">
+              <%= t('home.header.unconfirmed') %>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div id="confirmationBox">
+              <p>You are almost done becoming a <strong>RomiboWeb</strong> user.</p>
+              <p>A confirmation email has been sent to
+                <strong><%= @user.email %></strong> </p>
+
+              <br />
+              <br />
+              <p>Please check your email and follow the contained instructions. Thanks!</p>
+            </div>
+            <div class="form-horizontal">
+              <div class="form-actions"  id="registerLoginButtonForm">
+                <div class="span3">
+                  <%= link_to "Back to Home Page", root_path, :class => 'btn btn-success btn-block' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="col-md-1"> </div>
+    </div>
+  </div>
+<% end %>

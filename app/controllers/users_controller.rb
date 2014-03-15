@@ -37,7 +37,22 @@ class UsersController < ApplicationController
     redirect_to request.env['HTTP_REFERER'] || root_path
   end
 
+  def unconfirmed
+    @title = "Unconfirmed Registration"
+    handle_params
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def confirmed
+    @title = "New User Sign in"
+    @user = User.find(params[:id])
+  end
   private
+  def handle_params
+    @user = User.find(params[:index])
+  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password)
