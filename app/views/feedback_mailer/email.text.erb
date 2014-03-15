@@ -1,8 +1,8 @@
-Submitted By: <%= feedback.name%>
-User email: <%= feedback.email%>
-Feeback Title: <%= feedback.title%>
+Submitted By: <%= @feedback.name%>
+User email: <%= @feedback.email%>
+Feeback Title: <%= @feedback.title%>
 
 ===================================
-<%= 'No Content' if feedback.content.nil? %>
-<%= feedback.content %>
+<%= 'No Content' if @feedback.content.nil? %>
+<%= @feedback.content %>
 ===================================
