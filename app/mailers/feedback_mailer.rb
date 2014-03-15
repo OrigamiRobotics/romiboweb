@@ -2,16 +2,13 @@ require 'grabzit'
 
 class FeedbackMailer < ActionMailer::Base
   default from: 'romiborobotproject@gmail.com'
-  def email(feedback)
+  def email(feedback, save_screenshot)
     @feedback = feedback
-    if feedback.save_screenshot == 1
-      client = GrabzIt::Client.new(
-          ENV['GRABZIT_KEY'], ENV['GRABZIT_SECRET'])
-      client.set_image_options(feedback.page_uri)
-      screenshot_file = "#{Rails.root}/tmp/feedback_img_#{feedback.id}.jpg"
-      client.save_to.(screenshot_file)
+    if save_screenshot
+      screenshot_file = create_screenshot feedback
+      attachments['Page_Screenshot.jpg'] =
+          File.read("#{Rails.root}/#{screenshot_file}")
     end
-    attachments['Image.jpg'] = File.read(screenshot_file) if feedback.save_screenshot == 1
     mail(
         subject: "[RomiboWeb Feedback] #{feedback.name} shared feedback",
         to: 'romiborobotproject@gmail.com'
@@ -22,9 +19,11 @@ class FeedbackMailer < ActionMailer::Base
   def create_screenshot(feedback)
     client = GrabzIt::Client.new(
         ENV['GRABZIT_KEY'], ENV['GRABZIT_SECRET'])
-    client.set_image_options(feedback.page_uri)
-    screenshot_file = "#{Rails.root}/tmp/feedback_img_#{feedback.id}.jpg"
-    client.save_to.(screenshot_file)
+    page_uri = feedback.page_uri
+    page_uri = 'http://www.google.com' if Rails.env.development?
+    client.set_image_options(page_uri)
+    screenshot_file = "tmp/feedback_img_#{feedback.id}.jpg"
+    client.save_to(screenshot_file)
     screenshot_file
   end
 end

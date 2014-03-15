@@ -12,7 +12,7 @@ class FeedbacksController < ApplicationController
       @feedback.email = current_user.email
     end
     if @feedback.save
-      FeedbackMailer.email(@feedback).deliver
+      FeedbackMailer.email(@feedback, feedback_params[:save_screenshot] == '1').deliver
       flash[:success] = 'Thanks for sharing your feedback!'
     else
       render 'new'
