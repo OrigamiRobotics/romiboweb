@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe PalettesController, palette: true do
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
 
   let(:new_palette) {FactoryGirl.build :palette}
   let(:user) {FactoryGirl.create :user}
@@ -94,9 +97,12 @@ describe PalettesController, palette: true do
     end
 
     it 'assigns palettes' do
-      owned_palettes #=> this is required here so palettes are created in database.
+      #palettes = owned_palettes #=> this is required here so palettes are created in database.
       get 'index'
-      expect(assigns(:palettes)).to eq(owned_palettes)
+      palettes = assigns(:palettes)
+      owned_palettes.each do |palette|
+        expect(palettes.pluck(:id)).to include(palette.id)
+      end
     end
   end
 

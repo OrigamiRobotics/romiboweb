@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Api::V1::RegistrationsController, api: true do
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
 
   let(:user) {FactoryGirl.build(:user)}
 

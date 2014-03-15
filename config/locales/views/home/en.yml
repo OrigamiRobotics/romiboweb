@@ -6,6 +6,7 @@ en:
       signin: "Already a member? Sign In"
       signup: "New to RomiboWeb? Sign Up"
       oauth: "Are you social? Sign in using one of:"
+      unconfirmed: "RomiboWeb Registration Confirmation"
     placeholder:
       email: "Email (required)"
       password: "Password (required)"

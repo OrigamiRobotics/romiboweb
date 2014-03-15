@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308080117) do
+ActiveRecord::Schema.define(version: 20140315025714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "nickname"
+    t.text     "token"
+    t.string   "email"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "button_colors", force: true do |t|
     t.string   "name"
@@ -109,6 +124,12 @@ ActiveRecord::Schema.define(version: 20140308080117) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "auth_token"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "twitter_nickname"
+    t.string   "encryption"
+    t.string   "encryption_key"
+    t.string   "encryption_iv"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

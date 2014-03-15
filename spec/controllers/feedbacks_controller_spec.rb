@@ -4,6 +4,10 @@ describe FeedbacksController do
 
   render_views
 
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
+
   let(:user) {FactoryGirl.create :user}
   let(:feedback) { FactoryGirl.create(:feedback)}
 
@@ -15,21 +19,21 @@ describe FeedbacksController do
     sign_in user
   end
 
-  describe "GET 'new'" do
-    it "returns http success and new button" do
-      xhr :get, 'new'
-      assigns(:feedback).should be_a_new(Feedback)
-    end
-
-    context "with missing palette id" do
-      it "returns http faillure (404)" do
-        xhr :get, 'new'
-        response.should_not be_success
-        response.status.should eq(404)
-        JSON.parse(response.body)["error"].should == "Couldn't find Palette without an ID"
-      end
-    end
-  end
+  #describe "GET 'new'" do
+  #  it "returns http success and new button" do
+  #    xhr :get, 'new'
+  #    assigns(:feedback).should be_a_new(Feedback)
+  #  end
+  #
+  #  context "with missing palette id" do
+  #    it "returns http faillure (404)" do
+  #      xhr :get, 'new'
+  #      response.should_not be_success
+  #      response.status.should eq(404)
+  #      JSON.parse(response.body)["error"].should == "Couldn't find Palette without an ID"
+  #    end
+  #  end
+  #end
 
   #describe "POST 'create'" do
   #  context "with invalid data" do

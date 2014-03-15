@@ -34,6 +34,6 @@ FactoryGirl.define do
     email Faker::Internet.email
     password Faker::Internet.password
     #password_confirmation 'please'
-    #confirmed_at Time.now
+    confirmed_at Time.now
   end
 end

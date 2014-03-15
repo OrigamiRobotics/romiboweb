@@ -1,7 +1,7 @@
 jQuery ->
   if gon and gon.controller and gon.controller == 'palettes' and gon.action == 'index'
     url = "/palettes/#{gon.first_palette}?locale=en"
-#    $.getScript(url)
+    $.getScript(url)
 
     $(document).bind "keypress", (e) ->
       url = "/buttons"

@@ -7,10 +7,11 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    puts "++++ " + params.inspect
     @feedback = Feedback.new(feedback_params)
     @feedback.user_id = current_user.id
-    unless @feedback.save
+    if @feedback.save
+      Notification.user_feedback(current_user, @feedback).deliver
+    else
       @feedbacks = Feedback.all.order('created_at desc')
       flash[:alert] = "Failed to create feedback. #{@feedback.errors.full_messages.join(". ")}"
     end

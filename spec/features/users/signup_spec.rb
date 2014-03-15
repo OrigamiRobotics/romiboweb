@@ -13,7 +13,7 @@ feature 'signing up', auth: true do
       fill_in 'user_password_confirmation', with: new_user.password
     end
     click_on 'Sign up'
-    expect(page).to have_title 'Dashboard'
+    expect(page).to have_title 'Romiboweb | Unconfirmed Registration'
   end
 
 

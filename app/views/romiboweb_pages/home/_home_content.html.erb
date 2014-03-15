@@ -1,28 +1,41 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-8" style="height: 621px">
-      <%= render 'romiboweb_pages/home/welcome' %>
-    </div>
-    <div class="col-md-4">
-      <div class="panel panel-info" id="sign_in_panel">
-        <div class="panel-heading">
-          <h3 class="panel-title center">
-            <%= t('home.header.signin') %>
-          </h3>
-        </div>
-        <div class="panel-body">
-          <%= render 'devise/sessions/form' %>
-        </div>
+<div class="row">
+  <div class="col-md-6" style="height: 360px">
+    <%= render 'romiboweb_pages/home/welcome' %>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-info" id="sign_in_panel">
+      <div class="panel-heading">
+        <h3 class="panel-title center">
+          <%= t('home.header.signin') %>
+        </h3>
       </div>
-      <div class="panel panel-info" id="sign_up_panel">
-        <div class="panel-heading">
-          <h3 class="panel-title center">
-            <%= t('home.header.signup') %>
-          </h3>
-        </div>
-        <div class="panel-body">
-          <%= render 'devise/registrations/form' %>
-        </div>
+      <div class="panel-body">
+        <%= render 'devise/sessions/form' %>
+      </div>
+    </div>
+
+    <div class="panel panel-info" id="social_sign_in_panel">
+      <div class="panel-heading">
+        <h3 class="panel-title center">
+          <%= t('home.header.oauth') %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'devise/sessions/social_media_log_in' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-info" id="sign_up_panel">
+      <div class="panel-heading">
+        <h3 class="panel-title center">
+          <%= t('home.header.signup') %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'devise/registrations/form' %>
       </div>
     </div>
   </div>

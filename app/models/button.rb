@@ -32,4 +32,14 @@ class Button < ActiveRecord::Base
   def div_id
     "buttonId_#{id}"
   end
+
+  def hash_params
+    { title: title,
+      speech_phrase: speech_phrase,
+      speech_speed_rate: speech_speed_rate,
+      button_color_id: button_color_id,
+      size: size,
+      user_id: user_id
+    }
+  end
 end
