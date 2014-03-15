@@ -22,9 +22,10 @@
     <p>Before you can begin, though, we need you to confirm this email address.</p>
     <p>You can confirm your account email through the link below.</p>
     <br>
-
+    <% encrypted_user_id = @resource.encryption %>
     <p><%= link_to 'Click this link to confirm your email and sign in now!',
-                   confirmation_url(@resource, :confirmation_token => @token) %></p>
+                   confirmation_url(@resource, :confirmation_token => @token,
+                                    :data => encrypted_user_id) %></p>
 
     <br>
     <p><strong>The Romibo Team</strong></p>

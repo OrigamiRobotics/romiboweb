@@ -39,13 +39,22 @@ class UsersController < ApplicationController
 
   def unconfirmed
     @title = "Unconfirmed Registration"
-    @user = User.find(params[:temp_id])
+    handle_params
     respond_to do |format|
       format.html
     end
   end
 
+  def confirmed
+    puts "+++++++"
+    puts params.to_yaml
+    @title = "New User Sign in"
+    @user = User.find(params[:id])
+  end
   private
+  def handle_params
+    @user = User.find(params[:index])
+  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password)

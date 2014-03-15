@@ -57,13 +57,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def sign_in_new_user(user, omniauth)
-    params[:index] = user.id
 
     if user.confirmed_at != nil
       flash.notice = "Authentication with " +  omniauth['provider'].capitalize + " successful!"
       sign_in_and_redirect user
     else
-      redirect_to :controller => 'users', :action => 'unconfirmed', :temp_id => user.id
+      redirect_to :controller => 'users', :action => 'unconfirmed', :index => user.id
     end
   end
 

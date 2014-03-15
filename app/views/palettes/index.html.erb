@@ -16,6 +16,23 @@
         placement: 'top'
       });
       <% end %>
+
+      $(document).bind("keypress", function(e) {
+        var data, url;
+        url = "/buttons";
+        data = {
+          palette_id: <%= current_user.current_palette.id %>,
+          keypress: true,
+          js: true
+        };
+        return $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          dataType: 'script'
+        });
+      });
+
     </script>
   </div>
 <% end %>

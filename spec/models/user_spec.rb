@@ -42,9 +42,10 @@ describe User, user: true, auth: true do
 
   context "should have the following atributes" do
     [:first_name, :last_name, :email, :password,
-     :my_palettes, :last_viewed_palette,
+     :last_viewed_palette,
      :current_palette, :set_last_viewed_palette,
-     :name, :authentications
+     :name, :authentications,
+     :encryption, :encryption_key, :encryption_iv
     ].each do |attr|
       it { should respond_to attr }
     end

@@ -15,7 +15,7 @@ Romiboweb::Application.routes.draw do
 
   resources :feedbacks, only: [:new, :create, :index]
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
-	resources :users, only: [:dashboard, :unconfirmed]
+	resources :users, only: [:dashboard, :unconfirmed, :confirmed]
 
 
   resources :palettes do
@@ -40,6 +40,7 @@ Romiboweb::Application.routes.draw do
 		post 'signin'           => 'devise/sessions#create', :as => :user_session
 		delete 'signout'        => 'devise/sessions#destroy', :as => :destroy_user_session
     get '/unconfirmed_user' => 'users#unconfirmed', as: :unconfirmed
+    get 'confirmed_user'    => 'users#confirmed', as: :confirmed
   end
 
   ######### API routes ##########

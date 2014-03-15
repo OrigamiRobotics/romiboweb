@@ -24,6 +24,7 @@
 #  unconfirmed_email      :string(255)
 #  auth_token             :string(255)
 #
+require 'openssl'
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -236,6 +237,27 @@ class User < ActiveRecord::Base
     elsif auth.provider == 'google_oauth2'
       from_google_oauth2 auth
     end
+  end
+
+  def encrypt_id
+    data = "Very, very confidential data"
+
+    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+    cipher.encrypt
+
+    encryption = cipher.update(data) + cipher.final
+    encryption_key = cipher.random_key
+    encryption_iv  = cipher.random_iv
+  end
+
+
+  def decrypted_id
+    decipher = OpenSSL::Cipher::AES.new(128, :CBC)
+    decipher.decrypt
+    decipher.key = encryption_key
+    decipher.iv = encryption_iv
+
+    decipher.update(encryptd_id) + decipher.final
   end
 
   private
