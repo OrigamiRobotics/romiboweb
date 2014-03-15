@@ -90,9 +90,9 @@ class PalettesController < ApplicationController
     rescue => ex
       flash[:alert] = ex.message
     end
-    redirect_to palette_path(@palette), format: 'js',
-                notice: "#{params[:palette][:file].original_filename} successfully " +
-                "imported and a new palette (#{@palette.title}) was created with it!"
+    flash[:success] = "The file #{params[:palette][:file].original_filename} was successfully " +
+        "imported and a new palette (#{@palette.title}) was created with it!"
+    redirect_to palette_path(@palette), format: 'js'
   end
 
   private

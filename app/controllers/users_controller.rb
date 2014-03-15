@@ -46,8 +46,6 @@ class UsersController < ApplicationController
   end
 
   def confirmed
-    puts "+++++++"
-    puts params.to_yaml
     @title = "New User Sign in"
     @user = User.find(params[:id])
   end

@@ -17,6 +17,10 @@ OmniAuth.config.test_mode = true
 describe OmniauthCallbacksController  do
   include Devise::TestHelpers
 
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
+
   describe "handle twitter authentication callback" do
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
@@ -62,56 +66,6 @@ describe OmniauthCallbacksController  do
         
         it {   flash[:notice].should == "Authentication with Facebook successful!"}
         it {   response.should redirect_to dashboard_path }
-      end
-    end
-
-    
-    describe "#logged in user" do
-      context "when user doesn't have facebook authentication" do
-        before(:each) do
-          request.env["devise.mapping"] = Devise.mappings[:user]
-          request.env["omniauth.auth"]  = OmniAuth.config.mock_auth[:facebook]
-          user = User.create!(first_name: 'Testy', last_name: 'McThursty',
-                              :email => "ghost@nobody1.com",
-                              :password => "my_secret",
-                              :password_confirmation => "my_secret",
-                              :confirmed_at => Time.now)
-          sign_in user
-          get :facebook
-        end
-        
-        it "should NOT add facebook authentication to current user" do
-          user = User.where(:email => "ghost@nobody1.com").first
-          user.should_not be_nil
-          user.provider.should be_nil
-        end
-      end
-      
-      context "when user already connected with facebook" do
-        before(:each) do
-          request.env["devise.mapping"] = Devise.mappings[:user]
-          request.env["omniauth.auth"]  = OmniAuth.config.mock_auth[:facebook]
-          omniauth = OmniAuth.config.mock_auth[:facebook]
-          user =  User.create!(first_name: 'Testy', last_name: 'McThursty',
-                               :email => "ghost@nobody.com",
-                               :password => "my_secret",
-                               :password_confirmation => "my_secret",
-                               :provider => omniauth.provider,
-                               :confirmed_at => Time.now,
-                               :uid => omniauth.uid)
-          user.authentications.build(:provider => "facebook", :uid => "1234")
-          sign_in user
-
-          get :facebook
-        end
-        
-        it "should add new facebook authentication" do
-          user = User.where(:email => "ghost@nobody.com").first
-          user.should_not be_nil
-          fb_authentications = user.authentications.where(:provider => "facebook")
-          fb_authentications.count.should == 1
-        end
-        
       end
     end
   end

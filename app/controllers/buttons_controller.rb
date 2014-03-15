@@ -11,7 +11,6 @@ class ButtonsController < ApplicationController
   def create
     if params[:js].present?
       if ok_to_add?
-        puts params.inspect
         session[:adding_button] = true unless params[:option] == 'clone'
         js_create
       end
@@ -53,7 +52,7 @@ class ButtonsController < ApplicationController
   private
   def update_parent_palette
     if @palette.present?
-      @palette.last_viewed_button = @button.id
+      @palette.last_viewed_button = @button.id if @button.present?
       @palette.save
     end
   end
@@ -132,7 +131,7 @@ class ButtonsController < ApplicationController
 
   def ok_to_add?
     (params[:status].present? && params[:status] == 'new') ||
-    (params[:js].present? && params[:option] == 'clone') ||
+    (params[:js].present? && params[:option] == 'clone')   ||
     (params[:keypress].present? && session[:adding_button] == true)
   end
 

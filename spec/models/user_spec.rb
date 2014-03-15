@@ -29,6 +29,10 @@ require 'spec_helper'
 
 
 describe User, user: true, auth: true do
+  before(:each) do
+    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+  end
+
   let(:user) { FactoryGirl.create(:user)}
 
   before(:each) do
