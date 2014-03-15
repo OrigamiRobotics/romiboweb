@@ -13,5 +13,6 @@
 #
 
 class Feedback < ActiveRecord::Base
+  attr_accessor :save_screenshot
   validates_presence_of :name, :email, :title
 end
