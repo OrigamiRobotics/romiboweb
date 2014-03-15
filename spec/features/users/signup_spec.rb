@@ -18,7 +18,7 @@ feature 'signing up', auth: true do
   end
 
 
-  scenario 'user creating account using missing first name' do
+  scenario 'user creating account using missing first name', js: true do
     visit root_path
     within('#sign_up_panel') do
       fill_in 'user_first_name', with: ''
@@ -39,7 +39,7 @@ feature 'signing up', auth: true do
     expect(page).to have_button 'Sign up'
   end
 
-  scenario 'user creating account using missing last name' do
+  scenario 'user creating account using missing last name', js: true do
     visit root_path
     within('#sign_up_panel') do
       fill_in 'user_first_name', with: new_user.first_name
@@ -61,7 +61,7 @@ feature 'signing up', auth: true do
   end
 
 
-  scenario 'user creating account using missing email address' do
+  scenario 'user creating account using missing email address', js: true do
     visit root_path
     within('#sign_up_panel') do
       fill_in 'user_first_name', with: new_user.first_name
@@ -82,7 +82,7 @@ feature 'signing up', auth: true do
     expect(page).to have_button 'Sign up'
   end
 
-  scenario 'user creating account using invalid email address' do
+  scenario 'user creating account using invalid email address', js: true do
     visit root_path
     within('#sign_up_panel') do
       fill_in 'user_first_name', with: new_user.first_name
@@ -103,7 +103,7 @@ feature 'signing up', auth: true do
     expect(page).to have_button 'Sign up'
   end
 
-  scenario 'user creating account using missing password' do
+  scenario 'user creating account using missing password', js: true do
     visit root_path
     within('#sign_up_panel') do
       fill_in 'user_first_name', with: new_user.first_name
@@ -124,7 +124,7 @@ feature 'signing up', auth: true do
     expect(page).to have_button 'Sign up'
   end
 
-  pending 'user creating account with missing password confirmation' do
+  pending 'user creating account with missing password confirmation', js: true do
     visit root_path
     within('#sign_up_panel div div') do
       fill_in 'user_first_name', with: new_user.first_name
