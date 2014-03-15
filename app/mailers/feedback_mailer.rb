@@ -5,10 +5,13 @@ class FeedbackMailer < ActionMailer::Base
   def email(feedback)
     @feedback = feedback
     if feedback.save_screenshot == 1
-      screenshot_file = create_screenshot feedback
-      attachments["Feedback_img_#{feedback.id}.jpg"] =
-          File.read screenshot_file
+      client = GrabzIt::Client.new(
+          ENV['GRABZIT_KEY'], ENV['GRABZIT_SECRET'])
+      client.set_image_options(feedback.page_uri)
+      screenshot_file = "#{Rails.root}/tmp/feedback_img_#{feedback.id}.jpg"
+      client.save_to.(screenshot_file)
     end
+    attachments['Image.jpg'] = File.read(screenshot_file) if feedback.save_screenshot == 1
     mail(
         subject: "[RomiboWeb Feedback] #{feedback.name} shared feedback",
         to: 'romiborobotproject@gmail.com'
