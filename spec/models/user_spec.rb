@@ -39,8 +39,11 @@ describe User, user: true, auth: true do
     @attr ||= FactoryGirl.attributes_for(:user)
   end
 
+  it {should validate_acceptance_of :terms}
+
   subject { user}
 
+  it {should be_valid}
   it {should respond_to :reset_auth_token!}
   it {should respond_to :shared_palettes}
 
