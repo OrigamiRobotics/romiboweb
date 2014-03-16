@@ -66,7 +66,7 @@ Romiboweb::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   if Rails.env.production?
     config.action_mailer.default_url_options = { :host => 'romiboweb.herokuapp.com' }
-  elsif Rails.env.staging
+  elsif Rails.env.staging?
     config.action_mailer.default_url_options = { :host => 'romiboweb-staging.herokuapp.com' }
   else
     config.action_mailer.default_url_options = { :host => 'romiboweb-integration.herokuapp.com' }
