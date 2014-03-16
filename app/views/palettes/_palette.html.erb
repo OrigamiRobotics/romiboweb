@@ -1,48 +1,33 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
   <h3>
     <%= palette.title %> &nbsp; &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-send"></i>'.html_safe,
-                new_palette_share_path(palette),
-                title: t('palettes.index.link.share.title'),
-                remote: true
-    %>
+    <%= render 'palettes/center_content/share_palette_link', palette: palette %>
     &nbsp; |
     &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
-                edit_palette_path(palette),
-                remote: true,
-                id: 'editPaletteIcon',
-                title: t('palettes.index.link.edit.title')
-    %>
+    <%= render 'palettes/center_content/edit_palette_link', palette: palette %>
     &nbsp; |
     &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-import"></i>'.html_safe,
-                "#myModal",
-                data: { toggle: "modal", backdrop: 'static'},
-                id: 'importPaletteLink',
-                title: 'Import existing palette from file'
-    %>
+    <%= render 'palettes/center_content/import_palette_link', palette: palette %>
     &nbsp; |
     &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe,
-                palette,
-                method: :delete,
-                data: { confirm: t('palettes.index.link.delete.confirm', title: palette.title) },
-                id: 'deletePalette',
-                title: t('palettes.index.link.delete.title')
-    %>
+    <%= render 'palettes/center_content/delete_palette_link', palette: palette %>
     &nbsp; |
     &nbsp;
-    <%= link_to '<i class="glyphicon glyphicon-plus"></i> B'.html_safe,
-                buttons_path(palette_id: palette.id, js: true, status: "new"),
-                method: :post,
-                remote: true,
-                id: 'addNewButton',
-                title: t('palettes.index.link.add.title')
-    %>
+    <%= render 'palettes/center_content/add_button_to_palette', palette: palette %>
 
+    <% if params[:fake].present? %>
+      &nbsp; |
+      &nbsp;
+      <%= render 'palettes/center_content/edit_multiple_palette_buttons_link', palette: palette %>
+    <% end %>
   </h3>
   <hr>
-  <%= render 'palettes/center_content/existing_buttons', palette: palette %>
+  <% if params[:mode].present? and params[:mode] == 'multiple' %>
+    <%= render 'palettes/center_content/edit_multiple_buttons_menu' %>
+    <%= render 'palettes/center_content/existing_buttons_with_selection', palette: palette %>
+  <% else %>
+    <%= render 'palettes/center_content/existing_buttons', palette: palette %>
+  <% end %>
   <%= render 'palettes/import_palette' %>
+
 </div>

@@ -1,5 +1,12 @@
 $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");
-<% if @palette.buttons.present? %>
-  var button = $('<%= "#button_#{@button.div_id} a" %>');
-  button.click();
+
+<% if params[:mode].present? && params[:mode] == 'multiple' %>
+  <%= render 'buttons/edit_multiple_buttons_show' %>
+  <% session[:editing_multiple_buttons] = true %>
+<% else %>
+  <% session[:editing_multiple_buttons] = false %>
+  <% if @palette.buttons.present? %>
+    var button = $('<%= "#button_#{@button.div_id} a" %>');
+    button.click();
+  <% end %>
 <% end %>

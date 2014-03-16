@@ -4,16 +4,16 @@ jQuery ->
     $.getScript(url)
 
     $(document).bind "keypress", (e) ->
-      url = "/buttons"
-      data =
-        palette_id: gon.first_palette
-        keypress: true
-        js: true
+      if e.keycode == 13
+        url = "/buttons"
+        data =
+          palette_id: gon.first_palette
+          keypress: true
+          js: true
 
-      $.ajax
-        type: "POST",
-        url: url,
-        data: data
-        dataType: 'script'
-
+        $.ajax
+          type: "POST",
+          url: url,
+          data: data
+          dataType: 'script'
 

@@ -1,9 +1,13 @@
 $('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
-'<%= j render "palettes/right_side/button_form" %>' +
+'<%= j render "palettes/right_side/multiple_buttons_form" %>' +
 "</div>");
 $('#speechSpeedRateSlider').css('margin-left', '10px');
 var speedRateField = $('#button_speech_speed_rate');
 var speedRate = <%= @button.speech_speed_rate.to_i %>;
+var buttonTitle = $('#button_title');
+var buttonSpeechPhrase = $('#button_speech_phrase');
+
+
 $('.noUiSlider').noUiSlider({
   range: [1, 10]
   ,start: [speedRate, 10]
@@ -26,7 +30,7 @@ speedRateField.mouseout(function() {
 
 $(function() {
   $('.chosen-select').chosen({
-    no_results_text: 'No results matched',
+    no_results_text: 'No results matches',
     width: '300px',
     height: '50px'
   }).change(function(){
@@ -34,5 +38,7 @@ $(function() {
   });
 });
 
+buttonTitle.prop('disabled', true);
+buttonSpeechPhrase.prop('disabled', true);
 
-$('#butttonHeaderOnForm').val('<%= @button.title %>');
+$('#butttonHeaderOnForm').val('Editing multiple buttons');

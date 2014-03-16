@@ -1,0 +1,18 @@
+<% palette = (@current_palette || @palette) %>
+<% class_name = button.size.downcase %>
+<% color_class_name = "#{button.button_color.name.downcase.gsub(/ /, '-')}ButtonColor" %>
+<div class='<%= "#{class_name}ButtonWidget #{color_class_name}" %>' id='<%= "button_#{button.div_id}" %>'>
+  <h1 id='<%= "#{button.div_id}" %>'>
+    <% if class_name =='small' %>
+      <%= truncate(button.title, length: 8 ) %>
+    <% elsif class_name == "medium" %>
+      <%= truncate(button.title, length: 15 ) %>
+    <% else %>
+      <%= truncate(button.title, length: 20 ) %>
+    <% end %>
+  </h1>
+  <%= link_to '', button_path(button, palette_id: palette.id),
+              method: :get,
+              remote: true
+  %>
+</div>

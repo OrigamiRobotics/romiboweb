@@ -3,3 +3,4 @@ en:
     edit:
       save: "Save"
       cancel: "Cancel"
+      multiple: "Edit multiple buttons"

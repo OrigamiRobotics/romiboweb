@@ -1,0 +1,7 @@
+<%= link_to '<i class="glyphicon glyphicon-plus"></i> B'.html_safe,
+            buttons_path(palette_id: palette.id, js: true, status: "new"),
+            method: :post,
+            remote: true,
+            id: 'addNewButton',
+            title: t('palettes.index.link.add.title')
+%>

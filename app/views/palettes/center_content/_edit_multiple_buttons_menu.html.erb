@@ -1,0 +1,35 @@
+<div class="panel panel-default" id="editMultipleButtonsMenuBox">
+  <div class="panel-body">
+    <div row>
+      <div class="col-md-9">
+        Select buttons to edit:
+        &nbsp; &nbsp;
+        <%= check_box_tag 'select_all', "yes", true %>
+        <%= label_tag 'select_all', 'All' %>
+      </div>
+      <div class="col-md-3 info">
+         <%= "#{@palette.buttons.size} selected" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+   var url;
+  $( "#select_all" ).click(function() {
+    if($(this).is(':checked')){
+      url = '<%= url_for(controller: :palettes, action: :update, id: @palette.id) %>';
+      url = url + "&mode=multiple&selection=all";
+    }
+    else {
+      url = '<%= url_for(controller: :palettes, action: :update, id: @palette.id) %>';
+      url = url + "&mode=multiple&selection=none";    }
+
+    $.ajax({
+      type: "PUT",
+      url: url,
+      dataType: 'script'
+    });
+  });
+</script>

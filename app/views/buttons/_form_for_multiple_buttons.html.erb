@@ -1,4 +1,4 @@
-<%= simple_form_for(@button, remote: true, :html => { class: 'inline form-horizontal', id: 'button_form'}) do |f|  %>
+<%= simple_form_for(Button.new, remote: true, :html => { class: 'inline form-horizontal', id: 'button_form'}) do |f|  %>
   <%= f.input :title %>
   <%= hidden_field_tag  'title_value', @button.title %>
   <%= hidden_field_tag  'palette_id', @palette.id %>
@@ -30,48 +30,29 @@
   <hr>
   <div class="row">
     <div class="col-md-4">
-      <% if session[:adding_button] == true %>
-        <%= link_to 'Done',
-                    {controller: 'buttons',
-                     action: 'update',
-                     id: @button.id,
-                     status: 'done',
-                     palette_id: @palette.id
-                    },
-                    method: :put,
-                    remote: true,
-                    class: 'btn btn-primary btn-block',
-                    id: 'doneButton',
-                    title: 'Stop automatically creating new buttons.'
-        %>
-      <% end %>
     </div>
 
     <div class="col-md-4">
-      <%= link_to 'Copy',
-                  {controller: 'buttons',
-                   action: 'create',
+      <%= link_to 'Apply',
+                  {controller: 'palettes',
+                   action: 'update',
                    button: @button.hash_params,
-                   option: 'clone',
+                   mode: 'multiple',
                    palette_id: @palette.id,
                    js: true,
                   },
-                  method: :post,
+                  method: :patch,
                   remote: true,
                   class: 'btn btn-info btn-block',
-                  id: 'cloneButton',
-                  title: "Make a copy of #{@button.title}"
+                  id: 'applyButton',
+                  title: "Apply changes to selected buttons"
       %>
     </div>
     <div class="col-md-4">
-      <%= link_to 'Delete',
-                  {id: @button.id,
-                   palette_id: @palette.id},
-                  method: :delete,
+      <%= link_to 'Cancel', palette_path(@palette),
                   remote: true,
-                  class: 'btn btn-danger btn-block',
-                  id: 'deleteButton',
-                  data: { confirm: "Delete button '#{@button.title}'?" }
+                  class: 'btn btn-default btn-block',
+                  id: 'cancelMultipleEditButton'
       %>
 
     </div>

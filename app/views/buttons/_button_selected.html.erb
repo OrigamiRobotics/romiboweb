@@ -1,0 +1,10 @@
+<div class="singleButtonContainerWithSelection">
+  <%= render 'buttons/button_common_content', button: button %>
+  <div class="buttonSelection">
+    <% if button.selected.nil? || button.selected == true %>
+      <%= check_box_tag "selected_#{button.id}", true, true %>
+    <% else %>
+      <%= check_box_tag "selected_#{button.id}", false, false %>
+    <% end %>
+  </div>
+</div>

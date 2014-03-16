@@ -14,9 +14,10 @@
 #
 
 class Button < ActiveRecord::Base
-  belongs_to :user, inverse_of: :buttons
   has_many :palette_buttons
   has_many :palettes, through: :palette_buttons
+
+  belongs_to :user, inverse_of: :buttons
   belongs_to :button_color, inverse_of: :buttons
 
   validates :title, presence: true
@@ -25,6 +26,8 @@ class Button < ActiveRecord::Base
   validates :button_color_id, presence: true
   validates :size, presence: true, inclusion: { in: %w(small Small medium Medium large Large)}
 
+
+  attr_accessor :selected
   def color
     button_color.value
   end

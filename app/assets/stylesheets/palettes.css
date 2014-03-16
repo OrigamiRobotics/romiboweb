@@ -78,3 +78,11 @@
     font-size: 16px;
     text-align: center;
 }
+
+#editMultipleButtonsMenuBox {
+    margin-bottom: 20px;
+    height: 50px;
+    width: 610px;
+    margin-left: 2px;
+    border: solid 1px ;
+}

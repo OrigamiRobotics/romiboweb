@@ -2,7 +2,7 @@ namespace :deploy do
   desc "Deploy to integration server on Heroku"
   task :integration do
     `git push romiboweb-integration master`
-    `heroku run rake db:migrate -a romiboweb-integration`
+    `heroku run rake db:migrate -a romiboweb-integration --remote integration`
   end
 
   desc "Deploy to integration api server on Heroku"
@@ -14,7 +14,7 @@ namespace :deploy do
   desc "Deploy to staging server on Heroku"
   task :staging do
     `git push romiboweb-staging master`
-    `heroku run rake db:migrate -a romiboweb --remote`
+    `heroku run rake db:migrate -a romiboweb --remote staging`
   end
 
   desc "Deploy to production server on Heroku"

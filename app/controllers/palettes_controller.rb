@@ -39,7 +39,7 @@ class PalettesController < ApplicationController
   def update
     @palette = Palette.find params[:id]
     respond_to do |format|
-      if @palette.update_attributes(palette_params)
+      if update_applicable_palette
         #@palettes = current_user.my_palettes
         format.html {redirect_to palettes_path}
         format.js
@@ -62,6 +62,7 @@ class PalettesController < ApplicationController
   end
 
   def show
+    puts params.to_yaml
     @palette = Palette.find params[:id] if params[:id].present?
     @button  = @palette.current_button
     current_user.set_last_viewed_palette @palette
@@ -96,6 +97,16 @@ class PalettesController < ApplicationController
   end
 
   private
+
+  def update_applicable_palette
+    if params[:mode].present? &&
+       params[:mode] == "multiple"
+      puts params.to_yaml
+      raise
+    else
+      @palette.update_attributes(palette_params)
+    end
+  end
   def set_params
     @title = 'Palette Editor'
     @palette = Palette.new

@@ -41,7 +41,6 @@ class ButtonsController < ApplicationController
     button.destroy
     @button = @palette.buttons.first if @palette.buttons.present?
     update_parent_palette
-
     respond_to do |format|
       format.html {redirect_to palettes_path}
       format.js
@@ -111,6 +110,7 @@ class ButtonsController < ApplicationController
   end
 
   def get_palette
+    session[:adding_button] = false
     begin
       @palette = Palette.find(params[:palette_id])
     rescue => ex
