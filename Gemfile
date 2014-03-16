@@ -17,11 +17,8 @@ gem 'json'
 gem 'less-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
-#gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platforms => :ruby
 gem 'uglifier'
-gem 'chosen-rails'
 #gem 'jquery-ui-rails'
 gem 'gon'
 gem 'rabl'
@@ -31,6 +28,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google-oauth2'
 gem 'grabzit'
+gem 'select2-rails'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

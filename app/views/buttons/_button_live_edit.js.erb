@@ -24,11 +24,21 @@ speedRateField.mouseout(function() {
   $(this).prop('disabled', false);
 });
 
+function format(state) {
+  if (!state.id) return state.text; // optgroup
+  console.log(state);
+  var val = "<div class='buttonColorPreviewBox' style='background-color: " +
+          state.text.toLowerCase().replace(/ /, '') + ";'></div>" + "    " + state.text;
+  console.log(val);
+  return val;
+}
+
 $(function() {
-  $('.chosen-select').chosen({
-    no_results_text: 'No results matched',
-    width: '300px',
-    height: '50px'
+  $('select#button_button_color_id').select2({
+    width: '305px',
+    height: '50px',
+    formatResult: format,
+    formatSelection: format
   }).change(function(){
     $('#button_form').submit();
   });

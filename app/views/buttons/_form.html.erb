@@ -30,7 +30,7 @@
   <hr>
   <div class="row">
     <div class="col-md-4">
-      <% if session[:adding_button] == true %>
+      <% if session[:adding_button] %>
         <%= link_to 'Done',
                     {controller: 'buttons',
                      action: 'update',

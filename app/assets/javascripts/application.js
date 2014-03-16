@@ -14,5 +14,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.nouislider.min
-//= require chosen-jquery
+//= require select2
 //= require_tree .
