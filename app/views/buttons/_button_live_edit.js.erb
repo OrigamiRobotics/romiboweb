@@ -24,11 +24,18 @@ speedRateField.mouseout(function() {
   $(this).prop('disabled', false);
 });
 
+function getColor(name){
+  var colors = {'red':'#c1392d', 'orange':'#d45300', 'yellow':'#f39b13',
+                'green':'#27ae61', 'lightgreen':'#2dcc70', 'blue':'#297fb8',
+                'turquoise':'#13c8b0', 'purple':'#8d44af', 'pink':'#fe7a7a'};
+  return colors[name];
+}
+
 function format(state) {
   if (!state.id) return state.text; // optgroup
   console.log(state);
   var val = "<div class='buttonColorPreviewBox' style='background-color: " +
-          state.text.toLowerCase().replace(/ /, '') + ";'></div>" + "    " + state.text;
+          getColor(state.text.toLowerCase().replace(/ /, '')) + ";'></div>" + "    " + state.text;
   console.log(val);
   return val;
 }
@@ -55,7 +62,7 @@ enter_key_pressed = function(e) {
   if (e.which === 13) {
     url = "/buttons";
     data = {
-      palette_id: gon.active_palette,
+      palette_id: '<%= current_user.current_palette.id %>',
       keypress: true,
       status: 'duplicate',
       js: true

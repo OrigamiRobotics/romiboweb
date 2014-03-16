@@ -26,6 +26,7 @@ class ButtonsController < ApplicationController
 
   def update
     @button = Button.find(params[:id]) if params[:id].present?
+    update_parent_palette
     if params[:status].present?
       #session[:adding_button] = false if params[:status] == 'done'
       clone_button if params[:status] == 'clone'
@@ -113,6 +114,7 @@ class ButtonsController < ApplicationController
     session[:adding_button] = false
     begin
       @palette = Palette.find(params[:palette_id])
+      update_parent_palette
     rescue => ex
       handle_error ex.message
     end
