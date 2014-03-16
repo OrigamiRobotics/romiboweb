@@ -1,30 +1,31 @@
 class FeedbacksController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :set_gon
+  respond_to :js, :html
 
   def new
-    @feedback = Feedback.new
   end
 
   def create
     @feedback = Feedback.new(feedback_params)
-    @feedback.user_id = current_user.id
+    if user_signed_in?
+      @feedback.name = current_user.full_name
+      @feedback.email = current_user.email
+    end
     if @feedback.save
-      Notification.user_feedback(current_user, @feedback).deliver
+      FeedbackMailer.email(@feedback, feedback_params[:save_screenshot] == '1').deliver
+      flash[:success] = 'Thanks for sharing your feedback!'
     else
-      @feedbacks = Feedback.all.order('created_at desc')
-      flash[:alert] = "Failed to create feedback. #{@feedback.errors.full_messages.join(". ")}"
+      render 'new'
     end
   end
 
   def index
-    @title = "Feedback"
     @feedbacks = Feedback.all.order('created_at desc')
     @feedback = Feedback.new
   end
 
   private
   def feedback_params
-    params.require(:feedback).permit(:title, :content, :user_id)
+    params.require(:feedback).permit(:name, :email, :title, :content, :save_screenshot, :page_uri)
   end
 end

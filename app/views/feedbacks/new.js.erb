@@ -1,1 +1,6 @@
-$('#newFeedbackForm').replaceWith('<%= j render "feedbacks/form" %>');
+$('#modalView').html(
+		"<%= escape_javascript(render 'feedbacks/form', feedback: @feedback) %>");
+$('#feedbackForm').modal({
+	keyboard: false,
+	backdrop: false
+});

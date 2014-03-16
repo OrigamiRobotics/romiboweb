@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
 
   has_many :buttons
   has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id, dependent: :destroy
-  has_many :feedbacks
   has_many :authentications, inverse_of: :user
 
   has_one :last_viewed_palette
@@ -86,7 +85,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def name
+  def full_name
     "#{first_name} #{last_name}"
   end
 
