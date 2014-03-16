@@ -24,7 +24,6 @@ gem 'uglifier'
 gem 'chosen-rails'
 #gem 'jquery-ui-rails'
 gem 'gon'
-gem 'rails_12factor', group: :production
 gem 'rabl'
 gem 'rack-mini-profiler'
 gem 'smarter_csv'
@@ -39,8 +38,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :production, :integration do
+group :production, :integration, :staging do
   gem 'thin'
+  gem 'rails_12factor'
 end
 
 
