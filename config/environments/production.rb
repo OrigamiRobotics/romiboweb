@@ -64,13 +64,8 @@ Romiboweb::Application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
-  if Rails.env.production?
-    config.action_mailer.default_url_options = { :host => 'romiboweb.herokuapp.com' }
-  elsif Rails.env.staging?
-    config.action_mailer.default_url_options = { :host => 'romiboweb-staging.herokuapp.com' }
-  else
-    config.action_mailer.default_url_options = { :host => 'romiboweb-integration.herokuapp.com' }
-  end
+  config.action_mailer.default_url_options = { :host => 'romiboweb.herokuapp.com' }
+
   config.action_mailer.delivery_method = :smtp
   # change to false to prevent email from being sent during development
   config.action_mailer.perform_deliveries = true

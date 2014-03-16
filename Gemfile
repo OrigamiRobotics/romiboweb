@@ -30,7 +30,6 @@ gem 'smarter_csv'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-instagram'
 gem 'grabzit'
 
 group :doc do
