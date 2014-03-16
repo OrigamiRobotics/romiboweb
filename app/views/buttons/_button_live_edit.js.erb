@@ -36,3 +36,37 @@ $(function() {
 
 
 $('#butttonHeaderOnForm').val('<%= @button.title %>');
+
+
+var enter_key_pressed;
+
+enter_key_pressed = function(e) {
+  var data, url;
+  if (e.which === 13) {
+    url = "/buttons";
+    data = {
+      palette_id: gon.active_palette,
+      keypress: true,
+      status: 'duplicate',
+      js: true
+    };
+    return $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      dataType: 'script'
+    });
+  }
+};
+
+$('#button_title').keypress(function(e) {
+  return enter_key_pressed(e);
+});
+
+$('#button_speech_phrase').keypress(function(e) {
+  return enter_key_pressed(e);
+});
+
+$('#addNewButton').blur();
+
+$('#button_tile').focus();

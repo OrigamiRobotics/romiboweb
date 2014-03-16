@@ -1,8 +1,10 @@
-<% if session[:adding_button] == true || params[:option] == 'clone' %>
+<% if session[:adding_button] == true || params[:status] == 'copy' %>
 $('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_content/existing_buttons" %>');
 <%= render 'buttons/update_and_show' %>
 
-  <% if params[:option] == 'clone' %>
+  <% if params[:status] == 'copy' %>
     $('#doneButton').hide();
   <% end %>
 <% end %>
+$('#addNewButton a').blur();
+<%= render 'buttons/move_focus_to_title_field' %>

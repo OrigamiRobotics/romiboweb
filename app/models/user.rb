@@ -94,7 +94,8 @@ class User < ActiveRecord::Base
   end
 
   def apply_omniauth(omniauth)
-    update_attributes(provider: omniauth.provider, uid: omniauth.uid)
+    update_attributes(provider: omniauth.provider, uid: omniauth.uid,
+                      confirmation_token: nil, confirmed_at: Time.now)
   end
 
   def add_authentication(auth)
@@ -157,7 +158,9 @@ class User < ActiveRecord::Base
                          last_name: data["last_name"],
                          email: data["email"],
                          provider: access_token.provider,
-                         uid: access_token.uid
+                         uid: access_token.uid,
+                         confirmation_token: nil,
+                         confirmed_at: Time.now
       )
     end
     user
@@ -264,5 +267,12 @@ class User < ActiveRecord::Base
   private
   def ensure_auth_token!
     self.auth_token = SecureRandom.hex
+  end
+
+  def confirm_automatically
+    if self.provider.present? && self.uid.present? and confirmed_at.nil?
+      confirmed_at = Time.now
+      save
+    end
   end
 end

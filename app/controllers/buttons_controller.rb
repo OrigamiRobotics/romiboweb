@@ -1,5 +1,5 @@
 class ButtonsController < ApplicationController
-  before_filter :get_palette
+  before_filter :get_palette, :set_session
   def new
     begin
       @button = Button.new default_values
@@ -11,7 +11,6 @@ class ButtonsController < ApplicationController
   def create
     if params[:js].present?
       if ok_to_add?
-        session[:adding_button] = true unless params[:option] == 'clone'
         js_create
       end
     else
@@ -28,7 +27,7 @@ class ButtonsController < ApplicationController
   def update
     @button = Button.find(params[:id]) if params[:id].present?
     if params[:status].present?
-      session[:adding_button] = false if params[:status] == 'done'
+      #session[:adding_button] = false if params[:status] == 'done'
       clone_button if params[:status] == 'clone'
     else
       unless @button.update_attributes(button_params)
@@ -66,10 +65,11 @@ class ButtonsController < ApplicationController
   end
 
   def js_create
-    if params[:option] == 'clone'
+    if params[:status] == 'copy'
       @button = @palette.buttons.build(clone_button_params)
     else
       @button = @palette.buttons.build(default_values)
+      session[:last_action] = 'new'
     end
     @button.save
     update_parent_palette
@@ -131,8 +131,22 @@ class ButtonsController < ApplicationController
 
   def ok_to_add?
     (params[:status].present? && params[:status] == 'new') ||
-    (params[:js].present? && params[:option] == 'clone')   ||
-    (params[:keypress].present? && session[:adding_button] == true)
+    (params[:status].present? && params[:status] == 'copy')   ||
+    (params[:keypress].present? &&
+     params[:status].present? &&
+     params[:status] == 'duplicate' &&
+     session[:adding_button] == true)
   end
 
+
+  def set_session
+    if params[:status] == 'new' ||
+      (session['last_action'] == 'new' and params[:status] == 'duplicate')
+      session[:adding_button] = true
+      session[:last_action] = 'new'
+    else
+      session[:adding_button] = false
+      session[:last_action] = 'not_new'
+    end
+  end
 end

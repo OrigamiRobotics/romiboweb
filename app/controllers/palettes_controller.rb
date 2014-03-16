@@ -113,7 +113,7 @@ class PalettesController < ApplicationController
     @palettes = current_user.palettes
     if @palettes.present?
       @current_palette = current_user.current_palette
-      gon.first_palette = @current_palette.id
+      gon.active_palette = @current_palette.id
     end
   end
 
