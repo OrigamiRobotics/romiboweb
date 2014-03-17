@@ -9,5 +9,5 @@
 #}
 #ActionMailer::Base.raise_delivery_errors = true
 #ActionMailer::Base.default_url_options[:host] = "localhost:3000"
-#ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if
-#    Rails.env.development?
+ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if
+    Rails.env.development?

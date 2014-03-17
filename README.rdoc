@@ -1,4 +1,4 @@
-== README
+= README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -19,9 +19,17 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+=== SMTP Configuration
+SMTP related environment configuration must not be checked into the source code. To facilite this, please create
+<tt>app/config/initializers/local_env.rb</tt> with the following details:
 
-* ...
+<b>.gitignore will ignore this file so it is not checked in by mistake.</b>
+
+* <tt>ENV['SMTP_DEV_EMAIL'] = 'your@email.here'</tt>
+* <tt>ENV['SMTP_USERNAME'] = 'romiborobotproject@gmail.com'</tt>
+* <tt>ENV['SMTP_PASSWORD'] = 'addPasswordHere'</tt>
+
+
 
 
 Please feel free to use a different markup language if you do not plan to run
