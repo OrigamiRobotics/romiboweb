@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140317154014) do
   create_table "buttons", force: true do |t|
     t.string   "title",             null: false
     t.string   "speech_phrase"
-    t.integer  "speech_speed_rate"
+    t.float    "speech_speed_rate"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
