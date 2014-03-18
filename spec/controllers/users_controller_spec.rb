@@ -10,7 +10,7 @@ describe UsersController do
 
   describe "GET dashboard when signed in" do
     before(:each) do
-      @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+      @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
     end
 
     it "assigns the signed in user" do
