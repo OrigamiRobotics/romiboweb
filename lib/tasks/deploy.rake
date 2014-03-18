@@ -32,8 +32,16 @@ namespace :deploy do
     'heroku run rake db:seed -a romiboweb-danny'
   end
 
+  desc "Deploy to staging from danny's branch"
+  task :danny_staging => :environment do
+    `git push romiboweb-staging danny_branch:master`
+    `heroku run rake db:migrate -a romiboweb-staging`
+    'heroku run rake db:seed -a romiboweb-staging'
+  end
+
+
   desc "Deploy to john's server on Heroku"
-  task :danny => :environment do
+  task :john => :environment do
     `git push romiboweb-john john_branch:master`
     `heroku run rake db:migrate -a romiboweb-john`
     'heroku run rake db:seed -a romiboweb-john'
