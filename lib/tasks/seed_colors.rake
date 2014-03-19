@@ -5,10 +5,10 @@ namespace :data do
     "Red #c1392d",
     "Orange #d45300",
     "Yellow #f39b13",
-    "Green #27ae61",
     "Light Green #2dcc70",
-    "Blue #297fb8",
+    "Green #27ae61",
     "Turquoise #13c8b0",
+    "Blue #297fb8",
     "Purple #8d44af",
     "Pink #fe7a7a"
     ]

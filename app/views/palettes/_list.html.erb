@@ -1,8 +1,22 @@
+<% ids = [] %>
 <% if @palettes.present? %>
-  <div class="list-group" id="paletteGroup">
+  <div class="btn-group-vertical" data-toggle="buttons" id="paletteGroup">
     <% @palettes.each do |palette| %>
-      <%= link_to palette.title, palette, remote: true, format: :js,
-                  class: 'list-group-item' , id: "#palette_link_#{palette.id}" %>
+      <label class="btn btn-default" id="<%= "palette_link_#{palette.id}" %>">
+        <input type="radio" name="options" >
+        <%= palette.title %>
+      </label>
+
+      <script>
+        var id = '<%= "#palette_link_#{palette.id}" %>';
+        $(id).click(function(){
+          var url = '<%= "/palettes/#{palette.id}" %>';
+          $.getScript(url);
+        });
+      </script>
     <% end %>
 	</div>
+
+
 <% end %>
+

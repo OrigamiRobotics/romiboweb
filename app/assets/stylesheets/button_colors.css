@@ -1,35 +1,45 @@
 .redButtonColor {
     background-color: #c1392d;
+    border: solid 2px  #c1392d;
 }
 
 .orangeButtonColor {
     background-color: #d45300;
+    border: solid 2px  #d45300;
 }
 
 .yellowButtonColor {
     background-color: #f39b13;
+    border: solid 2px  #f39b13;
 }
 
 .greenButtonColor {
     background-color: #27ae61;
+    border: solid 2px  #27ae61;
 }
 
 .light-greenButtonColor {
     background-color: #2dcc70;
+    border: solid 2px  #2dcc70;
 }
 
 .blueButtonColor {
     background-color: #297fb8;
+    border: solid 2px  #297fb8;
 }
 
 .turquoiseButtonColor {
     background-color: #13c8b0;
+    border: solid 2px  #13c8b0;
 }
 
 .purpleButtonColor {
     background-color: #8d44af;
+    border: solid 2px  #8d44af;
 }
 
 .pinkButtonColor {
     background-color: #fe7a7a;
+    border: solid 2px  #fe7a7a;
 }
+

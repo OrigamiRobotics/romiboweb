@@ -58,15 +58,6 @@ class User < ActiveRecord::Base
     Palette.default_palettes(self) if self.confirmed_at_changed?
   end
 
-  #def my_palettes
-  #  eye_d = id
-  #  unless Palette.where{(owner_id == eye_d) & (system == true)}.present?
-  #    Palette.default_palettes(self)
-  #  end
-  #
-  #  palettes
-  #end
-
   def current_palette
     if last_viewed_palette.present? && last_viewed_palette.palette.present?
       last_viewed_palette.palette
@@ -94,8 +85,10 @@ class User < ActiveRecord::Base
   end
 
   def apply_omniauth(omniauth)
-    update_attributes(provider: omniauth.provider, uid: omniauth.uid,
-                      confirmation_token: nil, confirmed_at: Time.now)
+    data = {provider: omniauth.provider, uid: omniauth.uid,
+            confirmation_token: nil}
+    data.merge!( confirmed_at: Time.now) if confirmed_at.blank?
+    update_attributes(data)
   end
 
   def add_authentication(auth)
@@ -271,7 +264,7 @@ class User < ActiveRecord::Base
 
   def confirm_automatically
     if self.provider.present? && self.uid.present? and confirmed_at.nil?
-      confirmed_at = Time.now
+      confirmed_at = Time.now if confirmed_at.nil?
       save
     end
   end

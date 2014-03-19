@@ -5,7 +5,7 @@ describe FeedbacksController do
   render_views
 
   before(:each) do
-    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+    @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
   end
 
   let(:user) {FactoryGirl.create :user}
