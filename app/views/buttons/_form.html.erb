@@ -18,7 +18,7 @@
       <%= f.input :speech_speed_rate, label: false, input_html: { style: 'width: 60px; margin-left: -7px;'} %>
     </div>
   </div>
-  <%= f.association :button_color, collection: ButtonColor.order(:name), id: :name,
+  <%= f.association :button_color, collection: ButtonColor.all, id: :name,
                     input_html: { class: 'chosen-select' } %>
   <div class="row">
     <div class="col-md-6">
