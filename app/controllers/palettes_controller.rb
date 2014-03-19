@@ -38,6 +38,7 @@ class PalettesController < ApplicationController
 
   def update
     @palette = Palette.find params[:id]
+    @palettes = current_user.palettes
     respond_to do |format|
       if update_applicable_palette
         #@palettes = current_user.my_palettes
