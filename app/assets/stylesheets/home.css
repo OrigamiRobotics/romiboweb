@@ -1,3 +1,31 @@
+body {
+	background: url('/images/welcome_bg.jpg') no-repeat;
+	background-size: cover;
+	background-color: black;
+}
+
+.panel {
+	-webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+}
+
+.page-header {
+	border: none;
+}
+
+.welcome-container {
+	color: #ffffff;
+}
+
+.dropdown-menu {
+	min-width: 250px;
+}
+
+.help-block {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
 #welcomeBoxOnHomePage {
     height: 384px;
 }
