@@ -45,20 +45,10 @@
   <div id="flash_messages">
     <%= render 'layouts/flash' %>
   </div>
-
-  <div class="static-tag top right">
-    <%= link_to "<span class='glyphicon glyphicon-comment'></span> Feedback".html_safe,
-                new_feedback_path,
-                remote: true,
-                class: 'btn btn-default btn-xs' %>
-  </div>
   <%= render 'layouts/banner' %>
-
   <div class="container-fluid">
-
     <%= yield :content %>
     <%= debug(params) if Rails.env.development? %>
-
   </div>
   <footer>
 	  <%= render 'layouts/footer' %>
