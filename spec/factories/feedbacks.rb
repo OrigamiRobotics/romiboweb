@@ -2,22 +2,24 @@
 #
 # Table name: feedbacks
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  content    :text
-#  user_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  name       :string(255)
-#  email      :string(255)
+#  id          :integer          not null, primary key
+#  statement   :string(255)
+#  description :text
+#  user_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_name   :string(255)
+#  user_email  :string(255)
+#  page_uri    :string(255)
 #
 
 FactoryGirl.define do
 
   factory :feedback do
-    title Faker::Name.name
-    content Faker::Lorem.sentence
-    user_id 1
+    statement Faker::Name.name
+    description Faker::Lorem.sentence
+    user_name Faker::Name.name
+    user_email Faker::Internet.email
   end
 
 end

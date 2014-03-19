@@ -8,8 +8,8 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     if user_signed_in?
-      @feedback.name = current_user.full_name
-      @feedback.email = current_user.email
+      @feedback.user_name = current_user.full_name
+      @feedback.user_email = current_user.email
     end
     if @feedback.save
       FeedbackMailer.email(@feedback, feedback_params[:save_screenshot] == '1').deliver
@@ -26,6 +26,9 @@ class FeedbacksController < ApplicationController
 
   private
   def feedback_params
-    params.require(:feedback).permit(:name, :email, :title, :content, :save_screenshot, :page_uri)
+    params.require(:feedback).permit(
+        :user_name, :user_email, :statement,
+        :description, :save_screenshot, :page_uri
+    )
   end
 end

@@ -10,7 +10,7 @@ class FeedbackMailer < ActionMailer::Base
           File.read("#{Rails.root}/#{screenshot_file}")
     end
     mail(
-        subject: "[RomiboWeb Feedback]: #{feedback.title}",
+        subject: "[RomiboWeb Feedback]: #{feedback.statement}",
         to: 'romiborobotproject@gmail.com'
     )
   end

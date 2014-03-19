@@ -1,5 +1,10 @@
 class ChangeColumnForButtons < ActiveRecord::Migration
   def change
-    change_column :buttons, :speech_speed_rate, :integer
+    reversible do |dir|
+      change_table :buttons do |t|
+        dir.up {t.change :speech_speed_rate, :float}
+        dir.down {t.change :speech_speed_rate, :integer}
+      end
+    end
   end
 end

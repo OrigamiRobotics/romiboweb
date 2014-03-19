@@ -3,11 +3,11 @@ $('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
 "</div>");
 $('#speechSpeedRateSlider').css('margin-left', '10px');
 var speedRateField = $('#button_speech_speed_rate');
-var speedRate = <%= @button.speech_speed_rate.to_i %>;
+var speedRate = <%= @button.speech_speed_rate.to_f %>;
 $('.noUiSlider').noUiSlider({
-  range: [1, 10]
-  ,start: [speedRate, 10]
-  ,step: 1
+  range: [0, 1]
+  ,start: [speedRate, 0]
+  ,step: 0.1
   ,handles: 1
   ,serialization: {
     to: [speedRateField]

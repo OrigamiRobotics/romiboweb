@@ -39,7 +39,6 @@ namespace :deploy do
     'heroku run rake db:seed -a romiboweb-staging'
   end
 
-
   desc "Deploy to john's server on Heroku"
   task :john => :environment do
     `git push romiboweb-john john_branch:master`
