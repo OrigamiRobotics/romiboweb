@@ -31,6 +31,7 @@ gem 'grabzit'
 gem 'select2-rails'
 
 
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -48,6 +49,8 @@ gem 'rspec-rails', group: [:test, :development]
 group :development do
   gem 'annotate'
   gem 'meta_request', require: false # for RailsPanel https://github.com/dejan/rails_panel
+  gem 'capistrano'
+  gem 'capistrano-ext'
 end
 
 group :test do
