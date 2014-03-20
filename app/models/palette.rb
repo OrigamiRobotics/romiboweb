@@ -40,7 +40,7 @@ class Palette < ActiveRecord::Base
         button = palette.buttons.build(title: b_title, speech_phrase: b_title,
                               speech_speed_rate: 2,
                               user_id: user.id,
-                              button_color_id:   ButtonColor.find_by_name('Orange').id,
+                              button_color_id:   ButtonColor.find_by_name('Turquoise').id,
                               size:              'Medium'
         )
         button.save
@@ -57,7 +57,7 @@ class Palette < ActiveRecord::Base
       button = palette.buttons.build(title: b.title, speech_phrase: b.speech,
                                      speech_speed_rate: b.speed_rate,
                                      user_id:           user.id,
-                                     button_color_id:   ButtonColor.find_by_name('Orange').id,
+                                     button_color_id:   ButtonColor.find_by_name('Turquoise').id,
                                      size:              'Medium'
       )
       button.save
@@ -71,7 +71,7 @@ class Palette < ActiveRecord::Base
     if last_viewed_button.present?
       Button.find(last_viewed_button)
     else
-      return (buttons.present?) ? buttons.first : nil
+      (buttons.present?) ? buttons.first : nil
     end
   end
 end

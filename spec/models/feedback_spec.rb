@@ -2,42 +2,30 @@
 #
 # Table name: feedbacks
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  content    :text
-#  user_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  name       :string(255)
-#  email      :string(255)
+#  id          :integer          not null, primary key
+#  statement   :string(255)
+#  description :text
+#  user_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_name   :string(255)
+#  user_email  :string(255)
+#  page_uri    :string(255)
 #
 
 require 'spec_helper'
 
-describe Feedback do
-  let(:feedback) { FactoryGirl.create(:feedback)}
-
-  subject { feedback}
+describe Feedback, feedback: true do
 
   context "should have the following attributes" do
-    [:title, :content, :user, :made_by].each do |attr|
+    [:statement, :description, :user_name, :user_email, :page_uri].each do |attr|
       it { should respond_to attr }
     end
   end
 
-  context "should not be valid without a title" do
-    before { feedback.title = "" }
-    it { should_not be_valid }
-  end
-
-  context "should not be valid without content" do
-    before { feedback.content = "" }
-    it { should_not be_valid }
-  end
-
-  context "should not be valid without user" do
-    before { feedback.user_id = nil }
-    it { should_not be_valid }
-  end
+  it {should validate_presence_of :user_name}
+  it {should validate_presence_of :user_email}
+  it {should validate_presence_of :statement}
+  it {should validate_presence_of :page_uri}
 
 end

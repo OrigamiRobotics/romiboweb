@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      feedback: 'Feedback'
+    attributes:
+      feedback:
+        user_name: 'Full Name'
+        user_email: 'Email'
+        statement: 'Feedback Statement'
+        description: 'Feedback Description'

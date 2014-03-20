@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Api::V1::PalettesController, api: true do
   before(:each) do
-    @button_color ||= ButtonColor.find_or_create_by(name: "Orange", value: "#d45300")
+    @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
   end
   let!(:user) {FactoryGirl.create :user}
   let!(:palettes) {FactoryGirl.create_list :palette, 5, owner_id: user.id}

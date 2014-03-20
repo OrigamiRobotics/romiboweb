@@ -124,8 +124,8 @@ class ButtonsController < ApplicationController
     {
       title:             'Untitled Button',
       speech_phrase:     'Hello',
-      speech_speed_rate: 2,
-      button_color_id:   ButtonColor.find_by_name('Orange').id,
+      speech_speed_rate: 0.2,
+      button_color_id:   ButtonColor.find_by_name('Turquoise').id,
       size:              'Medium',
       user_id:           current_user.id
     }

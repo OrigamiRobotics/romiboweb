@@ -1,3 +1,5 @@
-$("#paletteList").html("<%= escape_javascript(render 'palettes/list', palettes: @palettes) %>");
 $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");
-<%= render 'buttons/set_buttons_color' %>
+$("#paletteList").html("<%= escape_javascript(render 'palettes/list', palettes: @palettes) %>");
+$("#palette_link_" + '<%= current_user.current_palette.id %>').click();
+
+

@@ -26,8 +26,8 @@
 
 div.smallButtonWidget {
     position: relative;
-    height: 50px;
-    width: 50px;
+    height: 46px;
+    width: 46px;
     border-radius: 5px;
     display: inline-block;
     margin-left: 2px;
@@ -58,8 +58,8 @@ div.smallButtonWidget:hover {
 /* Medium */
 div.mediumButtonWidget {
     position: relative;
-    height: 50px;
-    width: 100px;
+    height: 46px;
+    width: 96px;
     border-radius: 5px;
     display: inline-block;
     margin-left: 2px;
@@ -90,8 +90,8 @@ div.mediumButtonWidget:hover {
 /*  Large */
 div.largeButtonWidget {
     position: relative;
-    height: 50px;
-    width: 150px;
+    height: 46px;
+    width: 146px;
     border-radius: 5px;
     display: inline-block;
     margin-left: 2px;
@@ -141,7 +141,7 @@ div.largeButtonWidget:hover {
 }
 
 .singleButtonContainerWithoutSelection {
-    height: 50px;
+    height: 46px;
     float: left;
     margin-bottom: 10px;
 }

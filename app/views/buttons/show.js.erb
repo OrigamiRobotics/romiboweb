@@ -1,5 +1,6 @@
 <% if params[:mode].present? && params[:mode] == 'multiple' %>
  <%= render 'buttons/edit_multiple_buttons_show' %>
 <% else %>
+$("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");
 <%= render 'buttons/update_and_show' %>
 <% end %>
