@@ -1,5 +1,12 @@
 namespace :deploy do
   desc "Deploy to integration server on Heroku"
+  task :production => :environment  do
+    `git push romiboweb master`
+    `heroku run rake db:migrate -a romiboweb --remote production`
+    `heroku run rake db:seed -a romiboweb --remote production`
+  end
+
+  desc "Deploy to integration server on Heroku"
   task :integration => :environment  do
     `git push romiboweb-integration master`
     `heroku run rake db:migrate -a romiboweb-integration --remote integration`
