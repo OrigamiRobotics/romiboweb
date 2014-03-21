@@ -1,0 +1,22 @@
+$('#paletteToolbar').html(
+		"<%= escape_javascript(render 'palettes/toolbar/grid_toolbar', palette: @palette) %>"
+)
+$('#paletteButtons').html(
+		"<%= escape_javascript(render 'buttons/list', buttons: @palette.buttons) %>"
+)
+$('#resetGridLink').tooltip();
+$('#saveGridLink').tooltip();
+$('#cancelGridLink').tooltip();
+$(".gridster ul").gridster({
+	widget_margins: [5, 5],
+	widget_base_dimensions: [50, 50],
+	serialize_params: function($w, wgd) {
+		return {
+			id: $w.data('id'),
+			col: wgd.col,
+			row: wgd.row,
+			size_x: wgd.size_x,
+			size_y: wgd.size_y
+		}
+	}
+});

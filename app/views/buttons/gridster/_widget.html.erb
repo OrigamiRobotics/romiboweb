@@ -1,0 +1,14 @@
+<li class="btn btn-default"
+    data-row="<%= button.row||1 %>" data-col="<%= button.col||1 %>"
+    data-id="<%= button.id %>"
+    <% if button.size.downcase == 'small' %>
+    data-sizex="1" data-sizey="1"
+    <% elsif button.size.downcase == 'medium' %>
+    data-sizex="2" data-sizey="1"
+    <% else %>
+    data-sizex="4" data-sizey="1"
+    <% end %>
+    >
+  <%= button.title %>
+
+</li>

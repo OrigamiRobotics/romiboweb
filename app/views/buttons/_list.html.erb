@@ -1,0 +1,9 @@
+<% if buttons.any? %>
+  <div class="gridster">
+	  <ul>
+		  <% buttons.each do |button| %>
+		    <%= render 'buttons/gridster/widget', button: button %>
+		  <% end %>
+	  </ul>
+  </div>
+<% end %>

@@ -1,38 +1,21 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
-  <h3>
-    <%= palette.title %> &nbsp; &nbsp;
-    <%= render 'palettes/center_content/share_palette_link', palette: palette %>
-    &nbsp; |
-    &nbsp;
-    <%= render 'palettes/center_content/edit_palette_link', palette: palette %>
-    &nbsp; |
-    &nbsp;
-    <%= render 'palettes/center_content/import_palette_link', palette: palette %>
-    &nbsp; |
-    &nbsp;
-    <%= render 'palettes/center_content/delete_palette_link', palette: palette %>
-    &nbsp; |
-    &nbsp;
-    <%= render 'palettes/center_content/add_button_to_palette', palette: palette %>
-
-    <% if params[:fake].present? %>
-      &nbsp; |
-      &nbsp;
-      <%= render 'palettes/center_content/edit_multiple_palette_buttons_link', palette: palette %>
-    <% end %>
-  </h3>
-  <hr>
-  <% if params[:mode].present? and params[:mode] == 'multiple' %>
-    <%= render 'palettes/center_content/edit_multiple_buttons_menu' %>
-    <%= render 'palettes/center_content/existing_buttons_with_selection', palette: palette %>
-  <% else %>
-    <%= render 'palettes/center_content/existing_buttons', palette: palette %>
-  <% end %>
+	<div id="paletteToolbar">
+	  <%= render 'palettes/toolbar/toolbar', palette: palette %>
+	</div>
+	<div id="paletteButtons">
+	  <% if params[:mode].present? and params[:mode] == 'multiple' %>
+	    <%= render 'palettes/center_content/edit_multiple_buttons_menu' %>
+	    <%= render 'palettes/center_content/existing_buttons_with_selection', palette: palette %>
+	  <% else %>
+	    <%= render 'palettes/center_content/existing_buttons', palette: palette %>
+	  <% end %>
+	</div>
   <%= render 'palettes/import_palette' %>
 
   <script>
     $('#addNewButton').tooltip();
     $('#editPaletteIcon').tooltip();
+    $('#arrangeButtonsIcon').tooltip();
     $('#importPaletteLink').tooltip();
     $('#deletePalette').tooltip();
     $('#sharePaletteLink').tooltip();

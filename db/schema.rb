@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317154014) do
+ActiveRecord::Schema.define(version: 20140321023803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authentications", force: true do |t|
-    t.string "provider"
-    t.string "uid"
-    t.integer "user_id"
-    t.string "name"
-    t.string "nickname"
-    t.text "token"
-    t.string "email"
-    t.string "image_url"
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "nickname"
+    t.text     "token"
+    t.string   "email"
+    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20140317154014) do
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "button_colors", force: true do |t|
-    t.string "name"
-    t.string "value"
+    t.string   "name"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20140317154014) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "button_color_id"
-    t.string "size"
+    t.integer  "button_color_id"
+    t.string   "size"
+    t.integer  "row"
+    t.integer  "col"
   end
 
   add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree
@@ -69,8 +71,8 @@ ActiveRecord::Schema.define(version: 20140317154014) do
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "last_viewed_palettes", force: true do |t|
-    t.integer "user_id"
-    t.integer "palette_id"
+    t.integer  "user_id"
+    t.integer  "palette_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,8 +81,8 @@ ActiveRecord::Schema.define(version: 20140317154014) do
   add_index "last_viewed_palettes", ["user_id"], name: "index_last_viewed_palettes_on_user_id", using: :btree
 
   create_table "palette_buttons", force: true do |t|
-    t.integer "palette_id"
-    t.integer "button_id"
+    t.integer  "palette_id"
+    t.integer  "button_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,50 +91,50 @@ ActiveRecord::Schema.define(version: 20140317154014) do
   add_index "palette_buttons", ["palette_id"], name: "index_palette_buttons_on_palette_id", using: :btree
 
   create_table "palette_viewers", force: true do |t|
-    t.integer "user_id"
-    t.integer "palette_id"
+    t.integer  "user_id"
+    t.integer  "palette_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "palettes", force: true do |t|
-    t.string "title"
-    t.string "description"
-    t.string "color"
+    t.string   "title"
+    t.string   "description"
+    t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "owner_id"
-    t.boolean "system", default: false
-    t.integer "last_viewed_button"
+    t.integer  "owner_id"
+    t.boolean  "system",             default: false
+    t.integer  "last_viewed_button"
   end
 
   create_table "users", force: true do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "auth_token"
-    t.string "provider"
-    t.string "uid"
-    t.string "twitter_nickname"
-    t.string "encryption"
-    t.string "encryption_key"
-    t.string "encryption_iv"
+    t.string   "unconfirmed_email"
+    t.string   "auth_token"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "twitter_nickname"
+    t.string   "encryption"
+    t.string   "encryption_key"
+    t.string   "encryption_iv"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

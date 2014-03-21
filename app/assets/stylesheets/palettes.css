@@ -67,9 +67,9 @@
 }
 
 #paletteButtonsInCenterColumn {
-    margin-top: 0;
-    overflow-y: auto;
-    height: 500px;
+    /*margin-top: 0;*/
+    /*overflow-y: auto;*/
+    /*height: 500px;*/
 }
 
 .paletteDetailsContainer h3 {
