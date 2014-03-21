@@ -4,7 +4,7 @@ en:
     header:
       welcome: "Welcome to RomiboWeb"
       signin: "Already a member? Sign In"
-      signup: "New to RomiboWeb? Sign Up"
+      signup: "New user? Sign up"
       oauth: "Are you social? Sign in using one of:"
       unconfirmed: "RomiboWeb Registration Confirmation"
     placeholder:
