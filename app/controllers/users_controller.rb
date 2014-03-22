@@ -45,11 +45,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def confirmed
-    @title = "New User Sign in"
-    puts "###### " + params.to_yaml
-  end
-
   private
 
   def handle_params

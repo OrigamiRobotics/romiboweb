@@ -40,7 +40,6 @@ Romiboweb::Application.routes.draw do
 		post 'signin'           => 'devise/sessions#create', :as => :user_session
 		delete 'signout'        => 'devise/sessions#destroy', :as => :destroy_user_session
     get '/unconfirmed_user' => 'users#unconfirmed', as: :unconfirmed
-    get 'confirmed_user'    => 'users#confirmed', as: :confirmed
   end
 
   ######### API routes ##########

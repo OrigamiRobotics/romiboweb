@@ -53,6 +53,14 @@ class User < ActiveRecord::Base
             uniqueness:  { case_sensitive: false }
 
   after_save :create_default_palettes
+  after_create :send_email_for_twitter
+
+
+  def send_email_for_twitter
+    if provider == 'twitter' && uid.present? && email.present?
+      AfterConfirmationMailer.welcome_mailer(self).deliver
+    end
+  end
 
   def confirm!
     old_confirmed_at = confirmed_at
