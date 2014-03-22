@@ -50,7 +50,7 @@ div.smallButtonWidget:hover {
 .smallButtonWidget h1 {
     font-size: 12px;
     text-align: center;
-    vertical-align: middle;
+    margin-top: 13px;
     color: white;
 }
 
@@ -82,8 +82,8 @@ div.mediumButtonWidget:hover {
 .mediumButtonWidget h1 {
     font-size: 12px;
     text-align: center;
-    vertical-align: middle;
     color: white;
+    margin-top: 13px;
 }
 
 
@@ -114,7 +114,7 @@ div.largeButtonWidget:hover {
 .largeButtonWidget h1 {
     font-size: 12px;
     text-align: center;
-    vertical-align: middle;
+    margin-top: 13px;
     color: white;
 }
 
