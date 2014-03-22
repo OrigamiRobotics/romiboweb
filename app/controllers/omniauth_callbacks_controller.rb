@@ -11,7 +11,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in_new_user user, omniauth
       else
         if user.confirmed_at != nil
-          flash[:notice] = "Authentication with " +  omniauth['provider'].capitalize + " unsuccessful!"
+          flash[:notice] = "Authentication with " +  omniauth['provider'].capitalize + " successful!"
           sign_in_and_redirect user
         else
           handle_incomplete user, omniauth
@@ -81,7 +81,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     flash[:error] = 'Oops!, It looks like you are missing some vital information'
 
     if omniauth['provider'] == 'twitter'
-      redirect_to root_path
+      flash[:error] = 'Your authentication with Twitter was successful, but we need your email address to complete the process.'
+      redirect_to new_user_registration_url
     end
   end
 end

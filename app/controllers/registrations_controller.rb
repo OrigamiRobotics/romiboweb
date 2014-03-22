@@ -3,6 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     resource.encrypt_id
 
+    handle_twitter_auth resource
+
     if resource.save
       yield resource if block_given?
       if resource.active_for_authentication?
@@ -27,5 +29,14 @@ class RegistrationsController < Devise::RegistrationsController
     else
       unconfirmed_path(index: resource)
     end
+  end
+
+  private
+
+  def handle_twitter_auth(resource)
+    if resource.provider == 'twitter' && resource.email.present? && resource.uid.present?
+      resource.confirmed_at = Time.now
+    end
+
   end
 end

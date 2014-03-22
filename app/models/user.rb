@@ -143,10 +143,10 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       name = auth.info.name
       name = name.split(' ')
-      user.first_name = name.first
-      user.last_name  = name.last
-      user.provider  = auth.provider
-      user.uid       = auth.uid
+      user.first_name       = name.first
+      user.last_name        = name.last
+      user.provider         = auth.provider
+      user.uid              = auth.uid
       user.twitter_nickname = auth.info.nickname
     end
   end

@@ -1,3 +1,51 @@
-<h2>Sign up</h2>
+<% content_for :content  do %>
+  <div class="container-fluid" id="homeWrapper">
+    <div class="row">
+      <div class="col-md-1" >
+      </div>
 
-<%= render 'devise/registrations/form' %>
+      <div class="col-md-10">
+        <div class="panel panel-info" id="unconfirmed_panel">
+          <div class="panel-heading">
+            <h3 class="panel-title center">
+              <%= t('home.header.unconfirmed') %>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div id="confirmationBox">
+
+              <%= simple_form_for(resource, :as => resource_name,
+                           :url => registration_path(resource_name), role: 'form') do |f|
+              %>
+                <p>Your sign up with Twitter was successful.
+                  However, we need your email address to complete the process. </p>
+                <br>
+                <%= f.input :confirmed_at, as: :hidden, input_html: {value: Time.now} %>
+                <%= f.input :email,
+                                  :required => true,
+                                  class: 'form-control',
+                                  placeholder: t('home.placeholder.email') %>
+
+                <br>
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= link_to "Cancel", root_path, :class => 'btn btn-default btn-block' %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= f.submit t('home.button.signup'),
+                                 id: 'signUpSubmitButton',
+                                 :class => 'btn btn-primary btn-block'
+                    %>                  </div>
+
+                </div>
+
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"> </div>
+    </div>
+  </div>
+<% end %>
