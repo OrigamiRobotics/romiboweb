@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to RomiboWeb</title>
+</head>
+
+<body>
+<div style="width: 600px; height: 600px; border: solid 2px #666666; padding: 30px;">
+  <div style="height: 50px; margin-bottom: 50px; ">
+    <%= link_to image_tag("#{root_url}/images/logo_blue.png", alt: "RomiboWeb logo"), root_path %>
+  </div>
+  <div class="bodyTextOfEmail">
+    <p>Hi <%= @user.first_name %>,</p>
+    <br>
+    <p>Welcome to RomiboWeb!</p>
+    <br>
+    <p>Thanks for signing up. Your account was successfully confirmed. </p>
+    <p>You will now be able to generate control content for your
+      Romibo robot and share your palettes online. </p>
+    <br>
+
+    <p>We would love to hear from you about your experience with RomiboWeb. Please do not hesitate to leave a feedback.</p>
+
+    <br>
+    <p><strong>The Romibo Team</strong></p>
+  </div>
+</div>
+</body>
+</html>
