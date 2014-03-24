@@ -1,6 +1,20 @@
+# PaletteMailer extends ActionMailer for sending email notifications.
+#
+
 class PaletteMailer < ActionMailer::Base
   default from: 'web@romibo.org'
 
+  ##
+  # Send share Palette email to email that is defined. Invoked from Palettes::ShareController create().
+  #
+  # * *Args*    :
+  #   - +palette+ -> Palette to be shared.
+  #   - +email+ -> Email destination for shared Palette.
+  # * *Returns* :
+  #   - void
+  # * *Raises* :
+  #   - +ArgumentError+ -> if any value is nil or negative
+  ##
   def share(palette, email)
     write_to_file palette
     attachments["#{palette.title}.rmbo"] =

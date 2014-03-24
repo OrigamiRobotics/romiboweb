@@ -1,3 +1,12 @@
+require 'openssl'
+
+# Person with registered account in Romibo Web application. User may also be a Romibo owner.
+#
+# a. First Name: Person’s first name (also used in user greetings)
+# b. Last Name: Person’s last name
+# c. Email: (Registered email for the user, also used for sign-in)
+# d. Password: (A secret text chosen by user for authentication)
+#
 # == Schema Information
 #
 # Table name: users
@@ -24,7 +33,7 @@
 #  unconfirmed_email      :string(255)
 #  auth_token             :string(255)
 #
-require 'openssl'
+
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:

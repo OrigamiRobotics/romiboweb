@@ -1,3 +1,23 @@
+# Button represents a Palette action.
+#
+# a. Id: Auto generated unique identifier
+# b. Title: Button title
+# c. Speech Text: Text to be spoken when the button is tapped. If speech text is not available, button title is used as speech text.
+# d. Color: ButtonColor
+# e. Type: Denotes 3 predefined sizes.
+#    1. Small: 50x100 px, title only
+#    2. Medium: 100x100px, title or image
+#    3. Large: 100x200px, both title and image can be added
+# f. Position: denotes position of button relative to the palette
+# g. Speech Rate: A floating point integer between 0 and 1 to denote the speech rate.
+# h. Gesture: Driving motion or Neck Motion
+# i. Palettes: Association with palettes that contain this button.
+# j. Owner: User who created the button. Only owner can edit/delete the button.
+#
+# == Adding a Button
+#
+# Button is added through the Palette Editor on the right hand pane.
+#
 # == Schema Information
 #
 # Table name: buttons
