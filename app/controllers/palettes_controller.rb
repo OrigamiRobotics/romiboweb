@@ -107,7 +107,8 @@ class PalettesController < ApplicationController
   end
 
   def handle_selections
-    applicable_method.fetch(params[:selection].to_sym).call
+    select = params[:selection]
+    applicable_method.fetch(select.to_sym).call
   end
 
   def applicable_method
