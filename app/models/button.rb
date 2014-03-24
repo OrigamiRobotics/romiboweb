@@ -27,7 +27,6 @@ class Button < ActiveRecord::Base
   validates :size, presence: true, inclusion: { in: %w(small Small medium Medium large Large)}
 
 
-  attr_accessor :selected
   def color
     button_color.value
   end

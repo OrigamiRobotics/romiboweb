@@ -14,12 +14,9 @@
     &nbsp; |
     &nbsp;
     <%= render 'palettes/center_content/add_button_to_palette', palette: palette %>
-
-    <% if params[:fake].present? %>
-      &nbsp; |
-      &nbsp;
-      <%= render 'palettes/center_content/edit_multiple_palette_buttons_link', palette: palette %>
-    <% end %>
+    &nbsp; |
+    &nbsp;
+    <%= render 'palettes/center_content/edit_multiple_palette_buttons_link', palette: palette %>
   </h3>
   <hr>
   <% if params[:mode].present? and params[:mode] == 'multiple' %>

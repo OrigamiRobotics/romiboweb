@@ -1,7 +1,7 @@
 <% palette = (@current_palette || @palette) %>
 <% class_name = button.size.downcase %>
 <% color_class_name = "#{button.button_color.name.downcase.gsub(/ /, '-')}ButtonColor" %>
-<% color_class_name += "Highlighted" if button.id == @palette.current_button.id %>
+<% color_class_name += "Highlighted" if button.id == @palette.current_button.id && params[:mode].nil? %>
 <div class='<%= "#{class_name}ButtonWidget #{color_class_name}" %>' id='<%= "button_#{button.div_id}" %>'>
   <h1 id='<%= "#{button.div_id}" %>'>
     <% if class_name =='small' %>

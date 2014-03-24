@@ -1,6 +1,6 @@
 class PalettesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :palette_owner,     only: :destroy
+  before_filter :palette_owner, only: :destroy
   before_filter :set_gon, :set_session
 
   def new
@@ -41,7 +41,6 @@ class PalettesController < ApplicationController
     @palettes = current_user.palettes
     respond_to do |format|
       if update_applicable_palette
-        #@palettes = current_user.my_palettes
         format.html {redirect_to palettes_path}
         format.js
       else
@@ -63,7 +62,6 @@ class PalettesController < ApplicationController
   end
 
   def show
-    puts params.to_yaml
     @palette = Palette.find params[:id] if params[:id].present?
     @button  = @palette.current_button
     current_user.set_last_viewed_palette @palette
@@ -102,12 +100,60 @@ class PalettesController < ApplicationController
   def update_applicable_palette
     if params[:mode].present? &&
        params[:mode] == "multiple"
-      puts params.to_yaml
-      raise
+      handle_selections
     else
       @palette.update_attributes(palette_params)
     end
   end
+
+  def handle_selections
+    applicable_method.fetch(params[:selection].to_sym).call
+  end
+
+  def applicable_method
+    {:all      => method(:select_all_buttons),
+    :none      => method(:deselect_all_buttons),
+    :updating  => method(:handle_multiple_edits),
+    :singular  => method(:handle_singular_selections)
+    }
+  end
+
+  def handle_multiple_edits
+    @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f,
+                                         button_color_id: params[:palette][:button_color].to_i,
+                                         size: params[:palette][:size]
+    )
+  end
+
+  def handle_singular_selections
+    button = Button.find(params[:button_id])
+    if params[:checked] == 'true'
+      button.update_attributes(selected: true)
+    else
+      button.update_attributes(selected: false)
+    end
+    update_all_buttons_selected
+  end
+
+  def update_all_buttons_selected
+    (@palette.just_selected_all_buttons?) ?
+        @palette.update_attributes(all_buttons_selected: true) :
+        @palette.update_attributes(all_buttons_selected: false)
+  end
+
+  def select_all_buttons
+    set_all_buttons_selected true
+  end
+
+  def deselect_all_buttons
+    set_all_buttons_selected false
+  end
+
+  def set_all_buttons_selected(make_selected)
+    @palette.update_attributes(all_buttons_selected: make_selected)
+    @palette.buttons.update_all({selected: make_selected})
+  end
+
   def set_params
     @title = 'Palette Editor'
     @palette = Palette.new
