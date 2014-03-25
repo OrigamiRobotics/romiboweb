@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RomiboWeb Registration Confirmation</title>
+</head>
+
+<body>
+<div style="width: 600px; height: 600px; border: solid 2px #666666; padding: 30px;">
+  <div style="height: 50px; margin-bottom: 50px; ">
+    <%= link_to image_tag("#{root_url}/images/logo_blue.png", alt: "RomiboWeb logo"), root_path %>
+  </div>
+  <div class="bodyTextOfEmail">
+    <p>Hi <%= @resource.first_name %>,</p>
+    <br>
+    <p>Welcome to RomiboWeb!</p>
+    <br>
+    <p>Your account has been successfully created. </p>
+    <p>You will now be able to generate control content for your
+      Romibo robot and share your palettes online. </p>
+    <br >
+
+    <p>Before you can begin, though, we need you to confirm this email address.</p>
+    <p>You can confirm your account email through the link below.</p>
+    <br>
+    <% encrypted_user_id = @resource.encryption %>
+    <p><%= link_to 'Click this link to confirm your email and sign in now!',
+                   confirmation_url(@resource, :confirmation_token => @token,
+                                    :data => encrypted_user_id) %></p>
+
+    <br>
+    <p><strong>The Romibo Team</strong></p>
+  </div>
+</div>
+</body>
+</html>

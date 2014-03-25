@@ -1,10 +1,33 @@
 <div class="singleButtonContainerWithSelection">
   <%= render 'buttons/button_common_content', button: button %>
   <div class="buttonSelection">
-    <% if button.selected.nil? || button.selected == true %>
-      <%= check_box_tag "selected_#{button.id}", true, true %>
+    <% div_id = "selected_#{button.id}" %>
+    <% if button.selected? %>
+      <%= check_box_tag div_id, 'yes', true %>
     <% else %>
-      <%= check_box_tag "selected_#{button.id}", false, false %>
+      <%= check_box_tag div_id, 'yes', false %>
     <% end %>
   </div>
 </div>
+<script>
+
+  $('<%= "##{div_id}" %>' ).click(function() {
+    var url, baseUrl;
+    baseUrl = '<%= url_for( controller: :palettes, action: :update,
+                id: @palette.id,
+                mode: "multiple", selection: "singular", :escape => false ) %>';
+
+    if($(this).is(':checked')){
+      url = baseUrl + "&checked=true&button_id=" + '<%= button.id %>';
+    }
+    else {
+      url = baseUrl + "&checked=false&button_id=" + '<%= button.id %>';
+    }
+
+    $.ajax({
+      type: "PUT",
+      url: url,
+      dataType: 'script'
+    });
+  });
+</script>

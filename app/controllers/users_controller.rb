@@ -45,11 +45,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def confirmed
-    @title = "New User Sign in"
-    @user = User.find(params[:id])
-  end
   private
+
   def handle_params
     @user = User.find(params[:index])
   end
@@ -57,4 +54,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
+
 end

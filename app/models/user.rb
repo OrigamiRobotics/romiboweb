@@ -37,11 +37,11 @@ class User < ActiveRecord::Base
   has_many :buttons
   has_many :palettes, -> { order 'created_at' }, foreign_key: :owner_id, dependent: :destroy
   has_many :authentications, inverse_of: :user
+  has_many :palette_viewers
+  has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
 
   has_one :last_viewed_palette
 
-  has_many :palette_viewers
-  has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -53,6 +53,23 @@ class User < ActiveRecord::Base
             uniqueness:  { case_sensitive: false }
 
   after_save :create_default_palettes
+  after_create :send_email_for_twitter
+
+
+  def send_email_for_twitter
+    if provider == 'twitter' && uid.present? && email.present?
+      AfterConfirmationMailer.welcome_mailer(self).deliver
+    end
+  end
+
+  def confirm!
+    old_confirmed_at = confirmed_at
+    super
+
+    if provider.nil? && uid.nil? && confirmed_at.present? && old_confirmed_at != confirmed_at
+      AfterConfirmationMailer.welcome_mailer(self).deliver
+    end
+  end
 
   def create_default_palettes
     Palette.default_palettes(self) if self.confirmed_at_changed?
@@ -134,10 +151,10 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       name = auth.info.name
       name = name.split(' ')
-      user.first_name = name.first
-      user.last_name  = name.last
-      user.provider  = auth.provider
-      user.uid       = auth.uid
+      user.first_name       = name.first
+      user.last_name        = name.last
+      user.provider         = auth.provider
+      user.uid              = auth.uid
       user.twitter_nickname = auth.info.nickname
     end
   end

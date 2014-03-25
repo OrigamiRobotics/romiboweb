@@ -1,0 +1,113 @@
+<%= simple_form_for(@palette, remote: true, :html => { class: 'inline form-horizontal', id: 'multiple_button_form'}) do |f|  %>
+
+  <%= hidden_field_tag 'mode', 'multiple' %>
+  <%= hidden_field_tag 'selection', 'updating' %>
+
+  <%= f.input :title %>
+  <%= f.input :speech_phrase, input_html: {style: 'height:50px;'} %>
+  <%= f.label 'Speech speed rate:' %>
+  <% @palette.button_color = 6 %>
+  <% @palette.size = "Medium" %>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="noUiSlider" id="speechSpeedRateSlider"></div>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :speech_speed_rate, label: false, input_html: { style: 'width: 60px; margin-left: -7px;'} %>
+    </div>
+  </div>
+  <%= f.input :button_color, collection: ButtonColor.order(:name), id: :name,
+                    input_html: { class: 'chosen-select' } %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
+
+    </div>
+    <div class="col-md-6"> </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+
+    <div class="col-md-4">
+      <%= f.submit 'Apply', class: 'btn btn-info btn-block', id: 'applyButton' %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to 'Cancel', palette_path(@palette),
+                  remote: true,
+                  class: 'btn btn-default btn-block',
+                  id: 'cancelMultipleEditButton'
+      %>
+
+    </div>
+  </div>
+
+  <script>
+
+    var speedRateField = $('#palette_speech_speed_rate');
+    var speedRate = 0.2;
+    var button_size = $('#palette_size');
+
+    function getColor(name){
+      var colors = {'red':'#c1392d', 'orange':'#d45300', 'yellow':'#f39b13',
+        'green':'#27ae61', 'lightgreen':'#2dcc70', 'blue':'#297fb8',
+        'turquoise':'#13c8b0', 'purple':'#8d44af', 'pink':'#fe7a7a'};
+      return colors[name];
+    }
+
+    function format(state) {
+      if (!state.id) return state.text; // optgroup
+      var val = "<div class='buttonColorPreviewBox' style='background-color: " +
+              getColor(state.text.toLowerCase().replace(/ /, '')) + ";'></div>" + "    " + state.text;
+      return val;
+    }
+
+    $(function() {
+      $('select#palette_button_color').select2({
+        width: '305px',
+        height: '50px',
+        formatResult: format,
+        formatSelection: format,
+        allowClear: false
+      }).change(function(){
+        $('#multiple_button_form').submit();
+      });
+    });
+
+
+    $('#palette_title').val('');
+    $('#palette_title').prop('disabled', true);
+    $('#palette_speech_phrase').prop('disabled', true);
+    $('.noUiSlider').noUiSlider({
+      range: [0, 1]
+      ,start: [speedRate, 0]
+      ,step: 0.1
+      ,handles: 1
+      ,serialization: {
+        to: [speedRateField]
+      }
+    }).change(function(){
+      $('#multiple_button_form').submit();
+    });
+
+    speedRateField.mouseover(function() {
+      $(this).prop('disabled', true);
+    });
+
+    speedRateField.mouseout(function() {
+      $(this).prop('disabled', false);
+    });
+
+    button_size.on('change', function() {
+      $('#multiple_button_form').submit();
+
+//      var val = $(this).val();
+//      var original_value = $('#size_value').val();
+//      if (val !== original_value) {
+//        $('#multiple_button_form').submit();
+//      }
+    });
+
+  </script>
+<% end %>

@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140321023803) do
   add_index "button_colors", ["name", "value"], name: "index_button_colors_on_name_and_value", using: :btree
 
   create_table "buttons", force: true do |t|
-    t.string   "title",             null: false
+    t.string   "title",                             null: false
     t.string   "speech_phrase"
     t.float    "speech_speed_rate"
     t.integer  "user_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140321023803) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
+    t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
   end
@@ -104,8 +105,9 @@ ActiveRecord::Schema.define(version: 20140321023803) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
-    t.boolean  "system",             default: false
+    t.boolean  "system",               default: false
     t.integer  "last_viewed_button"
+    t.boolean  "all_buttons_selected", default: false
   end
 
   create_table "users", force: true do |t|

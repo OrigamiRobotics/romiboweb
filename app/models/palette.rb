@@ -26,7 +26,7 @@ class Palette < ActiveRecord::Base
 
   validates_presence_of :title
 
-  attr_accessor :file
+  attr_accessor :file, :speech_speed_rate, :button_color, :size, :speech_phrase, :button_color
 
   extend DefaultPalette
 
@@ -73,5 +73,21 @@ class Palette < ActiveRecord::Base
     else
       (buttons.present?) ? buttons.first : nil
     end
+  end
+
+  def number_of_selected_buttons
+    selected_buttons.size
+  end
+
+  # when a single button is selected
+  # we use this to check whether or not
+  # all buttons have been selected after this one
+  # button was selected
+  def just_selected_all_buttons?
+    number_of_selected_buttons == buttons.size
+  end
+
+  def selected_buttons
+    buttons.where{ selected == true}
   end
 end
