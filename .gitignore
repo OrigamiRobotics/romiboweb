@@ -10,6 +10,9 @@
 #ignore Rubymine stuff
 .idea/
 
+# Mac related files
+.DS_Store
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

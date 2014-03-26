@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321023803) do
+ActiveRecord::Schema.define(version: 20140323180537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 20140321023803) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
-    t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
+    t.boolean  "selected",          default: false
   end
 
   add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree

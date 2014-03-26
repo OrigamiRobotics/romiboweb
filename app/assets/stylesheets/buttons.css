@@ -1,3 +1,14 @@
+.btn-palette-button {
+    height: 100%;
+    color: #ffffff;
+    font-size: 12px;
+    white-space: inherit;
+}
+
+.btn-palette-button:hover {
+    color: #ffffff;
+}
+
 #buttonForm {
     width: 99%;
     margin-left: auto;
