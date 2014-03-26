@@ -1,3 +1,5 @@
+# PaletteButton is a mapping table for Palette and Button.
+#
 # == Schema Information
 #
 # Table name: palette_buttons

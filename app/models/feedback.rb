@@ -1,3 +1,9 @@
+# Feedback represents information about reaction to RomiboWeb by User.  This will be used as a basis for improvement for RomiboWeb.
+#
+# a. Id: Auto generated unique identifier
+# b. Statement: Single declaration or remark.
+# c. Description: Descriptive statment or account using RomiboWeb.
+#
 # == Schema Information
 #
 # Table name: feedbacks
