@@ -6,9 +6,6 @@
   <%= render 'palettes/toolbar/edit_palette_link', palette: palette %>
   &nbsp; |
   &nbsp;
-  <%= render 'palettes/toolbar/arrange_buttons_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
   <%= render 'palettes/toolbar/import_palette_link', palette: palette %>
   &nbsp; |
   &nbsp;
@@ -17,6 +14,9 @@
   &nbsp;
   <%= render 'palettes/toolbar/add_button_to_palette', palette: palette %>
 
+  &nbsp; |
+  &nbsp;
+  <%= render 'palettes/center_content/edit_multiple_palette_buttons_link', palette: palette %>
   <% if params[:fake].present? %>
     &nbsp; |
     &nbsp;

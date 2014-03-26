@@ -1,17 +1,21 @@
+<% content_for :head  do %>
+  <%= stylesheet_link_tag 'dashboard', media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
 <% content_for :content  do %>
-  <div class="row" id="dashboardContentWrapper">
-    <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardPalettesLink">
-      <h1>My Palettes</h1>
-      <%= link_to '', palettes_path %>
-    </div>
-    <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardLessonsLink">
-      <h1>My Lessons</h1>
-      <%= link_to '', root_path %>
-    </div>
-    <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardSocialLink">
-      <h1>Sharing</h1>
-      <%= link_to '', root_path %>
+  <div class="container">
+    <div class="row" id="dashboardContentWrapper">
+      <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardPalettesLink">
+        <h1>My Palettes</h1>
+        <%= link_to '', palettes_path %>
+      </div>
+      <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardLessonsLink">
+        <h1>My Lessons</h1>
+        <%= link_to '', root_path %>
+      </div>
+      <div class="col-xs-4 col-md-4 col-lg-4 dashboardLinkBox" id="dashboardSocialLink">
+        <h1>Sharing</h1>
+        <%= link_to '', root_path %>
+      </div>
     </div>
   </div>
-
 <% end %>

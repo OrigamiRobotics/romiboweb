@@ -1,4 +1,5 @@
-<li class="btn btn-default"
+<% palette = (@current_palette || @palette) %>
+<li style="list-style: none"
     data-row="<%= button.row||1 %>" data-col="<%= button.col||1 %>"
     data-id="<%= button.id %>"
     <% if button.size.downcase == 'small' %>
@@ -9,6 +10,10 @@
     data-sizex="4" data-sizey="1"
     <% end %>
     >
-  <%= button.title %>
-
+  <%= link_to button.title, button_path(button, palette_id: palette.id),
+              method: :get,
+              class: 'btn btn-default btn-block btn-palette-button',
+              remote: true,
+              style: "background-color: #{button.button_color.value};"
+  %>
 </li>
