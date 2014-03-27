@@ -25,3 +25,12 @@
 	right: 150px;
 }
 
+.dropdown-menu {
+    min-width: 250px;
+}
+
+.help-block {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
