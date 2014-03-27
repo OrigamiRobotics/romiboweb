@@ -23,6 +23,10 @@ Romiboweb::Application.routes.draw do
     collection do
       post 'import'
     end
+    resources :buttons, shallow: true do
+      get 'grid', on: :collection
+      post 'save_grid', on: :collection
+    end
   end
 
 	get '/dashboard'  => 'users#dashboard', as: :dashboard

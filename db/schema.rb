@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20140323180537) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
+    t.integer  "row"
+    t.integer  "col"
     t.boolean  "selected",          default: false
   end
 
