@@ -1,5 +1,5 @@
 body {
-	background: url('/images/welcome_bg.jpg') no-repeat;
+	background: url("romibo/welcome_bg.jpg") no-repeat;
 	background-size: cover;
 	background-color: black;
 }
@@ -15,15 +15,6 @@ body {
 
 .welcome-container {
 	color: #ffffff;
-}
-
-.dropdown-menu {
-	min-width: 250px;
-}
-
-.help-block {
-	margin-top: 0px;
-	margin-bottom: 0px;
 }
 
 #welcomeBoxOnHomePage {
