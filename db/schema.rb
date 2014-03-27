@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323180537) do
+ActiveRecord::Schema.define(version: 20140327051602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -49,9 +55,9 @@ ActiveRecord::Schema.define(version: 20140323180537) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
+    t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
-    t.boolean  "selected",          default: false
   end
 
   add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree
