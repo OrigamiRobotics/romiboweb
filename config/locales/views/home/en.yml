@@ -15,6 +15,7 @@ en:
       confirm_password: "Confirm password (required)"
       remember_me: 'Remember Me'
       terms: 'I accept the '
+      resend_confirmation: 'Resend confirmation instructions'
     button:
       signin: "Sign in"
       signup: "Sign up"

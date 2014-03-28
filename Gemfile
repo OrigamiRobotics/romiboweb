@@ -28,6 +28,8 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google-oauth2'
 gem 'grabzit'
 gem 'select2-rails'
+gem 'carrierwave'
+gem "fog", "~> 1.3.1"
 
 
 group :doc do
