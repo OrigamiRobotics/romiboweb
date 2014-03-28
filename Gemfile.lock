@@ -112,6 +112,8 @@ GEM
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
+    grabzit (2.1.2)
+      rake
     guard (2.5.1)
       formatador (>= 0.2.4)
       listen (~> 2.6)
@@ -333,6 +335,7 @@ DEPENDENCIES
   faker
   friendly_id
   gon
+  grabzit
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails

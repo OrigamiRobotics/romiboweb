@@ -26,6 +26,7 @@ gem 'smarter_csv'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google-oauth2'
+gem 'grabzit'
 gem 'select2-rails'
 
 

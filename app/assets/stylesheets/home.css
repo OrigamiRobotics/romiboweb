@@ -37,4 +37,9 @@ body {
     margin-top: 45px;
 }
 
+.scrollable {
+    height: 350px !important;
+    overflow: scroll;
+}
+
 
