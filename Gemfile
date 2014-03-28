@@ -22,7 +22,6 @@ gem 'uglifier'
 #gem 'jquery-ui-rails'
 gem 'gon'
 gem 'rabl'
-gem 'rack-mini-profiler'
 gem 'smarter_csv'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook', '1.4.0'
@@ -50,6 +49,7 @@ gem 'rspec-rails', group: [:test, :development]
 group :development do
   gem 'annotate'
   gem 'meta_request', require: false # for RailsPanel https://github.com/dejan/rails_panel
+  gem 'rack-mini-profiler'
 end
 
 group :test do
