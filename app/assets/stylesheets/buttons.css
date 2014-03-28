@@ -3,10 +3,16 @@
     color: #ffffff;
     font-size: 12px;
     white-space: inherit;
+    padding-top: 15px;
 }
 
 .btn-palette-button:hover {
     color: #ffffff;
+    border: 2px solid #000000;
+}
+
+.btn-selected {
+    border: 2px solid #000000;
 }
 
 #buttonForm {
@@ -37,7 +43,7 @@
 
 div.smallButtonWidget {
     position: relative;
-    height: 46px;
+    height: 50px;
     width: 46px;
     border-radius: 5px;
     display: inline-block;
@@ -69,7 +75,7 @@ div.smallButtonWidget:hover {
 /* Medium */
 div.mediumButtonWidget {
     position: relative;
-    height: 46px;
+    height: 50px;
     width: 96px;
     border-radius: 5px;
     display: inline-block;
@@ -101,7 +107,7 @@ div.mediumButtonWidget:hover {
 /*  Large */
 div.largeButtonWidget {
     position: relative;
-    height: 46px;
+    height: 50px;
     width: 146px;
     border-radius: 5px;
     display: inline-block;

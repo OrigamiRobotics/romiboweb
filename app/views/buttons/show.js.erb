@@ -3,5 +3,6 @@
 <% else %>
 //$("#paletteDetail").html("<!--%= escape_javascript(render 'palettes/palette', palette: @palette) %-->");
 <%= render 'buttons/update_and_show' %>
-
 <% end %>
+$("ul li a").removeClass('btn-selected')
+$("#<%= "button-#{@button.id}"%>").addClass('btn-selected')
