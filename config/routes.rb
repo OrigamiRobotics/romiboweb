@@ -16,6 +16,7 @@ Romiboweb::Application.routes.draw do
   resources :feedbacks, only: [:new, :create, :index]
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard, :unconfirmed, :confirmed]
+  resources :attachments, only: [:new, :create]
 
 
   resources :palettes do
@@ -23,17 +24,24 @@ Romiboweb::Application.routes.draw do
     collection do
       post 'import'
     end
+    resources :buttons, shallow: true do
+      get 'grid', on: :collection
+      post 'save_grid', on: :collection
+    end
   end
 
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
   post '/locale' => 'users#locale'
 
 
-	devise_for :users, :skip => [:sessions, :passwords],
+  devise_for :users, :skip => [:sessions],
              controllers: {registrations: 'registrations',
                            omniauth_callbacks: "omniauth_callbacks",
-                           confirmations: 'confirmations'
+                           confirmations: 'confirmations',
+                           passwords: 'passwords'
              }
+
+  resources :passwords
 
 	as :user do
 		get 'signin'            => 'romiboweb_pages#home', :as => :new_user_session

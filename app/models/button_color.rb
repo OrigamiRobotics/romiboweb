@@ -1,3 +1,18 @@
+# Button Color contains name and hexadecmal value for that color. The default color for a Button is Turquoise.
+#
+# a. Id: Auto generated unique identifier
+# b. Name: Color Name
+# c. Value: Hexadecimal Value for Color
+#    1. Red '#c1392d'
+#    2. Orange '#d45300'
+#    3. Yellow '#f39b13'
+#    4. Light Green '#2dcc70'
+#    5. Green '#27ae61'
+#    6. Turquoise '#13c8b0'
+#    7. Blue '#297fb8'
+#    8. Purple '#8d44af'
+#    9. Pink '#fe7a7a'
+#
 # == Schema Information
 #
 # Table name: button_colors

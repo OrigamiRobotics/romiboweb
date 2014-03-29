@@ -1,3 +1,10 @@
 <h2><%= t('home.header.signup') %></h2>
 
 <%= render 'devise/registrations/form' %>
+
+<div class="container-fluid">
+  <span class="help-block">
+    Sign in using:
+    <%= render 'devise/sessions/social_media_log_in' %>
+  </span>
+</div>

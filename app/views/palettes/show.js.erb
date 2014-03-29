@@ -6,7 +6,6 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
 <% else %>
   <% session[:editing_multiple_buttons] = false %>
   <% if @palette.buttons.present? %>
-    var button = $('<%= "#button_#{@button.div_id} a" %>');
-    button.click();
+		$('.gridster ul li:first a').click()
   <% end %>
 <% end %>

@@ -19,6 +19,19 @@ FactoryGirl.define do
     title 'Fancy Palette'
     description Faker::Lorem.paragraph
     owner_id 1
+    factory :palette_with_buttons do
+      ignore do
+        count 5
+      end
+      after(:create) do |palette, eval|
+        FactoryGirl.create_list(:palette_button, eval.count, palette: palette)
+      end
+    end
+  end
+
+  factory :palette_button do
+    association :palette
+    association :button
   end
 
 end

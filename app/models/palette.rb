@@ -1,3 +1,13 @@
+# Palette contains buttons that may be used as part of a lesson.  Palette can also be considered as a Category.
+#
+# a. Id: Auto generated unique identifier
+# b. Title: Palette title used to represent the palette.
+# c. Color: Palette color used to represent font color of title.
+# d. Owner: User who created the palette.
+# e. Users: users with whom the palette is shared. All shared users get read-only access to the palette.
+#    In order to edit a shared palette, the system clones the existing palette and assigns it to the current user.
+# f. Buttons: Association with Button contained in the palette.
+#
 # == Schema Information
 #
 # Table name: palettes

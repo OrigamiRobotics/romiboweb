@@ -1,0 +1,29 @@
+<% palette = (@current_palette || @palette) %>
+<% button_title = case
+  when button.size.downcase == 'small'
+    truncate(button.title, length: 8 )
+  when button.size.downcase == 'medium'
+    truncate(button.title, length: 15 )
+  when button.size.downcase == 'large'
+    truncate(button.title, length: 20 )
+end
+%>
+<li style="list-style: none"
+    data-row="<%= button.row||1 %>" data-col="<%= button.col||1 %>"
+    data-id="<%= button.id %>"
+    <% if button.size.downcase == 'small' %>
+    data-sizex="1" data-sizey="1"
+    <% elsif button.size.downcase == 'medium' %>
+    data-sizex="2" data-sizey="1"
+    <% else %>
+    data-sizex="4" data-sizey="1"
+    <% end %>
+    >
+  <%= link_to button_title, button_path(button, palette_id: palette.id),
+              id: "button-#{button.id}",
+              method: :get,
+              class: 'btn btn-default btn-block btn-palette-button',
+              remote: true,
+              style: "background-color: #{button.button_color.value};"
+  %>
+</li>

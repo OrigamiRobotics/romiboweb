@@ -1,3 +1,40 @@
+<% if @palette.buttons.any? %>
 <div id="paletteButtonsInCenterColumn">
-  <%= render 'buttons/buttons', palette: @palette %>
+  <div class="gridster">
+    <ul>
+      <% @palette.buttons.each do |button| %>
+        <%= render 'buttons/gridster/widget', button: button %>
+      <% end %>
+    </ul>
+  </div>
 </div>
+<script>
+  $(".gridster ul").gridster({
+	  widget_margins: [5, 5],
+	  widget_base_dimensions: [50, 50],
+	  serialize_params: function($w, wgd) {
+		  return {
+			  id: $w.data('id'),
+			  col: wgd.col,
+			  row: wgd.row,
+			  size_x: wgd.size_x,
+			  size_y: wgd.size_y
+		  }
+	  },
+	  draggable: {
+		  stop: function(){
+			  var url = "<%= save_grid_palette_buttons_path @palette %>";
+			  var data = "button_data="+JSON.stringify(
+					  $(".gridster ul").gridster().data('gridster').serialize_changed()
+			  );
+			  $.post(
+					  url,
+					  data,
+					  null,
+					  'script'
+			  )
+		  }
+	  }
+  });
+</script>
+<% end %>

@@ -48,6 +48,21 @@ class ButtonsController < ApplicationController
 
   end
 
+  def save_grid
+    @palette = Palette.find params[:palette_id]
+    button_data = ActiveSupport::JSON.decode params[:button_data]
+    button_data.each do |data|
+      button = Button.find data['id']
+      button.row = data['row']
+      button.col = data['col']
+      button.save
+    end
+    respond_to do |format|
+      format.html {redirect_to palettes_path}
+      format.js
+    end
+  end
+
   private
   def update_parent_palette
     if @palette.present?

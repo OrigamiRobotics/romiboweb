@@ -1,8 +1,23 @@
+# RESTful API for Session Management.
+#
+
 class Api::V1::SessionsController < Devise::SessionsController
   before_filter :authenticate_token!, except: :create
   protect_from_forgery with: :null_session
   respond_to :json
 
+  # Authorize user and create session if valid.
+  # If email or password is invalid, returns AuthorizationError.
+  #
+  # * *Args*    :
+  #   - +email+ -> email belonging to registered User
+  #   - +password+ -> password belonging to registered User
+  # * *Returns* :
+  #   - the User
+  # * *Raises* :
+  #   - +ArgumentError+ -> if any value is nil or negative
+  #   - +AuthorizationError+ -> if user or password is incorrect
+  #
   def create
     user = User.find_for_database_authentication email: params[:email]
     head :unauthorized and return unless user
@@ -17,6 +32,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     end
   end
 
+  # Clear session for current user.
   def destroy
     @current_user.reset_auth_token!
     head :no_content # return http status code 204

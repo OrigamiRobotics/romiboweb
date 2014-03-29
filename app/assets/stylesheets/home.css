@@ -1,3 +1,22 @@
+body {
+	background: url("romibo/welcome_bg.jpg") no-repeat;
+	background-size: cover;
+	background-color: black;
+}
+
+.panel {
+	-webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+}
+
+.page-header {
+	border: none;
+}
+
+.welcome-container {
+	color: #ffffff;
+}
+
 #welcomeBoxOnHomePage {
     height: 384px;
 }
@@ -16,6 +35,11 @@
 
 #social_sign_in_panel {
     margin-top: 45px;
+}
+
+.scrollable {
+    height: 350px !important;
+    overflow: scroll;
 }
 
 

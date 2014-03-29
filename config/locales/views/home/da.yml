@@ -15,6 +15,7 @@ da:
       confirm_password: "Bekræft adgangskode (påkrævet)"
       remember_me: 'Husk login'
       terms: 'I accept the '
+      resend_confirmation: 'Gensend en bekræftelse'
     button:
       signin: "Log ind"
       signup: "Opret konto"

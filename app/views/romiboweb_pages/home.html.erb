@@ -1,8 +1,39 @@
 <% provide(:title, t('home.title')) %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
 
 <% content_for :content  do %>
-  <div class="container-fluid" id="homeWrapper">
-    <%= render 'romiboweb_pages/home/home_content' %>
+  <div class="container">
+	  <div class="welcome-container">
+	    <div class="page-header">
+	      <h1 class="center"><%= t('home.header.welcome') %></h1>
+	    </div>
+	  </div>
+	  <div class="row">
+			<div class="col-md-4">
+			  <div class="panel panel-info" id="sign_up_panel">
+			    <div class="panel-heading">
+			      <h3 class="panel-title center">
+			        <%= t('home.header.signup') %>
+			      </h3>
+			    </div>
+			    <div class="panel-body">
+			      <%= render 'devise/registrations/form' %>
+			    </div>
+				  <div class="panel-footer">
+					  <span class="help-block">
+					    Sign in using:
+					    <%= render 'devise/sessions/social_media_log_in' %>
+					  </span>
+				  </div>
+			  </div>
+			</div>
+	  </div>
+
+
+
+    <!--%= render 'romiboweb_pages/home/home_content' %-->
   </div>
 	<%= render 'romiboweb_pages/home/terms' %>
 <% end %>
