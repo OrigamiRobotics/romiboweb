@@ -1,0 +1,41 @@
+<div  id="personalProfileBox">
+  <div class="media">
+    <%= link_to image_tag(profile_avatar_url(current_user.profile, :large),
+                            size: "200x200", class: "media-object pull-left"),
+                '#uploadProfileAvatarModal',
+                data: { toggle: "modal", backdrop: 'static'},
+                id: "showAvatarUploaderFormLink",
+                title: 'Click to change avatar'
+    %>
+
+    <div class="media-body">
+      <h3 class="media-heading"><%= current_user.full_name %></h3>
+      <dl class="dl-horizontal" id="usernameBox">
+        <dt>Username:</dt>
+        <dd>
+          <%= best_in_place @profile, :user_name,
+                            :classes => 'bounce_on_success',
+                            :type => :input,
+                            :nil => "Click me to add your preferred username"
+
+          %>
+        </dd>
+      </dl>
+
+    </div>
+  </div>
+  <%= render 'profiles/upload_avatar' %>
+</div>
+
+<script>
+  $('#best_in_place_profile_1_user_name').tooltip({
+    'title': 'Click to edit',
+    'placement': 'right'
+  });
+
+  $('#showAvatarUploaderFormLink').tooltip({
+    'placement': 'bottom'
+  });
+
+
+</script>

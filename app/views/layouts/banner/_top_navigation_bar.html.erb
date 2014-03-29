@@ -11,11 +11,20 @@
     <ul class="nav navbar-nav navbar-right">
 	    <li class="dropdown">
 		    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-		      <%= current_user.full_name %>
+		      <%= image_tag profile_avatar_url(current_user.profile, :thumb),
+                        size: "30x30" %>
 		      <b class="caret"></b>
 		    </a>
 	      <ul class="dropdown-menu">
-	        <li>
+          <% unless params[:controller] == "profiles" && params[:action] == 'show' %>
+          <li>
+            <%= link_to current_user.full_name,
+                        profile_path(current_user.profile)
+            %>
+          </li>
+          <li class="divider"></li>
+          <% end %>
+          <li>
 	          <%= link_to t('topnav.signout'),
                       destroy_user_session_path,
                       { method: :delete, data: {confirm: 'Are you sure?'}}

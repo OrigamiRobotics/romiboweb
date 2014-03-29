@@ -1,6 +1,5 @@
 Romiboweb::Application.routes.draw do
 
-
   get "feedbacks/new"
   get "feedbacks/index"
   get "romiboweb_pages/home"
@@ -17,7 +16,7 @@ Romiboweb::Application.routes.draw do
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
 	resources :users, only: [:dashboard, :unconfirmed, :confirmed]
   resources :attachments, only: [:new, :create]
-
+  resources :profiles, only: [:new, :create, :edit, :update, :show]
 
   resources :palettes do
     resources :share, controller: 'palettes/share', only: [:new, :create]

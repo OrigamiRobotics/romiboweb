@@ -23,6 +23,12 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
 #  auth_token             :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  twitter_nickname       :string(255)
+#  encryption             :string(255)
+#  encryption_key         :string(255)
+#  encryption_iv          :string(255)
 #
 
 require 'spec_helper'
@@ -51,8 +57,9 @@ describe User, user: true, auth: true do
     [:first_name, :last_name, :email, :password,
      :last_viewed_palette,
      :current_palette, :set_last_viewed_palette,
-     :name, :authentications,
-     :encryption, :encryption_key, :encryption_iv
+     :full_name, :authentications,
+     :encryption, :encryption_key, :encryption_iv,
+     :profile
     ].each do |attr|
       it { should respond_to attr }
     end
