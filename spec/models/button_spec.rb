@@ -11,6 +11,9 @@
 #  updated_at        :datetime
 #  button_color_id   :integer
 #  size              :string(255)
+#  selected          :boolean          default(FALSE)
+#  row               :integer
+#  col               :integer
 #
 
 require 'spec_helper'

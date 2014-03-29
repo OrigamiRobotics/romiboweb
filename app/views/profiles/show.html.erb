@@ -1,0 +1,22 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'profiles',
+                          media: :all,
+                          'data-turbolinks-track' => true
+  %>
+<% end %>
+<% content_for :content  do %>
+  <div class="row" id="profileContainer">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <%= render 'profiles/personal_profile' %>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+    <script>
+
+    </script>
+  </div>
+<% end %>

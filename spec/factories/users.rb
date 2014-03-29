@@ -23,6 +23,12 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
 #  auth_token             :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  twitter_nickname       :string(255)
+#  encryption             :string(255)
+#  encryption_key         :string(255)
+#  encryption_iv          :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

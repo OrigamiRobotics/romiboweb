@@ -1,0 +1,8 @@
+<div id="cropAvatarFormContainer">
+  <%= form_for @profile do |f| %>
+
+    <% %w[x y w h].each do |attribute| %>
+      <%= f.hidden_field "crop_#{attribute}" %>
+    <% end %>
+  <% end %>
+</div>
