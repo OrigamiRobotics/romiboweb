@@ -36,11 +36,10 @@ Romiboweb::Application.routes.draw do
   devise_for :users, :skip => [:sessions],
              controllers: {registrations: 'registrations',
                            omniauth_callbacks: "omniauth_callbacks",
-                           confirmations: 'confirmations',
-                           passwords: 'passwords'
+                           confirmations: 'confirmations'
              }
 
-  resources :passwords
+  #resources :passwords
 
 	as :user do
 		get 'signin'            => 'romiboweb_pages#home', :as => :new_user_session
