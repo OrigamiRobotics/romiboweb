@@ -17,6 +17,9 @@ da:
       terms: 'I accept the '
       resend_confirmation: 'Gensend en bekræftelse'
       password_reset: 'Gensend en bekræftelse'
+      new_password: 'Ny adgangskode '
+      confirm_password: 'Bekræft din nye adgangskode '
+      change_password: 'Ændre min adgangskode'
     button:
       signin: "Log ind"
       signup: "Opret konto"
