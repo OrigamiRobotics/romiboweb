@@ -12,15 +12,16 @@
 #
 # Table name: palettes
 #
-#  id                 :integer          not null, primary key
-#  title              :string(255)
-#  description        :string(255)
-#  color              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  owner_id           :integer
-#  system             :boolean          default(FALSE)
-#  last_viewed_button :integer
+#  id                   :integer          not null, primary key
+#  title                :string(255)
+#  description          :string(255)
+#  color                :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  owner_id             :integer
+#  system               :boolean          default(FALSE)
+#  last_viewed_button   :integer
+#  all_buttons_selected :boolean          default(FALSE)
 #
 
 class Palette < ActiveRecord::Base

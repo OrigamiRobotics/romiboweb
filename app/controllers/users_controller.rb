@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   def dashboard
     @title = "Dashboard"
     @user = current_user
+    @user.create_profile
   end
 
   def locale

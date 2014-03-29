@@ -10,6 +10,7 @@
  *
  *= require select2
  *= require select2-bootstrap
+ *= require jquery.Jcrop
  *= require bootstrap_and_overrides
  *= require banner
  *= require_self

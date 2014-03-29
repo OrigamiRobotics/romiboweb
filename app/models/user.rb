@@ -32,8 +32,13 @@ require 'openssl'
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
 #  auth_token             :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  twitter_nickname       :string(255)
+#  encryption             :string(255)
+#  encryption_key         :string(255)
+#  encryption_iv          :string(255)
 #
-
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -50,7 +55,7 @@ class User < ActiveRecord::Base
   has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
 
   has_one :last_viewed_palette
-
+  has_one :profile, inverse_of: :user
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -64,6 +69,9 @@ class User < ActiveRecord::Base
   after_save :create_default_palettes
   after_create :send_email_for_twitter
 
+  def create_profile
+    self.profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?
+  end
 
   def send_email_for_twitter
     if provider == 'twitter' && uid.present? && email.present?
@@ -262,28 +270,29 @@ class User < ActiveRecord::Base
     end
   end
 
-  def encrypt_id
-    data = "Very, very confidential data"
-
-    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    cipher.encrypt
-
-    encryption = cipher.update(data) + cipher.final
-    encryption_key = cipher.random_key
-    encryption_iv  = cipher.random_iv
-  end
-
-
-  def decrypted_id
-    decipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    decipher.decrypt
-    decipher.key = encryption_key
-    decipher.iv = encryption_iv
-
-    decipher.update(encryptd_id) + decipher.final
-  end
+  #def encrypt_id
+  #  data = "Very, very confidential data"
+  #
+  #  cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+  #  cipher.encrypt
+  #
+  #  encryption = cipher.update(data) + cipher.final
+  #  encryption_key = cipher.random_key
+  #  encryption_iv  = cipher.random_iv
+  #end
+  #
+  #
+  #def decrypted_id
+  #  decipher = OpenSSL::Cipher::AES.new(128, :CBC)
+  #  decipher.decrypt
+  #  decipher.key = encryption_key
+  #  decipher.iv = encryption_iv
+  #
+  #  decipher.update(encryptd_id) + decipher.final
+  #end
 
   private
+
   def ensure_auth_token!
     self.auth_token = SecureRandom.hex
   end

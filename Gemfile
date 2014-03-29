@@ -10,7 +10,7 @@ gem 'devise'
 gem 'warden'
 gem 'cancan'
 gem 'squeel'
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.0.0'
 gem 'simple_form'
 gem 'simplecov'
 gem 'json'
@@ -30,6 +30,9 @@ gem 'grabzit'
 gem 'select2-rails'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
+gem "best_in_place", github: 'bernat/best_in_place', branch: "rails-4"
+gem 'rmagick'
+
 
 
 group :doc do

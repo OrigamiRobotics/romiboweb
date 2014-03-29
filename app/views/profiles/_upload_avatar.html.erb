@@ -1,0 +1,28 @@
+<div class="modal fade"
+     id="uploadProfileAvatarModal"
+     tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Select a photo to upload.</h4>
+      </div>
+      <div id="uploadAvatarContentBox">
+        <%= simple_form_for @profile,
+                            remote: true,
+                            :html => { :class => 'form-horizontal' } do |f| %>
+          <div class="modal-body">
+            <br>
+            <%= f.file_field :avatar %>
+          </div>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <%= f.submit 'Upload', class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
