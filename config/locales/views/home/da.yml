@@ -16,6 +16,7 @@ da:
       remember_me: 'Husk login'
       terms: 'I accept the '
       resend_confirmation: 'Gensend en bekræftelse'
+      password_reset: 'Gensend en bekræftelse'
     button:
       signin: "Log ind"
       signup: "Opret konto"
