@@ -30,7 +30,7 @@ gem 'grabzit'
 gem 'select2-rails'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
-gem 'best_in_place', github: "bernat/best_in_place"
+gem "best_in_place",:git => 'git://github.com/bernat/best_in_place.git', :tag => "0665b5f2e41967d8d1616f953fa3c0983cef1d51"
 #gem "best_in_place", git: 'git://github.com/bernat/best_in_place.git', branch: "rails-4"
 gem 'rmagick'
 
