@@ -31,7 +31,7 @@ gem 'select2-rails'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
 gem "best_in_place", github: 'bernat/best_in_place', branch: "rails-4"
-gem 'rmagick'
+gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
 
 
 

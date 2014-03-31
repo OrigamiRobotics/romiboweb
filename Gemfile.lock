@@ -380,7 +380,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 4.0.2)
   rails_12factor
-  rmagick
+  rmagick (= 2.13.2)
   rspec-rails
   sass-rails
   sdoc
