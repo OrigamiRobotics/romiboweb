@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/bernat/best_in_place.git
+  remote: http://github.com/bernat/best_in_place
   revision: 366413be357d65cdf47031e928aea969f72e3659
   branch: rails-4
   specs:
