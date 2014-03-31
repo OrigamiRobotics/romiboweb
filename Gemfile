@@ -56,17 +56,17 @@ group :development do
   gem 'rack-mini-profiler'
 end
 
-group :test do
-  gem 'cucumber-rails', require: false
-  gem 'capybara'
-  gem 'xpath'
-  gem 'email_spec'
-  gem 'launchy'
-  gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
-  gem 'selenium-webdriver'
-  gem 'faker'
-  gem 'shoulda-matchers'
-  gem 'capybara-webkit'
-end
+#group :test do
+#  gem 'cucumber-rails', require: false
+#  gem 'capybara'
+#  gem 'xpath'
+#  gem 'email_spec'
+#  gem 'launchy'
+#  gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
+#  gem 'guard-rspec'
+#  gem 'factory_girl_rails'
+#  gem 'selenium-webdriver'
+#  gem 'faker'
+#  gem 'shoulda-matchers'
+#  gem 'capybara-webkit'
+#end
