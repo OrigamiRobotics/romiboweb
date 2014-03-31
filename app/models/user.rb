@@ -83,9 +83,9 @@ class User < ActiveRecord::Base
     old_confirmed_at = confirmed_at
     super
 
-    if provider.nil? && uid.nil? && confirmed_at.present? && old_confirmed_at != confirmed_at
-      AfterConfirmationMailer.welcome_mailer(self).deliver
-    end
+    #if provider.nil? && uid.nil? && confirmed_at.present? && old_confirmed_at != confirmed_at
+    #  AfterConfirmationMailer.welcome_mailer(self).deliver
+    #end
   end
 
   def create_default_palettes
