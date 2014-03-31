@@ -16,9 +16,16 @@
 #  updated_at        :datetime
 #
 
-class Lesson < ActiveRecord::Base
-
-  def self.CLASS_SIZES
-    %w(1 2 Small Large)
+FactoryGirl.define do
+  factory :lesson do |f|
+    f.title Faker::Lorem.sentence
+    f.subject Faker::Lorem.paragraph
+    f.duration 30
+    f.objectives Faker::Lorem.paragraph
+    f.materials Faker::Lorem.paragraph
+    f.no_of_instructors 1
+    f.student_size '1'
+    f.preparation Faker::Lorem.paragraph
+    f.notes Faker::Lorem.paragraph
   end
 end

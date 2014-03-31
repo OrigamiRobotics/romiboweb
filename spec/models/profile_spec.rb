@@ -10,6 +10,11 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_profiles_on_slug     (slug) UNIQUE
+#  index_profiles_on_user_id  (user_id)
+#
 
 require 'spec_helper'
 

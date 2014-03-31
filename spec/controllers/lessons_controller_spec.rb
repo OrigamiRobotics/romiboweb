@@ -3,6 +3,7 @@ require 'spec_helper'
 describe LessonsController, lesson: true do
 
   let(:user) {FactoryGirl.create :user}
+  let(:lesson) {FactoryGirl.build :lesson}
   before :each do
     sign_in user
   end
@@ -28,6 +29,15 @@ describe LessonsController, lesson: true do
   end
 
   describe "POST 'create'" do
-    it 'should return http success'
+    before {post :create, lesson: lesson.attributes}
+    #[:title, :subject, :duration, :objectives, :materials,
+    # :no_of_instructors, :student_size, :preparation, :notes].each do |attr|
+    #  pending {should permit(attr).for(:create)}
+    #end
+    it 'should create a new lesson' do
+      expect{post :create, lesson: lesson.attributes}
+      .to change(Lesson, :count).by 1
+    end
+    it { should respond_with 200 }
   end
 end

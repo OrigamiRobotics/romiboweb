@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20140331045220) do
   create_table "lessons", force: true do |t|
     t.string   "title"
     t.string   "subject"
-    t.float    "duration"
+    t.integer  "duration"
     t.string   "objectives"
     t.string   "materials"
     t.string   "no_of_instructors"

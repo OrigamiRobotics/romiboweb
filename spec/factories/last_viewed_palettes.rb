@@ -8,6 +8,11 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_last_viewed_palettes_on_palette_id  (palette_id)
+#  index_last_viewed_palettes_on_user_id     (user_id)
+#
 
 FactoryGirl.define do
 

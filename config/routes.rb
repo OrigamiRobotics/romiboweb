@@ -1,4 +1,4 @@
-# == Route Map (Updated 2014-03-30 22:32)
+# == Route Map (Updated 2014-03-31 03:16)
 #
 #                    Prefix Verb     URI Pattern                                       Controller#Action
 #      romiboweb_pages_home GET      /romiboweb_pages/home(.:format)                   romiboweb_pages#home
@@ -44,6 +44,7 @@
 #                           DELETE   /palettes/:id(.:format)                           palettes#destroy
 #                   lessons POST     /lessons(.:format)                                lessons#create
 #                new_lesson GET      /lessons/new(.:format)                            lessons#new
+#                    lesson GET      /lessons/:id(.:format)                            lessons#show
 #                 dashboard GET      /dashboard(.:format)                              users#dashboard
 #                    locale POST     /locale(.:format)                                 users#locale
 #   user_omniauth_authorize GET|POST /users/auth/:provider(.:format)                   omniauth_callbacks#passthru {:provider=>/twitter|facebook|google_oauth2/}
@@ -101,7 +102,7 @@ Romiboweb::Application.routes.draw do
     end
   end
 
-  resources :lessons, only: [:new, :create]
+  resources :lessons, only: [:new, :create, :show]
 
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
   post '/locale' => 'users#locale'

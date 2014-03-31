@@ -18,6 +18,10 @@
 #  user_email  :string(255)
 #  page_uri    :string(255)
 #
+# Indexes
+#
+#  index_feedbacks_on_user_id  (user_id)
+#
 
 class Feedback < ActiveRecord::Base
   attr_accessor :save_screenshot
