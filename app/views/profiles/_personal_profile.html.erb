@@ -13,12 +13,13 @@
       <dl class="dl-horizontal" id="usernameBox">
         <dt>Username:</dt>
         <dd>
-          <%= best_in_place @profile, :user_name,
+          <%= @profile.user_name %>
+<!--          <!%= best_in_place @profile, :user_name,
                             :classes => 'bounce_on_success',
                             :type => :input,
                             :nil => "Click me to add your preferred username"
 
-          %>
+          %>-->
         </dd>
       </dl>
 
