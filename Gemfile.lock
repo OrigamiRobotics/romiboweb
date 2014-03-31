@@ -386,7 +386,7 @@ DEPENDENCIES
   sdoc
   select2-rails
   selenium-webdriver
-  shoulda-matchers
+  shoulda-matchers (= 2.5.0)
   simple_form
   simplecov
   smarter_csv

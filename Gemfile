@@ -67,6 +67,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'faker'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.5.0'
   gem 'capybara-webkit'
 end
