@@ -6,6 +6,7 @@
 #  user_name  :string(255)
 #  user_id    :integer
 #  avatar     :string(255)
+#  slug       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #

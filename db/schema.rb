@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329073721) do
+ActiveRecord::Schema.define(version: 20140331045220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20140329073721) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
-    t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
+    t.boolean  "selected",          default: false
   end
 
   add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree
@@ -99,6 +99,20 @@ ActiveRecord::Schema.define(version: 20140329073721) do
 
   add_index "last_viewed_palettes", ["palette_id"], name: "index_last_viewed_palettes_on_palette_id", using: :btree
   add_index "last_viewed_palettes", ["user_id"], name: "index_last_viewed_palettes_on_user_id", using: :btree
+
+  create_table "lessons", force: true do |t|
+    t.string   "title"
+    t.string   "subject"
+    t.float    "duration"
+    t.string   "objectives"
+    t.string   "materials"
+    t.string   "no_of_instructors"
+    t.string   "student_size"
+    t.string   "preparation"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "palette_buttons", force: true do |t|
     t.integer  "palette_id"
