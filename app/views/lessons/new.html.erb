@@ -1,2 +1,6 @@
-<h1>Lessons#new</h1>
-<p>Find me in app/views/lessons/new.html.erb</p>
+<% provide(:title, t('lessons.new.title')) %>
+<% content_for :content do %>
+  <div class="container">
+    <%= render 'form', lesson: @lesson %>
+  </div>
+<% end %>

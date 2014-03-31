@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      lesson: 'Lesson'
+    attributes:
+      lesson:
+        title: 'Title'
+        subject: 'Subject'
+        duration: 'Duration'
+        objectives: 'Objectives'
+        materials: 'Materials'
+        no_of_instructors: 'Instructor(s)'
+        student_size: 'Student(s)'
+        preparation: 'Preparation'
+        notes: 'Notes'

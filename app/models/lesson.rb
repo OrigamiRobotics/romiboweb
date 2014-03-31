@@ -17,4 +17,8 @@
 #
 
 class Lesson < ActiveRecord::Base
+
+  def self.CLASS_SIZES
+    %w(1 2 Small Large)
+  end
 end

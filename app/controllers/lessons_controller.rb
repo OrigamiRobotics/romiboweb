@@ -6,4 +6,8 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new
   end
 
+  def create
+
+  end
+
 end

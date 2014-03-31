@@ -1,0 +1,63 @@
+<% lesson ||= Lesson.new %>
+<%= form_for lesson, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: 'form-control input-lg' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :subject, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-10">
+      <%= f.text_area :subject, rows: 3, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :duration, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-2">
+      <%= f.select :duration, options_for_select((5..60).step(5)), {}, {'class' => 'form-control input-lg'} %>
+      <span class="help-block">Time in min</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :objectives, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-10">
+      <%= f.text_area :objectives, rows: 3, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :materials, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-10">
+      <%= f.text_area :materials, rows: 3, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :no_of_instructors, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-1">
+      <%= f.select :no_of_instructors, options_for_select((1..5).step(1)), {}, {'class' => 'form-control input-lg'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :student_size, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-1">
+      <%= f.select :student_size, options_for_select(Lesson.CLASS_SIZES), {}, {'class' => 'form-control input-lg'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :preparation, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-10">
+      <%= f.text_area :preparation, rows: 3, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :notes, class: 'col-sm-2 control-label input-lg' %>
+    <div class="col-sm-10">
+      <%= f.text_area :notes, rows: 3, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

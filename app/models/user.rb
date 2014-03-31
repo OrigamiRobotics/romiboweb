@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
             uniqueness:  { case_sensitive: false }
 
   after_save :create_default_palettes
-  after_create :send_email_for_twitter
+  after_create :send_email_for_twitter, :create_profile
 
   def create_profile
     self.profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?
@@ -270,26 +270,26 @@ class User < ActiveRecord::Base
     end
   end
 
-  #def encrypt_id
-  #  data = "Very, very confidential data"
-  #
-  #  cipher = OpenSSL::Cipher::AES.new(128, :CBC)
-  #  cipher.encrypt
-  #
-  #  encryption = cipher.update(data) + cipher.final
-  #  encryption_key = cipher.random_key
-  #  encryption_iv  = cipher.random_iv
-  #end
-  #
-  #
-  #def decrypted_id
-  #  decipher = OpenSSL::Cipher::AES.new(128, :CBC)
-  #  decipher.decrypt
-  #  decipher.key = encryption_key
-  #  decipher.iv = encryption_iv
-  #
-  #  decipher.update(encryptd_id) + decipher.final
-  #end
+  def encrypt_id
+    data = "Very, very confidential data"
+
+    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+    cipher.encrypt
+
+    encryption = cipher.update(data) + cipher.final
+    encryption_key = cipher.random_key
+    encryption_iv  = cipher.random_iv
+  end
+
+
+  def decrypted_id
+    decipher = OpenSSL::Cipher::AES.new(128, :CBC)
+    decipher.decrypt
+    decipher.key = encryption_key
+    decipher.iv = encryption_iv
+
+    decipher.update(encryptd_id) + decipher.final
+  end
 
   private
 

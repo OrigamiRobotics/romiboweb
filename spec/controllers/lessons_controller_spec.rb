@@ -11,7 +11,7 @@ describe LessonsController, lesson: true do
 
     # TODO: find a way to DRY this out for all controller specs
     #it { should use_before_filter :authenticate_user! } #=> This is part of shoulda-matchers spec v2.5.0,
-    # not sure it is not working with our code.
+    # not sure why it is not working with our code.
     describe 'when no user is signed in' do
       before do
         sign_out user
