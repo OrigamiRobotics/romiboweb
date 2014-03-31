@@ -10,25 +10,24 @@
     <%= link_to image_tag("#{root_url}/images/logo_blue.png", alt: "RomiboWeb logo"), root_path %>
   </div>
   <div class="bodyTextOfEmail">
-    <p>Hi <%= @resource.first_name %>,</p>
-    <br>
-    <p>Welcome to RomiboWeb!</p>
+    <p>Hi <%= @resource.first_name %>, welcome to Create.Romibo!</p>
     <br>
     <p>Your account has been successfully created. </p>
-    <p>You will now be able to generate control content for your
-      Romibo robot and share your palettes online. </p>
+    <p>Now you will be able to access Romibo's lesson libraries as well as create and share your own Romibo content. </p>
     <br >
 
-    <p>Before you can begin, though, we need you to confirm this email address.</p>
-    <p>You can confirm your account email through the link below.</p>
-    <br>
     <% encrypted_user_id = @resource.encryption %>
-    <p><%= link_to 'Click this link to confirm your email and sign in now!',
+
+    <p>All you need to do is confirm your email address by clicking <%= link_to 'here',
                    confirmation_url(@resource, :confirmation_token => @token,
                                     :data => encrypted_user_id) %></p>
 
     <br>
-    <p><strong>The Romibo Team</strong></p>
+    <p>Feel free to contact us with any questions. We're here to help!</p>
+    <br>
+    <p>The Romibo Team</p>
+    <p>Origami Robotics</p>
+
   </div>
 </div>
 </body>
