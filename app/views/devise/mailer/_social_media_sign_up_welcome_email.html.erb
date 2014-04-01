@@ -10,7 +10,8 @@
         <%= link_to image_tag("#{root_url}/images/logo_blue.png", alt: "RomiboWeb logo"), root_path %>
       </div>
       <div class="bodyTextOfEmail">
-        <p>Hi <%= @resource.first_name %>, welcome to Create.Romibo!</p>
+        <p>Hi <%= @resource.first_name %>,<p>
+        <p>Welcome to Create.Romibo!</p>
         <br>
         <p>Your account has been successfully created via <%= @resource.provider.to_s.titleize %>.. </p>
         <p>Now you will be able to access Romibo's lesson libraries as well as create and share your own Romibo content. </p>

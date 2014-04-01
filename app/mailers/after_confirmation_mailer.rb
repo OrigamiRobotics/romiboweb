@@ -19,7 +19,7 @@ class AfterConfirmationMailer < ActionMailer::Base
     mail(
         from: 'create@romibo.com',
         to:  user.email,
-        subject: "Welcome to RomiboWeb"
+        subject: "Welcome to Create.Romibo!"
     )
   end
 

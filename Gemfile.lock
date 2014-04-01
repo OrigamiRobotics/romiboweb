@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: 366413be357d65cdf47031e928aea969f72e3659
+  branch: rails-4
+  specs:
+    best_in_place (2.0.3)
+      jquery-rails
+      rails (~> 4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -248,6 +257,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  best_in_place!
   cancan
   carrierwave
   coffee-rails

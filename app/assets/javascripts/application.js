@@ -17,5 +17,5 @@
 //= require jquery.nouislider.min
 //= require select2
 //= require jquery.Jcrop
-// require best_in_place
+//= require best_in_place
 //= require_tree .
