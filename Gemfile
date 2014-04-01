@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+source 'http://gems.github.com'
+
+
 ruby '1.9.3'
 
 gem 'rails', '4.0.2'
@@ -33,7 +36,8 @@ gem "fog", "~> 1.3.1"
 
 #gem "best_in_place", :git => 'git://github.com/bernat/best_in_place.git', :tag => "0665b5f2e41967d8d1616f953fa3c0983cef1d51"
 #gem "best_in_place", git: 'git://github.com/bernat/best_in_place.git', branch: "rails-4"
-gem 'best_in_place', github: 'aaronchi/best_in_place'
+#gem 'best_in_place' , github: 'aaronchi/best_in_place'
+gem 'best_in_place'
 gem 'rmagick'
 
 
