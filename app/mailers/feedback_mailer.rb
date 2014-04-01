@@ -4,7 +4,7 @@ require 'grabzit'
 #
 
 class FeedbackMailer < ActionMailer::Base
-  default from: 'romiborobotproject@gmail.com'
+  default from: 'create@romibo.com'
   ##
   # Send feedback email to admin user. Invoked from FeedbacksController create().
   #
@@ -25,7 +25,7 @@ class FeedbackMailer < ActionMailer::Base
     end
     mail(
         subject: "[RomiboWeb Feedback]: #{feedback.statement}",
-        to: 'romiborobotproject@gmail.com'
+        to: 'create@romibo.com'
     )
   end
 

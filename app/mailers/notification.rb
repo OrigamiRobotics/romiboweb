@@ -2,7 +2,7 @@ class Notification < ActionMailer::Base
 
   include FeedbackEmail
 
-  default from: "aubreyshick@origamirobotics.com"
+  default from: "create@romibo.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

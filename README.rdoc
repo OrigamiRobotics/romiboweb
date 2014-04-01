@@ -26,7 +26,7 @@ SMTP related environment configuration must not be checked into the source code.
 <b>.gitignore will ignore this file so it is not checked in by mistake.</b>
 
 * <tt>ENV['SMTP_DEV_EMAIL'] = 'your@email.here'</tt>
-* <tt>ENV['SMTP_USERNAME'] = 'romiborobotproject@gmail.com'</tt>
+* <tt>ENV['SMTP_USERNAME'] = 'create@romibo.com'</tt>
 * <tt>ENV['SMTP_PASSWORD'] = 'addPasswordHere'</tt>
 
 

@@ -1,6 +1,6 @@
 # Based on http://railscasts.com/episodes/206-action-mailer-in-rails-3
 #ActionMailer::Base.smtp_settings = {
-#  address: 'smtp.gmail.com',
+#  address: 'smtpout.secureserver.net',
 #  port: '587',
 #  user_name: ENV['SMTP_USERNAME'],
 #  password: ENV['SMTP_PASSWORD'],
