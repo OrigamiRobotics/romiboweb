@@ -38,6 +38,5 @@ describe LessonsController, lesson: true do
       expect{post :create, lesson: lesson.attributes}
       .to change(Lesson, :count).by 1
     end
-    it { should respond_with 200 }
   end
 end

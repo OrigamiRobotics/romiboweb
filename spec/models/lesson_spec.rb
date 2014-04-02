@@ -14,6 +14,7 @@
 #  notes             :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
+#  user_id           :integer
 #
 
 require 'spec_helper'
@@ -23,4 +24,6 @@ describe Lesson, lesson: true do
    :no_of_instructors, :student_size, :preparation, :notes].each do |attr|
     it {should respond_to attr}
   end
+
+  it {should belong_to :user}
 end

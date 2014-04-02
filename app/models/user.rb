@@ -62,6 +62,8 @@ class User < ActiveRecord::Base
   has_one :last_viewed_palette
   has_one :profile, inverse_of: :user
 
+  has_many :lessons
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 

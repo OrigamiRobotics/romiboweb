@@ -51,6 +51,7 @@ describe User, user: true, auth: true do
   end
 
   it {should validate_acceptance_of :terms}
+  it {should have_many :lessons}
 
   subject { user}
 

@@ -14,9 +14,12 @@
 #  notes             :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
+#  user_id           :integer
 #
 
 class Lesson < ActiveRecord::Base
+
+  belongs_to :user
 
   def self.CLASS_SIZES
     %w(1 2 Small Large)

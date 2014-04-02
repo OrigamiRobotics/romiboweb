@@ -8,12 +8,13 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
+    @lesson.user = current_user
     if @lesson.save
       flash[:success] = 'Lesson successfully created'
     else
       flash[:danger] = 'Could not create lesson'
     end
-    render 'new'
+    redirect_to 'new'
   end
 
   private
