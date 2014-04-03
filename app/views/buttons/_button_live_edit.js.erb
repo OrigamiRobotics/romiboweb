@@ -1,7 +1,6 @@
 $('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
 '<%= j render "palettes/right_side/button_form" %>' +
 "</div>");
-$('#speechSpeedRateSlider').css('margin-left', '10px');
 var speedRateField = $('#button_speech_speed_rate');
 var speedRate = <%= @button.speech_speed_rate.to_f %>;
 $('.noUiSlider').noUiSlider({
@@ -9,6 +8,7 @@ $('.noUiSlider').noUiSlider({
   ,start: [speedRate, 0]
   ,step: 0.1
   ,handles: 1
+  ,connect: 'lower'
   ,serialization: {
     to: [speedRateField]
   }
@@ -85,3 +85,6 @@ $('#button_speech_phrase').keypress(function(e) {
 $('#addNewButton').blur();
 
 $('#button_tile').focus();
+$('.noUi-handle').css('background-color', '#1E72B3');
+$('.noUi-handle').css('border-color', '#2246EB');
+$('.noUi-connect').css('background-color', '#1E72B3');

@@ -21,6 +21,7 @@ class ButtonsController < ApplicationController
 
   def show
     @button = Button.find(params[:id])
+    set_selection
     update_parent_palette
   end
 
@@ -28,7 +29,6 @@ class ButtonsController < ApplicationController
     @button = Button.find(params[:id]) if params[:id].present?
     update_parent_palette
     if params[:status].present?
-      #session[:adding_button] = false if params[:status] == 'done'
       clone_button if params[:status] == 'clone'
     else
       unless @button.update_attributes(button_params)
@@ -64,13 +64,21 @@ class ButtonsController < ApplicationController
   end
 
   private
-  def update_parent_palette
-    if @palette.present?
-      @palette.last_viewed_button = @button.id if @button.present?
-      @palette.save
+
+  def set_selection
+    if params[:mode].present? && params[:mode] == 'multiple'
+      @button.selected = @button.selected? ? false : true
+      @button.save
+      @palette.all_buttons_selected = @palette.just_selected_all_buttons? ? true : false
+      set_palette_buttons_values @button.speech_speed_rate, @button.button_color_id, @button.size
     end
   end
 
+  def update_parent_palette
+    if @palette.present?
+      @palette.update_attributes(last_viewed_button: @button.id) if @button.present?
+    end
+  end
 
   def json_create
     begin

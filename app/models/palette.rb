@@ -37,7 +37,7 @@ class Palette < ActiveRecord::Base
 
   validates_presence_of :title
 
-  attr_accessor :file, :speech_speed_rate, :button_color, :size, :speech_phrase, :button_color
+  attr_accessor :file, :speech_speed_rate, :button_color, :size, :speech_phrase
 
   extend DefaultPalette
 
@@ -100,5 +100,11 @@ class Palette < ActiveRecord::Base
 
   def selected_buttons
     buttons.where{ selected == true}
+  end
+
+  def set_common_values(button)
+    speech_speed_rate = button.speech_speed_rate
+    button_color      = button.button_color_id
+    size              = button.size
   end
 end

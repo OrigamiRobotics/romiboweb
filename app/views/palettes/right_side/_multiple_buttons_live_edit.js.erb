@@ -1,7 +1,7 @@
 $('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
 '<%= j render "palettes/right_side/multiple_buttons_form" %>' +
 "</div>");
-$('#speechSpeedRateSlider').css('margin-left', '10px');
+
 var speedRateField = $('#button_speech_speed_rate');
 var speedRate = <%= @button.speech_speed_rate.to_i %>;
 var buttonTitle = $('#button_title');
