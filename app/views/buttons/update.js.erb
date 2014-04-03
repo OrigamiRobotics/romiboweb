@@ -6,8 +6,29 @@
     return false;
   });
 <% else %>
-//  $('#paletteButtonsInCenterColumn').replaceWith('<!%= j render "palettes/center_content/existing_buttons" %>');
-  $('<%= "#button-#{@button.id}" %>').replaceWith('<%= j render "buttons/gridster/widget", button: @button %>');
+<%
+sizex = case
+  when @button.size.downcase == 'small'
+    '1'
+  when @button.size.downcase == 'medium'
+    '2'
+  when @button.size.downcase == 'large'
+    '4'
+end
+button_title = case
+  when @button.size.downcase == 'small'
+    truncate(@button.title, length: 8 )
+  when @button.size.downcase == 'medium'
+    truncate(@button.title, length: 15 )
+  when @button.size.downcase == 'large'
+    truncate(@button.title, length: 20 )
+end
+%>
+
+  var gridster = $(".gridster ul").gridster().data('gridster');
+  gridster.resize_widget($('.btn-selected').parent(),'<%= sizex %>',1);
+  $('.btn-selected').parent().replaceWith('<%= j render "buttons/gridster/widget", button: @button %>');
+  $('<%= "#button-#{@button.id}" %>').click();
   <%= render 'buttons/update_and_show' %>
 <% end %>
 
