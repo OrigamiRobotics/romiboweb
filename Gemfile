@@ -69,4 +69,6 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers', '2.5.0'
   gem 'capybara-webkit'
+  gem 'spork-rails'
+  gem 'guard-spork'
 end
