@@ -7,6 +7,9 @@
 		  <li class="<%= 'active' if current_page?(palettes_url) %>">
 		    <%= link_to  t('topnav.palettes'), palettes_path  %>
 		  </li>
+		  <li class="<%= 'active' if current_page?(new_lesson_url) %>">
+		    <%= link_to  t('topnav.lessons'), new_lesson_path  %>
+		  </li>
 		</ul>
     <ul class="nav navbar-nav navbar-right">
 	    <li class="dropdown">
