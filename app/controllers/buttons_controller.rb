@@ -18,6 +18,16 @@ class ButtonsController < ApplicationController
     end
   end
 
+  # POST /palettes/:palette_id/buttons/:id/clone
+  def clone
+    button_to_clone = Button.find params[:id]
+    @palette = Palette.find params[:palette_id]
+    head :not_found and return unless button_to_clone
+    @button = button_to_clone.dup
+    @palette.buttons << @button
+    @button.save
+  end
+
 
   def show
     @button = Button.find(params[:id])
@@ -57,10 +67,7 @@ class ButtonsController < ApplicationController
       button.col = data['col']
       button.save
     end
-    respond_to do |format|
-      format.html {redirect_to palettes_path}
-      format.js
-    end
+    head :ok and return
   end
 
   private

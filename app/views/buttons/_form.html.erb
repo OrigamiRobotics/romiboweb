@@ -48,14 +48,14 @@
     </div>
 
     <div class="col-md-4">
-      <%= link_to 'Copy',
-                  {controller: 'buttons',
-                   action: 'create',
-                   button: @button.hash_params,
-                   status: 'copy',
-                   palette_id: @palette.id,
-                   js: true,
-                  },
+      <%= link_to 'Copy', clone_palette_button_path(@palette, @button),
+                  #{controller: 'buttons',
+                  # action: 'create',
+                  # button: @button.hash_params,
+                  # status: 'copy',
+                  # palette_id: @palette.id,
+                  # js: true,
+                  #},
                   method: :post,
                   remote: true,
                   class: 'btn btn-info btn-block',

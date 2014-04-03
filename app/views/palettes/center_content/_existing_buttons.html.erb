@@ -10,29 +10,31 @@
 </div>
 <script>
   $(".gridster ul").gridster({
-	  widget_margins: [5, 5],
+	  widget_margins: [1, 1],
 	  widget_base_dimensions: [50, 50],
-	  serialize_params: function($w, wgd) {
+    max_cols: 12,
+    min_cols: 12,
+    serialize_params: function($w, wgd) {
 		  return {
 			  id: $w.data('id'),
 			  col: wgd.col,
 			  row: wgd.row,
 			  size_x: wgd.size_x,
 			  size_y: wgd.size_y
-		  }
+      }
 	  },
 	  draggable: {
 		  stop: function(){
 			  var url = "<%= save_grid_palette_buttons_path @palette %>";
 			  var data = "button_data="+JSON.stringify(
-					  $(".gridster ul").gridster().data('gridster').serialize_changed()
+					  $(".gridster ul").gridster().data('gridster').serialize()
 			  );
-			  $.post(
-					  url,
-					  data,
-					  null,
-					  'script'
-			  )
+//			  $.post(
+//					  url,
+//					  data,
+//					  null,
+//					  'script'
+//			  )
 		  }
 	  }
   });

@@ -6,7 +6,8 @@
     return false;
   });
 <% else %>
-  $('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_content/existing_buttons" %>');
+//  $('#paletteButtonsInCenterColumn').replaceWith('<!%= j render "palettes/center_content/existing_buttons" %>');
+  $('<%= "#button-#{@button.id}" %>').replaceWith('<%= j render "buttons/gridster/widget", button: @button %>');
   <%= render 'buttons/update_and_show' %>
 <% end %>
 
