@@ -286,10 +286,10 @@ class User < ActiveRecord::Base
     decipher = OpenSSL::Cipher::AES.new(128, :CBC)
     decipher.decrypt
     decipher.key = encryption_key
-    decipher.iv = encryption_iv
-
+    decipher.iv  = encryption_iv
     decipher.update(encryptd_id) + decipher.final
   end
+
 
   private
 
