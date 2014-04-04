@@ -21,7 +21,8 @@ require 'spec_helper'
 
 describe Lesson, lesson: true do
   [:title, :subject, :duration, :objectives, :materials,
-   :no_of_instructors, :student_size, :preparation, :notes].each do |attr|
+   :no_of_instructors, :student_size, :preparation, 
+   :notes, :tag_list].each do |attr|
     it {should respond_to attr}
   end
 

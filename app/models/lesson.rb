@@ -18,10 +18,12 @@
 #
 
 class Lesson < ActiveRecord::Base
+  
+  CLASS_SIZES = %w(1 2 Small Large)
 
+  acts_as_taggable
+  
   belongs_to :user
 
-  def self.CLASS_SIZES
-    %w(1 2 Small Large)
-  end
+  
 end

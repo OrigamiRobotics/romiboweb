@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
             uniqueness:  { case_sensitive: false }
 
   after_save :create_default_palettes
-  after_create :send_email_for_twitter
+  after_create :send_email_for_twitter, :create_profile
 
   def create_profile
     self.profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?

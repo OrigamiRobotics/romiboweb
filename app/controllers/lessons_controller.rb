@@ -21,7 +21,8 @@ class LessonsController < ApplicationController
   def lesson_params
     params.require(:lesson).permit(
         :title, :subject, :duration, :objectives, :materials,
-        :no_of_instructors, :student_size, :preparation, :notes
+        :no_of_instructors, :student_size, :preparation, 
+        :notes, :tag_list
     )
   end
 
