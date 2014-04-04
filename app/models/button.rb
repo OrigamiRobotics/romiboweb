@@ -31,9 +31,15 @@
 #  updated_at        :datetime
 #  button_color_id   :integer
 #  size              :string(255)
-#  selected          :boolean          default(FALSE)
 #  row               :integer
 #  col               :integer
+#  selected          :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_buttons_on_button_color_id  (button_color_id)
+#  index_buttons_on_size             (size)
+#  index_buttons_on_user_id          (user_id)
 #
 
 class Button < ActiveRecord::Base

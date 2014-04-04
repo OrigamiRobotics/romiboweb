@@ -10,6 +10,11 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_palette_buttons_on_button_id   (button_id)
+#  index_palette_buttons_on_palette_id  (palette_id)
+#
 
 class PaletteButton < ActiveRecord::Base
   belongs_to :palette, inverse_of: :palette_buttons

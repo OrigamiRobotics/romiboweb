@@ -39,6 +39,11 @@ require 'openssl'
 #  encryption_key         :string(255)
 #  encryption_iv          :string(255)
 #
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -57,6 +62,8 @@ class User < ActiveRecord::Base
   has_one :last_viewed_palette
   has_one :profile, inverse_of: :user
 
+  has_many :lessons
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 
@@ -66,7 +73,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX } ,
             uniqueness:  { case_sensitive: false }
 
-  after_save :create_default_palettes
+  after_save :create_default_palettes, :create_profile
   after_create :send_email_for_twitter
 
   def create_profile

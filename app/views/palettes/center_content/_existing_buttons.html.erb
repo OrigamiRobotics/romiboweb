@@ -1,10 +1,9 @@
-<% if @palette.buttons.any? %>
 <div id="paletteButtonsInCenterColumn">
   <div class="gridster">
     <ul>
       <% @palette.buttons.each do |button| %>
         <%= render 'buttons/gridster/widget', button: button %>
-      <% end %>
+      <% end unless @palette.buttons.blank? %>
     </ul>
   </div>
 </div>
@@ -37,4 +36,3 @@
 	  }
   });
 </script>
-<% end %>

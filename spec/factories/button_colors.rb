@@ -8,7 +8,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
+# Indexes
+#
+#  index_button_colors_on_name_and_value  (name,value)
+#
 
 FactoryGirl.define do
 
