@@ -10,11 +10,19 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
     @lesson.user = current_user
     if @lesson.save
-      flash[:success] = 'Lesson successfully created'
+      flash[:success] = 'Lesson created!'
+      respond_with @lesson
     else
       flash[:danger] = 'Could not create lesson'
     end
-    redirect_to 'new'
+  end
+  
+  def index
+    @lessons = current_user.lessons
+  end
+  
+  def show
+    @lesson = Lesson.find params[:id]
   end
 
   private

@@ -28,5 +28,6 @@ FactoryGirl.define do
     f.student_size '1'
     f.preparation Faker::Lorem.paragraph
     f.notes Faker::Lorem.paragraph
+    user
   end
 end

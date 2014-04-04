@@ -20,7 +20,7 @@ class Profile < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
-  validates :user_name, uniqueness: true
+  validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true
 
   belongs_to :user, inverse_of: :profile
 
