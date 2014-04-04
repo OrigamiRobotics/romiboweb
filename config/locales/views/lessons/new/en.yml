@@ -2,3 +2,5 @@ en:
   lessons:
     new:
       title: "New Lesson"
+    show:
+      title: "Lesson"

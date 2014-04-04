@@ -39,13 +39,14 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+  sequence(:email) {Faker::Internet.email}
   factory :user do
     before(:create) do
       FactoryGirl.create :button_color
     end
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
-    email Faker::Internet.email
+    email
     password Faker::Internet.password
     #password_confirmation 'please'
     confirmed_at Time.now

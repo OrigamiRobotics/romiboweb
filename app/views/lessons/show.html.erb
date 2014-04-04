@@ -1,0 +1,90 @@
+<% provide(:title, @lesson.title) %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'lessons', 'data-turbolink-track' => true %>
+<% end %>
+<% content_for :content do %>
+  <div class="container">  
+    
+    <div class="panel panel-default panel-document">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="page-header">
+              <h1>New Lesson</h1>
+              <p>
+                <%= "Authored by #{current_user.full_name}" %>
+                <small class="text-muted"><%= " #{time_ago_in_words @lesson.created_at} ago" %></small>
+              </p>
+              <small class="text-muted"><%= "Last Modified #{time_ago_in_words @lesson.updated_at} ago" %></small>
+  
+            </div>
+          </div>
+          
+          <%= form_for @lesson, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+            <div class="form-group">
+              <%= f.label :subject, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p class="lead"><%= @lesson.subject %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :duration, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p class="lead"><%= "#{@lesson.duration} min" %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :objectives, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p class="lead"><%= @lesson.objectives %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :materials, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p><%= @lesson.materials %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :no_of_instructors, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p class="lead"><%= @lesson.no_of_instructors %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :student_size, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p class="lead"><%= @lesson.student_size %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :preparation, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p><%= @lesson.preparation %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :notes, class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <p><%= @lesson.notes %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :tag_list, class: 'col-sm-2 control-label input-lg' %>
+              <div class="col-sm-5">
+                <%= f.text_field :tag_list,
+                                 placeholder: 'Add keywords related to your lesson...',
+                                 class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <!--%= f.submit class: 'btn btn-lg btn-primary' %-->
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>  
+  </div>  
+<% end %>

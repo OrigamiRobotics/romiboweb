@@ -48,8 +48,11 @@ group :production, :integration, :staging do
 end
 
 
-
-gem 'rspec-rails', group: [:test, :development]
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
+end
 
 group :development do
   gem 'annotate'
@@ -65,9 +68,7 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
   gem 'guard-rspec'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
-  gem 'faker'
   gem 'shoulda-matchers', '2.5.0'
   gem 'capybara-webkit'
   gem 'spork-rails'
