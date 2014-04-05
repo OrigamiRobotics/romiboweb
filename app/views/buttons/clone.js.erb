@@ -1,0 +1,8 @@
+<%
+sizex = '1'
+sizey = '1'
+sizex = '2' if @button.size.downcase == 'medium'
+sizex = '4' if @button.size.downcase == 'large'
+%>
+var gridster = $(".gridster ul").gridster().data('gridster');
+gridster.add_widget('<%= j render 'buttons/gridster/widget', button: @button %>', size_x = <%= sizex %>, size_y = <%= sizey %>);
