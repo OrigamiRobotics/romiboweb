@@ -23,9 +23,10 @@ Romiboweb::Application.routes.draw do
     collection do
       post 'import'
     end
-    resources :buttons, shallow: true do
+    resources :buttons do
       get 'grid', on: :collection
       post 'save_grid', on: :collection
+      post 'clone', on: :member
     end
   end
 
