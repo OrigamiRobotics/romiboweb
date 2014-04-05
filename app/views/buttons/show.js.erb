@@ -1,8 +1,9 @@
 <% if params[:mode].present? && params[:mode] == 'multiple' %>
- <%= render 'buttons/edit_multiple_buttons_show' %>
+  $("#paletteSelectedButtonsInCenterColumn").replaceWith("<%= j render 'palettes/center_content/existing_buttons_with_selection' %>");
+  $('#editMultipleButtonsMenuBox').replaceWith("<%= j render 'palettes/center_content/edit_multiple_buttons_menu' %>");
+ <%= render 'palettes/right_side/edit_multiple_buttons_show' %>
 <% else %>
-//$("#paletteDetail").html("<!--%= escape_javascript(render 'palettes/palette', palette: @palette) %-->");
-<%= render 'buttons/update_and_show' %>
+ <%= render 'buttons/update_and_show' %>
+ $("ul li a").removeClass('btn-selected');
+ $("#<%= "button-#{@button.id}"%>").addClass('btn-selected') ;
 <% end %>
-$("ul li a").removeClass('btn-selected')
-$("#<%= "button-#{@button.id}"%>").addClass('btn-selected')

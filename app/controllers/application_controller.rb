@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def set_palette_buttons_values(speech_speed_rate, button_color, size)
+    session[:palette_speech_speed_rate] = speech_speed_rate
+    session[:palette_button_color] = button_color
+    session[:palette_size] =  size
+  end
+
   protected
 
   def configure_permitted_parameters

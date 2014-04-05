@@ -42,6 +42,7 @@ class Button < ActiveRecord::Base
 
   belongs_to :user, inverse_of: :buttons
   belongs_to :button_color, inverse_of: :buttons
+  belongs_to :palette, inverse_of: :buttons
 
   validates :title, presence: true
   validates :speech_speed_rate, numericality: true

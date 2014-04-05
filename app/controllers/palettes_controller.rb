@@ -17,9 +17,7 @@ class PalettesController < ApplicationController
       if @palette.save
         current_user.set_last_viewed_palette @palette
         @palettes = current_user.palettes
-        format.html {redirect_to palettes_path}
-        format.json { render json: @palette }
-        format.js
+        respond_to_format_for_create format
       else
         format.html {redirect_to palettes_path}
       end
@@ -75,7 +73,7 @@ class PalettesController < ApplicationController
   end
 
   def destroy
-    @palette.destroy
+    (params[:mode].present? && params[:mode] == 'multiple') ? delete_buttons : @palette.destroy
     respond_to do |format|
       @palettes = current_user.palettes
       format.html {redirect_to palettes_path}
@@ -97,6 +95,23 @@ class PalettesController < ApplicationController
 
   private
 
+  def delete_buttons
+    current_user.set_last_viewed_palette @palette
+    @palette.update_attributes(last_viewed_button: nil)
+    #@palette.selected_buttons.each do |button|
+    #  Button.delete(button.id)
+    #  puts "deleted #{button.id}"
+    #end
+    @palette.delete_buttons
+    @button = @palette.current_button
+  end
+
+  def respond_to_format_for_create(format)
+    format.html {redirect_to palettes_path}
+    format.json { render json: @palette }
+    format.js
+  end
+
   def update_applicable_palette
     if params[:mode].present? &&
        params[:mode] == "multiple"
@@ -109,6 +124,10 @@ class PalettesController < ApplicationController
   def handle_selections
     select = params[:selection]
     applicable_method.fetch(select.to_sym).call
+    set_palette_buttons_values(params[:palette][:speech_speed_rate].to_f,
+                               params[:palette][:button_color].to_i,
+                               params[:palette][:size]
+    ) if params[:selection].present? && params[:selection] == 'updating'
   end
 
   def applicable_method
@@ -120,10 +139,17 @@ class PalettesController < ApplicationController
   end
 
   def handle_multiple_edits
-    @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f,
-                                         button_color_id: params[:palette][:button_color].to_i,
-                                         size: params[:palette][:size]
-    )
+    if params[:change_speed_rate].present? && params[:change_speed_rate] == 'yes'
+      @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f)
+    end
+
+    if params[:change_color_value].present? && params[:change_color_value] == 'yes'
+      @palette.selected_buttons.update_all(button_color_id: params[:palette][:button_color].to_i)
+    end
+
+    if params[:change_size_value].present? && params[:change_size_value] == 'yes'
+      @palette.selected_buttons.update_all(size: params[:palette][:size])
+    end
   end
 
   def handle_singular_selections
