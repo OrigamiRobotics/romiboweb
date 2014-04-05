@@ -1,7 +1,6 @@
-<%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe,
+<%= link_to '<i class="glyphicon glyphicon-trash"></i> '.html_safe + t('palettes.index.link.delete.title').html_safe,
             palette,
             method: :delete,
             data: { confirm: t('palettes.index.link.delete.confirm', title: palette.title) },
-            id: 'deletePalette',
-            title: t('palettes.index.link.delete.title')
+            id: 'deletePalette'
 %>
