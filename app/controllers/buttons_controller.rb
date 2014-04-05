@@ -73,7 +73,7 @@ class ButtonsController < ApplicationController
   private
   def update_parent_palette
     if @palette.present?
-      @palette.last_viewed_button = @button.id if @button.present?
+      @palette.last_viewed_button = @button.try(:id) 
       @palette.save
     end
   end
