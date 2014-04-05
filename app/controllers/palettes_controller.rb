@@ -41,10 +41,12 @@ class PalettesController < ApplicationController
       if update_applicable_palette
         format.html {redirect_to palettes_path}
         format.js
+        format.json { respond_with_bip(@palette) }
       else
         flash[:alert] = 'Invalid Input'
         format.html {redirect_to palettes_path}
         format.js
+        format.json { respond_with_bip(@palette) }
       end
     end
   end

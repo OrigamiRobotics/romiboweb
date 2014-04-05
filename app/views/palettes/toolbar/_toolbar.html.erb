@@ -1,20 +1,29 @@
-<h3>
-  <%= palette.title %> &nbsp; &nbsp;
-  <%= render 'palettes/toolbar/share_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/edit_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/import_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/delete_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/add_button_to_palette', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/edit_multiple_palette_buttons_link', palette: palette %>
-</h3>
+<p>
+<div class="row" style="width: 96%">
+  <div class="col-md-10" style="font-size:20px">&nbsp;&nbsp;
+    <strong>
+      <%= best_in_place @palette, :title,
+                        :classes => 'bounce_on_success',
+                        :type => :input
+      %>
+    </strong>
+  </div>
+  <div class="col-md-2">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Actions <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= render 'palettes/toolbar/share_palette_link', palette: palette %></li>
+        <li><%= render 'palettes/toolbar/import_palette_link', palette: palette %></li>
+        <li><%= render 'palettes/toolbar/delete_palette_link', palette: palette %></li>
+        <li class="divider"></li>
+        <li><%= render 'palettes/toolbar/edit_multiple_palette_buttons_link', palette: palette %></li>
+        <li class="divider"></li>
+        <li><%= render 'palettes/toolbar/add_button_to_palette', palette: palette %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</p>
 <hr>
