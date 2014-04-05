@@ -12,7 +12,7 @@ class AddPaletteIdToButtons < ActiveRecord::Migration
       end
       
       dir.down do
-        raise ActiveRecord::IrreversibleMigration
+        # raise ActiveRecord::IrreversibleMigration
       end
     end
   end
