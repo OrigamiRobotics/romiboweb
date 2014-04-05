@@ -55,12 +55,14 @@ ActiveRecord::Schema.define(version: 20140405173521) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
+    t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
-    t.boolean  "selected",          default: false
+    t.integer  "palette_id"
   end
 
   add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree
+  add_index "buttons", ["palette_id"], name: "index_buttons_on_palette_id", using: :btree
   add_index "buttons", ["size"], name: "index_buttons_on_size", using: :btree
   add_index "buttons", ["user_id"], name: "index_buttons_on_user_id", using: :btree
 

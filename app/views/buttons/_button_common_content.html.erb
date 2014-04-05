@@ -1,7 +1,7 @@
 <% palette = (@current_palette || @palette) %>
 <% class_name = button.size.downcase %>
 <% color_class_name = "#{button.button_color.name.downcase.gsub(/ /, '-')}ButtonColor" %>
-<% color_class_name += "Highlighted" if button.id == @palette.current_button.id && params[:mode].nil? %>
+<% color_class_name += "Highlighted" if button.selected? %>
 <div class='<%= "#{class_name}ButtonWidget #{color_class_name}" %>' id='<%= "button_#{button.div_id}" %>'>
   <h1 id='<%= "#{button.div_id}" %>'>
     <% if class_name =='small' %>
@@ -12,8 +12,15 @@
       <%= truncate(button.title, length: 20 ) %>
     <% end %>
   </h1>
-  <%= link_to '', button_path(button, palette_id: palette.id),
+  <%= link_to '', button_path(button, palette_id: palette.id,
+                              mode: 'multiple'),
               method: :get,
               remote: true
   %>
+  <% if button.selected? %>
+    <div class="selectedButtonIcon">
+      <i class="glyphicon glyphicon-ok-sign"></i>
+    </div>
+
+  <% end %>
 </div>
