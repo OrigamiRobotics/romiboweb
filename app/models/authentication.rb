@@ -14,6 +14,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_authentications_on_user_id  (user_id)
+#
 
 class Authentication < ActiveRecord::Base
   belongs_to :user, inverse_of: :authentications

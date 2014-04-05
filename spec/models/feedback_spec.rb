@@ -12,6 +12,10 @@
 #  user_email  :string(255)
 #  page_uri    :string(255)
 #
+# Indexes
+#
+#  index_feedbacks_on_user_id  (user_id)
+#
 
 require 'spec_helper'
 
