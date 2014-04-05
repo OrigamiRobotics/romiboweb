@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-sm-offset-2 col-sm-10">
             <div class="page-header">
-              <h1>New Lesson</h1>
+              <h1><%= @lesson.title %></h1>
               <p>
                 <%= "Authored by #{current_user.full_name}" %>
                 <small class="text-muted"><%= " #{time_ago_in_words @lesson.created_at} ago" %></small>

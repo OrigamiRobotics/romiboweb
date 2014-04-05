@@ -9,8 +9,10 @@
 </div>
 <script>
   $(".gridster ul").gridster({
-    widget_margins: [5, 5],
+	  widget_margins: [1, 1],
     widget_base_dimensions: [50, 50],
+    max_cols: 12,
+    min_cols: 12,
     serialize_params: function($w, wgd) {
       return {
         id: $w.data('id'),
