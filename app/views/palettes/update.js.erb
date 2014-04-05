@@ -1,5 +1,5 @@
 <% if params[:mode].present? && params[:mode] == 'multiple' %>
-  $("#paletteButtonsInCenterColumn").replaceWith("<%= j render 'palettes/center_content/existing_buttons_with_selection' %>");
+  $("#paletteSelectedButtonsInCenterColumn").replaceWith("<%= j render 'palettes/center_content/existing_buttons_with_selection' %>");
   $('#editMultipleButtonsMenuBox').replaceWith("<%= j render 'palettes/center_content/edit_multiple_buttons_menu' %>");
 <% else %>
   $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");

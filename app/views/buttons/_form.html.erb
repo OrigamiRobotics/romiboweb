@@ -10,7 +10,7 @@
   <%= f.input :speech_phrase, input_html: {style: 'height:50px;'} %>
   <%= f.label 'Speech speed rate:' %>
 
-  <div class="row">
+  <div class="row-fluid">
     <div class="col-md-9">
       <div class="noUiSlider" id="speechSpeedRateSlider"></div>
     </div>
@@ -20,13 +20,7 @@
   </div>
   <%= f.association :button_color, collection: ButtonColor.all, id: :name,
                     input_html: { class: 'chosen-select' } %>
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
-
-    </div>
-    <div class="col-md-6"> </div>
-  </div>
+  <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
   <hr>
   <div class="row">
     <div class="col-md-4">
@@ -51,7 +45,7 @@
       <%= link_to 'Copy', clone_palette_button_path(@palette, @button),
                   method: :post,
                   remote: true,
-                  class: 'btn btn-info btn-block',
+                  class: 'btn btn-primary btn-block',
                   id: 'cloneButton',
                   title: "Make a copy of #{@button.title}"
       %>

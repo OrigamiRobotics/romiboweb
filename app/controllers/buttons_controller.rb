@@ -28,9 +28,9 @@ class ButtonsController < ApplicationController
     @button.save
   end
 
-
   def show
     @button = Button.find(params[:id])
+    set_selection
     update_parent_palette
   end
 
@@ -38,7 +38,6 @@ class ButtonsController < ApplicationController
     @button = Button.find(params[:id]) if params[:id].present?
     update_parent_palette
     if params[:status].present?
-      #session[:adding_button] = false if params[:status] == 'done'
       clone_button if params[:status] == 'clone'
     else
       unless @button.update_attributes(button_params)
@@ -47,6 +46,7 @@ class ButtonsController < ApplicationController
   end
 
   def destroy
+    params.to_yaml
     button = Button.find(params[:id])
     button.destroy
     @button = @palette.buttons.first if @palette.buttons.present?
@@ -71,13 +71,22 @@ class ButtonsController < ApplicationController
   end
 
   private
+
+  def set_selection
+    if params[:mode].present? && params[:mode] == 'multiple'
+      @button.selected = @button.selected? ? false : true
+      @button.save
+      @palette.all_buttons_selected = @palette.just_selected_all_buttons? ? true : false
+      set_palette_buttons_values @button.speech_speed_rate, @button.button_color_id, @button.size
+    end
+  end
+
   def update_parent_palette
     if @palette.present?
       @palette.last_viewed_button = @button.try(:id) 
       @palette.save
     end
   end
-
 
   def json_create
     begin
@@ -134,9 +143,21 @@ class ButtonsController < ApplicationController
 
   def get_palette
     session[:adding_button] = false
+
+    @button  = Button.find(params[:id]) if params[:id].present?
+    puts params.to_yaml
+    @palette = (@button.present? && @button.palette_id.present?) ?
+        @button.palette :
+        Palette.find(params[:palette_id])
+    puts params.to_yaml
     begin
-      @palette = Palette.find(params[:palette_id])
-      update_parent_palette
+      #palette_id = (params[:action] == 'destroy' && params[:palette_id].blank?) ? session[:palette_id] : params[:palette_id]
+      @palette = (@button.present? && @button.palette_id.present?) ?
+                                  @button.palette :
+                                  Palette.find(params[:palette_id])
+      #puts @button.palette.to_yaml
+
+      #update_parent_palette
     rescue => ex
       handle_error ex.message
     end

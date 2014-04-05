@@ -70,10 +70,11 @@ body {
 
 }
 
-#paletteButtonsInCenterColumn {
-    /*margin-top: 0;*/
-    /*overflow-y: auto;*/
-    /*height: 500px;*/
+#paletteSelectedButtonsInCenterColumn {
+    margin-top: 0;
+    overflow-y: auto;
+    height: 450px;
+    margin-left: 1px;
 }
 
 .paletteDetailsContainer h3 {
