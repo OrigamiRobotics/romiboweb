@@ -28,12 +28,14 @@ class Palette < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
 
   has_many :palette_buttons
-  has_many :buttons, through: :palette_buttons
+  #has_many :buttons, through: :palette_buttons
+
+  has_many :buttons, dependent: :destroy
+  has_many :palette_viewers
+  has_many :viewers, class_name: 'User', through: :palette_viewers
 
   has_one  :last_viewed_palette
 
-  has_many :palette_viewers
-  has_many :viewers, class_name: 'User', through: :palette_viewers
 
   validates_presence_of :title
 
@@ -49,7 +51,7 @@ class Palette < ActiveRecord::Base
       palette.save
       buttons_data.each do |b_title|
         button = palette.buttons.build(title: b_title, speech_phrase: b_title,
-                              speech_speed_rate: 2,
+                              speech_speed_rate: 0.2,
                               user_id: user.id,
                               button_color_id:   ButtonColor.find_by_name('Turquoise').id,
                               size:              'Medium'
@@ -80,7 +82,7 @@ class Palette < ActiveRecord::Base
 
   def current_button
     if last_viewed_button.present?
-      Button.find(last_viewed_button)
+      Button.find(last_viewed_button) || nil
     else
       (buttons.present?) ? buttons.first : nil
     end
@@ -95,7 +97,7 @@ class Palette < ActiveRecord::Base
   # all buttons have been selected after this one
   # button was selected
   def just_selected_all_buttons?
-    number_of_selected_buttons == buttons.size
+    (buttons.size > 0) && number_of_selected_buttons == buttons.size
   end
 
   def selected_buttons
@@ -106,5 +108,11 @@ class Palette < ActiveRecord::Base
     speech_speed_rate = button.speech_speed_rate
     button_color      = button.button_color_id
     size              = button.size
+  end
+
+  def delete_buttons
+    update_attributes(last_viewed_button: nil)
+    Button.delete(selected_buttons.pluck(:id))
+    just_selected_all_buttons? ? update_attributes(all_buttons_selected: true) : update_attributes(all_buttons_selected: false)
   end
 end

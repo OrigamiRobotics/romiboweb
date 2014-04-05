@@ -139,7 +139,8 @@ div.largeButtonWidget:hover {
 #deleteButton,
 #cloneButton,
 #applyButton,
-#cancelMultipleEditButton
+#cancelMultipleEditButton,
+#deleteMultipleButton
 {
     margin-top: -10px;
 }
@@ -182,4 +183,9 @@ div.largeButtonWidget:hover {
 #speechSpeedRateRowBox {
     padding: 0;
     margin-top: 0;
+}
+
+#deleteMultipleButton
+{
+    margin-top: -11px;
 }

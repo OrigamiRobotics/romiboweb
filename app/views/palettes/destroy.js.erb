@@ -1,1 +1,15 @@
-$("#paletteList").html("<%= escape_javascript(render 'palettes/list', palettes: @palettes) %>")
+<% if params[:mode].present? && params[:mode] == 'multiple' %>
+  $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");
+  var editMultipleButonsMenu = $('#editMultipleButtonsMenuBox');
+  <% if @palette.buttons.present? %>
+    editMultipleButonsMenu.replaceWith("<%= j render 'palettes/center_content/edit_multiple_buttons_menu' %>" );
+     <%= render 'palettes/right_side/edit_multiple_buttons_show' %>
+  <% else %>
+    $('#buttonDetails').hide();
+    editMultipleButonsMenu.hide();
+  <% end %>
+  <% session[:editing_multiple_buttons] = true %>
+<% else %>
+  <% session[:editing_multiple_buttons] = false %>
+  $("#paletteList").html("<%= escape_javascript(render 'palettes/list', palettes: @palettes) %>");
+<% end %>

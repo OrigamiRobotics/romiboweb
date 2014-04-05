@@ -73,7 +73,7 @@ class PalettesController < ApplicationController
   end
 
   def destroy
-    @palette.destroy
+    (params[:mode].present? && params[:mode] == 'multiple') ? delete_buttons : @palette.destroy
     respond_to do |format|
       @palettes = current_user.palettes
       format.html {redirect_to palettes_path}
@@ -94,6 +94,17 @@ class PalettesController < ApplicationController
   end
 
   private
+
+  def delete_buttons
+    current_user.set_last_viewed_palette @palette
+    @palette.update_attributes(last_viewed_button: nil)
+    #@palette.selected_buttons.each do |button|
+    #  Button.delete(button.id)
+    #  puts "deleted #{button.id}"
+    #end
+    @palette.delete_buttons
+    @button = @palette.current_button
+  end
 
   def respond_to_format_for_create(format)
     format.html {redirect_to palettes_path}

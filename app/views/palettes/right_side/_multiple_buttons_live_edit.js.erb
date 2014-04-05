@@ -3,7 +3,7 @@ $('#buttonDetails').replaceWith( '<div id="buttonDetails">' +
 "</div>");
 
 var speedRateField = $('#button_speech_speed_rate');
-var speedRate = <%= @button.speech_speed_rate.to_i %>;
+var speedRate = <%= @button.speech_speed_rate.to_i || 0.2 %>;
 var buttonTitle = $('#button_title');
 var buttonSpeechPhrase = $('#button_speech_phrase');
 

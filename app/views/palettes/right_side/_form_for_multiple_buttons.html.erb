@@ -23,12 +23,24 @@
     </div>
   </div>
 
-  <%= f.input :button_color, collection: ButtonColor.where{name != 'Light Green'}, id: :name,
+  <%= f.input :button_color, collection: ButtonColor.all, id: :name,
               input_html: { class: 'chosen-select' } %>
   <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
   <hr>
   <div class="row">
     <div class="col-md-4">
+      <%= link_to 'Delete',
+                  {controller: 'palettes',
+                   action: 'destroy',
+                   id: @palette.id,
+                   mode: 'multiple'},
+                  method: :delete,
+                  remote: true,
+                  class: 'btn btn-danger btn-block',
+                  id: 'deleteMultipleButton',
+                  data: { confirm: "Delete the #{@palette.number_of_selected_buttons} selected buttons?" }
+      %>
+
     </div>
 
     <div class="col-md-4">
@@ -113,12 +125,6 @@
       $('#change_color_value').val('no');
 
       $('#multiple_button_form').submit();
-
-//      var val = $(this).val();
-//      var original_value = $('#size_value').val();
-//      if (val !== original_value) {
-//        $('#multiple_button_form').submit();
-//      }
     });
 
     $('.noUi-handle').css('background-color', '#1E72B3');

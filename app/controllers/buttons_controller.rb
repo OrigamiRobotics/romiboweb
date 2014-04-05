@@ -37,6 +37,7 @@ class ButtonsController < ApplicationController
   end
 
   def destroy
+    params.to_yaml
     button = Button.find(params[:id])
     button.destroy
     @button = @palette.buttons.first if @palette.buttons.present?
@@ -135,9 +136,21 @@ class ButtonsController < ApplicationController
 
   def get_palette
     session[:adding_button] = false
+
+    @button  = Button.find(params[:id]) if params[:id].present?
+    puts params.to_yaml
+    @palette = (@button.present? && @button.palette_id.present?) ?
+        @button.palette :
+        Palette.find(params[:palette_id])
+    puts params.to_yaml
     begin
-      @palette = Palette.find(params[:palette_id])
-      update_parent_palette
+      #palette_id = (params[:action] == 'destroy' && params[:palette_id].blank?) ? session[:palette_id] : params[:palette_id]
+      @palette = (@button.present? && @button.palette_id.present?) ?
+                                  @button.palette :
+                                  Palette.find(params[:palette_id])
+      #puts @button.palette.to_yaml
+
+      #update_parent_palette
     rescue => ex
       handle_error ex.message
     end
