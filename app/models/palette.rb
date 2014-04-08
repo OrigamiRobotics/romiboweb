@@ -115,4 +115,11 @@ class Palette < ActiveRecord::Base
     Button.delete(selected_buttons.pluck(:id))
     just_selected_all_buttons? ? update_attributes(all_buttons_selected: true) : update_attributes(all_buttons_selected: false)
   end
+
+  def add_buttons(buttons_array)
+    buttons_array.each do |button|
+      new_button = buttons.build(button)
+      new_button.save
+    end
+  end
 end

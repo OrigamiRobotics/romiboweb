@@ -145,11 +145,9 @@ class ButtonsController < ApplicationController
     session[:adding_button] = false
 
     @button  = Button.find(params[:id]) if params[:id].present?
-    puts params.to_yaml
     @palette = (@button.present? && @button.palette_id.present?) ?
         @button.palette :
         Palette.find(params[:palette_id])
-    puts params.to_yaml
     begin
       #palette_id = (params[:action] == 'destroy' && params[:palette_id].blank?) ? session[:palette_id] : params[:palette_id]
       @palette = (@button.present? && @button.palette_id.present?) ?

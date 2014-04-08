@@ -96,6 +96,9 @@ Romiboweb::Application.routes.draw do
     collection do
       post 'import'
     end
+    collection do
+      get  'copy_buttons'
+    end
     resources :buttons do
       get 'grid', on: :collection
       post 'save_grid', on: :collection
