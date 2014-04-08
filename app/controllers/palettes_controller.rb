@@ -96,7 +96,6 @@ class PalettesController < ApplicationController
   end
 
   def copy_buttons
-    puts params.to_yaml
     source_palette = Palette.find params[:id] if params[:id].present?
     target_id = params[:target_id].gsub(/palette_link_/, '').to_i
     @palette = Palette.find(target_id)
