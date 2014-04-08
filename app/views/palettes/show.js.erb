@@ -3,6 +3,57 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
 <% if params[:mode].present? && params[:mode] == 'multiple' %>
   <% if @palette.buttons.present? %>
     <%= render 'palettes/right_side/edit_multiple_buttons_show' %>
+
+    function allowDrop(ev)
+    {
+      ev.preventDefault();
+    }
+
+    function dragStart(ev)
+    {
+      //ev.dataTransfer.effectAllowed = "copy";
+      //ev.target.style.opacity = 1.0;
+      var paletteId = <%= @palette.id %>
+      ev.dataTransfer.setData("Text", paletteId);
+      var dragIcon = document.createElement('img');
+      dragIcon.src = 'https://s3-us-west-2.amazonaws.com/romiboweb/uploads/drag_and_drop.png';
+      ev.dataTransfer.setDragImage(dragIcon, 0, 0);
+      return true;
+    }
+
+    function drag(ev)
+    {
+      //https://s3-us-west-2.amazonaws.com/romiboweb/uploads/drag_and_drop.png
+      //var dragIcon = $('#dragSelectedButtonsIcon');
+      //ev.dataTransfer.setDragImage(document.getElementById("dragSelectedButtonsIcon"), 0, 0);
+
+    }
+
+
+    function dragDrop(ev)
+    {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("Text");
+      var url = '<%= j copy_buttons_palettes_path %>';
+      url += "&id=" + data;
+      url += "&target_id=" + ev.target.id;
+      $.getScript(url);
+      ev.stopPropagation();
+      return false;
+    }
+
+    function dragEnter(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      //ev.target.css('border-color', 'red');
+      //console.log(this.style.opacity);
+      return false;
+    }
+
+    function dragOver(ev){
+      ev.preventDefault();
+      return false;
+    }
   <% else %>
     $('#buttonDetails').hide();
     $('#editMultipleButtonsMenuBox').hide();
@@ -12,6 +63,6 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
 <% else %>
   <% session[:editing_multiple_buttons] = false %>
   <% if @palette.buttons.present? %>
-		$('.gridster ul li:first a').click()
+		$('.gridster ul li:first a').click();
   <% end %>
 <% end %>

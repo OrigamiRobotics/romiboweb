@@ -2,7 +2,11 @@
 <% if @palettes.present? %>
   <div class="btn-group-vertical" data-toggle="buttons" id="paletteGroup">
     <% @palettes.each do |palette| %>
-      <label class="btn btn-default" id="<%= "palette_link_#{palette.id}" %>">
+      <label class="btn btn-default" id="<%= "palette_link_#{palette.id}" %>"
+             ondragenter="return dragEnter(event)"
+             ondrop="return dragDrop(event)"
+             ondragover="return dragOver(event)"
+      >
         <input type="radio" name="options" >
         <%= palette.title %>
       </label>

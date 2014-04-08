@@ -95,6 +95,14 @@ class PalettesController < ApplicationController
     redirect_to palette_path(@palette), format: 'js'
   end
 
+  def copy_buttons
+    source_palette = Palette.find params[:id] if params[:id].present?
+    target_id = params[:target_id].gsub(/palette_link_/, '').to_i
+    @palette = Palette.find(target_id)
+    @palette.add_buttons(source_palette.selected_buttons.map{|button| button.hash_params})
+    flash[:notice] = "#{source_palette.number_of_selected_buttons} buttons successfully added to palette (#{source_palette.title})"
+  end
+
   private
 
   def delete_buttons
