@@ -29,7 +29,7 @@
         <div class="form-group">
           <%= f.label :palettes, class: 'col-sm-2 control-label input-lg' %>
           <div class="col-sm-5">
-            <%= f.collection_select :palette_ids, Palette.all, :id, :title, {:prompt => false},  { :multiple => true, :size => 5, :class => 'form-control input-lg' } %>
+            <%= f.collection_select :palette_ids, Palette.find_all_by_owner_id(current_user.id), :id, :title, {:prompt => false},  { :multiple => true, :size => 5, :class => 'form-control input-lg' } %>
           </div>
         </div>
 
