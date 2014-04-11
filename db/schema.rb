@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408053447) do
+ActiveRecord::Schema.define(version: 20140410055017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(version: 20140408053447) do
 
   add_index "palette_buttons", ["button_id"], name: "index_palette_buttons_on_button_id", using: :btree
   add_index "palette_buttons", ["palette_id"], name: "index_palette_buttons_on_palette_id", using: :btree
+
+  create_table "palette_lessons", force: true do |t|
+    t.integer  "palette_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "palette_lessons", ["lesson_id"], name: "index_palette_lessons_on_lesson_id", using: :btree
+  add_index "palette_lessons", ["palette_id"], name: "index_palette_lessons_on_palette_id", using: :btree
 
   create_table "palette_viewers", force: true do |t|
     t.integer  "user_id"
