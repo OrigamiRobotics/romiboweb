@@ -1,0 +1,21 @@
+<div class="editorContent" id="leftSideContentBox">
+	<div class="panel panel-primary" id="myPalettes">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<%= "#{@user.first_name}'s palettes" %>
+			  <%= link_to '<span class="glyphicon glyphicon-plus"></span>'.html_safe,
+			              new_palette_path,
+			              remote: true,
+			              class: 'pull-right',
+			              rel: 'tooltip',
+			              title: t('palettes.index.link.add.title',
+			                       default: 'Create new palette')
+			  %>
+			</h3>
+		</div>
+    <div id="paletteList">
+      <%= render 'palettes/list' %>
+    </div>
+	</div>
+
+</div>

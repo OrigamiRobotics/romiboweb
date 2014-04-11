@@ -87,7 +87,7 @@ Romiboweb::Application.routes.draw do
 	end
 
   resources :buttons, only: [:new, :create, :show, :update, :destroy]
-	resources :users, only: [:dashboard, :unconfirmed, :confirmed]
+	resources :users, only: [:dashboard, :unconfirmed, :confirmed, :role, :another_palette_editor]
   resources :attachments, only: [:new, :create]
   resources :profiles, only: [:new, :create, :edit, :update, :show]
 
@@ -125,6 +125,8 @@ Romiboweb::Application.routes.draw do
 		post 'signin'           => 'devise/sessions#create', :as => :user_session
 		delete 'signout'        => 'devise/sessions#destroy', :as => :destroy_user_session
     get '/unconfirmed_user' => 'users#unconfirmed', as: :unconfirmed
+    patch 'role'            => 'users#role', as: :role
+    patch 'another_palette_editor' => 'users#another_palette_editor', as: :another_palette_editor
   end
 
   ######### API routes ##########
