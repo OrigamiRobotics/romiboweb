@@ -24,6 +24,8 @@ class Lesson < ActiveRecord::Base
   acts_as_taggable
   
   belongs_to :user
+  has_many :palette_lessons
+  has_many :palettes, through: :palette_lessons
 
-  
+
 end
