@@ -9,7 +9,7 @@
 #    4. Light Green '#2dcc70'
 #    5. Green '#27ae61'
 #    6. Turquoise '#13c8b0'
-#    7. Blue '#297fb8'
+#    7. Blue '#3498db'
 #    8. Purple '#8d44af'
 #    9. Pink '#fe7a7a'
 #

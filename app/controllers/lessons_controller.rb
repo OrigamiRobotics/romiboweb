@@ -48,7 +48,7 @@ class LessonsController < ApplicationController
     end
     
     unless params[:lesson][:attachment].blank?
-      @lesson.attachment.delete
+      @lesson.attachment.delete if @lesson.attachment.present?
       @lesson.create_attachment name: params[:lesson][:attachment] 
     end
     
