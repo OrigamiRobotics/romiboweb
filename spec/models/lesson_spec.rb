@@ -27,4 +27,5 @@ describe Lesson, lesson: true do
   end
 
   it {should belong_to :user}
+  it {should have_one :attachment}
 end
