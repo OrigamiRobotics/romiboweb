@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
     @lesson.user = current_user
 
     params[:lesson][:palette_ids].each do |palette_id|
-      if !palette_id.empty?
+      unless palette_id.empty?
         @lesson.palette_lessons.build(:palette_id => palette_id)
       end
     end unless params[:lesson][:palette_ids].blank?
@@ -38,11 +38,34 @@ class LessonsController < ApplicationController
   
   def update
     @lesson = Lesson.find params[:id]
+    
+    unless @lesson.user == current_user
+      flash[:danger] = 'You are not authorized!'
+      respond_with @lesson and return
+    end
+    
     @lesson.attributes = lesson_params
     if @lesson.changed?
-      @lesson.save
+      if @lesson.save
+        flash[:success] = 'Lesson updated!'
+      else
+        flash[:danger] = 'Could not update lesson'
+        render 'edit' and return
+      end
     end
     respond_with @lesson
+  end
+  
+  def destroy
+    @lesson = Lesson.find params[:id]
+    
+    unless @lesson.user == current_user
+      flash[:danger] = 'You are not authorized!'
+      respond_with @lesson and return
+    end
+    
+    @lesson.delete
+    redirect_to lessons_path 
   end
   
   

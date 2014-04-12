@@ -73,4 +73,13 @@ describe LessonsController, lesson: true do
       Lesson.find(saved_lesson.id).title == @edited_lesson.title
     end
   end
+  
+  let(:lesson_to_delete) {FactoryGirl.create :lesson}
+  describe "DELETE 'destroy'" do
+    it 'should delete lesson' do
+      expect {
+        delete :destroy, id: lesson_to_delete.id
+      }.to change(Lesson, :count).by(1)
+    end
+  end
 end

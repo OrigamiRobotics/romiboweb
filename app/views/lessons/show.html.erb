@@ -12,16 +12,12 @@
             <div class="page-header">
               <h1><%= @lesson.title %></h1>
               <p>
-                <%= "Created by #{current_user.full_name}" %>
+                <%= "Created by #{current_user.full_name}" unless @lesson.user == current_user %>
+                <%= 'Created by me' if @lesson.user == current_user %>
                 <small class="text-muted"><%= " #{time_ago_in_words @lesson.created_at} ago" %></small>
               </p>
               <small class="text-muted"><%= "Last Modified #{time_ago_in_words @lesson.updated_at} ago" %></small>
-              <% if @lesson.user == current_user %>
-                <div class="btn-group btn-group-xs">
-                  <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_lesson_path(@lesson), id: 'edit_lesson', class: 'btn btn-default btn-sm' %>
-                  <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, 'javascript:void(0);', class: 'btn btn-default btn-sm' %>
-                </div>
-              <% end %>  
+              <%= render 'toolbar', lesson: @lesson %>  
             </div>
             
           </div>

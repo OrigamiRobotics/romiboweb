@@ -57,7 +57,9 @@ feature 'Features for lesson', lesson: true do
         scenario 'should have an edit button' do
           expect(page).to have_link 'edit_lesson'
         end
-        scenario 'should have a delete button'
+        scenario 'should have a delete button' do
+          expect(page).to have_link 'delete_lesson'
+        end
       end
     end
     feature 'and I am not the author' do
@@ -68,8 +70,36 @@ feature 'Features for lesson', lesson: true do
         scenario 'should not have edit button' do
           expect(page).to have_no_link 'edit_lesson'
         end
-        scenario 'should not have delete button'
+        scenario 'should not have delete button' do
+          expect(page).to have_no_link 'delete_lesson'
+        end
       end
+    end
+  end
+  
+  feature 'when I edit a lesson' do
+    background do
+      @title = 'Edited title'
+      visit edit_lesson_path lesson
+      fill_in I18n.t('activerecord.attributes.lesson.title'), with: @title
+      click_button 'Update Lesson'
+    end
+    scenario 'then lesson title should change' do
+      expect(page).to have_title @title    
+    end
+  end
+  
+  # Not working with the confirm box
+  pending 'when I click delete lesson button' do
+    background do
+      visit lesson_path lesson
+      click_on 'delete_lesson'
+    end
+    scenario 'then I should be asked to confirm' do
+      page.driver.browser.switch_to.alert.accept
+    end
+    feature 'and I confirm delete' do
+      scenario 'then lesson should be deleted'
     end
   end
   
