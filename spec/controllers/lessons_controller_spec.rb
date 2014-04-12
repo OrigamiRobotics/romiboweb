@@ -62,4 +62,15 @@ describe LessonsController, lesson: true do
       expect(assigns(:lesson)).to eq(saved_lesson)
     end
   end
+
+  describe "PUT 'update'" do
+    before do
+      @edited_lesson = saved_lesson.dup
+      @edited_lesson.title = 'Edited Title'
+      put :update, id: saved_lesson.id, lesson: @edited_lesson.attributes
+    end
+    it 'should update the lesson' do
+      Lesson.find(saved_lesson.id).title == @edited_lesson.title
+    end
+  end
 end

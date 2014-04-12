@@ -15,5 +15,9 @@ describe 'Routing for lessons', lesson: true do
              .to(controller: 'lessons',
                  id: ':id',
                  action:'edit')}
+  it {should route(:put, '/lessons/:id')
+             .to(controller: 'lessons',
+                 id: ':id',
+                 action:'update')}
 
 end

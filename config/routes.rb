@@ -1,4 +1,4 @@
-# == Route Map (Updated 2014-03-31 03:16)
+# == Route Map (Updated 2014-04-11 22:07)
 #
 #                    Prefix Verb     URI Pattern                                       Controller#Action
 #      romiboweb_pages_home GET      /romiboweb_pages/home(.:format)                   romiboweb_pages#home
@@ -24,16 +24,18 @@
 #       palette_share_index POST     /palettes/:palette_id/share(.:format)             palettes/share#create
 #         new_palette_share GET      /palettes/:palette_id/share/new(.:format)         palettes/share#new
 #           import_palettes POST     /palettes/import(.:format)                        palettes#import
+#     copy_buttons_palettes GET      /palettes/copy_buttons(.:format)                  palettes#copy_buttons
 #      grid_palette_buttons GET      /palettes/:palette_id/buttons/grid(.:format)      buttons#grid
 # save_grid_palette_buttons POST     /palettes/:palette_id/buttons/save_grid(.:format) buttons#save_grid
+#      clone_palette_button POST     /palettes/:palette_id/buttons/:id/clone(.:format) buttons#clone
 #           palette_buttons GET      /palettes/:palette_id/buttons(.:format)           buttons#index
 #                           POST     /palettes/:palette_id/buttons(.:format)           buttons#create
 #        new_palette_button GET      /palettes/:palette_id/buttons/new(.:format)       buttons#new
-#               edit_button GET      /buttons/:id/edit(.:format)                       buttons#edit
-#                           GET      /buttons/:id(.:format)                            buttons#show
-#                           PATCH    /buttons/:id(.:format)                            buttons#update
-#                           PUT      /buttons/:id(.:format)                            buttons#update
-#                           DELETE   /buttons/:id(.:format)                            buttons#destroy
+#       edit_palette_button GET      /palettes/:palette_id/buttons/:id/edit(.:format)  buttons#edit
+#            palette_button GET      /palettes/:palette_id/buttons/:id(.:format)       buttons#show
+#                           PATCH    /palettes/:palette_id/buttons/:id(.:format)       buttons#update
+#                           PUT      /palettes/:palette_id/buttons/:id(.:format)       buttons#update
+#                           DELETE   /palettes/:palette_id/buttons/:id(.:format)       buttons#destroy
 #                  palettes GET      /palettes(.:format)                               palettes#index
 #                           POST     /palettes(.:format)                               palettes#create
 #               new_palette GET      /palettes/new(.:format)                           palettes#new
@@ -42,9 +44,14 @@
 #                           PATCH    /palettes/:id(.:format)                           palettes#update
 #                           PUT      /palettes/:id(.:format)                           palettes#update
 #                           DELETE   /palettes/:id(.:format)                           palettes#destroy
-#                   lessons POST     /lessons(.:format)                                lessons#create
+#                   lessons GET      /lessons(.:format)                                lessons#index
+#                           POST     /lessons(.:format)                                lessons#create
 #                new_lesson GET      /lessons/new(.:format)                            lessons#new
+#               edit_lesson GET      /lessons/:id/edit(.:format)                       lessons#edit
 #                    lesson GET      /lessons/:id(.:format)                            lessons#show
+#                           PATCH    /lessons/:id(.:format)                            lessons#update
+#                           PUT      /lessons/:id(.:format)                            lessons#update
+#                           DELETE   /lessons/:id(.:format)                            lessons#destroy
 #                 dashboard GET      /dashboard(.:format)                              users#dashboard
 #                    locale POST     /locale(.:format)                                 users#locale
 #   user_omniauth_authorize GET|POST /users/auth/:provider(.:format)                   omniauth_callbacks#passthru {:provider=>/twitter|facebook|google_oauth2/}
@@ -68,6 +75,8 @@
 #              user_session POST     /signin(.:format)                                 devise/sessions#create
 #      destroy_user_session DELETE   /signout(.:format)                                devise/sessions#destroy
 #               unconfirmed GET      /unconfirmed_user(.:format)                       users#unconfirmed
+#                      role PATCH    /role(.:format)                                   users#role
+#    another_palette_editor PATCH    /another_palette_editor(.:format)                 users#another_palette_editor
 #           api_v1_palettes GET      /api/v1/palettes(.:format)                        api/v1/palettes#index
 #           api_v1_register POST     /api/v1/register(.:format)                        api/v1/registrations#create
 #              api_v1_login POST     /api/v1/login(.:format)                           api/v1/sessions#create
