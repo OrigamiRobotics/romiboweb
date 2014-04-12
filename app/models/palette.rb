@@ -28,14 +28,12 @@ class Palette < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
 
   has_many :palette_buttons
-  #has_many :buttons, through: :palette_buttons
-
   has_many :palette_lessons
   has_many :lessons, through: :palette_lessons
-
   has_many :buttons, dependent: :destroy
   has_many :palette_viewers
   has_many :viewers, class_name: 'User', through: :palette_viewers
+  has_many :recommended_palettes, inverse_of: :palette, dependent: :destroy
 
   has_one  :last_viewed_palette
 
@@ -129,5 +127,31 @@ class Palette < ActiveRecord::Base
   def add_default_button(user)
     button = buttons.build(Button.default_button_params(user))
     button.save
+  end
+
+  def self.recommend(palette_ids, user_ids)
+    palette_ids.each do |recommended_palette_id|
+      user_ids.each do  |recommended_user_id|
+        RecommendedPalette.create(palette_id: recommended_palette_id.to_i,
+                                  user_id:    recommended_user_id.to_i)
+      end
+    end
+  end
+
+  def recommended?(user)
+    user.id != self.owner.id
+  end
+
+  def self.clone(source, user)
+    palette = user.palettes.build(title: source.title,
+                     description: source.description,
+                     color: source.color
+    )
+    palette.save
+    source.buttons.each do |button|
+      button = palette.buttons.build(button.hash_params.merge(user_id: user.id))
+      button.save
+    end
+    palette
   end
 end

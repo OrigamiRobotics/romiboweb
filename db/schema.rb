@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 20140412071434) do
     t.datetime "updated_at"
     t.integer  "button_color_id"
     t.string   "size"
+    t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
-    t.boolean  "selected",          default: false
     t.integer  "palette_id"
   end
 
@@ -169,6 +169,16 @@ ActiveRecord::Schema.define(version: 20140412071434) do
 
   add_index "profiles", ["slug"], name: "index_profiles_on_slug", unique: true, using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "recommended_palettes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "palette_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recommended_palettes", ["palette_id"], name: "index_recommended_palettes_on_palette_id", using: :btree
+  add_index "recommended_palettes", ["user_id"], name: "index_recommended_palettes_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

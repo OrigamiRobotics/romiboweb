@@ -1,0 +1,36 @@
+<% if @user.recommended_palettes.present? %>
+  <div class="btn-group-vertical" data-toggle="buttons" id="paletteGroup">
+    <% @user.recommended_palettes.each do |recommended_palette| %>
+      <% palette = recommended_palette.palette %>
+      <% title = "Recommen.  By #{palette.owner.full_name}" %>
+      <div class="paletteOwnerAvatar">
+        <%= image_tag(profile_avatar_url(palette.owner.profile), size: '33x33',
+                      title: title,
+                      id: "paletteRecommendedBy_#{palette.id}")
+        %>
+      </div>
+      <label class="btn btn-default recommendedPaletteButton" id="<%= "palette_link_#{palette.id}" %>"
+             ondragenter="return dragEnter(event)"
+             ondrop="return dragDrop(event)"
+             ondragover="return dragOver(event)"
+      >
+        <input type="radio" name="options" >
+        <%= palette.title %>
+      </label>
+
+      <script>
+        $('#' + '<%= "paletteRecommendedBy_#{palette.id}" %>').tooltip({
+          placement: 'auto',
+          animation: true
+        });
+        var id = '<%= "#palette_link_#{palette.id}" %>';
+        $(id).click(function(){
+          var url = '<%= "/palettes/#{palette.id}" %>';
+          $.getScript(url);
+        });
+      </script>
+    <% end %>
+  </div>
+
+
+<% end %>

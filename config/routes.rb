@@ -130,12 +130,14 @@ Romiboweb::Application.routes.draw do
   #resources :passwords
 
 	as :user do
-		get 'signin'            => 'romiboweb_pages#home', :as => :new_user_session
-		post 'signin'           => 'devise/sessions#create', :as => :user_session
-		delete 'signout'        => 'devise/sessions#destroy', :as => :destroy_user_session
-    get '/unconfirmed_user' => 'users#unconfirmed', as: :unconfirmed
-    patch 'role'            => 'users#role', as: :role
+		get 'signin'                => 'romiboweb_pages#home', :as => :new_user_session
+		post 'signin'               => 'devise/sessions#create', :as => :user_session
+		delete 'signout'            => 'devise/sessions#destroy', :as => :destroy_user_session
+    get '/unconfirmed_user'     => 'users#unconfirmed', as: :unconfirmed
+    patch 'role'                => 'users#role', as: :role
     patch 'another_palette_editor' => 'users#another_palette_editor', as: :another_palette_editor
+    patch 'recommend_palettes'  => 'users#recommend_palettes', as: :recommend_palettes
+    patch 'clone_palette'       => 'users#clone_palette', as: :clone_palette
   end
 
   ######### API routes ##########
