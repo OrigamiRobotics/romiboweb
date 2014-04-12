@@ -11,8 +11,6 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
 
     function dragStart(ev)
     {
-      //ev.dataTransfer.effectAllowed = "copy";
-      //ev.target.style.opacity = 1.0;
       var paletteId = <%= @palette.id %>
       ev.dataTransfer.setData("Text", paletteId);
       var dragIcon = document.createElement('img');
@@ -23,9 +21,6 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
 
     function drag(ev)
     {
-      //https://s3-us-west-2.amazonaws.com/romiboweb/uploads/drag_and_drop.png
-      //var dragIcon = $('#dragSelectedButtonsIcon');
-      //ev.dataTransfer.setDragImage(document.getElementById("dragSelectedButtonsIcon"), 0, 0);
 
     }
 
@@ -45,8 +40,6 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
     function dragEnter(ev){
       ev.preventDefault();
       ev.stopPropagation();
-      //ev.target.css('border-color', 'red');
-      //console.log(this.style.opacity);
       return false;
     }
 
@@ -58,7 +51,7 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
     $('#buttonDetails').hide();
     $('#editMultipleButtonsMenuBox').hide();
   <% end %>
-<% session[:editing_multiple_buttons] = true %>
+  <% session[:editing_multiple_buttons] = true %>
 
 <% else %>
   <% session[:editing_multiple_buttons] = false %>

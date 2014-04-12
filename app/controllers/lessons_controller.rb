@@ -9,6 +9,13 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
     @lesson.user = current_user
+
+    params[:lesson][:palette_ids].each do |palette_id|
+      if !palette_id.empty?
+        @lesson.palette_lessons.build(:palette_id => palette_id)
+      end
+    end
+
     if @lesson.save
       flash[:success] = 'Lesson created!'
       respond_with @lesson
@@ -34,7 +41,7 @@ class LessonsController < ApplicationController
     params.require(:lesson).permit(
         :title, :subject, :duration, :objectives, :materials,
         :no_of_instructors, :student_size, :preparation, 
-        :notes, :tag_list
+        :notes, :tag_list, :palette_ids
     )
   end
 

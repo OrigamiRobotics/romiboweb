@@ -30,6 +30,9 @@ class Palette < ActiveRecord::Base
   has_many :palette_buttons
   #has_many :buttons, through: :palette_buttons
 
+  has_many :palette_lessons
+  has_many :lessons, through: :palette_lessons
+
   has_many :buttons, dependent: :destroy
   has_many :palette_viewers
   has_many :viewers, class_name: 'User', through: :palette_viewers

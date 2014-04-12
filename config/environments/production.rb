@@ -63,8 +63,8 @@ Romiboweb::Application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'romiboweb.herokuapp.com' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'create.romibo.com' }
 
   config.action_mailer.delivery_method = :smtp
   # change to false to prevent email from being sent during development
@@ -73,14 +73,14 @@ Romiboweb::Application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: 'gmail.com',
+      address: "smtpout.secureserver.net",
+      port: 80,
+      domain: 'secureserver.net',
       authentication: :login,
       enable_starttls_auto: true,
-      user_name: "romiborobotproject@gmail.com",
-      password:  "Pr0j3ctR0bb13",
-      :openssl_verify_mode  => 'none'
+      user_name: "create@romibo.com",
+      password: "1<3r0b0t$",
+      :openssl_verify_mode => 'none'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

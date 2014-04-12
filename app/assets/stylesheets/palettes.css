@@ -117,3 +117,9 @@ body {
   color: white;
   font-weight: bold;
 }
+
+.miniAvatar {
+  width: 25px;
+  height: 25px;
+  border: solid 1px #111111;
+}

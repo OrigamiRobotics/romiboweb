@@ -2,6 +2,7 @@ class PalettesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :palette_owner, only: :destroy
   before_filter :set_gon, :set_session
+  before_filter :set_user
 
   def new
     @palette = Palette.new
@@ -12,11 +13,11 @@ class PalettesController < ApplicationController
   end
 
   def create
-    @palette =  current_user.palettes.build(palette_params)
+    @palette =  @user.palettes.build(palette_params)
     respond_to do |format|
       if @palette.save
-        current_user.set_last_viewed_palette @palette
-        @palettes = current_user.palettes
+        @user.set_last_viewed_palette @palette
+        @palettes = @user.palettes
         respond_to_format_for_create format
       else
         format.html {redirect_to palettes_path}
@@ -27,7 +28,7 @@ class PalettesController < ApplicationController
 
   def edit
     @palette = Palette.find params[:id]
-    current_user.set_last_viewed_palette @palette
+    @user.set_last_viewed_palette @palette
 
     respond_to do |format|
       format.js
@@ -36,7 +37,7 @@ class PalettesController < ApplicationController
 
   def update
     @palette = Palette.find params[:id]
-    @palettes = current_user.palettes
+    @palettes = @user.palettes
     respond_to do |format|
       if update_applicable_palette
         format.html {redirect_to palettes_path}
@@ -53,7 +54,7 @@ class PalettesController < ApplicationController
 
   def index
     set_params
-    @palettes = current_user.palettes
+    @palettes = @user.palettes
     respond_to do |format|
       format.html
       format.json {render json: @palettes}
@@ -64,7 +65,7 @@ class PalettesController < ApplicationController
   def show
     @palette = Palette.find params[:id] if params[:id].present?
     @button  = @palette.current_button
-    current_user.set_last_viewed_palette @palette
+    @user.set_last_viewed_palette @palette
     if @palette
       respond_to do |format|
         format.html {redirect_to palettes_path}
@@ -77,7 +78,7 @@ class PalettesController < ApplicationController
   def destroy
     (params[:mode].present? && params[:mode] == 'multiple') ? delete_buttons : @palette.destroy
     respond_to do |format|
-      @palettes = current_user.palettes
+      @palettes = @user.palettes
       format.html {redirect_to palettes_path}
       format.js
     end
@@ -86,7 +87,7 @@ class PalettesController < ApplicationController
   def import
     content = clean_file_content(params[:palette]["file"].read.to_s)
     begin
-      @palette = Palette.from_file(current_user, content)
+      @palette = Palette.from_file(@user, content)
     rescue => ex
       flash[:alert] = ex.message
     end
@@ -99,14 +100,14 @@ class PalettesController < ApplicationController
     source_palette = Palette.find params[:id] if params[:id].present?
     target_id = params[:target_id].gsub(/palette_link_/, '').to_i
     @palette = Palette.find(target_id)
-    @palette.add_buttons(source_palette.selected_buttons.map{|button| button.hash_params})
     flash[:notice] = "#{source_palette.number_of_selected_buttons} buttons successfully added to palette (#{source_palette.title})"
+    @palette.add_buttons(source_palette.selected_buttons.map{|button| button.hash_params})
   end
 
   private
 
   def delete_buttons
-    current_user.set_last_viewed_palette @palette
+    @user.set_last_viewed_palette @palette
     @palette.update_attributes(last_viewed_button: nil)
     #@palette.selected_buttons.each do |button|
     #  Button.delete(button.id)
@@ -194,9 +195,9 @@ class PalettesController < ApplicationController
   def set_params
     @title = 'Palette Editor'
     @palette = Palette.new
-    @palettes = current_user.palettes
+    @palettes = @user.palettes
     if @palettes.present?
-      @current_palette = current_user.current_palette
+      @current_palette = @user.current_palette
       gon.active_palette = @current_palette.id
     end
   end
@@ -206,11 +207,22 @@ class PalettesController < ApplicationController
   end
 
   def palette_owner
-    @palette = current_user.palettes.find_by_id(params[:id])
+    @palette = @user.palettes.find_by_id(params[:id])
     redirect_to(palettes_path) if @palette.nil?
   end
 
   def clean_file_content(content)
     content.gsub(/=\r\n/, '')
+  end
+
+  def set_user
+    if params[:palette_user_id].present? || session[:palette_user_id].present?
+      user_id = (params[:palette_user_id].present?) ? params[:palette_user_id].to_i : session[:palette_user_id].to_i
+      @user = User.find(user_id)
+      session[:palette_user_id] = params[:palette_user_id]
+    else
+      @user = current_user
+      session[:palette_user_id] = nil
+    end
   end
 end

@@ -10,6 +10,24 @@
 		  <li class="<%= 'active' if current_page?(new_lesson_url) %>">
 		    <%= link_to  t('topnav.lessons'), lessons_path  %>
 		  </li>
+      <% if current_user.admin? && params[:controller] == 'palettes' && params[:action] == 'index' %>
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+            Admin
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown">
+              <%= render 'users/admin/assign_user_role_link' %>
+            </li>
+            <li class="divider"></li>
+            <li class="dropdown">
+              <%= render 'users/admin/view_another_users_palette_editor_link' %>
+            </li>
+          </ul>
+        </li>
+
+      <% end %>
 		</ul>
     <ul class="nav navbar-nav navbar-right">
 	    <li class="dropdown">

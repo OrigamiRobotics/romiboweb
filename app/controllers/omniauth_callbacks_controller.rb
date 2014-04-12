@@ -2,6 +2,7 @@ require 'prettyprint'
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     omniauth = request.env["omniauth.auth"]
+    puts omniauth.to_yaml
     if current_user.present?
       authenticate_and_update_attributes omniauth
     else
@@ -69,7 +70,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def authenticate_and_update_attributes(omniauth)
     provider = omniauth['provider']
     create_user_authentication omniauth, current_user
-    if (omniauth['provider'] == 'facebook') or (omniauth['provider'] != 'linkedin') or (omniauth['provider'] != 'gmail')
+    if (omniauth['provider'] == 'facebook') or (omniauth['provider'] != 'linkedin') or (omniauth['provider'] != 'google_auth2')
       current_user.update_attributes(provider: provider, uid: omniauth['uid']) if (add_authentication? omniauth)
     else
       current_user.update_attributes(provider: provider, uid: omniauth['uid'], twitter_nickname: omniauth['info']['nickname'])
