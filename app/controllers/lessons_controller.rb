@@ -14,7 +14,7 @@ class LessonsController < ApplicationController
       if !palette_id.empty?
         @lesson.palette_lessons.build(:palette_id => palette_id)
       end
-    end
+    end unless params[:lesson][:palette_ids].blank?
 
     if @lesson.save
       flash[:success] = 'Lesson created!'
