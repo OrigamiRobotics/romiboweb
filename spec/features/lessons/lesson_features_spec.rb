@@ -40,12 +40,18 @@ feature 'Features for lesson', lesson: true do
     
     feature 'and adding attachment' do
       background {
+        @file = 'README.txt'
         attach_file I18n.t('activerecord.attributes.lesson.attachment'),
-                    'README.txt'
+                    @file
       }
       scenario 'should create new attachment' do
         expect{click_button 'Create Lesson'}
         .to change(Attachment, :count).by(1)  
+      end
+      
+      scenario 'should associate attachment with lesson' do
+        click_button 'Create Lesson'
+        Lesson.last.attachment.should == Attachment.last
       end
     end
     
