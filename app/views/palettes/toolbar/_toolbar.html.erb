@@ -1,6 +1,6 @@
 <p>
-<div class="row" style="width: 96%">
-  <div class="col-md-10" style="font-size:20px">&nbsp;&nbsp;
+<div class="row" style="width: 93%">
+  <div class="col-md-8" style="font-size:20px">&nbsp;&nbsp;
     <strong>
       <%= best_in_place @palette, :title,
                         :classes => 'bounce_on_success',
@@ -22,6 +22,17 @@
         <li class="divider"></li>
         <li><%= render 'palettes/toolbar/add_button_to_palette', palette: palette %></li>
       </ul>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="btn-group">
+      <%= link_to '<i class="glyphicon glyphicon-plus"></i> '.html_safe + 'New Button',
+                  buttons_path(palette_id: palette.id, js: true, status: "new"),
+                  method: :post,
+                  remote: true,
+                  class: 'btn btn-primary',
+                  id: 'addNewButton'
+      %>
     </div>
   </div>
 </div>
