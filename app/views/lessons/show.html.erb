@@ -16,7 +16,10 @@
                 <small class="text-muted"><%= " #{time_ago_in_words @lesson.created_at} ago" %></small>
               </p>
               <small class="text-muted"><%= "Last Modified #{time_ago_in_words @lesson.updated_at} ago" %></small>
-  
+            </div>
+            <div class="btn-group btn-group-xs">
+              <%= link_to 'Edit', edit_lesson_path(@lesson), class: 'btn btn-default btn-sm' %>
+              <%= link_to 'Delete', 'javascript:void(0);', class: 'btn btn-default btn-sm' %>
             </div>
           </div>
           

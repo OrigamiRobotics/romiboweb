@@ -106,7 +106,7 @@ Romiboweb::Application.routes.draw do
     end
   end
 
-  resources :lessons, only: [:new, :create, :show, :index]
+  resources :lessons
 
 	get '/dashboard'  => 'users#dashboard', as: :dashboard
   post '/locale' => 'users#locale'

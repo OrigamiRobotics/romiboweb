@@ -24,7 +24,7 @@
     },
     draggable: {
       stop: function(){
-        var url = "<%= save_grid_palette_buttons_path @palette %>";
+        var url = "<%= save_grid_palette_buttons_path current_user.last_viewed_palette %>";
         var data = "button_data="+JSON.stringify(
             $(".gridster ul").gridster().data('gridster').serialize_changed()
         );

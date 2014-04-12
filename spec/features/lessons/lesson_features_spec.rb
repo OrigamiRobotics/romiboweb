@@ -36,6 +36,13 @@ feature 'User creating new lesson', lesson: true do
     end
   end
   
+  feature 'editing a lesson' do
+    background {visit lesson_path lesson}
+    scenario 'lesson page should have edit button' do
+      expect(page).to have_link 'Edit'
+    end
+  end
+  
   def fill_new_lesson_form
     visit new_lesson_path
     %w(title subject objectives materials preparation notes).each do |attr|

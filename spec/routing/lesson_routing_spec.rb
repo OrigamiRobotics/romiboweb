@@ -11,5 +11,9 @@ describe 'Routing for lessons', lesson: true do
   it {should route(:get, '/lessons')
              .to(controller: 'lessons',
                  action:'index')}
+  it {should route(:get, '/lessons/:id/edit')
+             .to(controller: 'lessons',
+                 id: ':id',
+                 action:'edit')}
 
 end
