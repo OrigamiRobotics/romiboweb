@@ -47,16 +47,18 @@ class LessonsController < ApplicationController
       respond_with @lesson and return
     end
     
-    @lesson.attributes = lesson_params
-    if @lesson.changed?
-      if @lesson.save
-        flash[:success] = 'Lesson updated!'
-      else
-        flash[:danger] = 'Could not update lesson'
-        render 'edit' and return
-      end
+    unless params[:lesson][:attachment].blank?
+      @lesson.attachment.delete
+      @lesson.create_attachment name: params[:lesson][:attachment] 
     end
-    respond_with @lesson
+    
+    if @lesson.update_attributes lesson_params
+      flash[:success] = 'Lesson updated!'
+      respond_with @lesson
+    else
+      flash[:danger] = 'Could not update lesson'
+      render 'edit' and return
+    end
   end
   
   def destroy
