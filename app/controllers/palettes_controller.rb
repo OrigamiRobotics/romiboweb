@@ -208,6 +208,7 @@ class PalettesController < ApplicationController
   end
 
   def palette_owner
+    set_user
     @palette = @user.palettes.find_by_id(params[:id])
     redirect_to(palettes_path) if @palette.nil?
   end

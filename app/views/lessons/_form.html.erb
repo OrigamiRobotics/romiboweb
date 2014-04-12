@@ -32,7 +32,9 @@
         <div class="form-group">
           <%= f.label :palettes, class: 'col-sm-2 control-label input-lg' %>
           <div class="col-sm-5">
-            <%= f.collection_select :palette_ids, Palette.find_all_by_owner_id(current_user.id), :id, :title, {:prompt => false},  { :multiple => true, :size => 5, :class => 'form-control input-lg' } %>
+            <%= f.collection_select :palette_ids, Palette.find_all_by_owner_id(current_user.id), :id, :title,
+                                    {:prompt => 'Select palettes to attach to lesson'},
+                                    { :multiple => true, :size => 5, :class => 'form-control input-lg' } %>
           </div>
         </div>
 
@@ -105,3 +107,24 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  $(function(){
+    $('select#lesson_palette_ids').select2({
+      width: '800px',
+      height: 'element',
+      placeholder: 'Click to select desired palettes to attach to lesson.'
+    });
+
+    $('SELECT#lesson_duration').select2({
+    });
+
+    $('SELECT#lesson_no_of_instructors').select2({
+
+    });
+
+    $('SELECT#lesson_student_size').select2({
+
+    });
+  });
+</script>

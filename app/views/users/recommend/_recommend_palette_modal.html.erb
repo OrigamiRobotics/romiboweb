@@ -1,0 +1,76 @@
+<div class="modal fade"
+  id="recommendPaletteModal"
+  tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Recommend palette(s). </h4>
+      </div>
+      <%= simple_form_for current_user,
+                          remote: true,
+                          url: url_for(controller: 'users', action: 'recommend_palettes'),
+                          :html => { :class => 'form-horizontal' } do |f| %>
+        <div class="modal-body">
+          <p>Select the palettes to recommend</p>
+          <%= select_tag  'recommend_palette_ids', options_for_select(@user.palettes_to_recommend),
+              multiple: true,
+              input_html: { class: 'chosen-select' }
+          %>
+          <br><br>
+          <p>Select the user(s) to whom the palettes are being recommended:</p>
+          <%= select_tag  'recommend_user_ids', options_for_select(@user.other_names_and_avatars),
+                          multiple: true,
+                          input_html: { class: 'chosen-select' }
+          %>
+        </div>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.submit 'Recommend', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  //palettes
+  $(function() {
+    $('#recommend_palette_ids').select2({
+      width:  '550px',
+      height: 'element',
+      escapeMarkup: function(m) { return m; }
+    });
+  });
+
+  //users
+  function getAvatarUrl(str){
+    var aStr = str.split(',');
+    return aStr[1];
+  }
+
+  function getName(str){
+    var aStr = str.split(',');
+    return aStr[0];
+  }
+
+  function format(state) {
+    if (!state.id) return state.text; // optgroup
+    var val = "<img class='miniAvatar' src='" + getAvatarUrl(state.text) + "'/>" +
+        "    " + getName(state.text);
+    return val;
+  }
+
+  $(function() {
+    $('select#recommend_user_ids').select2({
+      width: '550px',
+      height: 'element',
+      formatResult: format,
+      formatSelection: format,
+      escapeMarkup: function(m) { return m; }
+    });
+  });
+
+</script>

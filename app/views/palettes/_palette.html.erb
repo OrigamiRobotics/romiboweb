@@ -6,11 +6,12 @@
     <% if params[:mode].present? and params[:mode] == 'multiple' %>
       <%= render 'palettes/center_content/edit_multiple_buttons_menu' %>
       <%= render 'palettes/center_content/existing_buttons_with_selection', palette: palette %>
-  <% else %>
+    <% else %>
       <%= render 'palettes/center_content/existing_buttons', palette: palette %>
     <% end %>
   </div>
   <%= render 'palettes/import_palette' %>
   <%= render 'users/admin/assign_user_role_modal' %>
   <%= render 'users/admin/view_another_users_palette_editor_modal' %>
+  <%= render 'users/recommend/recommend_palette_modal' %>
 </div>
