@@ -9,4 +9,3 @@ require 'rake'
 
 #seed colors data
 Rake::Task['data:seed_colors'].invoke
-Rake::Task['data:assign_button_palette_ids'].invoke
