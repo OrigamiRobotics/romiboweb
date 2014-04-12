@@ -41,7 +41,7 @@
                   method: :post,
                   remote: true,
                   class: 'btn btn-primary',
-                  id: 'addNewButton'
+                  id: 'addNewButton' unless @palette.recommended?(current_user)
       %>
     </div>
   </div>
