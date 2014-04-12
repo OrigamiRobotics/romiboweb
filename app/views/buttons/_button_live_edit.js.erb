@@ -85,6 +85,18 @@ $('#button_speech_phrase').keypress(function(e) {
 $('#addNewButton').blur();
 
 $('#button_tile').focus();
+
+<% if @palette.recommended?(current_user) %>
+  $('#button_title').prop('disabled', true);
+  speedRateField.prop('disabled', true);
+  $('INPUT#button_speech_phrase').prop('disabled', true);
+  $('.noUiSlider').attr('disabled', 'disabled');
+  $('#button_button_color_id').select2("readonly", true);
+  $('SELECT#button_size').prop('disabled', true);
+  $('a#cloneButton').addClass('disabled');
+  $('a#deleteButton').addClass('disabled');
+<% end %>
+
 $('.noUi-handle').css('background-color', '#1E72B3');
 $('.noUi-handle').css('border-color', '#2246EB');
 $('.noUi-connect').css('background-color', '#1E72B3');

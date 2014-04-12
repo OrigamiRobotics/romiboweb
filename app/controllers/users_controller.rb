@@ -61,6 +61,22 @@ class UsersController < ApplicationController
     flash[:notice] = "You are now viewing #{@user.full_name}'s palette.'"
   end
 
+
+  def recommend_palettes
+    Palette.recommend(params[:recommend_palette_ids], params[:recommend_user_ids])
+    flash[:notice] = "Specified recommendations have been successfully made."
+  end
+
+  def clone_palette
+    palette = Palette.find(params[:palette_id])
+    @palette = Palette.clone palette, current_user
+    recommend_palette = RecommendedPalette.find_by_user_id_and_palette_id(current_user.id, palette.id )
+    recommend_palette.delete
+    flash[:notice] = "The palette titled '#{palette.title}' was successfully cloned."
+    @palettes = current_user.palettes
+    @user = current_user
+  end
+
   private
 
   def handle_params

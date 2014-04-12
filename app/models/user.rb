@@ -59,11 +59,12 @@ class User < ActiveRecord::Base
   has_many :authentications, inverse_of: :user
   has_many :palette_viewers
   has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
+  has_many :lessons
+  has_many :recommended_palettes, inverse_of: :user, dependent: :destroy
 
   has_one :last_viewed_palette
   has_one :profile, inverse_of: :user
 
-  has_many :lessons
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -308,6 +309,13 @@ class User < ActiveRecord::Base
       ["#{user.full_name},#{profile_avatar_url(user.profile)}", user.id]
     end
   end
+
+  def palettes_to_recommend
+    palettes.map do |palette|
+      ["#{palette.title} (#{palette.buttons.size} buttons)", palette.id]
+    end
+  end
+
 
   private
 
