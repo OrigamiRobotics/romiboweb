@@ -15,6 +15,9 @@ class LessonsController < ApplicationController
         @lesson.palette_lessons.build(:palette_id => palette_id)
       end
     end unless params[:lesson][:palette_ids].blank?
+    
+    @lesson.build_attachment name: params[:lesson][:attachment] unless
+    params[:lesson][:attachment].blank?
 
     if @lesson.save
       flash[:success] = 'Lesson created!'

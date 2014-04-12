@@ -26,6 +26,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :user
   has_many :palette_lessons
   has_many :palettes, through: :palette_lessons
+  has_one :attachment, as: :attachable, dependent: :delete
 
 
 end

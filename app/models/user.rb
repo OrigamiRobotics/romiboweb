@@ -38,6 +38,7 @@ require 'openssl'
 #  encryption             :string(255)
 #  encryption_key         :string(255)
 #  encryption_iv          :string(255)
+#  admin                  :boolean          default(FALSE)
 #
 # Indexes
 #

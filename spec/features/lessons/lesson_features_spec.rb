@@ -22,7 +22,7 @@ feature 'Features for lesson', lesson: true do
   end
 
 
-  feature 'filling and submitting form' do
+  feature 'when I fill and submit form' do
     background do
       fill_new_lesson_form
     end
@@ -30,13 +30,25 @@ feature 'Features for lesson', lesson: true do
       expect{click_button 'Create Lesson'}.to change(Lesson, :count).by(1)
     end
     
-    feature 'with tags' do
-      scenario 'associate tags with lesson' do
+    feature 'and adding tags' do
+      scenario 'should associate tags with lesson' do
         fill_in I18n.t('activerecord.attributes.lesson.tag_list'), with: 'test'
         click_button 'Create Lesson'
         Lesson.last.tag_list.include?('test').should be_true 
       end
     end
+    
+    feature 'and adding attachment' do
+      background {
+        attach_file I18n.t('activerecord.attributes.lesson.attachment'),
+                    'README.txt'
+      }
+      scenario 'should create new attachment' do
+        expect{click_button 'Create Lesson'}
+        .to change(Attachment, :count).by(1)  
+      end
+    end
+    
   end
   
   feature 'when I navigate to lesson page' do
