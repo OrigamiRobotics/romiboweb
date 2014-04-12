@@ -1,0 +1,16 @@
+<% if lesson.user == current_user %>
+  <div class="btn-group btn-group-xs">
+    <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, 
+                edit_lesson_path(lesson), 
+                id: 'edit_lesson', 
+                class: 'btn btn-default btn-xs' 
+    %>
+    <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe,
+                lesson,
+                method: :delete,
+                id: 'delete_lesson',
+                class: 'btn btn-default btn-xs',
+                data: { confirm: 'Are you sure?', title: 'Delete lesson'}
+    %>
+  </div>
+<% end %>

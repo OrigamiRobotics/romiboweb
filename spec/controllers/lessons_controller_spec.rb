@@ -4,6 +4,7 @@ describe LessonsController, lesson: true do
 
   let(:user) {FactoryGirl.create :user}
   let(:lesson) {FactoryGirl.build :lesson}
+  let(:saved_lesson) {FactoryGirl.create :lesson}
   let(:lessons) {FactoryGirl.create_list :lesson, 5, user_id: user.id}
   before :each do
     sign_in user
@@ -50,6 +51,35 @@ describe LessonsController, lesson: true do
     it {should render_template 'index'}
     it "should assign current user's lessons" do
       expect(assigns(:lessons)).to eq(lessons)
+    end
+  end
+  
+  describe "GET 'edit'" do
+    before { get :edit, id: saved_lesson.id }
+    it {should respond_with :ok}
+    it {should render_template 'edit'}
+    it 'should assign lesson' do
+      expect(assigns(:lesson)).to eq(saved_lesson)
+    end
+  end
+
+  describe "PUT 'update'" do
+    before do
+      @edited_lesson = saved_lesson.dup
+      @edited_lesson.title = 'Edited Title'
+      put :update, id: saved_lesson.id, lesson: @edited_lesson.attributes
+    end
+    it 'should update the lesson' do
+      Lesson.find(saved_lesson.id).title == @edited_lesson.title
+    end
+  end
+  
+  let(:lesson_to_delete) {FactoryGirl.create :lesson}
+  describe "DELETE 'destroy'" do
+    it 'should delete lesson' do
+      expect {
+        delete :destroy, id: lesson_to_delete.id
+      }.to change(Lesson, :count).by(1)
     end
   end
 end
