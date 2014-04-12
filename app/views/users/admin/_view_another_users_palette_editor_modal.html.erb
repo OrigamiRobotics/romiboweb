@@ -1,0 +1,78 @@
+<div class="modal fade"
+  id="viewUsersPaletteEditorModal"
+  tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Select a user from the list below to view his/her palettes.</h4>
+      </div>
+      <%= simple_form_for current_user,
+                          remote: true,
+                          url: url_for(controller: 'users', action: 'another_palette_editor'),
+                          :html => { :class => 'form-horizontal' } do |f| %>
+        <div class="modal-body">
+          <p></p>
+          <br>
+          <%= select_tag  'palette_user_id', options_for_select(current_user.other_names_and_avatars),
+              input_html: { class: 'chosen-select' }
+          %>
+
+        </div>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.submit 'View', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getAvatarUrl(str){
+    var aStr = str.split(',');
+    return aStr[1];
+  }
+
+  function getName(str){
+    var aStr = str.split(',');
+    console.log(str);
+    return aStr[0];
+  }
+
+  function format(state) {
+    if (!state.id) return state.text; // optgroup
+    var val = "<img class='miniAvatar' src='" + getAvatarUrl(state.text) + "'/>" +
+        "    " + getName(state.text);
+    return val;
+  }
+
+  $(function() {
+    $('select#palette_user_id').select2({
+      width: '305px',
+      height: 'element',
+      formatResult: format,
+      formatSelection: format,
+      escapeMarkup: function(m) { return m; }
+    });
+  });
+
+  $('#user_role').click(function(){
+    if($(this).is(':checked')){
+      $('#user_role_label').text("Click to remove admin role");
+      $('#new_user_role').val(true);
+      var content = '<span class="label label-success">Admin role will be assigned.</span>';
+      $('#actionToBeTaken').html(content);
+    }
+    else {
+      $('#user_role_label').text("Click to assign admin role");
+      $('#new_user_role').val(false);
+      var content = '<span class="label label-default">Admin role will NOT be assigned.</span>';
+      $('#actionToBeTaken').html(content);
+    }
+
+  });
+
+</script>

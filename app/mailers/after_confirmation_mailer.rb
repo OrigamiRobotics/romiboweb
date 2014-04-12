@@ -17,9 +17,9 @@ class AfterConfirmationMailer < ActionMailer::Base
     @user = user
 
     mail(
-        from: 'origamirobotics@gmail.com',
-        to:  user.email,
-        subject: "Welcome to RomiboWeb"
+        from: 'create@romibo.com',
+        to: user.email,
+        subject: "Welcome to Create.Romibo!"
     )
   end
 

@@ -38,6 +38,7 @@ require 'openssl'
 #  encryption             :string(255)
 #  encryption_key         :string(255)
 #  encryption_iv          :string(255)
+#  admin                  :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -76,8 +77,10 @@ class User < ActiveRecord::Base
   after_save :create_default_palettes, :create_profile
   after_create :send_email_for_twitter
 
+  include ApplicationHelper
+
   def create_profile
-    self.profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?
+    profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?
   end
 
   def send_email_for_twitter
@@ -108,12 +111,14 @@ class User < ActiveRecord::Base
   end
 
   def set_last_viewed_palette(palette)
-    if last_viewed_palette.present?
-      last_viewed_palette.palette = palette
-      last_viewed_palette.save
-    else
-      lvp = build_last_viewed_palette palette_id: palette.id
-      lvp.save
+    if is_owner?(palette)
+      if last_viewed_palette.present?
+        last_viewed_palette.palette = palette
+        last_viewed_palette.save
+      else
+        lvp = build_last_viewed_palette palette_id: palette.id
+        lvp.save
+      end
     end
   end
 
@@ -297,6 +302,12 @@ class User < ActiveRecord::Base
     decipher.update(encryptd_id) + decipher.final
   end
 
+  def other_names_and_avatars
+    user_id = id
+    User.where{id != user_id}.order(:first_name).map do |user|
+      ["#{user.full_name},#{profile_avatar_url(user.profile)}", user.id]
+    end
+  end
 
   private
 
@@ -309,5 +320,9 @@ class User < ActiveRecord::Base
       confirmed_at = Time.now if confirmed_at.nil?
       save
     end
+  end
+
+  def is_owner?(palette)
+    palette.owner.id == id
   end
 end

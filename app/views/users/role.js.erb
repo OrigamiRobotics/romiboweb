@@ -1,0 +1,7 @@
+
+
+$('#flash_messages').html(
+    "<%= escape_javascript(render 'layouts/flash', flash: flash) %>"
+).delay(5000).fadeOut();
+<% flash.discard(:notice) %>
+$('#assignUserRoleModal').modal('hide');

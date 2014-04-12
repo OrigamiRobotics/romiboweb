@@ -46,6 +46,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def role
+    user = User.find(params[:role_user_id]) if params[:role_user_id].present?
+    user.admin = (params[:new_user_role] == 'true') ? true : false
+    user.save
+    message = "#{user.full_name} has been successfully"
+    flash[:notice] = message + ((user.admin?) ? " assigned admin role" : " removed from admin role")
+  end
+
+  def another_palette_editor
+    user_id = (params[:palette_user_id].present?) ? params[:palette_user_id].to_i : session[:palette_user_id].to_i
+    @user = User.find(user_id)
+    @palettes = @user.palettes
+    flash[:notice] = "You are now viewing #{@user.full_name}'s palette.'"
+  end
+
   private
 
   def handle_params

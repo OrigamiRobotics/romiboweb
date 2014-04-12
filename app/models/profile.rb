@@ -40,6 +40,12 @@ class Profile < ActiveRecord::Base
   end
 
   def get_avatar_url(size)
+    if user.provider.present? && user.uid.present?
+      image = user.authentications.find_by_provider_and_uid(user.provider, user.uid)
+      image_url = image.image_url if image.present?
+    end
+
+    return image_url unless image_url.blank?
     (self.avatar_url.present?) ? self.avatar_url(size).to_s  :  nil
   end
 
