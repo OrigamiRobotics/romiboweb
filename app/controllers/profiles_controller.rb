@@ -13,7 +13,8 @@ class ProfilesController < ApplicationController
         handle_after_save format
       else
         format.html { render action: "edit" }
-        format.json { respond_with_bip(@profile) }
+        format.json { render json: @profile }
+        format.js
       end
     end
   end

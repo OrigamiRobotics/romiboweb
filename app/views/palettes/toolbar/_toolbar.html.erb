@@ -6,10 +6,9 @@
         <%= @palette.title %>
         <span class="recommendedByWho"><%= " (recommended by #{@palette.owner.first_name})" %></span>
       <% else %>
-        <%= best_in_place @palette, :title,
-                          :classes => 'bounce_on_success',
-                          :type => :input
-        %>
+        <div class="restInPlace">
+          <%= render 'palettes/toolbar/edit_title_in_place_form', palette: @palette %>
+        </div>
       <% end %>
     </strong>
   </div>
@@ -46,5 +45,10 @@
     </div>
   </div>
 </div>
-</p>
 <hr>
+<script>
+  var title_field = $("input#palette_title");
+  title_field.on('focusout', function() {
+    $('#editPaletteInPlaceForm').submit();
+  });
+</script>

@@ -10,17 +10,7 @@
 
     <div class="media-body">
       <h3 class="media-heading"><%= current_user.full_name %></h3>
-      <dl class="dl-horizontal" id="usernameBox">
-        <dt>Username:</dt>
-        <dd>
-          <%= best_in_place @profile, :user_name,
-                            :classes => 'bounce_on_success',
-                            :type => :input,
-                            :nil => "Click me to add your preferred username"
-
-          %>
-        </dd>
-      </dl>
+      <%= render 'profiles/user_name' %>
 
     </div>
   </div>
@@ -28,9 +18,8 @@
 </div>
 
 <script>
-  $('#best_in_place_profile_1_user_name').tooltip({
-    'title': 'Click to edit',
-    'placement': 'right'
+  $('input#profile_user_name').on('focusout', function() {
+    $('#editProfileInPlaceForm').submit();
   });
 
   $('#showAvatarUploaderFormLink').tooltip({
