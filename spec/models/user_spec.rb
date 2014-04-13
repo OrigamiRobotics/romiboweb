@@ -29,6 +29,12 @@
 #  encryption             :string(255)
 #  encryption_key         :string(255)
 #  encryption_iv          :string(255)
+#  admin                  :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 require 'spec_helper'
@@ -46,6 +52,7 @@ describe User, user: true, auth: true do
   end
 
   it {should validate_acceptance_of :terms}
+  it {should have_many :lessons}
 
   subject { user}
 

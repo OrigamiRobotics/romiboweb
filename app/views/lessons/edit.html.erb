@@ -1,0 +1,9 @@
+<% provide(:title, t('lessons.edit.title')) %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'lessons', 'data-turbolink-track' => true %>
+<% end %>
+<% content_for :content do %>
+  <div class="container">
+    <%= render 'form', lesson: @lesson %>
+  </div>
+<% end %>

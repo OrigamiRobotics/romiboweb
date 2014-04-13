@@ -9,7 +9,7 @@
 #    4. Light Green '#2dcc70'
 #    5. Green '#27ae61'
 #    6. Turquoise '#13c8b0'
-#    7. Blue '#297fb8'
+#    7. Blue '#3498db'
 #    8. Purple '#8d44af'
 #    9. Pink '#fe7a7a'
 #
@@ -22,6 +22,10 @@
 #  value      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#
+# Indexes
+#
+#  index_button_colors_on_name_and_value  (name,value)
 #
 
 class ButtonColor < ActiveRecord::Base

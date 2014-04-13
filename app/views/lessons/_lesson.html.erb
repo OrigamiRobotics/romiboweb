@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+    <div class="caption">
+      <h4><%= link_to lesson.title, lesson %></h4>
+      <p class="text-muted">
+        <span class="glyphicon glyphicon-user"></span>
+        <%= 'Me' if lesson.user == current_user %>
+        <%= lesson.user.full_name unless lesson.user == current_user %>
+        <%= render 'toolbar', lesson: lesson %>
+      </p>
+      <p><%= lesson.subject %></p>
+    </div>
+  </div>
+</div>

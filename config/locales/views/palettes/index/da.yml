@@ -21,5 +21,12 @@ da:
           confirm: "Delete palette '%{title}' ?"
         add:
           title: "Create new palette"
+        import:
+          title: "Import palette"
+        recommend:
+          title: "Anbefaler palet(ter)"
+        clone:
+          title: "Klone denne palet"
+
     share:
       title: "Email '%{title}'"

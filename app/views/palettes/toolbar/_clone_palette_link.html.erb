@@ -1,0 +1,8 @@
+<%= link_to '<i class="glyphicon glyphicon-transfer"></i> '.html_safe + t('palettes.index.link.clone.title').html_safe,
+            {controller: 'users',
+             action: 'clone_palette',
+             palette_id: @palette.id
+            },
+            method: :patch,
+            remote: true
+%>

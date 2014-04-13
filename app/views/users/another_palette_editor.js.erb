@@ -1,0 +1,10 @@
+$('#leftSideContentBox').replaceWith('<%= j render 'users/admin/another_user/left_side_content' %>');
+$('#flash_messages').html(
+    "<%= escape_javascript(render 'layouts/flash', flash: flash) %>"
+).delay(5000).fadeOut();
+<% flash.discard(:notice) %>
+$('#viewUsersPaletteEditorModal').modal('hide');
+$("#palette_link_" + '<%= @user.palettes.first.id %>').click();
+$(document).ready(function(){
+  $('.gridster ul li:first a').click()
+});

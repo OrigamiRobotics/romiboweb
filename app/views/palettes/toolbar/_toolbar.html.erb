@@ -1,20 +1,50 @@
-<h3>
-  <%= palette.title %> &nbsp; &nbsp;
-  <%= render 'palettes/toolbar/share_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/edit_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/import_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/delete_palette_link', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/toolbar/add_button_to_palette', palette: palette %>
-  &nbsp; |
-  &nbsp;
-  <%= render 'palettes/center_content/edit_multiple_palette_buttons_link', palette: palette %>
-</h3>
+<p>
+<div class="row" style="width: 93%">
+  <div class="col-md-8" style="font-size:20px">&nbsp;&nbsp;
+    <strong>
+      <% if @palette.recommended?(current_user) %>
+        <%= @palette.title %>
+        <span class="recommendedByWho"><%= " (recommended by #{@palette.owner.first_name})" %></span>
+      <% else %>
+        <%= best_in_place @palette, :title,
+                          :classes => 'bounce_on_success',
+                          :type => :input
+        %>
+      <% end %>
+    </strong>
+  </div>
+  <div class="col-md-2">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Actions <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <% if @palette.recommended?(current_user) %>
+          <li><%= render 'palettes/toolbar/clone_palette_link' %></li>
+        <% else %>
+          <li><%= render 'palettes/toolbar/recommend_palette_link', palette: palette %></li>
+          <li><%= render 'palettes/toolbar/share_palette_link', palette: palette %></li>
+          <li><%= render 'palettes/toolbar/import_palette_link', palette: palette %></li>
+          <li><%= render 'palettes/toolbar/delete_palette_link', palette: palette %></li>
+          <li class="divider"></li>
+          <li><%= render 'palettes/toolbar/edit_multiple_palette_buttons_link', palette: palette %></li>
+          <li class="divider"></li>
+          <li><%= render 'palettes/toolbar/add_button_to_palette', palette: palette %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="btn-group">
+      <%= link_to '<i class="glyphicon glyphicon-plus"></i> '.html_safe + 'New Button',
+                  buttons_path(palette_id: palette.id, js: true, status: "new"),
+                  method: :post,
+                  remote: true,
+                  class: 'btn btn-primary',
+                  id: 'addNewButton' unless @palette.recommended?(current_user)
+      %>
+    </div>
+  </div>
+</div>
+</p>
 <hr>

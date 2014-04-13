@@ -38,6 +38,12 @@ require 'openssl'
 #  encryption             :string(255)
 #  encryption_key         :string(255)
 #  encryption_iv          :string(255)
+#  admin                  :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class User < ActiveRecord::Base
@@ -53,9 +59,12 @@ class User < ActiveRecord::Base
   has_many :authentications, inverse_of: :user
   has_many :palette_viewers
   has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
+  has_many :lessons
+  has_many :recommended_palettes, inverse_of: :user, dependent: :destroy
 
   has_one :last_viewed_palette
   has_one :profile, inverse_of: :user
+
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -66,11 +75,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX } ,
             uniqueness:  { case_sensitive: false }
 
-  after_save :create_default_palettes
+  after_save :create_default_palettes, :create_profile
   after_create :send_email_for_twitter
 
+  include ApplicationHelper
+
   def create_profile
-    self.profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?
+    profile = Profile.create(user_name: '', avatar: '', user_id: id) unless profile.present?
   end
 
   def send_email_for_twitter
@@ -101,12 +112,14 @@ class User < ActiveRecord::Base
   end
 
   def set_last_viewed_palette(palette)
-    if last_viewed_palette.present?
-      last_viewed_palette.palette = palette
-      last_viewed_palette.save
-    else
-      lvp = build_last_viewed_palette palette_id: palette.id
-      lvp.save
+    if is_owner?(palette)
+      if last_viewed_palette.present?
+        last_viewed_palette.palette = palette
+        last_viewed_palette.save
+      else
+        lvp = build_last_viewed_palette palette_id: palette.id
+        lvp.save
+      end
     end
   end
 
@@ -286,10 +299,23 @@ class User < ActiveRecord::Base
     decipher = OpenSSL::Cipher::AES.new(128, :CBC)
     decipher.decrypt
     decipher.key = encryption_key
-    decipher.iv = encryption_iv
-
+    decipher.iv  = encryption_iv
     decipher.update(encryptd_id) + decipher.final
   end
+
+  def other_names_and_avatars
+    user_id = id
+    User.where{id != user_id}.order(:first_name).map do |user|
+      ["#{user.full_name},#{profile_avatar_url(user.profile)}", user.id]
+    end
+  end
+
+  def palettes_to_recommend
+    palettes.map do |palette|
+      ["#{palette.title} (#{palette.buttons.size} buttons)", palette.id]
+    end
+  end
+
 
   private
 
@@ -302,5 +328,9 @@ class User < ActiveRecord::Base
       confirmed_at = Time.now if confirmed_at.nil?
       save
     end
+  end
+
+  def is_owner?(palette)
+    palette.owner.id == id
   end
 end

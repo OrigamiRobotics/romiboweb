@@ -31,9 +31,17 @@
 #  updated_at        :datetime
 #  button_color_id   :integer
 #  size              :string(255)
-#  selected          :boolean          default(FALSE)
 #  row               :integer
 #  col               :integer
+#  selected          :boolean          default(FALSE)
+#  palette_id        :integer
+#
+# Indexes
+#
+#  index_buttons_on_button_color_id  (button_color_id)
+#  index_buttons_on_palette_id       (palette_id)
+#  index_buttons_on_size             (size)
+#  index_buttons_on_user_id          (user_id)
 #
 
 class Button < ActiveRecord::Base
@@ -42,6 +50,7 @@ class Button < ActiveRecord::Base
 
   belongs_to :user, inverse_of: :buttons
   belongs_to :button_color, inverse_of: :buttons
+  belongs_to :palette, inverse_of: :buttons
 
   validates :title, presence: true
   validates :speech_speed_rate, numericality: true
@@ -65,6 +74,16 @@ class Button < ActiveRecord::Base
       button_color_id: button_color_id,
       size: size,
       user_id: user_id
+    }
+  end
+
+  def self.default_button_params(user)
+    { title: "I'm a button",
+      speech_phrase: "This is what I say",
+      speech_speed_rate: 0.2,
+      button_color_id: ButtonColor.find_by_name('Turquoise').id,
+      size: "Medium",
+      user_id: user.id
     }
   end
 end

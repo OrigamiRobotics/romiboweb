@@ -1,0 +1,114 @@
+<div class="modal fade"
+  id="assignUserRoleModal"
+  tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Select a user from the list below to assign role.</h4>
+      </div>
+      <%= simple_form_for current_user,
+                          remote: true,
+                          url: url_for(controller: 'users', action: 'role'),
+                          :html => { :class => 'form-horizontal' } do |f| %>
+      <div class="modal-body">
+        <div class="row">
+          <% users = current_user.other_names_and_avatars %>
+          <div class="col-md-7">
+            <%= select_tag  'role_user_id', options_for_select(users),
+                            input_html: { class: 'chosen-select' }
+            %>
+          </div>
+          <div class="col-md-5">
+            <% user = User.find(users.first.last) %>
+            <% if user.admin? %>
+              <%= check_box_tag 'user_role', 'yes', true %>
+              <%= label_tag 'user_role', 'Click to remove admin role', id: 'user_role_label' %>
+              <%= hidden_field_tag 'new_user_role', true %>
+              <% checked = true %>
+            <% else %>
+                <%= check_box_tag 'user_role', 'no', false %>
+                <%= label_tag 'user_role', 'Click to assign admin role', id: 'user_role_label' %>
+                <%= hidden_field_tag 'new_user_role', false %>
+              <% checked = false %>
+          <% end %>
+          </div>
+        </div>
+
+        <br><br><br>
+        <div class="row">
+          <div class="col-md-7">
+            <% if user.admin? %>
+              <span class="label label-info">Currently assigned admin role.</span>
+            <% else %>
+              <span class="label label-default">Currently NOT assigned admin role.</span>
+            <% end %>
+          </div>
+          <div class="col-md-5">
+            <div id="actionToBeTaken">
+              <% if checked %>
+                <span class="label label-success">Admin role will be assigned.</span>
+              <% else %>
+                <span class="label label-default">Admin role will NOT be assigned.</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <%= f.submit 'Assign', class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getAvatarUrl(str){
+    var aStr = str.split(',');
+    return aStr[1];
+  }
+
+  function getName(str){
+    var aStr = str.split(',');
+    console.log(str);
+    return aStr[0];
+  }
+
+  function format(state) {
+    if (!state.id) return state.text; // optgroup
+    var val = "<img class='miniAvatar' src='" + getAvatarUrl(state.text) + "'/>" +
+         "    " + getName(state.text);
+    return val;
+  }
+
+  $(function() {
+    $('select#role_user_id').select2({
+      width: '305px',
+      height: 'element',
+      formatResult: format,
+      formatSelection: format,
+      escapeMarkup: function(m) { return m; }
+    });
+  });
+
+  $('#user_role').click(function(){
+    if($(this).is(':checked')){
+      $('#user_role_label').text("Click to remove admin role");
+      $('#new_user_role').val(true);
+      var content = '<span class="label label-success">Admin role will be assigned.</span>';
+      $('#actionToBeTaken').html(content);
+    }
+    else {
+      $('#user_role_label').text("Click to assign admin role");
+      $('#new_user_role').val(false);
+      var content = '<span class="label label-default">Admin role will NOT be assigned.</span>';
+      $('#actionToBeTaken').html(content);
+    }
+
+  });
+</script>

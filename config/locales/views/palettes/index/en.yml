@@ -21,5 +21,12 @@ en:
           confirm: "Delete palette '%{title}' ?"
         add:
           title: "Create new palette"
+        import:
+          title: "Import palette"
+        recommend:
+          title: "Recommend palette(s)"
+        clone:
+          title: "Clone this palette"
+
     share:
       title: "Email '%{title}'"

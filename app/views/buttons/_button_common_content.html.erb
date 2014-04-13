@@ -1,8 +1,14 @@
 <% palette = (@current_palette || @palette) %>
 <% class_name = button.size.downcase %>
 <% color_class_name = "#{button.button_color.name.downcase.gsub(/ /, '-')}ButtonColor" %>
-<% color_class_name += "Highlighted" if button.id == @palette.current_button.id && params[:mode].nil? %>
-<div class='<%= "#{class_name}ButtonWidget #{color_class_name}" %>' id='<%= "button_#{button.div_id}" %>'>
+<% color_class_name += "Highlighted" if button.selected? %>
+<div class='<%= "#{class_name}ButtonWidget #{color_class_name}" %>'
+     id='<%= "button_#{button.div_id}" %>'
+     <%= 'draggable=true
+     ondragstart=dragStart(event)
+     ondrag=drag(event)' if button.selected? %>
+>
+
   <h1 id='<%= "#{button.div_id}" %>'>
     <% if class_name =='small' %>
       <%= truncate(button.title, length: 8 ) %>
@@ -12,8 +18,45 @@
       <%= truncate(button.title, length: 20 ) %>
     <% end %>
   </h1>
-  <%= link_to '', button_path(button, palette_id: palette.id),
-              method: :get,
-              remote: true
-  %>
+
+
+  <% if button.selected? %>
+    <div class="selectedButtonIcon">
+      <i class="glyphicon glyphicon-ok-sign"></i>
+    </div>
+
+  <% end %>
+  <script>
+
+    var buttonBox = $( '#' + '<%= "button_#{button.div_id}" %>');
+    buttonBox.click(function(e){
+      e.preventDefault();
+      var url = '<%= j url_for(controller: 'buttons',
+                           action:     'show',
+                           id:         button.id,
+
+                           )
+
+            %>' ;
+      url += "&" + '<%= j "palette_id=#{palette.id}" %>' + "&mode=multiple"
+      $.getScript(url);
+    });
+
+    buttonBox.hover(function(){
+      $(this).css("cursor", "pointer") ;
+    });
+
+    //drag and drop functionality
+    <% unless button.selected? %>
+      buttonBox.mouseover(function(){
+        $(this).css("border-color", '#12558F') ;
+      });
+
+      buttonBox.mouseout(function(){
+        var borderColor = '<%= button.button_color.value %>';
+        $(this).css("border-color", borderColor) ;
+      });
+    <% end %>
+  </script>
 </div>
+

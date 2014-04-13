@@ -31,7 +31,8 @@ gem 'select2-rails'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
 gem "best_in_place", github: 'bernat/best_in_place', branch: "rails-4"
-gem 'rmagick'
+gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
+gem 'acts-as-taggable-on', '~> 3.0.2'
 
 
 
@@ -47,8 +48,11 @@ group :production, :integration, :staging do
 end
 
 
-
-gem 'rspec-rails', group: [:test, :development]
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
+end
 
 group :development do
   gem 'annotate'
@@ -64,9 +68,9 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
   gem 'guard-rspec'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
-  gem 'faker'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.5.0'
   gem 'capybara-webkit'
+  gem 'spork-rails'
+  gem 'guard-spork'
 end

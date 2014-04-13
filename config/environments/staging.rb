@@ -80,7 +80,7 @@ Romiboweb::Application.configure do
       authentication: :login,
       enable_starttls_auto: true,
       user_name: "romiborobotproject@gmail.com",
-      password:  "Pr0j3ctR0bb13",
+      password:  "Pr0j3ctR0bb1e",
       :openssl_verify_mode  => 'none'
   }
 

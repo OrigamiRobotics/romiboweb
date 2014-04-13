@@ -1,23 +1,17 @@
 <div class="paletteDetailsContainer" id='<%= "#{palette.id}--#{palette.title}" %>'>
-	<div id="paletteToolbar">
-	  <%= render 'palettes/toolbar/toolbar', palette: palette %>
-	</div>
-	<div id="paletteButtons">
-	  <% if params[:mode].present? and params[:mode] == 'multiple' %>
-	    <%= render 'palettes/center_content/edit_multiple_buttons_menu' %>
-	    <%= render 'palettes/center_content/existing_buttons_with_selection', palette: palette %>
-	  <% else %>
-	    <%= render 'palettes/center_content/existing_buttons', palette: palette %>
-	  <% end %>
-	</div>
+  <div id="paletteToolbar">
+    <%= render 'palettes/toolbar/toolbar', palette: palette %>
+  </div>
+  <div id="paletteButtons">
+    <% if params[:mode].present? and params[:mode] == 'multiple' %>
+      <%= render 'palettes/center_content/edit_multiple_buttons_menu' %>
+      <%= render 'palettes/center_content/existing_buttons_with_selection', palette: palette %>
+    <% else %>
+      <%= render 'palettes/center_content/existing_buttons', palette: palette %>
+    <% end %>
+  </div>
   <%= render 'palettes/import_palette' %>
-
-  <script>
-    $('#addNewButton').tooltip();
-    $('#editPaletteIcon').tooltip();
-    $('#arrangeButtonsIcon').tooltip();
-    $('#importPaletteLink').tooltip();
-    $('#deletePalette').tooltip();
-    $('#sharePaletteLink').tooltip();
-  </script>
+  <%= render 'users/admin/assign_user_role_modal' %>
+  <%= render 'users/admin/view_another_users_palette_editor_modal' %>
+  <%= render 'users/recommend/recommend_palette_modal' %>
 </div>

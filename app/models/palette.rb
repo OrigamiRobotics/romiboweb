@@ -28,16 +28,19 @@ class Palette < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
 
   has_many :palette_buttons
-  has_many :buttons, through: :palette_buttons
+  has_many :palette_lessons
+  has_many :lessons, through: :palette_lessons
+  has_many :buttons, dependent: :destroy
+  has_many :palette_viewers
+  has_many :viewers, class_name: 'User', through: :palette_viewers
+  has_many :recommended_palettes, inverse_of: :palette, dependent: :destroy
 
   has_one  :last_viewed_palette
 
-  has_many :palette_viewers
-  has_many :viewers, class_name: 'User', through: :palette_viewers
 
   validates_presence_of :title
 
-  attr_accessor :file, :speech_speed_rate, :button_color, :size, :speech_phrase, :button_color
+  attr_accessor :file, :speech_speed_rate, :button_color, :size, :speech_phrase
 
   extend DefaultPalette
 
@@ -49,7 +52,7 @@ class Palette < ActiveRecord::Base
       palette.save
       buttons_data.each do |b_title|
         button = palette.buttons.build(title: b_title, speech_phrase: b_title,
-                              speech_speed_rate: 2,
+                              speech_speed_rate: 0.2,
                               user_id: user.id,
                               button_color_id:   ButtonColor.find_by_name('Turquoise').id,
                               size:              'Medium'
@@ -80,7 +83,7 @@ class Palette < ActiveRecord::Base
 
   def current_button
     if last_viewed_button.present?
-      Button.find(last_viewed_button)
+      Button.find(last_viewed_button) || nil
     else
       (buttons.present?) ? buttons.first : nil
     end
@@ -95,10 +98,60 @@ class Palette < ActiveRecord::Base
   # all buttons have been selected after this one
   # button was selected
   def just_selected_all_buttons?
-    number_of_selected_buttons == buttons.size
+    (buttons.size > 0) && number_of_selected_buttons == buttons.size
   end
 
   def selected_buttons
     buttons.where{ selected == true}
+  end
+
+  def set_common_values(button)
+    speech_speed_rate = button.speech_speed_rate
+    button_color      = button.button_color_id
+    size              = button.size
+  end
+
+  def delete_buttons
+    update_attributes(last_viewed_button: nil)
+    Button.delete(selected_buttons.pluck(:id))
+    just_selected_all_buttons? ? update_attributes(all_buttons_selected: true) : update_attributes(all_buttons_selected: false)
+  end
+
+  def add_buttons(buttons_array)
+    buttons_array.each do |button|
+      new_button = buttons.build(button)
+      new_button.save
+    end
+  end
+
+  def add_default_button(user)
+    button = buttons.build(Button.default_button_params(user))
+    button.save
+  end
+
+  def self.recommend(palette_ids, user_ids)
+    palette_ids.each do |recommended_palette_id|
+      user_ids.each do  |recommended_user_id|
+        RecommendedPalette.create(palette_id: recommended_palette_id.to_i,
+                                  user_id:    recommended_user_id.to_i)
+      end
+    end
+  end
+
+  def recommended?(user)
+    user.id != self.owner.id
+  end
+
+  def self.clone(source, user)
+    palette = user.palettes.build(title: source.title,
+                     description: source.description,
+                     color: source.color
+    )
+    palette.save
+    source.buttons.each do |button|
+      button = palette.buttons.build(button.hash_params.merge(user_id: user.id))
+      button.save
+    end
+    palette
   end
 end

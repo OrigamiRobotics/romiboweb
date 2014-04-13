@@ -1,0 +1,7 @@
+$("#recommendedPalettesList").html("<%= escape_javascript(render 'palettes/left_side/recommended_palettes_list', palettes: @palettes) %>");
+$("#paletteList").html("<%= escape_javascript(render 'palettes/list', palettes: @palettes) %>");
+$("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palette: @palette) %>");
+$('#flash_messages').html(
+    "<%= escape_javascript(render 'layouts/flash', flash: flash) %>"
+).delay(5000).fadeOut();
+<% flash.discard(:notice) %>

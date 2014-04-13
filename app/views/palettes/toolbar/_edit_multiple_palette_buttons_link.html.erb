@@ -1,0 +1,6 @@
+<%= link_to '<i class="glyphicon glyphicon-th"></i> '.html_safe + t('palettes.edit.multiple').html_safe,
+            palette_path(palette, js: true, mode: "multiple"),
+            remote: true,
+            id: 'editMultipleButtons',
+            data: {toggle: 'tooltip'}
+%>
