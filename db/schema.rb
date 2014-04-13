@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329073721) do
+ActiveRecord::Schema.define(version: 20140412071434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140329073721) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   create_table "authentications", force: true do |t|
@@ -58,9 +60,11 @@ ActiveRecord::Schema.define(version: 20140329073721) do
     t.boolean  "selected",          default: false
     t.integer  "row"
     t.integer  "col"
+    t.integer  "palette_id"
   end
 
   add_index "buttons", ["button_color_id"], name: "index_buttons_on_button_color_id", using: :btree
+  add_index "buttons", ["palette_id"], name: "index_buttons_on_palette_id", using: :btree
   add_index "buttons", ["size"], name: "index_buttons_on_size", using: :btree
   add_index "buttons", ["user_id"], name: "index_buttons_on_user_id", using: :btree
 
@@ -100,6 +104,21 @@ ActiveRecord::Schema.define(version: 20140329073721) do
   add_index "last_viewed_palettes", ["palette_id"], name: "index_last_viewed_palettes_on_palette_id", using: :btree
   add_index "last_viewed_palettes", ["user_id"], name: "index_last_viewed_palettes_on_user_id", using: :btree
 
+  create_table "lessons", force: true do |t|
+    t.string   "title"
+    t.text     "subject"
+    t.integer  "duration"
+    t.text     "objectives"
+    t.text     "materials"
+    t.string   "no_of_instructors"
+    t.string   "student_size"
+    t.text     "preparation"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
   create_table "palette_buttons", force: true do |t|
     t.integer  "palette_id"
     t.integer  "button_id"
@@ -109,6 +128,16 @@ ActiveRecord::Schema.define(version: 20140329073721) do
 
   add_index "palette_buttons", ["button_id"], name: "index_palette_buttons_on_button_id", using: :btree
   add_index "palette_buttons", ["palette_id"], name: "index_palette_buttons_on_palette_id", using: :btree
+
+  create_table "palette_lessons", force: true do |t|
+    t.integer  "palette_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "palette_lessons", ["lesson_id"], name: "index_palette_lessons_on_lesson_id", using: :btree
+  add_index "palette_lessons", ["palette_id"], name: "index_palette_lessons_on_palette_id", using: :btree
 
   create_table "palette_viewers", force: true do |t|
     t.integer  "user_id"
@@ -141,6 +170,34 @@ ActiveRecord::Schema.define(version: 20140329073721) do
   add_index "profiles", ["slug"], name: "index_profiles_on_slug", unique: true, using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "recommended_palettes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "palette_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recommended_palettes", ["palette_id"], name: "index_recommended_palettes_on_palette_id", using: :btree
+  add_index "recommended_palettes", ["user_id"], name: "index_recommended_palettes_on_user_id", using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -148,11 +205,11 @@ ActiveRecord::Schema.define(version: 20140329073721) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -168,6 +225,7 @@ ActiveRecord::Schema.define(version: 20140329073721) do
     t.string   "encryption"
     t.string   "encryption_key"
     t.string   "encryption_iv"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
