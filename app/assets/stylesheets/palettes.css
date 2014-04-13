@@ -150,3 +150,12 @@ a.disabled {
   pointer-events: none;
   cursor: default;
 }
+
+h3.panel-title {
+  font-size: 15px;
+}
+
+#noCurrentRecommendedPalettes {
+  margin: 10px;
+  padding: 10px;
+}
