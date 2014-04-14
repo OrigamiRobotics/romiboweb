@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/bmabey/database_cleaner.git
-  revision: 35bd646903fc56af185a9fa9e360c568bb56756e
-  specs:
-    database_cleaner (1.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -357,7 +351,6 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   cucumber-rails
-  database_cleaner!
   devise
   email_spec
   factory_girl_rails
