@@ -8,7 +8,7 @@
   <%= hidden_field_tag  'change_size_value',  'no' %>
 
 
-  <%= f.input :title %>
+  <%= f.input :title, input_html: { id: 'disabled_palette_title'} %>
   <%= f.input :speech_phrase, input_html: {style: 'height:50px;'} %>
   <% @palette.button_color = 6 %>
   <% @palette.size = "Medium" %>
@@ -57,7 +57,6 @@
   </div>
 
   <script>
-
     var speedRateField = $('#palette_speech_speed_rate');
     var speedRate = 0.2;
     var button_size = $('#palette_size');
@@ -92,8 +91,8 @@
     });
 
 
-    $('#palette_title').val('');
-    $('#palette_title').prop('disabled', true);
+    $('input#disabled_palette_title').val('');
+    $('input#disabled_palette_title').prop('disabled', true);
     $('#palette_speech_phrase').prop('disabled', true);
     $('.noUiSlider').noUiSlider({
       range: [0, 1]

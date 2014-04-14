@@ -48,6 +48,7 @@
 <hr>
 <script>
   var title_field = $("input#palette_title");
+  title_field.prop('disabled', false);
   title_field.on('focusout', function() {
     $('#editPaletteInPlaceForm').submit();
   });
