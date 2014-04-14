@@ -38,10 +38,9 @@ class PalettesController < ApplicationController
   def update
     @palette = Palette.find params[:id]
     @palettes = @user.palettes
-    puts params.to_yaml
     respond_to do |format|
       if update_applicable_palette
-        format.html {redirect_to palettes_path}
+        format.html {redirect_to palettes_path, format: :js}
         format.js
         format.json { render json: @palette }
       else
@@ -68,7 +67,11 @@ class PalettesController < ApplicationController
     @palette = Palette.find params[:id] if params[:id].present?
     @button  = @palette.current_button
     @user.set_last_viewed_palette @palette
-    puts params.to_yaml
+    if params[:shared].present? && params[:shared] == 'true'
+      session[:viewing_another_palette] = false
+    else
+      session[:viewing_another_palette] = true
+    end
     if @palette
       respond_to do |format|
         format.html {redirect_to palettes_path}
@@ -150,6 +153,7 @@ class PalettesController < ApplicationController
   end
 
   def handle_multiple_edits
+
     if params[:change_speed_rate].present? && params[:change_speed_rate] == 'yes'
       @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f)
     end

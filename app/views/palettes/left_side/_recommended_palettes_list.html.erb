@@ -26,6 +26,7 @@
         var id = '<%= "#palette_link_#{palette.id}" %>';
         $(id).click(function(){
           var url = '<%= "/palettes/#{palette.id}" %>';
+          url += '?shared=true'
           $.getScript(url);
         });
       </script>

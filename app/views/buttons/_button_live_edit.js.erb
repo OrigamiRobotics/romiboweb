@@ -86,13 +86,14 @@ $('#addNewButton').blur();
 
 $('#button_tile').focus();
 
-<% if @palette.recommended?(current_user) %>
+<% if @palette.recommended?(current_user)  && session[:viewing_another_palette] == false
+  %>
   $('#button_title').prop('disabled', true);
   speedRateField.prop('disabled', true);
   $('INPUT#button_speech_phrase').prop('disabled', true);
   $('.noUiSlider').attr('disabled', 'disabled');
   $('#button_button_color_id').select2("readonly", true);
-  $('SELECT#button_size').prop('disabled', true);
+  $('select#button_size').prop('disabled', true);
   $('a#cloneButton').addClass('disabled');
   $('a#deleteButton').addClass('disabled');
 <% end %>

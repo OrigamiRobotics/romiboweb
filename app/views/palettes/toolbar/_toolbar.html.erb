@@ -2,7 +2,7 @@
 <div class="row" style="width: 93%">
   <div class="col-md-8" style="font-size:20px">&nbsp;&nbsp;
     <strong>
-      <% if @palette.recommended?(current_user) %>
+      <% if @palette.recommended?(current_user) && session[:viewing_another_palette] == false %>
         <%= @palette.title %>
         <span class="recommendedByWho"><%= " (recommended by #{@palette.owner.first_name})" %></span>
       <% else %>
@@ -18,7 +18,7 @@
         Actions <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <% if @palette.recommended?(current_user) %>
+        <% if @palette.recommended?(current_user)  && session[:viewing_another_palette] == false %>
           <li><%= render 'palettes/toolbar/clone_palette_link' %></li>
         <% else %>
           <li><%= render 'palettes/toolbar/recommend_palette_link', palette: palette %></li>
@@ -40,7 +40,7 @@
                   method: :post,
                   remote: true,
                   class: 'btn btn-primary',
-                  id: 'addNewButton' unless @palette.recommended?(current_user)
+                  id: 'addNewButton' unless @palette.recommended?(current_user) && session[:viewing_another_palette] == false
       %>
     </div>
   </div>
