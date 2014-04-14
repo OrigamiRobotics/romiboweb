@@ -30,7 +30,6 @@ class PalettesController < ApplicationController
   def edit
     @palette = Palette.find params[:id]
     @user.set_last_viewed_palette @palette
-
     respond_to do |format|
       format.js
     end
@@ -41,14 +40,15 @@ class PalettesController < ApplicationController
     @palettes = @user.palettes
     respond_to do |format|
       if update_applicable_palette
-        format.html {redirect_to palettes_path}
+        format.html {redirect_to palettes_path, format: :js}
         format.js
-        format.json { respond_with_bip(@palette) }
+        format.json { render json: @palette }
       else
         flash[:alert] = 'Invalid Input'
-        format.html {redirect_to palettes_path}
+        #format.html {redirect_to palettes_path}
         format.js
-        format.json { respond_with_bip(@palette) }
+        format.html { render :action  => :edit }
+        format.json { render nothing: true }
       end
     end
   end
@@ -67,10 +67,16 @@ class PalettesController < ApplicationController
     @palette = Palette.find params[:id] if params[:id].present?
     @button  = @palette.current_button
     @user.set_last_viewed_palette @palette
+    if params[:shared].present? && params[:shared] == 'true'
+      session[:viewing_another_palette] = false
+    else
+      session[:viewing_another_palette] = true
+    end
     if @palette
       respond_to do |format|
         format.html {redirect_to palettes_path}
-        format.js #show.js.erb
+        format.js
+        format.json {render json: @palette}
       end
     end
 
@@ -110,10 +116,6 @@ class PalettesController < ApplicationController
   def delete_buttons
     @user.set_last_viewed_palette @palette
     @palette.update_attributes(last_viewed_button: nil)
-    #@palette.selected_buttons.each do |button|
-    #  Button.delete(button.id)
-    #  puts "deleted #{button.id}"
-    #end
     @palette.delete_buttons
     @button = @palette.current_button
   end
@@ -151,6 +153,7 @@ class PalettesController < ApplicationController
   end
 
   def handle_multiple_edits
+
     if params[:change_speed_rate].present? && params[:change_speed_rate] == 'yes'
       @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f)
     end

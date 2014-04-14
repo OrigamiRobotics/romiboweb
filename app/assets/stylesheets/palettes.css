@@ -159,3 +159,23 @@ h3.panel-title {
   margin: 10px;
   padding: 10px;
 }
+
+.restInPlace {
+  margin-top: -30px;
+}
+
+
+input#palette_title {
+  font-size: 14px;
+  margin-left: -5px;
+}
+
+.profile_user_name {
+  margin-top: -5px;
+  width: 300px;
+}
+
+#editProfileInPlaceForm {
+  margin-top: -5px;
+  width: 300px;
+}

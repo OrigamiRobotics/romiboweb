@@ -1,0 +1,10 @@
+<%= simple_form_for profile,
+                    remote: true,
+                    :html => { :class => 'form-horizontal',
+                               id: 'editProfileInPlaceForm'
+                             }  do |f| %>
+
+  <%= f.input :user_name, label: false %>
+  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+
+<% end %>

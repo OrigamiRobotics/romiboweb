@@ -1,0 +1,10 @@
+<%= simple_form_for palette,
+                    remote: true,
+                    :html => { :class => 'form-horizontal',
+                               id: 'editPaletteInPlaceForm'
+                             }  do |f| %>
+
+  <%= f.input :title, label: false %>
+  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+
+<% end %>

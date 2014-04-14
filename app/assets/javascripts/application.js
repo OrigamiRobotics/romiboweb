@@ -15,7 +15,5 @@
 //= require jquery_ujs
 //= require jquery.nouislider.min
 //= require select2
-//= require jquery.purr
-//= require best_in_place
 //= require jquery.Jcrop
 //= require_tree .

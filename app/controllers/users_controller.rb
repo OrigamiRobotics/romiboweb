@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, unless: { action: 'locale' }
-  before_filter :set_gon
+  before_filter :set_gon, :set_session
 
 
   #def new
@@ -59,6 +59,7 @@ class UsersController < ApplicationController
     @user = User.find(user_id)
     @palettes = @user.palettes
     flash[:notice] = "You are now viewing #{@user.full_name}'s palette.'"
+    session[:viewing_another_palette] = true
   end
 
 
@@ -86,5 +87,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
-
 end

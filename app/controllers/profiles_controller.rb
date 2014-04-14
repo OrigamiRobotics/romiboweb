@@ -12,8 +12,13 @@ class ProfilesController < ApplicationController
       if @profile.update_attributes(profile_params)
         handle_after_save format
       else
-        format.html { render action: "edit" }
-        format.json { respond_with_bip(@profile) }
+        if params[:profile][:avatar].present?
+          flash[:error] = "Unrecognized file format for avatar. Only [jpg jpeg png] allowed."
+          format.html { redirect_to action: "show" }
+        else
+          format.json { render json: @profile }
+          format.js
+        end
       end
     end
   end
@@ -27,9 +32,10 @@ class ProfilesController < ApplicationController
     #if params[:profile].present? and params[:profile][:avatar].present?
     #  process_avatar format
     #else
+
       flash[:success] = 'Your profile was successfully updated.'
       format.html { redirect_to @profile}
-      format.json { respond_with_bip(@profile) }
+      format.json { render json: @profile }
     #end
   end
 

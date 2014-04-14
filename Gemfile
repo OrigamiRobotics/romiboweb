@@ -30,7 +30,6 @@ gem 'grabzit'
 gem 'select2-rails'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
-gem "best_in_place", github: 'bernat/best_in_place', branch: "rails-4"
 gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
 gem 'acts-as-taggable-on', '~> 3.0.2'
 
@@ -66,7 +65,7 @@ group :test do
   gem 'xpath'
   gem 'email_spec'
   gem 'launchy'
-  gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
+  #gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
   gem 'guard-rspec'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '2.5.0'
