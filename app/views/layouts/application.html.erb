@@ -7,7 +7,8 @@
     <title><%= full_title(yield :title) %></title>
     <%= include_gon %>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag '//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', media: 'all' %>
+    <%= stylesheet_link_tag '//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', "data-turbolinks-track" => true, media: 'all' %>
+    <%= stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', "data-turbolinks-track" => true, media: 'all' %>
     <%= stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true %>
 	  <%= yield :head %>
 
