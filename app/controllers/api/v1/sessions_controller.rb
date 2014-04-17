@@ -19,10 +19,13 @@ class Api::V1::SessionsController < Devise::SessionsController
   #   - +AuthorizationError+ -> if user or password is incorrect
   #
   def create
-    user = User.find_for_database_authentication email: params[:email]
+    unless params[:user]
+      head :unauthorized and return
+    end
+    user = User.find_for_database_authentication email: params[:user][:email]
     head :unauthorized and return unless user
 
-    if user.valid_password? params[:password]
+    if user.valid_password? params[:user][:password]
       user.reset_auth_token!
       render json: user.to_json(
           only: [:first_name, :last_name, :email, :auth_token]),

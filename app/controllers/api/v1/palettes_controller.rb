@@ -14,7 +14,7 @@ class Api::V1::PalettesController < Api::BaseController
   #   - +ArgumentError+ -> if any value is nil or negative
   #
   def index
-    @palettes = @current_user.palettes
+    @palettes = @current_user.palettes.includes :buttons
   end
 
 end
