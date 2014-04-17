@@ -79,6 +79,7 @@ GEM
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
     daemons (1.1.9)
+    database_cleaner (1.2.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -208,6 +209,9 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pickle (0.4.11)
+      cucumber (>= 0.8)
+      rake
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.4)
@@ -351,6 +355,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   cucumber-rails
+  database_cleaner
   devise
   email_spec
   factory_girl_rails
@@ -371,6 +376,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-twitter
   pg
+  pickle
   rabl
   rack-mini-profiler
   rails (= 4.0.2)

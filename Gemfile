@@ -65,11 +65,12 @@ group :test do
   gem 'xpath'
   gem 'email_spec'
   gem 'launchy'
-  #gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
+  gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '2.5.0'
   gem 'capybara-webkit'
   gem 'spork-rails'
   gem 'guard-spork'
+  gem 'pickle'
 end
