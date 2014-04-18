@@ -35,4 +35,8 @@ class ButtonColor < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :buttons, inverse_of: :button_color
+  
+  def self.default
+    ButtonColor.find_by_name('Turquoise')
+  end
 end

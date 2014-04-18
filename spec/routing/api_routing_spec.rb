@@ -5,6 +5,8 @@ describe 'API Routing', api: true do
   context 'for palettes', palette: true do
     it {should route(:get, '/api/v1/palettes')
                .to(controller: 'api/v1/palettes', action:'index')}
+    it {should route(:post, '/api/v1/palettes')
+               .to(controller: 'api/v1/palettes', action:'create')}
   end
 
   context 'for registration and login', auth: true do

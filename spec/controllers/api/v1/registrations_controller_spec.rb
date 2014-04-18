@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Api::V1::RegistrationsController, api: true do
-  before(:each) do
-    @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
-  end
-
   let(:user) {FactoryGirl.build(:user)}
 
   describe "post 'create'", auth: true do
@@ -14,15 +10,15 @@ describe Api::V1::RegistrationsController, api: true do
 
     context 'with valid attributes' do
       before :each do
-        post :create, user: FactoryGirl.attributes_for(:user), format: :json
+        @user_attributes = FactoryGirl.attributes_for(:user)
+        post :create, user: @user_attributes, format: :json
       end
       it { should respond_with 201 }
-      pending { should render_template 'create' }
       it 'should return user attributes' do
         json = JSON.parse response.body
-        json['first_name'].should eq user.first_name
-        json['last_name'].should eq user.last_name
-        json['email'].should eq user.email
+        json['first_name'].should eq @user_attributes[:first_name]
+        json['last_name'].should eq @user_attributes[:last_name]
+        json['email'].should eq @user_attributes[:email]
         json['auth_token'].should_not be_nil
       end
     end

@@ -45,6 +45,8 @@
 #
 
 class Button < ActiveRecord::Base
+  #after_create :ensure_position
+  
   has_many :palette_buttons
   has_many :palettes, through: :palette_buttons
 
@@ -54,7 +56,7 @@ class Button < ActiveRecord::Base
 
   validates :title, presence: true
   validates :speech_speed_rate, numericality: true
-  validates :user_id, presence: true
+  # validates :user_id, presence: true
   validates :button_color_id, presence: true
   validates :size, presence: true, inclusion: { in: %w(small Small medium Medium large Large)}
 
@@ -85,5 +87,17 @@ class Button < ActiveRecord::Base
       size: "Medium",
       user_id: user.id
     }
+  end
+
+  private
+  def ensure_position
+    last_button = self.palette.buttons.last
+    if last_button
+      self.row = last_button.col == 8 ? last_button.row : last_button.row + 1
+      self.col = last_button.col == 8 ? 1 : last_button.col + 1 
+    else
+      self.row = 1
+      self.col = 1
+    end
   end
 end
