@@ -2,7 +2,8 @@ en:
   home:
     title: "Home"
     header:
-      welcome: "Welcome to RomiboWeb"
+      welcome: "Welcome to Create.Romibo!"
+      create: "Create and share content and lessons for Romibo"
       signin: "Already a member? Sign In"
       signup: "New user? Sign up"
       oauth: "Are you social? Sign in using one of:"

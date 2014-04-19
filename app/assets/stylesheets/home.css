@@ -11,10 +11,19 @@ body {
 
 .page-header {
 	border: none;
+    margin: 0px;
 }
 
 .welcome-container {
 	color: #ffffff;
+}
+
+.welcome-header {
+    margin-top: 0px;
+}
+
+.welcome-create {
+    font-size: 20px;
 }
 
 #welcomeBoxOnHomePage {
@@ -34,12 +43,18 @@ body {
 }
 
 #social_sign_in_panel {
-    margin-top: 45px;
+    margin: 10px;
+}
+
+#sign_in_panel {
+    margin: 10px;
 }
 
 .scrollable {
     height: 350px !important;
     overflow: scroll;
 }
+
+
 
 
