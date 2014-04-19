@@ -36,6 +36,8 @@ class Palette < ActiveRecord::Base
   has_many :recommended_palettes, inverse_of: :palette, dependent: :destroy
 
   has_one  :last_viewed_palette
+  accepts_nested_attributes_for :buttons, 
+                                allow_destroy: true
 
 
   validates_presence_of :title
