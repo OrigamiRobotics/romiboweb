@@ -190,3 +190,16 @@ div.largeButtonWidget:hover {
 {
     margin-top: -11px;
 }
+
+.icon-flipped {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+.lead-no-margin {
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 1.4;
+}
