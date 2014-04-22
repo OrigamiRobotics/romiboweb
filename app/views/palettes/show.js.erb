@@ -56,6 +56,6 @@ $("#paletteDetail").html("<%= escape_javascript(render 'palettes/palette', palet
 <% else %>
   <% session[:editing_multiple_buttons] = false %>
   <% if @palette.buttons.present? %>
-		$('.gridster ul li:first a').click();
+    $('a#button-' + '<%= @palette.current_button.id %>').click();
   <% end %>
 <% end %>

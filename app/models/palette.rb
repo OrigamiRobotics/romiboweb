@@ -126,7 +126,7 @@ class Palette < ActiveRecord::Base
 
   def add_default_button(user)
     button = buttons.build(Button.default_button_params(user))
-    button.save
+    save
   end
 
   def self.recommend(palette_ids, user_ids)
@@ -139,7 +139,7 @@ class Palette < ActiveRecord::Base
   end
 
   def recommended?(user)
-    user.id != self.owner.id
+    (user.present? && self.owner.present? && self.owner.id.present?) ? user.id != self.owner.id : false
   end
 
   def self.clone(source, user)

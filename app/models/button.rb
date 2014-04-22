@@ -57,7 +57,10 @@ class Button < ActiveRecord::Base
   validates :user_id, presence: true
   validates :button_color_id, presence: true
   validates :size, presence: true, inclusion: { in: %w(small Small medium Medium large Large)}
+  validates :palette_id, presence: true
 
+  extend ButtonCreator
+  include ButtonUpdater
 
   def color
     button_color.value

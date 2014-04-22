@@ -37,4 +37,7 @@
       }
     }
   });
+  <% if @palette.buttons.present? %>
+    $('a#button-' + '<%= @palette.current_button.id %>').click();
+  <% end %>
 </script>

@@ -14,9 +14,9 @@ class PalettesController < ApplicationController
 
   def create
     @palette =  @user.palettes.build(palette_params)
-    @palette.add_default_button(@user)
     respond_to do |format|
       if @palette.save
+        @palette.add_default_button(@user)
         @user.set_last_viewed_palette @palette
         @palettes = @user.palettes
         respond_to_format_for_create format
