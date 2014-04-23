@@ -1,8 +1,64 @@
-<div class="panel panel-primary" id="buttonForm">
-  <div class="panel-heading">
-    <h3 class="panel-title" id="buttonHeaderOnForm">New Button Form</h3>
-  </div>
-  <div class="panel-body">
-    <%= render 'buttons/form' %>
-  </div>
+
+<div class="panel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#button" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span></a></li>
+      <li><a href="#help" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> </a> </li>
+    </ul>
+
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="button">
+        <div class="panel panel-primary" id="buttonForm">
+          <div class="panel-heading">
+            <h3 class="panel-title" id="buttonHeaderOnForm">New Button Form</h3>
+          </div>
+          <div class="panel-body">
+            <%= render 'buttons/form' %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade " id="help">
+        <div class="panel panel-primary" id="buttonForm">
+          <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead">Click <span class="glyphicon glyphicon-plus"></span><strong>New Button</strong> to left to create new button</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead"><strong>Sound</strong></div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead"><strong>Motion</strong> Time</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead-no-margin"><span class="glyphicon glyphicon-repeat"></span> Clockwise</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead-no-margin"><span class="glyphicon glyphicon-repeat icon-flipped"></span> CClockwise</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead-no-margin"><span class="glyphicon glyphicon-arrow-up"></span> Forward</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead"><span class="glyphicon glyphicon-arrow-down"></span> Backward</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead-no-margin"><span class="glyphicon glyphicon-chevron-left"></span> Turn Left</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead-no-margin"><span class="glyphicon glyphicon-chevron-up"></span> Tilt Up</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead-no-margin"><span class="glyphicon glyphicon-chevron-right"></span> Turn Right</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 lead"><span class="glyphicon glyphicon-chevron-down"></span> Tilt Down</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>

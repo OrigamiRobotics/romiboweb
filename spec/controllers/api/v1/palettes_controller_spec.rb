@@ -1,16 +1,13 @@
 require 'spec_helper'
 
 describe Api::V1::PalettesController, api: true do
-  before(:each) do
-    @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
-  end
   let!(:user) {FactoryGirl.create :user}
   let!(:palettes) {FactoryGirl.create_list :palette, 5, owner_id: user.id}
 
   describe "GET 'index'", palette: true do
 
     context 'without valid auth_token', auth: true do
-      before {get :index, format: :json}
+      before {get :index}
       it { should respond_with 401 }
     end
 
@@ -32,6 +29,26 @@ describe Api::V1::PalettesController, api: true do
         end
       end
     end
-
   end
+  
+  describe "POST 'create'" do
+    context 'without valid auth_token', auth: true do
+      before {post :create}
+      it { should respond_with 401 }
+    end
+    
+    context 'with valid palette data' do
+      before do
+        @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)
+        post :create, palette: FactoryGirl.attributes_for(:palette)
+      end
+      it { should respond_with 201 }
+      it 'should create a new palette' do
+         expect{
+           post :create, palette: FactoryGirl.attributes_for(:palette)
+         }.to change(Palette, :count).by 1
+      end
+    end
+  end
+  
 end

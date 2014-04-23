@@ -42,17 +42,15 @@
       %>
 
     </div>
-
-    <div class="col-md-4">
-      <%= f.submit 'Apply', class: 'btn btn-primary btn-block', id: 'applyButton' %>
-    </div>
     <div class="col-md-4">
       <%= link_to 'Cancel', palette_path(@palette),
                   remote: true,
                   class: 'btn btn-default btn-block',
                   id: 'cancelMultipleEditButton'
       %>
-
+    </div>
+    <div class="col-md-4">
+      <%= f.submit 'Apply', class: 'btn btn-primary btn-block', id: 'applyButton' %>
     </div>
   </div>
 

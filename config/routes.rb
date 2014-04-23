@@ -144,7 +144,7 @@ Romiboweb::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :palettes, only: [:index]
+      resources :palettes, only: [:index, :create], defaults: {format: 'json'}
       as :user do
         post 'register' => 'registrations#create'
         post 'login' => 'sessions#create'

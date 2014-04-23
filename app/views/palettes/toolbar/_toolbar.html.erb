@@ -35,13 +35,15 @@
   </div>
   <div class="col-md-2">
     <div class="btn-group">
-      <%= link_to '<i class="glyphicon glyphicon-plus"></i> '.html_safe + 'New Button',
-                  buttons_path(palette_id: palette.id, js: true, status: "new"),
-                  method: :post,
-                  remote: true,
-                  class: 'btn btn-primary',
-                  id: 'addNewButton' unless @palette.recommended?(current_user) && session[:viewing_another_palette] == false
-      %>
+      <% if !params[:mode].present? %>
+          <%= link_to '<i class="glyphicon glyphicon-plus"></i> '.html_safe + 'New Button',
+                      buttons_path(palette_id: palette.id, js: true, status: "new"),
+                      method: :post,
+                      remote: true,
+                      class: 'btn btn-primary',
+                      id: 'addNewButton' unless @palette.recommended?(current_user) && session[:viewing_another_palette] == false
+          %>
+      <% end %>
     </div>
   </div>
 </div>

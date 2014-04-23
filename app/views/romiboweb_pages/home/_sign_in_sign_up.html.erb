@@ -1,0 +1,42 @@
+<script>
+    $(function(){
+        $('#user_terms').change(function(){
+            if($(this).is(':checked')) {
+                $('#signUpSubmitButton').prop('disabled', false)
+            } else {
+                $('#signUpSubmitButton').prop('disabled', true)
+            }
+        });
+    });
+</script>
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Sign Up
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= render 'devise/registrations/form' %>
+        </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Sign In
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+        <%= render 'devise/sessions/form' %>
+    </div>
+  </div>
+</div>

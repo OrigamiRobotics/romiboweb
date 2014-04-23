@@ -34,8 +34,6 @@ gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
 gem 'acts-as-taggable-on', '~> 3.0.2'
 
 
-
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -65,11 +63,12 @@ group :test do
   gem 'xpath'
   gem 'email_spec'
   gem 'launchy'
-  gem 'database_cleaner', git: 'git://github.com/bmabey/database_cleaner.git'
+  gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '2.5.0'
   gem 'capybara-webkit'
   gem 'spork-rails'
   gem 'guard-spork'
+  gem 'pickle'
 end
