@@ -61,19 +61,6 @@ class ButtonsController < ApplicationController
       format.html {redirect_to palettes_path}
       format.js
     end
-
-  end
-
-  def save_grid
-    @palette = Palette.find params[:palette_id]
-    button_data = ActiveSupport::JSON.decode params[:button_data]
-    button_data.each do |data|
-      button = Button.find data['id']
-      button.row = data['row']
-      button.col = data['col']
-      button.save
-    end
-    head :ok and return
   end
 
   private

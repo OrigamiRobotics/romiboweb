@@ -107,10 +107,10 @@ Romiboweb::Application.routes.draw do
     end
     collection do
       get  'copy_buttons'
+      get  'save_grid'
     end
     resources :buttons do
       get 'grid', on: :collection
-      post 'save_grid', on: :collection
       post 'clone', on: :member
     end
   end

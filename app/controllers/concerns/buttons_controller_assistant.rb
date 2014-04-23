@@ -13,6 +13,7 @@ module ButtonsControllerAssistant
   end
 
   def get_palette(params, session)
+    return true if params[:button_data].present?
     session[:adding_button] = false
 
     @button  = Button.find(params[:id]) if params[:id].present?
