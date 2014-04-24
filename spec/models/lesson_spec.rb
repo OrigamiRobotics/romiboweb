@@ -20,12 +20,15 @@
 require 'spec_helper'
 
 describe Lesson, lesson: true do
-  [:title, :subject, :duration, :objectives, :materials,
+  [:title, :subjects, :duration, :objectives, :materials,
    :no_of_instructors, :student_size, :preparation, 
-   :notes, :tag_list].each do |attr|
+   :notes, :tag_list, :lesson_subjects].each do |attr|
     it {should respond_to attr}
   end
 
   it {should belong_to :user}
-  it {should have_one :attachment}
+  it {should have_one  :attachment}
+  it {should have_many :subjects}
+  it {should have_many :lesson_subjects}
+
 end

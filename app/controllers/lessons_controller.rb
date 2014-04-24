@@ -10,12 +10,19 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
     @lesson.user = current_user
 
+    puts params.inspect
     params[:lesson][:palette_ids].each do |palette_id|
       unless palette_id.empty?
         @lesson.palette_lessons.build(:palette_id => palette_id)
       end
     end unless params[:lesson][:palette_ids].blank?
-    
+
+    params[:lesson][:subject_ids].each do |subject_id|
+      unless subject_id.blank?
+        @lesson.lesson_subjects.build(:subject_id => subject_id)
+      end
+    end  unless params[:lesson][:subject_ids].blank?
+
     @lesson.build_attachment name: params[:lesson][:attachment] unless
     params[:lesson][:attachment].blank?
 
@@ -80,7 +87,7 @@ class LessonsController < ApplicationController
     params.require(:lesson).permit(
         :title, :subject, :duration, :objectives, :materials,
         :no_of_instructors, :student_size, :preparation, 
-        :notes, :tag_list, :palette_ids
+        :notes, :tag_list, :palette_ids, :subject_ids
     )
   end
 
