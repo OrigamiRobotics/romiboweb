@@ -24,17 +24,17 @@
     },
     draggable: {
       stop: function(){
-        var url = "<%= save_grid_palette_buttons_path current_user.last_viewed_palette %>";
+        var url = '<%= save_grid_palettes_path %>';
+        url += "&id=" + '<%= @palette.id %>';
         var data = "button_data="+JSON.stringify(
-            $(".gridster ul").gridster().data('gridster').serialize_changed()
+            $(".gridster ul").gridster().data('gridster').serialize()
         );
-        $.post(
-            url,
-            data,
-            null,
-            'script'
-        )
+        url += "&" + data;
+        $.getScript(url);
       }
     }
   });
+  <% if @palette.buttons.present? %>
+    $('a#button-' + '<%= @palette.current_button.id %>').click();
+  <% end %>
 </script>

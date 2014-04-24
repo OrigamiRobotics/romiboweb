@@ -3,8 +3,11 @@ require 'spec_helper'
 describe ButtonsController do
 
   render_views
+  let(:user) {FactoryGirl.create :user}
+
   before(:each) do
     @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
+    sign_in user
   end
 
   def valid_attributes
