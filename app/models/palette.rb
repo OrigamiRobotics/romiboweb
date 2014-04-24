@@ -25,8 +25,10 @@
 #
 
 class Palette < ActiveRecord::Base
+  after_create :add_default_button
+  
+  
   belongs_to :owner, class_name: 'User'
-
   has_many :palette_buttons
   has_many :palette_lessons
   has_many :lessons, through: :palette_lessons
@@ -126,8 +128,8 @@ class Palette < ActiveRecord::Base
     end
   end
 
-  def add_default_button(user)
-    button = buttons.build(Button.default_button_params(user))
+  def add_default_button
+    button = buttons.build(Button.default_button_params(owner))
     button.save
   end
 
