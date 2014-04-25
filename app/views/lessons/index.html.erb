@@ -10,13 +10,64 @@
       Romibo pallets to achieve specific learning goals. <br><br>
       You can create, store and share your lessons here.
     </p>
-    <p><%= link_to 'Create New Lesson', new_lesson_path, class: 'btn btn-large btn-primary' %></p>
+    <p><%= link_to 'Create New Lesson', new_lesson_path, class: 'btn btn-large btn-primary' %>
+      <% if @lessons.present? %>
+        <%= render 'lessons/recommend_lesson_link' %>
+      <% end %>
+    </p>
 
   </div>
-
-  <div class="row">
-    <%= render @lessons %>
-  </div>
+  <div class="clearfix"></div>
+  <% if @lessons.present? %>
+    <div id="myLessonsHeader">
+      <h3>My Lessons</h3>
+    </div>
+    <div class="row">
+      <%= render @lessons %>
+    </div>
+  <% end %>
+  <% if current_user.recommended_lessons.present? %>
+    <%= render 'lessons/recommended_lessons' %>
+  <% end %>
 </div>
-    
+  <%= render 'users/recommend/recommend_lesson_modal' %>
+  <script>
+    //palettes
+
+    $('select#recommend_lesson_ids').select2({
+      width:  '550px',
+      height: 'element',
+      escapeMarkup: function(m) { return m; }
+    });
+
+    //users
+    function getAvatarUrl(str){
+      var aStr = str.split(',');
+      return aStr[1];
+    }
+
+    function getName(str){
+      var aStr = str.split(',');
+      return aStr[0];
+    }
+
+    function format(state) {
+      if (!state.id) return state.text; // optgroup
+      var val = "<img class='miniAvatar' src='" + getAvatarUrl(state.text) +
+          " height='30' width='30'" +
+          "'/>" +
+          "    " + getName(state.text);
+      return val;
+    }
+
+    $('select#recommend_user_ids').select2({
+      width: '550px',
+      height: 'element',
+      formatResult: format,
+      formatSelection: format,
+      escapeMarkup: function(m) { return m; }
+    });
+
+  </script>
+
 <% end %>

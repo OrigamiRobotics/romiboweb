@@ -17,9 +17,10 @@
                 <small class="text-muted"><%= " #{time_ago_in_words @lesson.created_at} ago" %></small>
               </p>
               <small class="text-muted"><%= "Last Modified #{time_ago_in_words @lesson.updated_at} ago" %></small>
-              <%= render 'toolbar', lesson: @lesson %>  
+              <%= render 'toolbar', lesson: @lesson %>
+              <%= render 'lessons/clone_lesson_link' %>
+              <div class="clearfix"></div>
             </div>
-            
           </div>
           
           <%= form_for @lesson, html: {class: 'form-horizontal', role: 'form'} do |f| %>
@@ -32,7 +33,11 @@
               <div class="form-group">
                 <%= f.label :palettes, class: 'col-sm-2 control-label' %>
                 <div class="col-sm-10">
-                  <%= render partial: "palettes", collection: @lesson.palettes %>
+                  <% if @lesson.recommended? current_user %>
+                    <%= render "lessons/recommended_palettes", palettes: @lesson.palettes %>
+                  <% else %>
+                    <%= render partial: "palettes", collection: @lesson.palettes %>
+                  <% end %>
                 </div>
               </div>
             <div class="form-group">

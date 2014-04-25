@@ -1,0 +1,10 @@
+<% if @lesson.recommended? current_user %>
+  <%= link_to 'Clone Lesson',
+              {controller: 'users',
+               action: 'clone_lesson',
+               lesson_id: @lesson.id
+              },
+              method: :patch,
+              class: 'btn btn-large btn-success pull-right'
+  %>
+<% end %>

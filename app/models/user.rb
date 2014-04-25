@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   has_many :shared_palettes, class_name: 'Palette', through: :palette_viewers
   has_many :lessons
   has_many :recommended_palettes, inverse_of: :user, dependent: :destroy
+  has_many :recommended_lessons,  inverse_of: :user, dependent: :destroy
 
   has_one :last_viewed_palette
   has_one :profile, inverse_of: :user
@@ -316,7 +317,11 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  def lessons_to_recommend
+    lessons.map do |lesson|
+      ["#{lesson.title[0..99]} ", lesson.id]
+    end
+  end
   private
 
   def ensure_auth_token!

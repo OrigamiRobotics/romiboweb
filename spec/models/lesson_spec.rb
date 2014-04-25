@@ -30,5 +30,6 @@ describe Lesson, lesson: true do
   it {should have_one  :attachment}
   it {should have_many :subjects}
   it {should have_many :lesson_subjects}
+  it {should have_many :recommended_lessons}
 
 end

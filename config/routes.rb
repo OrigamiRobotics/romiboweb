@@ -137,7 +137,9 @@ Romiboweb::Application.routes.draw do
     patch 'role'                => 'users#role', as: :role
     patch 'another_palette_editor' => 'users#another_palette_editor', as: :another_palette_editor
     patch 'recommend_palettes'  => 'users#recommend_palettes', as: :recommend_palettes
+    patch 'recommend_lessons'   => 'users#recommend_lessons',  as: :recommend_lessons
     patch 'clone_palette'       => 'users#clone_palette', as: :clone_palette
+    patch 'clone_lesson'        => 'users#clone_lesson',  as: :clone_lesson
   end
 
   ######### API routes ##########
