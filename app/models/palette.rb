@@ -129,8 +129,8 @@ class Palette < ActiveRecord::Base
   end
 
   def add_default_button
-    button = buttons.build(Button.default_button_params(owner))
-    button.save
+    button = buttons.build(Button.default_button_params(user))
+    save
   end
 
   def self.recommend(palette_ids, user_ids)

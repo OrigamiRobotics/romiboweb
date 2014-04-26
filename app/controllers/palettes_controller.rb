@@ -22,6 +22,7 @@ class PalettesController < ApplicationController
         respond_to_format_for_create format
       else
         format.html {redirect_to palettes_path}
+        format.js {render 'new'}
       end
     end
   end
