@@ -17,24 +17,13 @@ module PalettesControllerHandlers
   def handle_selections
     select = params[:selection]
     applicable_method.fetch(select.to_sym).call
-    set_palette_buttons_values(params[:palette][:speech_speed_rate].to_f,
-                               params[:palette][:button_color].to_i,
-                               params[:palette][:size]
-    ) if params[:selection].present? && params[:selection] == 'updating'
+
   end
 
   def handle_multiple_edits
-    if params[:change_speed_rate].present? && params[:change_speed_rate] == 'yes'
-      @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f)
-    end
-
-    if params[:change_color_value].present? && params[:change_color_value] == 'yes'
-      @palette.selected_buttons.update_all(button_color_id: params[:palette][:button_color].to_i)
-    end
-
-    if params[:change_size_value].present? && params[:change_size_value] == 'yes'
-      @palette.selected_buttons.update_all(size: params[:palette][:size])
-    end
+    check_speed_rate
+    check_color_value
+    check_size_value
   end
 
   def handle_singular_selections
@@ -45,5 +34,31 @@ module PalettesControllerHandlers
       button.update_attributes(selected: false)
     end
     update_all_buttons_selected
+  end
+
+  private
+  def palettes_buttons
+    set_palette_buttons_values(params[:palette][:speech_speed_rate].to_f,
+                               params[:palette][:button_color].to_i,
+                               params[:palette][:size]
+    ) if params[:selection].present? && params[:selection] == 'updating'
+  end
+
+  def check_speed_rate
+    if params[:change_speed_rate].present? && params[:change_speed_rate] == 'yes'
+      @palette.selected_buttons.update_all(speech_speed_rate: params[:palette][:speech_speed_rate].to_f)
+    end
+  end
+
+  def check_color_value
+    if params[:change_color_value].present? && params[:change_color_value] == 'yes'
+      @palette.selected_buttons.update_all(button_color_id: params[:palette][:button_color].to_i)
+    end
+  end
+
+  def check_size_value
+    if params[:change_size_value].present? && params[:change_size_value] == 'yes'
+      @palette.selected_buttons.update_all(size: params[:palette][:size])
+    end
   end
 end
