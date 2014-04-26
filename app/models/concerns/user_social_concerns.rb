@@ -65,13 +65,7 @@ module UserSocialConcerns
   def get_user_by_oauth (auth)
     authentication = Authentication.where(:provider => auth.provider, uid: auth.uid).first
     return User.find_by_id(authentication.user_id) if authentication.present?
-    if auth.provide == 'twitter'
-      user = User.find_by_twitter_nickname(auth.info.nickname)
-    elsif auth.provider == 'facebook'
-      user = User.find_by_email(auth_email(auth))
-    elsif auth.provider =='google_oauth2'
-      user = User.find_by_email(auth_email(auth))
-    end
+    user = get_user_by_provider auth
     user.apply_omniauth auth unless user.blank?
     user
   end
@@ -105,6 +99,15 @@ module UserSocialConcerns
   end
 
   private
+  def get_user_by_provider(auth)
+    if auth.provide == 'twitter'
+      User.find_by_twitter_nickname(auth.info.nickname)
+    elsif auth.provider == 'facebook'
+      User.find_by_email(auth_email(auth))
+    elsif auth.provider =='google_oauth2'
+      User.find_by_email(auth_email(auth))
+    end
+  end
 
   def provider_data(auth, auth_image, auth_nickname, auth_token, user)
     {name:      auth_name(auth),
