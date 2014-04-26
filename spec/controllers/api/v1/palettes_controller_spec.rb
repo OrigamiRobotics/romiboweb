@@ -33,7 +33,7 @@ describe Api::V1::PalettesController, api: true do
   
   describe "POST 'create'" do
     context 'without valid auth_token', auth: true do
-      before {post :create}
+      before {post :create, format: :json}
       it { should respond_with 401 }
     end
     
