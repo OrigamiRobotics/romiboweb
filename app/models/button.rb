@@ -45,7 +45,9 @@
 #
 
 class Button < ActiveRecord::Base
-  #after_create :ensure_position
+  before_create :ensure_position
+
+  default_scope order(:row, :col)
   
   has_many :palette_buttons
   has_many :palettes, through: :palette_buttons
@@ -71,6 +73,12 @@ class Button < ActiveRecord::Base
   def div_id
     "buttonId_#{id}"
   end
+  
+  SIZE = {
+    'small' => 1,
+    'medium' => 2,
+    'large' => 4
+  }
 
   def hash_params
     { title: title,
@@ -91,16 +99,31 @@ class Button < ActiveRecord::Base
       user_id: user.id
     }
   end
+  
+  def ensure_position
+    last_button = palette.buttons.last
+    unless last_button
+      self.row, self.col = 1, 1
+      return
+    end
+    
+    if last_button
+      curr_button_col = last_button.col + SIZE[last_button.size.downcase]
+      
+      if can_fit_in_current_row?(last_button)
+        self.row = last_button.row
+        self.col = curr_button_col        
+      else
+        self.row = last_button.row + 1
+        self.col = 1
+      end
+    end
+  end
 
   private
-  def ensure_position
-    last_button = self.palette.buttons.last
-    if last_button
-      self.row = last_button.col == 8 ? last_button.row : last_button.row + 1
-      self.col = last_button.col == 8 ? 1 : last_button.col + 1 
-    else
-      self.row = 1
-      self.col = 1
-    end
+  def can_fit_in_current_row?(last_button)
+    curr_button_col = last_button.col + SIZE[last_button.size.downcase]
+    curr_button_size = SIZE[self.size.downcase]
+    curr_button_col <= 12 && (curr_button_col + curr_button_size) <= 13
   end
 end
