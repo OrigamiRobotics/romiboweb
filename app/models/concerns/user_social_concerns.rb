@@ -2,9 +2,7 @@ module UserSocialConcerns
   extend ActiveSupport::Concern
 
   def create_user_authentication(auth, user)
-    auth_token = (auth.credentials.present?) ? auth.credentials.token : "fake"
-    auth_nickname = (auth.info.present?) ? auth.info.nickname : "fake nickname"
-    auth_image = (auth.info.present?) ? auth.info.image : "fake image url"
+    auth_token , auth_nickname, auth_image = token_nickname_image auth
     if Rails.env.test?
       user = User.last
     end
@@ -119,5 +117,12 @@ module UserSocialConcerns
      image_url: auth_image,
      user_id:   user.id
     }
+  end
+
+  def token_nickname_image(auth)
+    auth_token = (auth.credentials.present?) ? auth.credentials.token : "fake"
+    auth_nickname = (auth.info.present?) ? auth.info.nickname : "fake nickname"
+    auth_image = (auth.info.present?) ? auth.info.image : "fake image url"
+    [auth_token, auth_nickname, auth_image]
   end
 end
