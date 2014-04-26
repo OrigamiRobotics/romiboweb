@@ -1,5 +1,14 @@
-$('#sendMailButton').attr('value','Submit');
-$('#emailResponse').html(
-		'<p class="text-success">' +
-				'<span class="glyphicon glyphicon-ok"></span> Email Sent</p>'
-).removeClass('hidden')
+<% if @email_sent %>
+  $('#flash_messages').html('<%= escape_javascript(render 'layouts/flash') %>');
+  $('#sendMailButton').hide();
+  $('#closeShareForm').attr('value','Close');
+  $('#emailResponse').html(
+      '<p class="text-success">' +
+          '<span class="glyphicon glyphicon-ok"></span> Email Sent</p>'
+  ).removeClass('hidden');
+  $('#paletteShareForm').modal('hide');
+<% else %>
+  $('#sendMailButton').attr('value','Submit');
+  $('#email_help_block').html("* <%= @email_error_text %>").addClass('text-danger');
+  $('#email_help_block').addClass('text-danger');
+<% end %>
