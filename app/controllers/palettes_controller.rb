@@ -14,16 +14,15 @@ class PalettesController < ApplicationController
 
   def create
     @palette =  @user.palettes.build(palette_params)
-    @palette.add_default_button(@user)
     respond_to do |format|
       if @palette.save
+        @palette.add_default_button(@user)
         @user.set_last_viewed_palette @palette
         @palettes = @user.palettes
         respond_to_format_for_create format
       else
         format.html {redirect_to palettes_path}
       end
-
     end
   end
 
@@ -109,6 +108,16 @@ class PalettesController < ApplicationController
     @palette = Palette.find(target_id)
     flash[:notice] = "#{source_palette.number_of_selected_buttons} buttons successfully added to palette (#{source_palette.title})"
     @palette.add_buttons(source_palette.selected_buttons.map{|button| button.hash_params})
+  end
+
+  def save_grid
+    @palette = Palette.find params[:id]
+    button_data = ActiveSupport::JSON.decode params[:button_data]
+    button_data.each do |data|
+      button = Button.find data['id']
+      button.update_attributes(row: data['row'], col: data['col'])
+    end
+    head :ok and return
   end
 
   private

@@ -33,6 +33,7 @@ FactoryGirl.define do
     user_id 1
     button_color_id 1
     size 'medium'
+    palette_id 1
   end
 
 end
