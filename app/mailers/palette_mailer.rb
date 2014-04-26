@@ -1,3 +1,4 @@
+require 'json'
 # PaletteMailer extends ActionMailer for sending email notifications.
 #
 
@@ -33,12 +34,7 @@ class PaletteMailer < ActionMailer::Base
     @palette = palette
     File.open("#{Rails.root}/tmp/#{palette.title}.rmbo.txt", 'w') do |f|
       f.write(
-          Rabl::Renderer.new(
-              'email',
-              @palette,
-              :view_path => 'app/views/palettes/share',
-              :format => :json
-          ).render
+          JSON.pretty_generate PaletteSerializer.new(@palette).as_json
       )
     end
   end
