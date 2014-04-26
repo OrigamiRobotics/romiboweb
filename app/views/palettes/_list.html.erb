@@ -8,7 +8,7 @@
              ondragover="return dragOver(event)"
       >
         <input type="radio" name="options" >
-        <%= palette.title %>
+        <%= truncate(palette.title, length: 25 ) %>
       </label>
 
       <script>

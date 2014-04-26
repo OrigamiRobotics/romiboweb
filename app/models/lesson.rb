@@ -24,9 +24,15 @@ class Lesson < ActiveRecord::Base
   acts_as_taggable
   
   belongs_to :user
+
   has_many :palette_lessons
   has_many :palettes, through: :palette_lessons
+  has_many :lesson_subjects, inverse_of: :lesson
+  has_many :subjects, through: :lesson_subjects
+
   has_one :attachment, as: :attachable, dependent: :delete
 
-
+  def subjects_for_show_page
+    subjects.pluck(:name).join(" | ")
+  end
 end

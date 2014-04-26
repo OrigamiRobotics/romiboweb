@@ -34,8 +34,6 @@ gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
 gem 'acts-as-taggable-on', '~> 3.0.2'
 
 
-
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

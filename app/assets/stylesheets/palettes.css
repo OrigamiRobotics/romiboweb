@@ -50,7 +50,9 @@ body {
 }
 
 #paletteList {
+  height: 250px;
   margin-bottom: 20px;
+  overflow-y: auto;
 }
 
 .min-height-600 {
@@ -93,7 +95,6 @@ body {
 
 #myPalettes {
     height: 300px;
-    overflow-y: auto;
 }
 
 [draggable="true"] {
@@ -178,4 +179,16 @@ input#palette_title {
 #editProfileInPlaceForm {
   margin-top: -5px;
   width: 300px;
+}
+
+#recommendedPalettesList {
+  height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+#paletteButtonsInCenterColumn {
+  height: 490px;
+  overflow-y: auto;
 }
