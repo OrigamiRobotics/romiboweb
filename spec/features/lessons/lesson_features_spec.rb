@@ -13,8 +13,8 @@ feature 'Features for lesson', lesson: true do
         expect(page).to have_title I18n.t 'lessons.new.title'
       end
       scenario 'should contain required fields' do
-        %w(title subject duration objectives materials
-            no_of_instructors student_size preparation notes tag_list).each do |attr|
+        %w(title objectives materials
+            student_size preparation tag_list).each do |attr|
           expect(page).to have_field I18n.t "activerecord.attributes.lesson.#{attr}"
         end
       end
@@ -63,9 +63,7 @@ feature 'Features for lesson', lesson: true do
       scenario 'should have lesson title' do
         expect(page).to have_title lesson.title
       end
-      scenario 'should have lesson subject' do
-        expect(page).to have_content lesson.subject
-      end
+
       scenario 'should have lesson author name' do
         expect(page).to have_content lesson.user.full_name
       end
@@ -123,11 +121,9 @@ feature 'Features for lesson', lesson: true do
   
   def fill_new_lesson_form
     visit new_lesson_path
-    %w(title subject objectives materials preparation notes).each do |attr|
+    %w(title objectives materials preparation ).each do |attr|
       fill_in I18n.t("activerecord.attributes.lesson.#{attr}"), with: lesson.send(attr)
     end
-    page.select(lesson.duration, from: I18n.t('activerecord.attributes.lesson.duration'))
-    page.select(lesson.no_of_instructors, from: I18n.t('activerecord.attributes.lesson.no_of_instructors'))
     page.select(lesson.student_size, from: I18n.t('activerecord.attributes.lesson.student_size'))
   end
 end

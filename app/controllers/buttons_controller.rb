@@ -37,7 +37,7 @@ class ButtonsController < ApplicationController
   def show
     @button = Button.find(params[:id])
     @button.set_selection params
-    set_palette_buttons_values @button.speech_speed_rate, @button.button_color_id, @button.size
+    set_palette_buttons_values @button.speech_speed_rate, @button.button_color_id, @button.size, session
     @button.update_parent_palette
   end
 

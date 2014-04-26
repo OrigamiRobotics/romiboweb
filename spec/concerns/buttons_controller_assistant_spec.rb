@@ -8,7 +8,6 @@ describe ButtonsControllerAssistant do
 
   before(:each) do
     @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
-    sign_in user
   end
 
   describe "set_session_value" do

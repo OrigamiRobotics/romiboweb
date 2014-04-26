@@ -24,6 +24,7 @@ FactoryGirl.define do
     description Faker::Lorem.sentence
     user_name Faker::Name.name
     user_email Faker::Internet.email
+    page_uri Faker::Internet.url
   end
 
 end

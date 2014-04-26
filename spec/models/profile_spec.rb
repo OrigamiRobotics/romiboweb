@@ -33,7 +33,7 @@ describe Profile do
   context "when user name is already taken" do
     it "does not allow the creation of the profile" do
       expect {
-        profile1 = FactoryGirl.create(:profile, user_name: profile.user_name)
+        profile1 = FactoryGirl.create(:profile, user_id: user.id,user_name: profile.user_name)
       }.to raise_exception(ActiveRecord::RecordInvalid, "Validation failed: User name has already been taken")
     end
   end

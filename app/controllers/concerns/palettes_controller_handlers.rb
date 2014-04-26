@@ -44,7 +44,8 @@ module PalettesControllerHandlers
   def palettes_buttons
     set_palette_buttons_values(get_rate_color_size(:speech_speed_rate).to_f,
                                get_rate_color_size(:button_color).to_i,
-                               get_rate_color_size(:size)
+                               get_rate_color_size(:size),
+                               session
     ) if params[:selection].present? && params[:selection] == 'updating'
   end
 

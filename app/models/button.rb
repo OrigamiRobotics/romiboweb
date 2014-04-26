@@ -56,7 +56,7 @@ class Button < ActiveRecord::Base
 
   validates :title, presence: true
   validates :speech_speed_rate, numericality: true
-  # validates :user_id, presence: true
+  validates :user_id, presence: true
   validates :button_color_id, presence: true
   validates :size, presence: true, inclusion: { in: %w(small Small medium Medium large Large)}
   validates :palette_id, presence: true

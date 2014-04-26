@@ -4,9 +4,9 @@ describe 'API Routing', api: true do
 
   context 'for palettes', palette: true do
     it {should route(:get, '/api/v1/palettes')
-               .to(controller: 'api/v1/palettes', action:'index')}
+               .to(controller: 'api/v1/palettes', action:'index', format: :json)}
     it {should route(:post, '/api/v1/palettes')
-               .to(controller: 'api/v1/palettes', action:'create')}
+               .to(controller: 'api/v1/palettes', action:'create', format: :json)}
   end
 
   context 'for registration and login', auth: true do

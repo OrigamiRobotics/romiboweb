@@ -139,8 +139,6 @@ class User < ActiveRecord::Base
     User.create_user_authentication auth, self
   end
 
-
-
   def self.new_with_session(params, session)
     # if we have a session, use it to create a new user instance
     if session["devise.user_attributes"]
