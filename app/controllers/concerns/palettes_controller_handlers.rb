@@ -37,10 +37,22 @@ module PalettesControllerHandlers
   end
 
   private
+  def get_speech_sped_rate
+    params[:palette][:speech_speed_rate].to_f
+  end
+
+  def get_button_color
+    params[:palette][:button_color].to_i
+  end
+
+  def get_size
+    params[:palette][:size]
+  end
+
   def palettes_buttons
-    set_palette_buttons_values(params[:palette][:speech_speed_rate].to_f,
-                               params[:palette][:button_color].to_i,
-                               params[:palette][:size]
+    set_palette_buttons_values(get_speech_sped_rate,
+                               get_button_color,
+                               get_size
     ) if params[:selection].present? && params[:selection] == 'updating'
   end
 
