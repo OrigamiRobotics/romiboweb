@@ -30,12 +30,11 @@ describe PalettesController, palette: true do
 
   describe "POST 'create'" do
 
-    #it "returns http success" do
-    #  xhr :post, :create, palette: valid_attributes
-    #  response.should be_success
-    #  response.header['Content-Type'].should match /javascript/
-    #
-    #end
+    it "returns http success" do
+      xhr :post, :create, palette: valid_attributes
+      response.should be_success
+      response.header['Content-Type'].should match /javascript/
+    end
 
     context "with valid data" do
       describe "id, title, description, color" do
@@ -50,19 +49,6 @@ describe PalettesController, palette: true do
         xhr :post, 'create', palette: valid_attributes
         response.should be_success
       end
-
-      #it "returns newly created button in JSON format" do
-      #  xhr :post, 'create', palette: valid_attributes.merge(owner_id: user.id)
-      #  response.should be_success
-      #  response.header['Content-Type'].should match /json/
-      #  puts response.body.inspect
-      #  json_response = JSON.parse(response.body)
-      #
-      #  json_response['owner_id'].should eq(user.id)
-      #  json_response['title'].should eq(valid_attributes[:title])
-      #  json_response['color'].should eq(valid_attributes[:color])
-      #  json_response['description'].should eq(valid_attributes[:description])
-      #end
     end
 
 
@@ -86,6 +72,19 @@ describe PalettesController, palette: true do
     it 'assigns palette object' do
       put :update, id: palette.id, palette: palette.attributes
       expect(assigns(:palette)).to eq(palette)
+    end
+
+    it "returns updated palette in JSON format" do
+      xhr :put, 'update', id: palette.id, palette: palette.attributes, format: :json
+      response.should be_success
+      response.header['Content-Type'].should match /json/
+      json_response = JSON.parse(response.body)
+
+      json_response["title"].should eq(palette.title)
+      json_response["all_buttons_selected"].should eq(palette.all_buttons_selected)
+      json_response["last_viewed_button"].should eq(palette.last_viewed_button)
+      json_response["owner_id"].should eq(palette.owner_id)
+      json_response["system"].should eq(palette.system)
     end
   end
 
