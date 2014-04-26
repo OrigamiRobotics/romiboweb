@@ -1,7 +1,7 @@
 <div class="panel panel-default" id="editMultipleButtonsMenuBox">
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-7">
         Select buttons to edit:
         &nbsp; &nbsp;
         <% if @palette.all_buttons_selected? || params[:selection] == 'all' %>
@@ -10,6 +10,13 @@
           <%= check_box_tag 'select_all', 'yes', false %>
         <% end %>
         <%= label_tag 'select_all', 'All' %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'Cancel', palette_path(@palette),
+                    remote: true,
+                    class: 'btn btn-default btn-block',
+                    id: 'cancelMultipleEditButton'
+        %>
       </div>
       <%= render 'palettes/center_content/number_of_selected_buttons' %>
     </div>
