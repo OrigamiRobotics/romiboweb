@@ -2,7 +2,7 @@ module PalettesControllerHandlers
   extend ActiveSupport::Concern
 
   def handle_after_create_and_save
-    @palette.add_default_button(@user)
+    @palette.add_default_button
     @user.set_last_viewed_palette @palette
     @palettes = @user.palettes
   end

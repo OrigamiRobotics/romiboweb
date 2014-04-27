@@ -16,7 +16,7 @@ describe ButtonsController do
 
   let(:palette) { FactoryGirl.create(:palette)}
   let(:button_color) {FactoryGirl.create(:button_color)}
-  let(:button) { FactoryGirl.create(:button)}
+  let(:button) { FactoryGirl.create(:button, palette: palette)}
 
   describe "POST 'create'" do
     context "with invalid data" do
@@ -73,7 +73,7 @@ describe ButtonsController do
     before do
       button.button_color_id = button_color.id
       button.save
-      button1 =  FactoryGirl.create(:button)
+      button1 =  FactoryGirl.create(:button, palette: palette)
       button1.button_color_id = button_color.id
       button1.save
       palette.buttons << button << button1
