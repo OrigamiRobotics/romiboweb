@@ -20,18 +20,23 @@ class Api::V1::PalettesController < Api::BaseController
   def create
     head :unprocessable_entity and return unless params[:palette]
     @palette = @current_user.palettes.build(palette_params)
-    # @palette.add_default_button(@current_user)
+    @palette.save
     if params[:palette][:buttons]
       params[:palette][:buttons].each do |button_hash|
         button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
         button_hash = button_hash.merge button_color_id: button_color_id
-        button_hash = button_hash.merge size: 'Medium' unless button_hash[:size] 
+        button_hash = button_hash.merge size: 'Medium' unless button_hash[:size]
+        button_hash = button_hash.merge user_id: @current_user.id
         button_hash.delete :color
         @palette.buttons.build button_hash
       end
     end
-    respond_with @palette, status: :created if @palette.save
-    render json: @palette.errors, status: :unprocessable_entity unless @palette.save
+    if @palette.save
+      respond_with @palette, status: :created
+    else
+      @palette.delete if @palette.id # destroy the palette if it was created for safer retry
+      render json: @palette.errors, status: :unprocessable_entity
+    end
   end
 
   private

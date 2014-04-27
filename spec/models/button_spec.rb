@@ -29,7 +29,7 @@ require 'spec_helper'
 describe Button do
   let(:button_color) { FactoryGirl.create(:button_color)}
   let(:user) { FactoryGirl.create(:user)}
-  let(:palette) { FactoryGirl.create(:palette)}
+  let(:palette) { FactoryGirl.create(:palette, owner_id: user.id)}
   let(:button) { FactoryGirl.create(:button, button_color_id: button_color.id, palette_id: palette.id)}
 
   subject { button}
@@ -167,7 +167,7 @@ describe Button do
       before(:each) do
         @params = ActionController::Parameters.new(button: button.hash_params)
         @session = {}
-        @palette = FactoryGirl.create(:palette)
+        @palette = FactoryGirl.create(:palette, owner_id: user.id)
       end
 
       it "makes a copy of button when params[:status] = 'copy'" do

@@ -1,0 +1,6 @@
+<div id="recommendedLessonsHeader">
+  <h3>Recommended Lessons</h3>
+</div>
+<% current_user.recommended_lessons.each do |recommended_lesson| %>
+  <%= render recommended_lesson.lesson %>
+<% end %>

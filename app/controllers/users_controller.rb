@@ -68,6 +68,11 @@ class UsersController < ApplicationController
     flash[:notice] = "Specified recommendations have been successfully made."
   end
 
+  def recommend_lessons
+    Lesson.recommend(params[:recommend_lesson_ids], params[:recommend_user_ids])
+    flash[:notice] = "Specified recommendations have been successfully made."
+  end
+
   def clone_palette
     palette = Palette.find(params[:palette_id])
     @palette = Palette.clone palette, current_user
@@ -76,6 +81,15 @@ class UsersController < ApplicationController
     flash[:notice] = "The palette titled '#{palette.title}' was successfully cloned."
     @palettes = current_user.palettes
     @user = current_user
+  end
+
+  def clone_lesson
+    lesson  = Lesson.find(params[:lesson_id])
+    @lesson = Lesson.clone lesson, current_user
+    recommend_lesson = RecommendedLesson.find_by_user_id_and_lesson_id(current_user.id, lesson.id )
+    recommend_lesson.delete if recommend_lesson.present?
+    flash[:notice] = "The lesson titled '#{lesson.title[0..29]}' was successfully cloned."
+    redirect_to lessons_url
   end
 
   private

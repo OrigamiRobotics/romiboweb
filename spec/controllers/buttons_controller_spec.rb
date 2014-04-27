@@ -11,32 +11,12 @@ describe ButtonsController do
   end
 
   def valid_attributes
-    FactoryGirl.attributes_for(:button).merge(button_color_id: button_color.id)
+    FactoryGirl.attributes_for(:button).merge(button_color_id: button_color.id, user_id: user.id)
   end
 
-  let(:palette) { FactoryGirl.create(:palette)}
+  let(:palette) { FactoryGirl.create(:palette, owner_id: user.id)}
   let(:button_color) {FactoryGirl.create(:button_color)}
-  let(:button) { FactoryGirl.create(:button)}
-
-
-  #
-  #describe "GET 'new'" do
-  #  context "with valid palette id" do
-  #    it "returns http success and new button" do
-  #      xhr :get, 'new', palette_id: palette.id
-  #      assigns(:button).should be_a_new(Button)
-  #    end
-  #  end
-  #
-  #  context "with missing palette id" do
-  #    it "returns http faillure (404)" do
-  #      xhr :get, 'new'
-  #      response.should_not be_success
-  #      response.status.should eq(404)
-  #      JSON.parse(response.body)["error"].should == "Couldn't find Palette without an ID"
-  #    end
-  #  end
-  #end
+  let(:button) { FactoryGirl.create(:button, palette: palette)}
 
   describe "POST 'create'" do
     context "with invalid data" do
@@ -46,16 +26,6 @@ describe ButtonsController do
           response.should_not be_success
           response.status.should eq(404)
           JSON.parse(response.body)["error"].should == "Couldn't find Palette without an ID"
-        end
-      end
-
-      describe "with missing user id" do
-        it "returns http failure (404) with correct status and message" do
-          xhr :post, 'create', button: valid_attributes.except(:user_id), palette_id: palette.id
-          response.should_not be_success
-          response.status.should eq(404)
-          #puts response.body.inspect
-          JSON.parse(response.body)["error"].should == ["User can't be blank"]
         end
       end
 
@@ -74,7 +44,7 @@ describe ButtonsController do
     context "with valid data" do
       it "creates a new Button" do
         expect {
-          xhr :post, 'create', button: valid_attributes, palette_id: palette.id
+          xhr :post, 'create', button: valid_attributes, palette_id: palette.id, format: :js
         }.to change(Button, :count).by(1)
       end
 
@@ -89,13 +59,12 @@ describe ButtonsController do
         response.should be_success
         response.header['Content-Type'].should match /json/
         json_response = JSON.parse(response.body)
-
-        json_response['palette_id'].should eq(palette.id)
-        json_response['title'].should eq(valid_attributes[:title])
-        json_response['color'].should eq(button_color.value)
-        json_response['speech_phrase'].should eq(valid_attributes[:speech_phrase])
-        json_response['speech_speed_rate'].should eq(valid_attributes[:speech_speed_rate])
-        json_response['user_id'].should eq(valid_attributes[:user_id])
+        json_response["button"]['palette_id'].should eq(palette.id)
+        json_response["button"]['title'].should eq(valid_attributes[:title])
+        json_response["button"]['color'].should eq(button_color.value)
+        json_response["button"]['speech_phrase'].should eq(valid_attributes[:speech_phrase])
+        json_response["button"]['speech_speed_rate'].should eq(valid_attributes[:speech_speed_rate])
+        json_response["button"]['user_id'].should eq(valid_attributes[:user_id])
       end
     end
   end
@@ -104,7 +73,7 @@ describe ButtonsController do
     before do
       button.button_color_id = button_color.id
       button.save
-      button1 =  FactoryGirl.create(:button)
+      button1 =  FactoryGirl.create(:button, palette: palette)
       button1.button_color_id = button_color.id
       button1.save
       palette.buttons << button << button1

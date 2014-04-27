@@ -21,11 +21,10 @@ describe CommonButtonsPalettesMethods do
       speech_speed_rate = 0.5
       button_color      = 5
       size              = "Large"
-      session = set_palette_buttons_values speech_speed_rate, button_color, size, @session
-      @session[:speech_speed_rate].should == speech_speed_rate
-      # session[:button_color].should      == button_color
-      # session[:size].should              == size
-      puts @session.inspect
+      set_palette_buttons_values speech_speed_rate, button_color, size, @session
+      @session[:palette_speech_speed_rate].should == speech_speed_rate
+      @session[:palette_button_color].should      == button_color
+      @session[:palette_size].should              == size
     end
   end
 end

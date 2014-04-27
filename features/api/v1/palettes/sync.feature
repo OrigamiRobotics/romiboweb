@@ -54,7 +54,7 @@ Feature: In order to integrate data between Romiboweb and Romibo Controller
     And palette should be amongst user's palettes
     And button should exist with title: "Button 1"
     And button should be amongst palette's buttons
-    And palette should have 3 buttons
+    And palette should have 2 buttons
     # user should now contain 5 palettes including 4 default ones
     And user should have 5 palettes
   

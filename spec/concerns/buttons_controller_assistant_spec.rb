@@ -4,11 +4,10 @@ include ButtonsControllerAssistant
 
 describe ButtonsControllerAssistant do
   let(:user) {FactoryGirl.create :user}
-  let(:palette) { FactoryGirl.create(:palette)}
+  let(:palette) { FactoryGirl.create(:palette, owner_id: user.id)}
 
   before(:each) do
     @button_color ||= ButtonColor.find_or_create_by(name: "Turquoise", value: "#13c8b0")
-    sign_in user
   end
 
   describe "set_session_value" do
@@ -75,7 +74,7 @@ describe ButtonsControllerAssistant do
 
     context "when params[:id] is present?" do
       it "returns the palette for the button" do
-        palette = FactoryGirl.create(:palette)
+        palette = FactoryGirl.create(:palette, owner_id: user.id)
         button  = FactoryGirl.create(:button, palette_id: palette.id)
         @params[:id] = button.id
         returned_palette = get_palette(@params, @session)
@@ -86,7 +85,7 @@ describe ButtonsControllerAssistant do
 
     context "when params[:palette_id] is present?" do
       it "returns the palette using palette_id" do
-        palette = FactoryGirl.create(:palette)
+        palette = FactoryGirl.create(:palette, owner_id: user.id)
         @params[:palette_id] = palette.id
         returned_palette = get_palette(@params, @session)
         returned_palette.id.should == palette.id
@@ -96,7 +95,7 @@ describe ButtonsControllerAssistant do
 
     context "when neither params[:id] nor params[:palette_id] is present?" do
       it "throws ActiveRecord::RecordNotFound exception" do
-        palette = FactoryGirl.create(:palette)
+        palette = FactoryGirl.create(:palette, owner_id: user.id)
         @params[:something] = palette.id
         expect {
           returned_palette = get_palette(@params, @session)
