@@ -80,11 +80,7 @@ describe PalettesController, palette: true do
       response.header['Content-Type'].should match /json/
       json_response = JSON.parse(response.body)
 
-      json_response["title"].should eq(palette.title)
-      json_response["all_buttons_selected"].should eq(palette.all_buttons_selected)
-      json_response["last_viewed_button"].should eq(palette.last_viewed_button)
-      json_response["owner_id"].should eq(palette.owner_id)
-      json_response["system"].should eq(palette.system)
+      json_response["name"].should eq(palette.title)
     end
   end
 

@@ -11,10 +11,10 @@ describe ButtonsController do
   end
 
   def valid_attributes
-    FactoryGirl.attributes_for(:button).merge(button_color_id: button_color.id)
+    FactoryGirl.attributes_for(:button).merge(button_color_id: button_color.id, user_id: user.id)
   end
 
-  let(:palette) { FactoryGirl.create(:palette)}
+  let(:palette) { FactoryGirl.create(:palette, owner_id: user.id)}
   let(:button_color) {FactoryGirl.create(:button_color)}
   let(:button) { FactoryGirl.create(:button)}
 
@@ -44,7 +44,7 @@ describe ButtonsController do
     context "with valid data" do
       it "creates a new Button" do
         expect {
-          xhr :post, 'create', button: valid_attributes, palette_id: palette.id
+          xhr :post, 'create', button: valid_attributes, palette_id: palette.id, format: :js
         }.to change(Button, :count).by(1)
       end
 

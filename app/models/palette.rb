@@ -129,7 +129,7 @@ class Palette < ActiveRecord::Base
   end
 
   def add_default_button
-    button = buttons.build(Button.default_button_params(user))
+    buttons.build(Button.default_button_params(owner))
     save
   end
 

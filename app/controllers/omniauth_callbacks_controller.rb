@@ -2,7 +2,6 @@ require 'prettyprint'
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     omniauth = request.env["omniauth.auth"]
-    puts omniauth.to_yaml
     if current_user.present?
       authenticate_and_update_attributes omniauth
     else

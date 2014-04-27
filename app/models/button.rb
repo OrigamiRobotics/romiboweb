@@ -106,7 +106,7 @@ class Button < ActiveRecord::Base
       self.row, self.col = 1, 1
       return
     end
-    
+
     if last_button
       curr_button_col = last_button.col + SIZE[last_button.size.downcase]
       
