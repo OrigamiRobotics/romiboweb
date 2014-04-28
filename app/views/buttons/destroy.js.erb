@@ -1,3 +1,6 @@
 <%= render 'buttons/update_and_show' %>
 $('#doneButton').hide();
 <%= render 'buttons/move_focus_to_title_field' %>
+<% unless @palette.current_button.present? && Button.exists?(@palette.current_button.id) %>
+  $('#buttonDetails').hide();
+<% end %>

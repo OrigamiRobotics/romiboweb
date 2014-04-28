@@ -34,7 +34,9 @@
       }
     }
   });
-  <% if @palette.buttons.present? %>
+  <% if @palette.buttons.present? && @palette.current_button.present? && Button.exists?(@palette.current_button.id) %>
     $('a#button-' + '<%= @palette.current_button.id %>').click();
+  <% else %>
+  $('#buttonDetails').hide();
   <% end %>
 </script>

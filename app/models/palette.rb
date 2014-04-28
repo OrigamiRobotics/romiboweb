@@ -86,6 +86,7 @@ class Palette < ActiveRecord::Base
 
   def current_button
     if last_viewed_button.present?
+      return nil unless Button.exists?(last_viewed_button)
       Button.find(last_viewed_button) || nil
     else
       (buttons.present?) ? buttons.first : nil
