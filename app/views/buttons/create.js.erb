@@ -8,3 +8,6 @@ $('#paletteButtonsInCenterColumn').replaceWith('<%= j render "palettes/center_co
 <% end %>
 $('#addNewButton a').blur();
 <%= render 'buttons/move_focus_to_title_field' %>
+$('a#button-' + '<%= @button.id %>').click();
+$("#<%= "button-#{@button.id}"%>").addClass('btn-selected') ;
+

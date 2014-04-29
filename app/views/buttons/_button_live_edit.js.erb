@@ -96,8 +96,14 @@ $('#button_tile').focus();
   $('select#button_size').prop('disabled', true);
   $('a#cloneButton').addClass('disabled');
   $('a#deleteButton').addClass('disabled');
+  $('a#saveButton').addClass('disabled');
 <% end %>
 
 $('.noUi-handle').css('background-color', '#1E72B3');
 $('.noUi-handle').css('border-color', '#2246EB');
 $('.noUi-connect').css('background-color', '#1E72B3');
+
+$('#saveButton').on('click', function(event){
+  event.preventDefault();
+  $('#button_form').submit();
+});

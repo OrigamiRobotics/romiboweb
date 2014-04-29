@@ -36,6 +36,7 @@
   });
   <% if @palette.buttons.present? && @palette.current_button.present? && Button.exists?(@palette.current_button.id) %>
     $('a#button-' + '<%= @palette.current_button.id %>').click();
+    $("#<%= "button-#{@palette.current_button.id}"%>").addClass('btn-selected') ;
   <% else %>
   $('#buttonDetails').hide();
   <% end %>

@@ -141,11 +141,19 @@ div.largeButtonWidget:hover {
 #cloneButton,
 #applyButton,
 #cancelMultipleEditButton,
-#deleteMultipleButton
+#deleteMultipleButton,
+#saveButton
 {
     margin-top: -10px;
 }
 
+#doneButton,
+#deleteButton,
+#cloneButton,
+#saveButton
+{
+  width: 150%;
+}
 
 .buttonSelection {
     height: 20px;

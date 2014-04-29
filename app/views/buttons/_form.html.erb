@@ -23,7 +23,18 @@
   <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
   <hr>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
+      <%= link_to 'Delete',
+                  {id: @button.id,
+                   palette_id: @palette.id},
+                  method: :delete,
+                  remote: true,
+                  class: 'btn btn-danger btn-block',
+                  id: 'deleteButton',
+                  data: { confirm: "Delete button '#{@button.title}'?" }
+      %>
+    </div>
+    <div class="col-md-3">
       <% if session[:adding_button] %>
         <%= link_to 'Done',
                     {controller: 'buttons',
@@ -40,18 +51,18 @@
         %>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <%= link_to 'Delete',
+
+    <div class="col-md-3">
+      <%= link_to 'Save',
                   {id: @button.id,
                    palette_id: @palette.id},
-                  method: :delete,
                   remote: true,
-                  class: 'btn btn-danger btn-block',
-                  id: 'deleteButton',
-                  data: { confirm: "Delete button '#{@button.title}'?" }
+                  class: 'btn btn-success btn-block',
+                  id: 'saveButton'
       %>
     </div>
-    <div class="col-md-4">
+
+    <div class="col-md-3">
       <%= link_to 'Copy', clone_palette_button_path(@palette, @button),
                   method: :post,
                   remote: true,
