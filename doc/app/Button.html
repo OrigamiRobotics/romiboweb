@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Button - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Button-label-Adding+a+Button">Adding a Button</a>
+    <li><a href="#class-Button-label-Schema+Information">Schema Information</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="ButtonUpdater.html">ButtonUpdater</a>
+  
+  
+  </ul>
+</div>
+
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="ButtonCreator.html">ButtonCreator</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-default_button_params">::default_button_params</a>
+    
+    <li ><a href="#method-i-color">#color</a>
+    
+    <li ><a href="#method-i-div_id">#div_id</a>
+    
+    <li ><a href="#method-i-ensure_position">#ensure_position</a>
+    
+    <li ><a href="#method-i-hash_params">#hash_params</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Button">
+  <h1 id="class-Button" class="class">
+    class Button
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Button.html">Button</a> represents a <a
+href="Palette.html">Palette</a> action.</p>
+<ol style="list-style-type: lower-alpha"><li>
+<p>Id: Auto generated unique identifier</p>
+</li><li>
+<p>Title: <a href="Button.html">Button</a> title</p>
+</li><li>
+<p>Speech Text: Text to be spoken when the button is tapped. If speech text is
+not available, button title is used as speech text.</p>
+</li><li>
+<p>Color: <a href="ButtonColor.html">ButtonColor</a></p>
+</li><li>
+<p>Type: Denotes 3 predefined sizes.</p>
+<ol><li>
+<p>Small: 50x100 px, title only</p>
+</li><li>
+<p>Medium: 100x100px, title or image</p>
+</li><li>
+<p>Large: 100x200px, both title and image can be added</p>
+</li></ol>
+</li><li>
+<p>Position: denotes position of button relative to the palette</p>
+</li><li>
+<p>Speech Rate: A floating point integer between 0 and 1 to denote the speech
+rate.</p>
+</li><li>
+<p>Gesture: Driving motion or Neck Motion</p>
+</li><li>
+<p>Palettes: Association with palettes that contain this button.</p>
+</li><li>
+<p>Owner: <a href="User.html">User</a> who created the button. Only owner can
+edit/delete the button.</p>
+</li></ol>
+
+<h2 id="class-Button-label-Adding+a+Button">Adding a <a href="Button.html">Button</a><span><a href="#class-Button-label-Adding+a+Button">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p><a href="Button.html">Button</a> is added through the <a
+href="Palette.html">Palette</a> Editor on the right hand pane.</p>
+
+<h2 id="class-Button-label-Schema+Information">Schema Information<span><a href="#class-Button-label-Schema+Information">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Table name: buttons</p>
+
+<pre>id                :integer          not null, primary key
+title             :string(255)      not null
+speech_phrase     :string(255)
+speech_speed_rate :float
+user_id           :integer
+created_at        :datetime
+updated_at        :datetime
+button_color_id   :integer
+size              :string(255)
+row               :integer
+col               :integer
+selected          :boolean          default(FALSE)
+palette_id        :integer</pre>
+
+<p>Indexes</p>
+
+<pre>index_buttons_on_button_color_id  (button_color_id)
+index_buttons_on_palette_id       (palette_id)
+index_buttons_on_size             (size)
+index_buttons_on_user_id          (user_id)</pre>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="SIZE">SIZE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-default_button_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_button_params</span><span
+            class="method-args">(user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_button_params-source">
+            <pre><span class="ruby-comment"># File app/models/button.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_button_params</span>(<span class="ruby-identifier">user</span>)
+  { <span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;I'm a button&quot;</span>,
+    <span class="ruby-identifier">speech_phrase</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;This is what I say&quot;</span>,
+    <span class="ruby-identifier">speech_speed_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">0.2</span>,
+    <span class="ruby-identifier">button_color_id</span><span class="ruby-operator">:</span> <span class="ruby-constant">ButtonColor</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Turquoise'</span>).<span class="ruby-identifier">id</span>,
+    <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Medium&quot;</span>,
+    <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-color" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">color</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="color-source">
+            <pre><span class="ruby-comment"># File app/models/button.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">color</span>
+  <span class="ruby-identifier">button_color</span>.<span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-div_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">div_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="div_id-source">
+            <pre><span class="ruby-comment"># File app/models/button.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">div_id</span>
+  <span class="ruby-node">&quot;buttonId_#{id}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ensure_position" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ensure_position</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ensure_position-source">
+            <pre><span class="ruby-comment"># File app/models/button.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ensure_position</span>
+  <span class="ruby-identifier">last_button</span> = <span class="ruby-identifier">palette</span>.<span class="ruby-identifier">buttons</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">last_button</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">row</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">col</span> = <span class="ruby-value">1</span>, <span class="ruby-value">1</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">last_button</span>
+    <span class="ruby-identifier">curr_button_col</span> = <span class="ruby-identifier">last_button</span>.<span class="ruby-identifier">col</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SIZE</span>[<span class="ruby-identifier">last_button</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">downcase</span>]
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">can_fit_in_current_row?</span>(<span class="ruby-identifier">last_button</span>)
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">row</span> = <span class="ruby-identifier">last_button</span>.<span class="ruby-identifier">row</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">col</span> = <span class="ruby-identifier">curr_button_col</span>        
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">row</span> = <span class="ruby-identifier">last_button</span>.<span class="ruby-identifier">row</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">col</span> = <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hash_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hash_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hash_params-source">
+            <pre><span class="ruby-comment"># File app/models/button.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hash_params</span>
+  { <span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-identifier">title</span>,
+    <span class="ruby-identifier">speech_phrase</span><span class="ruby-operator">:</span> <span class="ruby-identifier">speech_phrase</span>,
+    <span class="ruby-identifier">speech_speed_rate</span><span class="ruby-operator">:</span> <span class="ruby-identifier">speech_speed_rate</span>,
+    <span class="ruby-identifier">button_color_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">button_color_id</span>,
+    <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-identifier">size</span>,
+    <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>module UserSocialConcerns - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><span class="extend">ActiveSupport::Concern</span>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-auth_email">#auth_email</a>
+    
+    <li ><a href="#method-i-auth_name">#auth_name</a>
+    
+    <li ><a href="#method-i-create_user_authentication">#create_user_authentication</a>
+    
+    <li ><a href="#method-i-from_facebook_oauth">#from_facebook_oauth</a>
+    
+    <li ><a href="#method-i-from_google_oauth2">#from_google_oauth2</a>
+    
+    <li ><a href="#method-i-from_twitter_oauth">#from_twitter_oauth</a>
+    
+    <li ><a href="#method-i-from_twitter_oauth_helper">#from_twitter_oauth_helper</a>
+    
+    <li ><a href="#method-i-get_user_by_oauth">#get_user_by_oauth</a>
+    
+    <li ><a href="#method-i-user_from_auth">#user_from_auth</a>
+    
+    <li ><a href="#method-i-user_from_auth_info">#user_from_auth_info</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-UserSocialConcerns">
+  <h1 id="module-UserSocialConcerns" class="module">
+    module UserSocialConcerns
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-auth_email" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">auth_email</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="auth_email-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">auth_email</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">info_email</span> = (<span class="ruby-identifier">auth</span>.<span class="ruby-identifier">info</span>.<span class="ruby-identifier">present?</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">info</span>.<span class="ruby-identifier">email</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">extra</span>.<span class="ruby-identifier">raw_info</span>.<span class="ruby-identifier">email</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-auth_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">auth_name</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="auth_name-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">auth_name</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">info_name</span> = (<span class="ruby-identifier">auth</span>.<span class="ruby-identifier">info</span>.<span class="ruby-identifier">present?</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">info</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">extra</span>.<span class="ruby-identifier">raw_info</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_user_authentication" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_user_authentication</span><span
+            class="method-args">(auth, user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_user_authentication-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_user_authentication</span>(<span class="ruby-identifier">auth</span>, <span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">auth_token</span> , <span class="ruby-identifier">auth_nickname</span>, <span class="ruby-identifier">auth_image</span> = <span class="ruby-identifier">token_nickname_image</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">test?</span>
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">provider_data</span>(<span class="ruby-identifier">auth</span>, <span class="ruby-identifier">auth_image</span>, <span class="ruby-identifier">auth_nickname</span>, <span class="ruby-identifier">auth_token</span>, <span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">find_by_provider_and_uid</span>(<span class="ruby-identifier">data</span>[<span class="ruby-value">:provider</span>], <span class="ruby-identifier">data</span>[<span class="ruby-value">:uid</span>])
+  <span class="ruby-identifier">res</span> = (<span class="ruby-identifier">a</span>.<span class="ruby-identifier">present?</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">data</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">data</span>)
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">save</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-from_facebook_oauth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_facebook_oauth</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="from_facebook_oauth-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">from_facebook_oauth</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">user</span> = <span class="ruby-identifier">get_user_by_oauth</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">apply_omniauth</span> <span class="ruby-identifier">auth</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-identifier">user_from_auth</span>(<span class="ruby-identifier">auth</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">apply_omniauth</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-from_google_oauth2" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_google_oauth2</span><span
+            class="method-args">(access_token)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="from_google_oauth2-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">from_google_oauth2</span>(<span class="ruby-identifier">access_token</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">info</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;email&quot;</span>]).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">first_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;first_name&quot;</span>],
+                       <span class="ruby-identifier">last_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;last_name&quot;</span>],
+                       <span class="ruby-identifier">email</span><span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;email&quot;</span>],
+                       <span class="ruby-identifier">provider</span><span class="ruby-operator">:</span> <span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">provider</span>,
+                       <span class="ruby-identifier">uid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">uid</span>,
+                       <span class="ruby-identifier">confirmation_token</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+                       <span class="ruby-identifier">confirmed_at</span><span class="ruby-operator">:</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    )
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-from_twitter_oauth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_twitter_oauth</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="from_twitter_oauth-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">from_twitter_oauth</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">user</span> = <span class="ruby-identifier">get_user_by_oauth</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">apply_omniauth</span> <span class="ruby-identifier">auth</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">from_twitter_oauth_helper</span>(<span class="ruby-identifier">auth</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-from_twitter_oauth_helper" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_twitter_oauth_helper</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="from_twitter_oauth_helper-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">from_twitter_oauth_helper</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-identifier">auth</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">:provider</span>, <span class="ruby-value">:uid</span>)).<span class="ruby-identifier">first_or_create</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">info</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">' '</span>)
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">first_name</span>       = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">last_name</span>        = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">last</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">provider</span>         = <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">provider</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">uid</span>              = <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">uid</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">twitter_nickname</span> = <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">info</span>.<span class="ruby-identifier">nickname</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_user_by_oauth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_user_by_oauth</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_user_by_oauth-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_user_by_oauth</span> (<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">authentication</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:provider</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">provider</span>, <span class="ruby-identifier">uid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">uid</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">authentication</span>.<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">authentication</span>.<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-identifier">get_user_by_provider</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">apply_omniauth</span> <span class="ruby-identifier">auth</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_from_auth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_from_auth</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_from_auth-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_from_auth</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">user_from_auth_info</span> <span class="ruby-identifier">auth</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_from_auth_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_from_auth_info</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_from_auth_info-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/user_social_concerns.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_from_auth_info</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">auth_name</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">' '</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">first_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">first</span>,
+                   <span class="ruby-identifier">last_name</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">name</span>.<span class="ruby-identifier">last</span>,
+                   <span class="ruby-identifier">provider</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">provider</span>,
+                   <span class="ruby-identifier">uid</span><span class="ruby-operator">:</span>       <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">uid</span>,
+                   <span class="ruby-identifier">email</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">auth_email</span>(<span class="ruby-identifier">auth</span>)
+  )
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">add_authentication</span> <span class="ruby-identifier">auth</span>
+  <span class="ruby-identifier">u</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

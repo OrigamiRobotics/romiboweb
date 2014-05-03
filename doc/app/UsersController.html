@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class UsersController - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-another_palette_editor">#another_palette_editor</a>
+    
+    <li ><a href="#method-i-clone_lesson">#clone_lesson</a>
+    
+    <li ><a href="#method-i-clone_palette">#clone_palette</a>
+    
+    <li ><a href="#method-i-dashboard">#dashboard</a>
+    
+    <li ><a href="#method-i-locale">#locale</a>
+    
+    <li ><a href="#method-i-recommend_lessons">#recommend_lessons</a>
+    
+    <li ><a href="#method-i-recommend_palettes">#recommend_palettes</a>
+    
+    <li ><a href="#method-i-role">#role</a>
+    
+    <li ><a href="#method-i-unconfirmed">#unconfirmed</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-UsersController">
+  <h1 id="class-UsersController" class="class">
+    class UsersController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-another_palette_editor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">another_palette_editor</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="another_palette_editor-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">another_palette_editor</span>
+  <span class="ruby-identifier">user_id</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-value">:palette_user_id</span>].<span class="ruby-identifier">present?</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:palette_user_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:palette_user_id</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-ivar">@palettes</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">palettes</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;You are now viewing #{@user.full_name}'s palette.'&quot;</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:viewing_another_palette</span>] = <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-clone_lesson" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone_lesson</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clone_lesson-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clone_lesson</span>
+  <span class="ruby-identifier">lesson</span>  = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>])
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">clone</span> <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">recommend_lesson</span> = <span class="ruby-constant">RecommendedLesson</span>.<span class="ruby-identifier">find_by_user_id_and_lesson_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span> )
+  <span class="ruby-identifier">recommend_lesson</span>.<span class="ruby-identifier">delete</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">recommend_lesson</span>.<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;The lesson titled '#{lesson.title[0..29]}' was successfully cloned.&quot;</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">lessons_url</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-clone_palette" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone_palette</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clone_palette-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clone_palette</span>
+  <span class="ruby-identifier">palette</span> = <span class="ruby-constant">Palette</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:palette_id</span>])
+  <span class="ruby-ivar">@palette</span> = <span class="ruby-constant">Palette</span>.<span class="ruby-identifier">clone</span> <span class="ruby-identifier">palette</span>, <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">recommend_palette</span> = <span class="ruby-constant">RecommendedPalette</span>.<span class="ruby-identifier">find_by_user_id_and_palette_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">palette</span>.<span class="ruby-identifier">id</span> )
+  <span class="ruby-identifier">recommend_palette</span>.<span class="ruby-identifier">delete</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;The palette titled '#{palette.title}' was successfully cloned.&quot;</span>
+  <span class="ruby-ivar">@palettes</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">palettes</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dashboard" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dashboard</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def new</p>
+
+<pre>@user = User.new</pre>
+
+<p>end</p>
+
+<p>def create</p>
+
+<pre class="ruby"><span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_params</span>)
+
+<span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> :<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>end</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dashboard-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dashboard</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-string">&quot;Dashboard&quot;</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">create_profile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-locale" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">locale</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="locale-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">locale</span>
+  <span class="ruby-identifier">chosen_locale</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_locale</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale_available?</span> <span class="ruby-identifier">chosen_locale</span>
+    <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:user_locale</span>
+    <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:user_locale</span>] = {
+      <span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-identifier">chosen_locale</span>,
+      <span class="ruby-identifier">expires_in</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">weeks</span>.<span class="ruby-identifier">from_now</span>
+    }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-string">'HTTP_REFERER'</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">root_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recommend_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recommend_lessons</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="recommend_lessons-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">recommend_lessons</span>
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">recommend</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recommend_lesson_ids</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:recommend_user_ids</span>])
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Specified recommendations have been successfully made.&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recommend_palettes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recommend_palettes</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="recommend_palettes-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">recommend_palettes</span>
+  <span class="ruby-constant">Palette</span>.<span class="ruby-identifier">recommend</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recommend_palette_ids</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:recommend_user_ids</span>])
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Specified recommendations have been successfully made.&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-role" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">role</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="role-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">role</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:role_user_id</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:role_user_id</span>].<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-value">:new_user_role</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'true'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;#{user.full_name} has been successfully&quot;</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-identifier">message</span> <span class="ruby-operator">+</span> ((<span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&quot; assigned admin role&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot; removed from admin role&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unconfirmed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unconfirmed</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="unconfirmed-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">unconfirmed</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-string">&quot;Unconfirmed Registration&quot;</span>
+  <span class="ruby-identifier">handle_params</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

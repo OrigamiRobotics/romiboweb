@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class ButtonColor - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-default">::default</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ButtonColor">
+  <h1 id="class-ButtonColor" class="class">
+    class ButtonColor
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Button.html">Button</a> Color contains name and hexadecmal value
+for that color. The default color for a <a href="Button.html">Button</a> is
+Turquoise.</p>
+<ol style="list-style-type: lower-alpha"><li>
+<p>Id: Auto generated unique identifier</p>
+</li><li>
+<p>Name: Color Name</p>
+</li><li>
+<p>Value: Hexadecimal Value for Color</p>
+<ol><li>
+<p>Red ‘#c1392d’</p>
+</li><li>
+<p>Orange ‘#d45300’</p>
+</li><li>
+<p>Yellow ‘#f39b13’</p>
+</li><li>
+<p>Light Green ‘#2dcc70’</p>
+</li><li>
+<p>Green ‘#27ae61’</p>
+</li><li>
+<p>Turquoise ‘#13c8b0’</p>
+</li><li>
+<p>Blue ‘#3498db’</p>
+</li><li>
+<p>Purple ‘#8d44af’</p>
+</li><li>
+<p>Pink ‘#fe7a7a’</p>
+</li></ol>
+</li></ol>
+
+<h2 id="class-ButtonColor-label-Schema+Information">Schema Information<span><a href="#class-ButtonColor-label-Schema+Information">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Table name: button_colors</p>
+
+<pre>id         :integer          not null, primary key
+name       :string(255)
+value      :string(255)
+created_at :datetime
+updated_at :datetime</pre>
+
+<p>Indexes</p>
+
+<pre>index_button_colors_on_name_and_value  (name,value)</pre>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="VALID_EMAIL_REGEX">VALID_EMAIL_REGEX
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-default" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default-source">
+            <pre><span class="ruby-comment"># File app/models/button_color.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default</span>
+  <span class="ruby-constant">ButtonColor</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Turquoise'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
