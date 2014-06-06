@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>module PalettesControllerHandlers - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><span class="extend">ActiveSupport::Concern</span>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-handle_after_create_and_save">#handle_after_create_and_save</a>
+    
+    <li ><a href="#method-i-handle_format_after_update">#handle_format_after_update</a>
+    
+    <li ><a href="#method-i-handle_multiple_edits">#handle_multiple_edits</a>
+    
+    <li ><a href="#method-i-handle_selections">#handle_selections</a>
+    
+    <li ><a href="#method-i-handle_singular_selections">#handle_singular_selections</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-PalettesControllerHandlers">
+  <h1 id="module-PalettesControllerHandlers" class="module">
+    module PalettesControllerHandlers
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-handle_after_create_and_save" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_after_create_and_save</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_after_create_and_save-source">
+            <pre><span class="ruby-comment"># File app/controllers/concerns/palettes_controller_handlers.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_after_create_and_save</span>
+  <span class="ruby-ivar">@palette</span>.<span class="ruby-identifier">add_default_button</span>
+  <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">set_last_viewed_palette</span> <span class="ruby-ivar">@palette</span>
+  <span class="ruby-ivar">@palettes</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">palettes</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_format_after_update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_format_after_update</span><span
+            class="method-args">(format)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_format_after_update-source">
+            <pre><span class="ruby-comment"># File app/controllers/concerns/palettes_controller_handlers.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_format_after_update</span>(<span class="ruby-identifier">format</span>)
+  <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">palettes_path</span>, <span class="ruby-identifier">format</span><span class="ruby-operator">:</span> <span class="ruby-value">:js</span>}
+  <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@palette</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_multiple_edits" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_multiple_edits</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_multiple_edits-source">
+            <pre><span class="ruby-comment"># File app/controllers/concerns/palettes_controller_handlers.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_multiple_edits</span>
+  <span class="ruby-identifier">check_value</span>(<span class="ruby-value">:change_speed_rate</span>, <span class="ruby-value">:speech_speed_rate</span>, <span class="ruby-value">:speech_speed_rate</span>).<span class="ruby-identifier">to_f</span>
+  <span class="ruby-identifier">check_value</span>(<span class="ruby-value">:change_color_value</span>, <span class="ruby-value">:button_color_id</span>, <span class="ruby-value">:button_color</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">check_value</span> <span class="ruby-value">:change_size_value</span>, <span class="ruby-value">:size</span>, <span class="ruby-value">:size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_selections" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_selections</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_selections-source">
+            <pre><span class="ruby-comment"># File app/controllers/concerns/palettes_controller_handlers.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_selections</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:selection</span>]
+  <span class="ruby-identifier">applicable_method</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">select</span>.<span class="ruby-identifier">to_sym</span>).<span class="ruby-identifier">call</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_singular_selections" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_singular_selections</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_singular_selections-source">
+            <pre><span class="ruby-comment"># File app/controllers/concerns/palettes_controller_handlers.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_singular_selections</span>
+  <span class="ruby-identifier">button</span> = <span class="ruby-constant">Button</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:button_id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:checked</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'true'</span>
+    <span class="ruby-identifier">button</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">selected</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">button</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">selected</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">update_all_buttons_selected</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

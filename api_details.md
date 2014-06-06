@@ -72,7 +72,7 @@ HTTP: 401 Unauthorized
 **URL:** /api/v1/palettes  
 **Method:** GET  
 **Headers:**  
-- Authentication: Token token= **auth_token**
+- Authorization: Token token= **auth_token**
 
 **Response:**  
 Success: HTTP 200 OK  
@@ -108,7 +108,7 @@ Failure: HTTP 401 Unauthorized
 **URL:** /api/v1/palettes  
 **Method:** POST  
 **Headers:**  
-- Authentication: Token token= **auth_token**
+- Authorization: Token token= **auth_token**
 
 **Body:**  
 ```
