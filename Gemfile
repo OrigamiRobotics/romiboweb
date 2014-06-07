@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails', '4.0.2'
 gem 'jquery-rails'
@@ -33,7 +33,7 @@ gem "fog", "~> 1.3.1"
 gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
 gem 'acts-as-taggable-on', '~> 3.0.2'
 gem 'active_model_serializers'
-
+gem "codeclimate-test-reporter"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
