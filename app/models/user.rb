@@ -190,4 +190,5 @@ class User < ActiveRecord::Base
   def is_owner?(palette)
     palette.owner.id == id
   end
+
 end
