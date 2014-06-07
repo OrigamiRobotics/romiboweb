@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ButtonsController do
+describe ButtonsController, type: :controller do
 
   render_views
   let(:user) {FactoryGirl.create :user}
