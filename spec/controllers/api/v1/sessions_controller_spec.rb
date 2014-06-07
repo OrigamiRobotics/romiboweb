@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::SessionsController, api: true do
+describe Api::V1::SessionsController, type: :controller, api: true do
 
   let(:user) {FactoryGirl.create :user}
 

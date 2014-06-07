@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::RegistrationsController, api: true do
+describe Api::V1::RegistrationsController, type: :controller, api: true do
   let(:user) {FactoryGirl.build(:user)}
 
   describe "post 'create'", auth: true do

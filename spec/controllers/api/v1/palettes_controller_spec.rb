@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::PalettesController, api: true do
+describe Api::V1::PalettesController, type: :controller, api: true do
   let!(:user) {FactoryGirl.create :user}
   let!(:palettes) {FactoryGirl.create_list :palette, 5, owner_id: user.id}
 
