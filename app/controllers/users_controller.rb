@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, unless: { action: 'locale' }
+  before_filter :authenticate_user!, except: [:unconfirmed]
   before_filter :set_gon, :set_session
 
 
