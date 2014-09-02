@@ -13,7 +13,7 @@ module UserSocialConcerns
   end
 
   def from_twitter_oauth_helper(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    where(:provider => auth.provider, :uid => auth.uid).first_or_create do |user|
       name = auth.info.name
       name = name.split(' ')
       user.first_name       = name.first
