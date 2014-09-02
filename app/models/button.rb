@@ -47,7 +47,7 @@
 class Button < ActiveRecord::Base
   before_create :ensure_position
 
-  default_scope order(:row, :col)
+  default_scope { order(:row, :col) }
   
   has_many :palette_buttons
   has_many :palettes, through: :palette_buttons

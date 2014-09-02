@@ -74,13 +74,13 @@ Romiboweb::Application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-      address: "smtpout.secureserver.net",
-      port: 80,
-      domain: 'secureserver.net',
-      authentication: :login,
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: 'gmail.com',
+      authentication: 'plain',
       enable_starttls_auto: true,
-      user_name: "create@romibo.com",
-      password: "1<3r0b0t$",
+      user_name: "community@origamirobotics.com",
+      password: "PE#vMp9PQ5Gt",
       :openssl_verify_mode => 'none'
   }
 
