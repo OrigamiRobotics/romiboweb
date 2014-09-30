@@ -151,6 +151,7 @@ Romiboweb::Application.routes.draw do
         post 'register' => 'registrations#create'
         post 'login' => 'sessions#create'
         delete 'logout' => 'sessions#destroy'
+        get 'button_colors' => 'buttons#colors'
       end
 
     end
