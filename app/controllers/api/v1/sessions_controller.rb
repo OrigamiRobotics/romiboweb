@@ -27,9 +27,9 @@ class Api::V1::SessionsController < Devise::SessionsController
 
     if user.valid_password? params[:user][:password]
       user.reset_auth_token!
-      render json: user.to_json(
-          only: [:first_name, :last_name, :email, :auth_token]),
+      render json: user.to_json(:only => [:first_name, :last_name, :email, :auth_token], :methods => [:last_viewed_palette]),
              status: :created
+
     else
       head :unauthorized and return
     end
