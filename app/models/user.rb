@@ -173,6 +173,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def last_viewed_palette_id
+    last_viewed_palette.palette_id
+  end
+
 
   private
 
