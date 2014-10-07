@@ -177,6 +177,14 @@ class User < ActiveRecord::Base
     last_viewed_palette.palette_id
   end
 
+  def confirmed
+    if confirmed_at.blank?
+      0
+    else
+      1
+    end
+  end
+
 
   private
 
