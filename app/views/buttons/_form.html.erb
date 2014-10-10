@@ -20,7 +20,7 @@
   </div>
   <%= f.association :button_color, collection: ButtonColor.all, id: :name,
                     input_html: { class: 'chosen-select' } %>
-  <%= f.input :size, collection: %w[Small Medium Large], include_blank: false %>
+  <%= f.input :size, collection: %w[Large], include_blank: false %>
   <hr>
   <div class="row">
     <div class="col-md-3">

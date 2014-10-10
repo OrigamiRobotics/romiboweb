@@ -95,7 +95,7 @@ class Button < ActiveRecord::Base
       speech_phrase: "This is what I say",
       speech_speed_rate: 0.2,
       button_color_id: ButtonColor.find_by_name('Turquoise').id,
-      size: "Medium",
+      size: "Large",
       user_id: user.id
     }
   end

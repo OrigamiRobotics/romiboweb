@@ -58,7 +58,7 @@ class Palette < ActiveRecord::Base
                               speech_speed_rate: 0.2,
                               user_id: user.id,
                               button_color_id:   ButtonColor.find_by_name('Turquoise').id,
-                              size:              'Medium'
+                              size:              'Large'
         )
         button.save
       end
@@ -75,7 +75,7 @@ class Palette < ActiveRecord::Base
                                      speech_speed_rate: b.speed_rate,
                                      user_id:           user.id,
                                      button_color_id:   ButtonColor.find_by_name('Turquoise').id,
-                                     size:              'Medium'
+                                     size:              'Large'
       )
       button.save
     end
