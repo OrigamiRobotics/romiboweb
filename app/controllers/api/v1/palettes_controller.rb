@@ -19,36 +19,97 @@ class Api::V1::PalettesController < Api::BaseController
   
   def create
     head :unprocessable_entity and return unless params[:palette]
-    @palette = @current_user.palettes.build(palette_params)
-    @palette.save
-    if params[:palette][:buttons]
-      params[:palette][:buttons].each do |button_hash|
-        button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
-        button_hash = button_hash.merge button_color_id: button_color_id
-        button_hash = button_hash.merge size: 'Medium' unless button_hash[:size]
-        button_hash = button_hash.merge user_id: @current_user.id
-        button_hash.delete :color
-        @palette.buttons.build button_hash
+    #puts "palette_params => " + palette_params.inspect
+    @palette = Palette.find_by_id_and_owner_id(palette_params[:id], @current_user.id)
+    puts @palette.nil?
+    if @palette.nil?
+      #puts "create palette"
+      @palette = @current_user.palettes.build(palette_params)
+      @palette.save
+      if params[:palette][:buttons]
+        params[:palette][:buttons].each do |button_hash|
+          button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
+          button_hash = button_hash.merge button_color_id: button_color_id
+          button_hash = button_hash.merge size: 'Large' unless button_hash[:size]
+          button_hash = button_hash.merge user_id: @current_user.id
+          button_hash.delete :color
+
+          @palette.buttons.build(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
+                                 speech_speed_rate: button_hash[:speech_speed_rate],
+                                 user_id: button_hash[:user_id],
+                                 button_color_id:   button_hash[:button_color_id],
+                                 size:              'Large'
+          )
+
+          #@palette.buttons.build button_hash
+        end
+      end
+      if @palette.save
+        respond_with @palette, status: :created
+      else
+        @palette.delete if @palette.id # destroy the palette if it was created for safer retry
+        render json: @palette.errors, status: :unprocessable_entity
+      end
+    else
+      #puts "update palette"
+      @palette.update_attributes(palette_params)
+      if params[:palette][:buttons]
+        params[:palette][:buttons].each do |button_hash|
+          button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
+          button_hash = button_hash.merge button_color_id: button_color_id
+          button_hash = button_hash.merge size: 'Large' unless button_hash[:size]
+          button_hash = button_hash.merge user_id: @current_user.id
+          button_hash.delete :color
+
+
+          @button = Button.find_by_id_and_palette_id(button_hash[:id],button_hash[:palette_id])
+          if(@button.nil?)
+            #puts "create button"
+            @palette.buttons.build(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
+                                   speech_speed_rate: button_hash[:speech_speed_rate],
+                                   user_id: button_hash[:user_id],
+                                   button_color_id:   button_hash[:button_color_id],
+                                   size:              'Large'
+            )
+          else
+            #puts "update button"
+            @button.update(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
+                                    speech_speed_rate: button_hash[:speech_speed_rate],
+                                    user_id: button_hash[:user_id],
+                                    button_color_id:   button_hash[:button_color_id],
+                                    size:              'Large'
+            )
+          end
+
+
+        end
+      end
+      if @palette.save
+        respond_with @palette, status: :created
+      else
+        @palette.delete if @palette.id # destroy the palette if it was created for safer retry
+        render json: @palette.errors, status: :unprocessable_entity
       end
     end
-    if @palette.save
-      respond_with @palette, status: :created
-    else
-      @palette.delete if @palette.id # destroy the palette if it was created for safer retry
-      render json: @palette.errors, status: :unprocessable_entity
-    end
+
+
+
   end
 
   private
   def palette_params
     params.require(:palette).permit(
-        :title, 
-        :description, 
+        :title,
+        :id,
+        :description,
         :color,
         button: [
+            :id,
+            :palette_id,
             :title,
+            :speech_phrase,
             :speech_speed_rate,
-            :color,
+            :user_id,
             :button_color_id,
             :size
         ]
