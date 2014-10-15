@@ -19,19 +19,17 @@ class Api::V1::PalettesController < Api::BaseController
   
   def create
     head :unprocessable_entity and return unless params[:palette]
-    #puts "palette_params => " + palette_params.inspect
-    @palette = Palette.find_by_id_and_owner_id(palette_params[:id], @current_user.id)
-    puts @palette.nil?
+    palette_hash = palette_params
+    @palette = Palette.find_by_id_and_owner_id(palette_hash[:id], @current_user.id)
+
     if @palette.nil?
-      #puts "create palette"
-      @palette = @current_user.palettes.build(palette_params)
+      palette_hash.delete :id
+      @palette = @current_user.palettes.build(palette_hash)
       @palette.save
       if params[:palette][:buttons]
         params[:palette][:buttons].each do |button_hash|
           button_hash = build_button_hash(button_hash)
           build_button(button_hash)
-
-          #@palette.buttons.build button_hash
         end
       end
       if @palette.save
@@ -41,8 +39,7 @@ class Api::V1::PalettesController < Api::BaseController
         render json: @palette.errors, status: :unprocessable_entity
       end
     else
-      #puts "update palette"
-      @palette.update_attributes(palette_params)
+      @palette.update_attributes(palette_hash)
       if params[:palette][:buttons]
         params[:palette][:buttons].each do |button_hash|
           button_hash = build_button_hash(button_hash)
@@ -50,10 +47,8 @@ class Api::V1::PalettesController < Api::BaseController
 
           @button = Button.find_by_id_and_palette_id(button_hash[:id],button_hash[:palette_id])
           if(@button.nil?)
-            #puts "create button"
             build_button(button_hash)
           else
-            #puts "update button"
             @button.update(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
                                     speech_speed_rate: button_hash[:speech_speed_rate],
                                     user_id: button_hash[:user_id],
