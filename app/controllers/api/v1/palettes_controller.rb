@@ -28,18 +28,8 @@ class Api::V1::PalettesController < Api::BaseController
       @palette.save
       if params[:palette][:buttons]
         params[:palette][:buttons].each do |button_hash|
-          button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
-          button_hash = button_hash.merge button_color_id: button_color_id
-          button_hash = button_hash.merge size: 'Large' unless button_hash[:size]
-          button_hash = button_hash.merge user_id: @current_user.id
-          button_hash.delete :color
-
-          @palette.buttons.build(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
-                                 speech_speed_rate: button_hash[:speech_speed_rate],
-                                 user_id: button_hash[:user_id],
-                                 button_color_id:   button_hash[:button_color_id],
-                                 size:              'Large'
-          )
+          button_hash = build_button_hash(button_hash)
+          build_button(button_hash)
 
           #@palette.buttons.build button_hash
         end
@@ -55,22 +45,13 @@ class Api::V1::PalettesController < Api::BaseController
       @palette.update_attributes(palette_params)
       if params[:palette][:buttons]
         params[:palette][:buttons].each do |button_hash|
-          button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
-          button_hash = button_hash.merge button_color_id: button_color_id
-          button_hash = button_hash.merge size: 'Large' unless button_hash[:size]
-          button_hash = button_hash.merge user_id: @current_user.id
-          button_hash.delete :color
+          button_hash = build_button_hash(button_hash)
 
 
           @button = Button.find_by_id_and_palette_id(button_hash[:id],button_hash[:palette_id])
           if(@button.nil?)
             #puts "create button"
-            @palette.buttons.build(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
-                                   speech_speed_rate: button_hash[:speech_speed_rate],
-                                   user_id: button_hash[:user_id],
-                                   button_color_id:   button_hash[:button_color_id],
-                                   size:              'Large'
-            )
+            build_button(button_hash)
           else
             #puts "update button"
             @button.update(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
@@ -94,6 +75,24 @@ class Api::V1::PalettesController < Api::BaseController
 
 
 
+  end
+
+  def build_button(button_hash)
+    @palette.buttons.build(title: button_hash[:title], speech_phrase: button_hash[:speech_phrase],
+                           speech_speed_rate: button_hash[:speech_speed_rate],
+                           user_id: button_hash[:user_id],
+                           button_color_id: button_hash[:button_color_id],
+                           size: 'Large'
+    )
+  end
+
+  def build_button_hash(button_hash)
+    button_color_id = ButtonColor.find_by_value(button_hash[:color]).try(:id) || ButtonColor.default.id
+    button_hash = button_hash.merge button_color_id: button_color_id
+    button_hash = button_hash.merge size: 'Large' unless button_hash[:size]
+    button_hash = button_hash.merge user_id: @current_user.id
+    button_hash.delete :color
+    button_hash
   end
 
   private
