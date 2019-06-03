@@ -2,7 +2,7 @@ en:
   home:
     title: "Home"
     header:
-      welcome: "Welcome to Create.Romibo!"
+      welcome: "Welcome to Romiboweb!"
       create: "Create and share content and lessons for Romibo"
       signin: "Already a member? Sign In"
       signup: "New user? Sign up"
@@ -24,5 +24,3 @@ en:
     button:
       signin: "Sign in"
       signup: "Sign up"
-
-

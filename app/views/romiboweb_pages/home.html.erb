@@ -8,7 +8,6 @@
 
     <div class="welcome-container">
       <div class="page-header">
-        <h1 class="left welcome-header"><%= t('home.header.welcome') %></h1>
         <h4 class="left welcome-create"><%= t('home.header.create') %></h4>
       </div>
     </div>
@@ -16,14 +15,6 @@
     <div class="row">
       <div class="col-md-4">
         <%= render 'romiboweb_pages/home/sign_in_sign_up' %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="panel panel-default">
-            <%= render 'devise/sessions/social_media_log_in' %>
-        </div>
       </div>
     </div>
 

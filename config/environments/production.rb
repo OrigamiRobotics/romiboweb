@@ -78,8 +78,8 @@ Romiboweb::Application.configure do
       domain: 'gmail.com',
       authentication: 'plain',
       # enable_starttls_auto: true,
-      user_name: "origamitesthero@gmail.com",
-      password: "3cZHAuyq69m2krvujoLMa^",
+      user_name: ENV['SMTP_USERNAME'],
+      password: ENV['SMTP_PASSWORD'],
       :openssl_verify_mode => 'none'
   }
 
