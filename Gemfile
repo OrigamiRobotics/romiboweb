@@ -33,7 +33,7 @@ gem 'carrierwave'
 gem "fog"#, "~> 1.3.1"
 gem 'rmagick', require: false #=> requires `brew install imagemagick`
 gem 'acts-as-taggable-on'#, '~> 3.0.2'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '0.9.5'
 gem "codeclimate-test-reporter"
 gem 'unicorn'
 
