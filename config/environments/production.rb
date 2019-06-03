@@ -78,8 +78,8 @@ Romiboweb::Application.configure do
       domain: 'gmail.com',
       authentication: 'plain',
       enable_starttls_auto: true,
-      user_name: "community@origamirobotics.com",
-      password: "PE#vMp9PQ5Gt",
+      user_name: "origamitesthero@gmail.com",
+      password: "3cZHAuyq69m2krvujoLMa^",
       :openssl_verify_mode => 'none'
   }
 
