@@ -34,3 +34,7 @@
     margin-bottom: 0px;
 }
 
+.navbar-inverse {
+    background-color: #e9f7fc;
+    border: none;
+}

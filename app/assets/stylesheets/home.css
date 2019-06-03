@@ -1,5 +1,5 @@
 body {
-	background: url("romibo/welcome_bg_2.jpg") no-repeat;
+	background: url("romibo/welcome-bg.jpg") no-repeat;
 	background-size: cover;
 	background-color: black;
 }
@@ -15,7 +15,7 @@ body {
 }
 
 .welcome-container {
-	color: #ffffff;
+	color: #3c7599;
 }
 
 .welcome-header {
