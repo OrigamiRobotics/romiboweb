@@ -2,13 +2,13 @@
 #
 # Table name: profiles
 #
-#  id         :integer          not null, primary key
-#  user_name  :string(255)
-#  user_id    :integer
-#  avatar     :string(255)
-#  slug       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id         :bigint           not null, primary key
+#  user_name  :string
+#  user_id    :bigint
+#  avatar     :string
+#  slug       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 # Indexes
 #

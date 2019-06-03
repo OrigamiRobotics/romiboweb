@@ -2,11 +2,16 @@
 #
 # Table name: palette_viewers
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  palette_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  palette_id :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_palette_viewers_on_palette_id  (palette_id)
+#  index_palette_viewers_on_user_id     (user_id)
 #
 
 class PaletteViewer < ActiveRecord::Base

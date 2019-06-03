@@ -2,12 +2,16 @@
 #
 # Table name: attachments
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
-#  attachable_id   :integer
-#  attachable_type :string(255)
+#  id              :bigint           not null, primary key
+#  name            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  attachable_type :string
+#  attachable_id   :bigint
+#
+# Indexes
+#
+#  index_attachments_on_attachable_type_and_attachable_id  (attachable_type,attachable_id)
 #
 
 require 'spec_helper'

@@ -1,4 +1,4 @@
-class UpdateBlueToRiverBlue < ActiveRecord::Migration
+class UpdateBlueToRiverBlue < ActiveRecord::Migration[5.2]
   def change
     execute "UPDATE button_colors
             SET value='#3498db'

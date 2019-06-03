@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id         :bigint           not null, primary key
+#  user_name  :string
+#  user_id    :bigint
+#  avatar     :string
+#  slug       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_profiles_on_slug     (slug) UNIQUE
+#  index_profiles_on_user_id  (user_id)
+#
+
 require 'spec_helper'
 
 describe ProfilesController do

@@ -1,4 +1,4 @@
-class CreatePaletteLessons < ActiveRecord::Migration
+class CreatePaletteLessons < ActiveRecord::Migration[5.2]
   def change
     create_table :palette_lessons do |t|
       t.references :palette, index: true

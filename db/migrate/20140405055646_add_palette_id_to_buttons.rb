@@ -1,4 +1,4 @@
-class AddPaletteIdToButtons < ActiveRecord::Migration
+class AddPaletteIdToButtons < ActiveRecord::Migration[5.2]
   def change
     add_reference :buttons, :palette, index: true
     

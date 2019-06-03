@@ -2,11 +2,11 @@
 #
 # Table name: last_viewed_palettes
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  palette_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  palette_id :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 # Indexes
 #

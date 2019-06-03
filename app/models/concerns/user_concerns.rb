@@ -13,6 +13,7 @@ module UserConcerns
 
     cipher = OpenSSL::Cipher::AES.new(128, :CBC)
     cipher.encrypt
+    cipher.key = cipher.random_key
 
     encryption = cipher.update(data) + cipher.final
     encryption_key = cipher.random_key
@@ -29,7 +30,7 @@ module UserConcerns
 
   def other_names_and_avatars
     user_id = id
-    User.where{id != user_id}.order(:first_name).map do |user|
+    User.where(id != user_id).order(:first_name).map do |user|
       ["#{user.full_name},#{profile_avatar_url(user.profile)}", user.id]
     end
   end

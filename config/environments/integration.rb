@@ -78,7 +78,7 @@ Romiboweb::Application.configure do
       port: 587,
       domain: 'gmail.com',
       authentication: 'plain',
-      enable_starttls_auto: true,
+      # enable_starttls_auto: true,
       user_name: "origamitesthero@gmail.com",
       password: "3cZHAuyq69m2krvujoLMa^",
       :openssl_verify_mode => 'none'

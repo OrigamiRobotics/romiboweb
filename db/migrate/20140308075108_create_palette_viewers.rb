@@ -1,4 +1,4 @@
-class CreatePaletteViewers < ActiveRecord::Migration
+class CreatePaletteViewers < ActiveRecord::Migration[5.2]
   def change
     create_table :palette_viewers do |t|
       t.references :user

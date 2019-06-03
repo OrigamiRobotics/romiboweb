@@ -1,4 +1,4 @@
-class RenameFeedbackColumns < ActiveRecord::Migration
+class RenameFeedbackColumns < ActiveRecord::Migration[5.2]
   def change
     reversible do |dir|
       change_table :feedbacks do |f|

@@ -2,19 +2,23 @@
 #
 # Table name: lessons
 #
-#  id                :integer          not null, primary key
-#  title             :string(255)
+#  id                :bigint           not null, primary key
+#  title             :string
 #  subject           :text
 #  duration          :integer
 #  objectives        :text
 #  materials         :text
-#  no_of_instructors :string(255)
-#  student_size      :string(255)
+#  no_of_instructors :string
+#  student_size      :string
 #  preparation       :text
 #  notes             :text
-#  created_at        :datetime
-#  updated_at        :datetime
-#  user_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :bigint
+#
+# Indexes
+#
+#  index_lessons_on_user_id  (user_id)
 #
 
 require 'spec_helper'

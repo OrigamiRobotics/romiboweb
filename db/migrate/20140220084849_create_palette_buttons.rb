@@ -1,4 +1,4 @@
-class CreatePaletteButtons < ActiveRecord::Migration
+class CreatePaletteButtons < ActiveRecord::Migration[5.2]
   def change
     create_table :palette_buttons do |t|
       t.references :palette, index: true

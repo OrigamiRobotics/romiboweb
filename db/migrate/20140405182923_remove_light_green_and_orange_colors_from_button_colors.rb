@@ -1,4 +1,4 @@
-class RemoveLightGreenAndOrangeColorsFromButtonColors < ActiveRecord::Migration
+class RemoveLightGreenAndOrangeColorsFromButtonColors < ActiveRecord::Migration[5.2]
   def change
     execute "UPDATE buttons
             SET button_color_id=(select id FROM button_colors WHERE name='Green')

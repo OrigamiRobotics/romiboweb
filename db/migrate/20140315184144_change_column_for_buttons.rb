@@ -1,4 +1,4 @@
-class ChangeColumnForButtons < ActiveRecord::Migration
+class ChangeColumnForButtons < ActiveRecord::Migration[5.2]
   def change
     reversible do |dir|
       change_table :buttons do |t|

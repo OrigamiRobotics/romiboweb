@@ -2,15 +2,15 @@
 #
 # Table name: feedbacks
 #
-#  id          :integer          not null, primary key
-#  statement   :string(255)
+#  id          :bigint           not null, primary key
+#  statement   :string
 #  description :text
-#  user_id     :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#  user_name   :string(255)
-#  user_email  :string(255)
-#  page_uri    :string(255)
+#  user_id     :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_name   :string
+#  user_email  :string
+#  page_uri    :string
 #
 # Indexes
 #

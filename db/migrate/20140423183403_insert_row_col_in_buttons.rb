@@ -1,4 +1,4 @@
-class InsertRowColInButtons < ActiveRecord::Migration
+class InsertRowColInButtons < ActiveRecord::Migration[5.2]
   def up
     Palette.find_each do |palette|
       @row = 1

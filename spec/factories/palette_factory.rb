@@ -2,12 +2,12 @@
 #
 # Table name: palettes
 #
-#  id                   :integer          not null, primary key
-#  title                :string(255)
-#  description          :string(255)
-#  color                :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  id                   :bigint           not null, primary key
+#  title                :string
+#  description          :string
+#  color                :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  owner_id             :integer
 #  system               :boolean          default(FALSE)
 #  last_viewed_button   :integer

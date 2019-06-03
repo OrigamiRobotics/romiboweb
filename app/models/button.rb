@@ -22,19 +22,19 @@
 #
 # Table name: buttons
 #
-#  id                :integer          not null, primary key
-#  title             :string(255)      not null
-#  speech_phrase     :string(255)
+#  id                :bigint           not null, primary key
+#  title             :string           not null
+#  speech_phrase     :string
 #  speech_speed_rate :float
-#  user_id           :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  button_color_id   :integer
-#  size              :string(255)
+#  user_id           :bigint
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  button_color_id   :bigint
+#  size              :string
 #  row               :integer
 #  col               :integer
 #  selected          :boolean          default(FALSE)
-#  palette_id        :integer
+#  palette_id        :bigint
 #
 # Indexes
 #
@@ -73,7 +73,7 @@ class Button < ActiveRecord::Base
   def div_id
     "buttonId_#{id}"
   end
-  
+
   SIZE = {
     'small' => 1,
     'medium' => 2,
@@ -99,7 +99,7 @@ class Button < ActiveRecord::Base
       user_id: user.id
     }
   end
-  
+
   def ensure_position
     last_button = palette.buttons.last
     unless last_button
@@ -108,11 +108,11 @@ class Button < ActiveRecord::Base
     end
 
     if last_button
-      curr_button_col = last_button.col + SIZE[last_button.size.downcase]
-      
+      curr_button_col = (last_button.col || 1) + SIZE[last_button.size.downcase]
+
       if can_fit_in_current_row?(last_button)
         self.row = last_button.row
-        self.col = curr_button_col        
+        self.col = curr_button_col
       else
         self.row = last_button.row + 1
         self.col = 1
@@ -122,7 +122,7 @@ class Button < ActiveRecord::Base
 
   private
   def can_fit_in_current_row?(last_button)
-    curr_button_col = last_button.col + SIZE[last_button.size.downcase]
+    curr_button_col = (last_button.col || 1) + SIZE[last_button.size.downcase]
     curr_button_size = SIZE[self.size.downcase]
     curr_button_col <= 12 && (curr_button_col + curr_button_size) <= 13
   end

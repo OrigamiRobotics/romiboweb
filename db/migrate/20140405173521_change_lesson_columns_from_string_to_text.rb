@@ -1,4 +1,4 @@
-class ChangeLessonColumnsFromStringToText < ActiveRecord::Migration
+class ChangeLessonColumnsFromStringToText < ActiveRecord::Migration[5.2]
   def up
     change_column :lessons, :subject, :text
     change_column :lessons, :objectives, :text

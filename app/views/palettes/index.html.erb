@@ -25,6 +25,8 @@
         trigger: 'hover',
         placement: 'top'
       });
+	  
+	  $("#palette_link_" + '<%= current_user.current_palette.id %>').click();
       <% end %>
 
       $('#addNewButton').keypress(function(e) {
@@ -33,7 +35,6 @@
         }
       });
 
-      $("#palette_link_" + '<%= current_user.current_palette.id %>').click();
       $(document).ready(function(){
 	      $('.gridster ul li:first a').click()
       });

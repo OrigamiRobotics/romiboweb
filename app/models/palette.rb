@@ -12,12 +12,12 @@
 #
 # Table name: palettes
 #
-#  id                   :integer          not null, primary key
-#  title                :string(255)
-#  description          :string(255)
-#  color                :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  id                   :bigint           not null, primary key
+#  title                :string
+#  description          :string
+#  color                :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  owner_id             :integer
 #  system               :boolean          default(FALSE)
 #  last_viewed_button   :integer
@@ -25,8 +25,8 @@
 #
 
 class Palette < ActiveRecord::Base
-  
-  
+
+
   belongs_to :owner, class_name: 'User'
   has_many :palette_buttons
   has_many :palette_lessons
@@ -37,7 +37,7 @@ class Palette < ActiveRecord::Base
   has_many :recommended_palettes, inverse_of: :palette, dependent: :destroy
 
   has_one  :last_viewed_palette
-  accepts_nested_attributes_for :buttons, 
+  accepts_nested_attributes_for :buttons,
                                 allow_destroy: true
 
 
@@ -105,7 +105,7 @@ class Palette < ActiveRecord::Base
   end
 
   def selected_buttons
-    buttons.where{ selected == true}
+    buttons.where(selected: true)
   end
 
   def set_common_values(button)

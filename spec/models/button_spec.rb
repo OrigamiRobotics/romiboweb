@@ -2,19 +2,19 @@
 #
 # Table name: buttons
 #
-#  id                :integer          not null, primary key
-#  title             :string(255)      not null
-#  speech_phrase     :string(255)
+#  id                :bigint           not null, primary key
+#  title             :string           not null
+#  speech_phrase     :string
 #  speech_speed_rate :float
-#  user_id           :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  button_color_id   :integer
-#  size              :string(255)
+#  user_id           :bigint
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  button_color_id   :bigint
+#  size              :string
 #  row               :integer
 #  col               :integer
 #  selected          :boolean          default(FALSE)
-#  palette_id        :integer
+#  palette_id        :bigint
 #
 # Indexes
 #

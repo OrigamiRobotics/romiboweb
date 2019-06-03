@@ -1,4 +1,4 @@
-class CreateRecommendedPalettes < ActiveRecord::Migration
+class CreateRecommendedPalettes < ActiveRecord::Migration[5.2]
   def change
     create_table :recommended_palettes do |t|
       t.belongs_to :user, index: true

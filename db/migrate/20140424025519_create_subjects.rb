@@ -1,4 +1,4 @@
-class CreateSubjects < ActiveRecord::Migration
+class CreateSubjects < ActiveRecord::Migration[5.2]
   def change
     create_table :subjects do |t|
       t.string :name
@@ -49,7 +49,7 @@ class CreateSubjects < ActiveRecord::Migration
         "Yes/No",
         "Zones of Regulation"
     ]
-    flattened_subject = subjects.join("'), ('")
-    execute "INSERT INTO subjects (name) VALUES ('#{flattened_subject}');"
+    flattened_subject = subjects.join("', NOW(), NOW()), ('")
+    execute "INSERT INTO subjects (name, created_at, updated_at) VALUES ('#{flattened_subject}', NOW(), NOW());"
   end
 end

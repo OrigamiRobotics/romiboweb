@@ -84,12 +84,11 @@
 #
 
 Romiboweb::Application.routes.draw do
+  root to: 'romiboweb_pages#home'
 
   get "romiboweb_pages/home"
   get "romiboweb_pages/editor"
 	get 'romiboweb_pages/terms'
-
-	root to: 'romiboweb_pages#home'
 
   %w[home editor].each do |page|
 		get page, controller: 'romiboweb_pages', action: page

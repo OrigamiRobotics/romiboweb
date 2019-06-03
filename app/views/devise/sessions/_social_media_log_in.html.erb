@@ -1,10 +1,10 @@
 <div id="socialMediaLogin">
   <%= link_to (image_tag("social_media/facebook_32.png", size: "32x32", alt: "Facebook", title: 'Facebook')),
-              user_omniauth_authorize_path(:facebook) %>
+              user_facebook_omniauth_authorize_path(:facebook) %>
 
   <%= link_to (image_tag("social_media/google_32.png", size: "24x24", alt: "Google Plus", title: "Google Plus")),
-              user_omniauth_authorize_path(:google_oauth2) %>
+              user_google_oauth2_omniauth_authorize_path(:google_oauth2) %>
 
    <%= link_to (image_tag("social_media/twitter_32.png", size: "32x32", alt: "Twitter", title: 'Twitter')),
-                user_omniauth_authorize_path(:twitter) %>
+                user_twitter_omniauth_authorize_path(:twitter) %>
 </div>
