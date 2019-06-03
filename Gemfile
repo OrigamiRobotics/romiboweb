@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.3.7'
 
-gem 'rails', '4.1.5'
+gem 'rails', '5.2.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'#, '~> 1.2'
 gem 'pg'
 gem 'devise'
 gem 'warden'
 gem 'cancan'
 gem 'squeel'
-gem 'friendly_id', '~> 5.0.0'
+gem 'friendly_id'#, '~> 5.0.0'
 gem 'simple_form'
 gem 'simplecov'
 gem 'json'
@@ -25,14 +25,14 @@ gem 'gon'
 gem 'rabl'
 gem 'smarter_csv'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-facebook'#, '1.4.0'
 gem 'omniauth-google-oauth2'
 gem 'grabzit'
 gem 'select2-rails'
 gem 'carrierwave'
-gem "fog", "~> 1.3.1"
-gem 'rmagick', '2.13.2', require: false #=> requires `brew install imagemagick`
-gem 'acts-as-taggable-on', '~> 3.0.2'
+gem "fog"#, "~> 1.3.1"
+gem 'rmagick', require: false #=> requires `brew install imagemagick`
+gem 'acts-as-taggable-on'#, '~> 3.0.2'
 gem 'active_model_serializers'
 gem "codeclimate-test-reporter"
 gem 'unicorn'
@@ -68,9 +68,9 @@ group :test do
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '2.5.0'
-  gem 'capybara-webkit'
-  gem 'spork-rails'
+  gem 'shoulda-matchers'#, '2.5.0'
+  # gem 'capybara-webkit'
+  # gem 'spork-rails'
   gem 'guard-spork'
   gem 'pickle'
 end
