@@ -1,5 +1,5 @@
 class RomibowebPagesController < ApplicationController
-  before_filter :set_gon
+  before_action :set_gon
 
   def home
     if user_signed_in?

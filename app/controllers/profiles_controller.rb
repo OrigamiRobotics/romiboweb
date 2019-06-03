@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :set_gon, :get_profile
+  before_action :authenticate_user!
+  before_action :set_gon, :get_profile
 
 
   def edit

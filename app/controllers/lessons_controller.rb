@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   respond_to :html
 
   def new
@@ -32,30 +32,30 @@ class LessonsController < ApplicationController
       flash[:danger] = 'Could not create lesson'
     end
   end
-  
+
   def index
     @lessons = current_user.lessons
   end
-  
+
   def show
     @lesson = Lesson.find params[:id]
   end
-  
+
   def edit
     @lesson = Lesson.find params[:id]
   end
-  
+
   def update
     @lesson = Lesson.find params[:id]
-    
+
     unless @lesson.user == current_user
       flash[:danger] = 'You are not authorized!'
       respond_with @lesson and return
     end
-    
+
     unless params[:lesson][:attachment].blank?
       @lesson.attachment.delete if @lesson.attachment.present?
-      @lesson.create_attachment name: params[:lesson][:attachment] 
+      @lesson.create_attachment name: params[:lesson][:attachment]
     end
 
     handle_palettes
@@ -69,26 +69,26 @@ class LessonsController < ApplicationController
       render 'edit' and return
     end
   end
-  
+
   def destroy
     @lesson = Lesson.find params[:id]
-    
+
     unless @lesson.user == current_user
       flash[:danger] = 'You are not authorized!'
       respond_with @lesson and return
     end
-    
+
     @lesson.delete
-    redirect_to lessons_path 
+    redirect_to lessons_path
   end
-  
-  
+
+
 
   private
   def lesson_params
     params.require(:lesson).permit(
         :title, :subject, :duration, :objectives, :materials,
-        :no_of_instructors, :student_size, :preparation, 
+        :no_of_instructors, :student_size, :preparation,
         :notes, :tag_list, :palette_ids, :subject_ids
     )
   end

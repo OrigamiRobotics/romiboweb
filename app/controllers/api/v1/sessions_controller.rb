@@ -2,7 +2,7 @@
 #
 
 class Api::V1::SessionsController < Devise::SessionsController
-  before_filter :authenticate_token!, except: :create
+  before_action :authenticate_token!, except: :create
   protect_from_forgery with: :null_session
   respond_to :json
 

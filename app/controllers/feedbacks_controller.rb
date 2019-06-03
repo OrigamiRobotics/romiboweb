@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  before_filter :set_gon
+  before_action :set_gon
   respond_to :js, :html
 
   def new

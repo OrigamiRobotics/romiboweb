@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, except: [:unconfirmed]
-  before_filter :set_gon, :set_session
+  before_action :authenticate_user!, except: [:unconfirmed]
+  before_action :set_gon, :set_session
 
 
   #def new

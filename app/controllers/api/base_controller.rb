@@ -1,5 +1,5 @@
 class Api::BaseController < ApplicationController
-  before_filter :authenticate_token!
+  before_action :authenticate_token!
   protect_from_forgery with: :null_session
   respond_to :json
 

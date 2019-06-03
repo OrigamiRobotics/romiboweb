@@ -3,7 +3,7 @@ class ButtonsController < ApplicationController
   include ButtonsControllerAssistant
   include CommonButtonsPalettesMethods
 
-  before_filter :get_correct_palette, :set_session
+  before_action :get_correct_palette, :set_session
 
   def new
     begin

@@ -1,8 +1,8 @@
 class PalettesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :palette_owner, only: :destroy
-  before_filter :set_gon, :set_session
-  before_filter :set_user
+  before_action :authenticate_user!
+  before_action :palette_owner, only: :destroy
+  before_action :set_gon, :set_session
+  before_action :set_user
 
   include CommonButtonsPalettesMethods
   include PalettesControllerAssistant
